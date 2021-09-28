@@ -1,1 +1,4 @@
-
+unit_testing/node_modules
+unit_testing/javascript/node_modules
+unit_testing/__pycache__
+unit_testing/javascript/coverage
