@@ -1,0 +1,20 @@
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Home from "./Pages/Home/Home";
+import Patient from "./Pages/Patient/Patient";
+import Login from "./Pages/Login/Login";
+import TemporaryNavbar from "./Components/TemporaryNavbar";
+
+export default function App() {
+  return (
+    <Router>
+      <div className="App">
+        <TemporaryNavbar />
+        <Switch>
+          <Route path="/patient" component={Patient} />
+          <Route path="/login" component={Login} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </div>
+    </Router>
+  );
+}

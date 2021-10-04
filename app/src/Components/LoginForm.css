@@ -1,0 +1,92 @@
+/**
+* LoginForm.css
+*
+* Contains all the css applied to the LoginForm.js component.
+*
+* Erik Jareman - DRAFT
+*
+* Documentation not complete.
+*/
+
+input,
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+form {
+  display: block;
+  position: relative;
+  font-family: montserrat, sans-serif;
+}
+
+form .form-inner {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  padding: 20px 30px 30px 30px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+form .form-group {
+  padding-right: 30px;
+}
+
+form .form-inner .form-group {
+  display: block;
+  width: 250px;
+  margin-bottom: 15px;
+}
+
+form .form-inner .form-group label {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 5px;
+  transition: 0.2s;
+}
+
+form .form-inner .form-group:focus-within label {
+  color: rgb(0, 0, 0);
+}
+
+form .form-inner .form-group input {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: rgb(238, 238, 238);
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+form .form-inner .form-group input:focus {
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+form .form-inner input[type="submit"] {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: #4267b2;
+  transition: 0.1s;
+  color: #fff;
+  font-weight: 520;
+  cursor: pointer;
+}
+
+form .form-inner input[type="submit"]:hover {
+  background-color: #57a6f0;
+}
+
+.regionen-logo {
+  width: 280px;
+}
+
+.error {
+  min-height: 18px;
+  color: rgba(255, 0, 0, 0.8);
+  font-size: 12px;
+}
