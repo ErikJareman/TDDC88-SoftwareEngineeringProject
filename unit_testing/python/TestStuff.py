@@ -22,7 +22,7 @@ class TestStringMethods(unittest.TestCase):
       s.split(2)
   
   def test_summ(self):
-    self.assertEqual(summ(1, 1), 2, "jalla")
+    self.assertEqual(summ(1, 1), 3, "jalla")
     self.assertEqual(summ(2, 3), 5)
     self.assertFalse(summ(1, 1) == 3)
     self.assertTrue(summ(1, 1) == 2)

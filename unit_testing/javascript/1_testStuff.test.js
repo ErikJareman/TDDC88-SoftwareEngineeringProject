@@ -1,4 +1,4 @@
-const { sum, returnObject, getPatient } = require('./functions.js');
+const { sum, returnObject } = require('./functions.js');
 
 /*
 .toBe
@@ -36,11 +36,6 @@ describe('Testing functions in sum.js', () => {
   test('Test matching object', () => {
     let object = returnObject()
     expect(object).toMatchObject(testObject)
-  })
-
-  test('Test getPatient()', () =>{
-    const patient = getPatient()
-    expect(patient.getName()).teBo('Henrik')
   })
   
 })
