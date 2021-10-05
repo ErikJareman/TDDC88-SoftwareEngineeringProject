@@ -14,4 +14,4 @@ function returnObject() {
   return object
 }
 
-module.exports = { sum, returnObject, getPatient };
+module.exports = { sum, returnObject };
