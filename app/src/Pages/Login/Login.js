@@ -9,6 +9,7 @@
 import "./Login.css";
 import LoginForm from "../../Components/LoginForm";
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 /**
  * Login() contains logic for the login/logout functionality
@@ -45,11 +46,10 @@ export default function Login() {
   return (
     <div className="page-container">
       {user.userID !== "" ? (
-        <div className="welcome">
-          Welcome <span>{user.userID}</span>.
-          <button onClick={Logout}>Logout</button>
-        </div>
+        //When logged in
+        <Redirect to="/" />
       ) : (
+        //When not logged in
         <LoginForm Login={Login} error={error} />
       )}
     </div>
