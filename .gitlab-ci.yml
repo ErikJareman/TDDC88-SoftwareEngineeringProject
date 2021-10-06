@@ -1,0 +1,30 @@
+image: node:latest
+
+stages:
+  - build
+  - test
+
+# Check if the code compiles
+build:
+  stage: build
+  script:
+    - cd app/
+    - npm install
+
+# Testing for JavaScript
+js_test:
+  stage: test
+  script:
+    - cd unit_testing/javascript
+    - npm install jest --global
+    - npm test
+
+# Testing for Python
+python_test:
+  image: python:latest
+  stage: test
+  script:
+    - cd unit_testing/python
+    - python -m unittest discover -p '*_test.py'
+    
+
