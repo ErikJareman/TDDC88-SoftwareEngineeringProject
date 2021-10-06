@@ -1,0 +1,27 @@
+/**
+* LoginForm.css
+*
+* Contains all the css applied to the LoginForm.js component.
+*
+* Philip Nylén - DRAFT
+*
+* Documentation not complete.
+*/
+h1#headerText {
+    width: fit-content;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    color: white;
+}
+img {
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    vertical-align: middle;
+}
+div#headerArea {
+    background-color: darkblue;
+    align-items: flex-start;
+    display: flex;
+}
