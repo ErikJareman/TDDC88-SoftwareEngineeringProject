@@ -26,5 +26,3 @@ python_test:
   script:
     - cd unit_testing/python
     - python -m unittest discover -p '*_test.py'
-    
-
