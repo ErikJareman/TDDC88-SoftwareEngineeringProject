@@ -11,9 +11,9 @@ import "./HeaderField.css";
 
 export default function HeaderField() {
   return (
-    <div class="container-fluid" id="headerArea">
-        <img src={headerLogo} className="header-logo" alt="Not found" />
-        <h1 id="headerText"> Norrköping</h1>
+    <div id="headerArea">
+      <img src={headerLogo} className="header-logo" alt="Not found" />
+      <h1 id="headerText"> Norrköping</h1>
     </div>
   );
 }

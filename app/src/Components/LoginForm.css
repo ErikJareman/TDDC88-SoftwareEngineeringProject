@@ -54,7 +54,7 @@ form .form-inner .form-group:focus-within label {
 
 form .form-inner .form-group input {
   display: block;
-  width: 100%;
+  width: 280px;
   padding: 10px 15px;
   background-color: rgb(238, 238, 238);
   border-radius: 8px;

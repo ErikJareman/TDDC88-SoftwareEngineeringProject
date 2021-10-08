@@ -1,7 +1,7 @@
 /**
  * PatientNavList.js
  *
- * function PatientNavList() - Philip Nylén - DRAFT
+ * function PatientNavList() - Philip Nylén, Erik Jareman - DRAFT
  */
 import "./PatientNavList.css";
 import { Link } from "react-router-dom";
@@ -10,100 +10,69 @@ import notificationBell from "../assets/notificationBell.png";
 
 /**
  * The function PatientNavList renders the list of patients, currently
- * only psuedo-data and hard-coded
- * Philip Nylén
+ * only psuedo-data
+ * Philip Nylén, Erik Jareman
  * FIXING
  */
 export default function PatientNavList() {
-  var person1 = ({
-    timer: "00:15",
-    arrival: "13:15",
-    id: 190111138844,
-    name: "Fredrik Olsson",
-    reasonForVisit: "Benbrott",
-    team: "A",
-    room: 1
-  });
-  var person2 = ({
-    timer: "05:34",
-    arrival: "14:27",
-    id: 200001012233,
-    name: "Karl Boström",
-    reasonForVisit: "Buksmärtor",
-    team: "B",
-    room: 5
-  });
+  const patients = [
+    {
+      id: 1,
+      name: "Fredrik Olsson",
+      pnum: "930217-5150",
+      timer: "00:15",
+      arrival: "13:15",
+      reasonForVisit: "Benbrott",
+      team: "A",
+      room: 1,
+    },
+    {
+      id: 2,
+      name: "Karl Boström",
+      pnum: "870427-0227",
+      timer: "05:34",
+      arrival: "14:27",
+      reasonForVisit: "Buksmärtor",
+      team: "B",
+      room: 5,
+    },
+  ];
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to={{pathname: "/patient/" + person1.id}}>
+    <ul>
+      {patients.map((patient) => {
+        return (
+          <li key={patient.id}>
+            <Link
+              to={{
+                pathname: `/patient/${patient.id}`,
+                state: { patients: patient },
+              }}
+            >
               <table>
-                <h3 class="medium">
-                  {person1.timer}
-                </h3>
-                <h3>
-                  {person1.arrival}
-                </h3>
-                <h3 class="long">
-                  {person1.name}
-                </h3>
-                <h3 class="long">
-                  {person1.id}
-                </h3>
-                <h3 class="long">
-                  {person1.reasonForVisit}
-                </h3>
-                <h3>
-                  {person1.team}
-                </h3>
-                <h3>
-                  {person1.room}
-                </h3>
+                {/*Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3>*/}
+                <h3 className="medium">{patient.timer}</h3>
+                <h3>{patient.arrival}</h3>
+                <h3 className="long">{patient.name}</h3>
+                <h3 className="long">{patient.id}</h3>
+                <h3 className="long">{patient.reasonForVisit}</h3>
+                <h3>{patient.team}</h3>
+                <h3>{patient.room}</h3>
               </table>
             </Link>
-            <a class="nav-link" href="#" id="profilePicture">
+            <a className="nav-link" href="/" id="profilePicture">
               <img src={trends} className="trends" alt="Not found" />
             </a>
-            <a class="nav-link" href="#" id="profilePicture">
-              <img src={notificationBell} className="notificationBell" alt="Not found" />
+            <a className="nav-link" href="/" id="profilePicture">
+              <img
+                src={notificationBell}
+                className="notificationBell"
+                alt="Not found"
+              />
             </a>
-        </li>
-        <li>
-          <Link to={{pathname: "/patient/" + person2.id}}>
-            <table>
-              <h3 class="medium">
-                {person2.timer}
-              </h3>
-              <h3>
-                {person2.arrival}
-              </h3>
-              <h3 class="long">
-                {person2.name}
-              </h3>
-              <h3 class="long">
-                {person2.id}
-              </h3>
-              <h3 class="long">
-                {person2.reasonForVisit}
-              </h3>
-              <h3>
-                {person2.team}
-              </h3>
-              <h3>
-                {person2.room}
-              </h3>
-            </table>
-          </Link>
-          <a class="nav-link" href="#" id="profilePicture">
-            <img src={trends} className="trends" alt="Not found" />
-          </a>
-          <a class="nav-link" href="#" id="profilePicture">
-            <img src={notificationBell} className="notificationBell" alt="Not found" />
-          </a>
-        </li>
-      </ul>
-    </nav>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
