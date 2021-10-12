@@ -3,6 +3,7 @@ image: node:latest
 stages:
   - build
   - test
+  - deploy
 
 # Check if the code compiles
 build:
@@ -10,7 +11,8 @@ build:
   script:
     - cd app/
     - npm install
-
+  
+        
 # Testing for JavaScript
 js_test:
   stage: test
@@ -26,3 +28,18 @@ python_test:
   script:
     - cd unit_testing/python
     - python -m unittest discover -p '*_test.py'
+    
+#deploy to heroku
+deploy:
+  image: ruby:latest
+  stage: deploy
+  script:
+    - cd app
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
+  only:
+        - master
+        - ntest
+
