@@ -40,6 +40,6 @@ deploy:
     - gem install dpl
     - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
   only:
+        - development
         - master
-        - ntest
 
