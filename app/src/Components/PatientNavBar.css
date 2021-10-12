@@ -1,0 +1,25 @@
+/**
+* PatientNavBar.css
+* CSS for sub-navbar in patient-view
+*
+* Author David Råsberg, Rough draft
+*/
+
+
+
+.patient-nav-bar-text {
+    width: fit-content;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    color: white;
+}
+.patient-nav-bar-name {
+    
+}
+
+.patient-nav-bar {
+    background-color: rgb(110, 146, 247);
+    align-items: flex-start;
+    display: flex;
+}

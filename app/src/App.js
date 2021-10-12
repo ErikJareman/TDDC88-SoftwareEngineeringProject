@@ -4,18 +4,21 @@ import Patient from "./Pages/Patient/Patient";
 import Login from "./Pages/Login/Login";
 import "semantic-ui-css/semantic.min.css";
 import HeaderField from "./Components/HeaderField";
+import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   return (
-    <Router>
-      <div className="App">
-        <HeaderField />
-        <Switch>
-          <Route path="/patient" component={Patient} />
-          <Route path="/login" component={Login} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </div>
-    </Router>
+    <>
+      <HeaderField />
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/patient" component={Patient} />
+            <Route path="/login" component={Login} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
+      </Router>
+    </>
   );
 }

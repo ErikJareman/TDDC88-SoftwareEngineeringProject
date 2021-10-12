@@ -1,23 +1,48 @@
 import "./Patient.css";
-import NameDisplay from "../../Components/NameDisplay";
-import ReasonForVisit from "../../Components/ReasonForVisit";
-import { useLocation, Link } from "react-router-dom";
+
+import PatientNavBar from "../../Components/PatientNavBar";
+import PatientInfo from "../../Components/PatientInfo";
+import PatientTimeLine from "../../Components/PatientTimeLine";
+import PatientCurrentEvents from "../../Components/PatientCurrentEvents";
+import PatientFooter from "../../Components/PatientFooter";
+import { Grid, Segment } from 'semantic-ui-react';
+import { useLocation } from "react-router-dom";
 
 export default function Patient() {
   const { state } = useLocation();
 
   return (
     <>
-      <NameDisplay patient={state.patients} />
-      <div>
-        <h2>Patient ID: {state.patients.id}</h2>
-        <Link to="/">
-          <button style={{ backgroundColor: "lightGrey" }}>
-            Back to patient list
-          </button>
-        </Link>
-        <ReasonForVisit />
-      </div>
+      <PatientNavBar patient={state.patients} />
+      <Grid>
+        <Grid.Row stretched>
+          <Grid.Column style={{ width: "33%" }}>
+            <Segment >
+
+              <PatientInfo patient={state.patients} />
+            </Segment>
+          </Grid.Column>
+          <Grid.Column style={{ width: "67%" }}>
+            <Segment>
+              <PatientTimeLine patient={state.patients} />
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row stretched>
+          <Grid.Column style={{ width: "33%" }}>
+            <Segment>
+              <PatientCurrentEvents patient={state.patients} />
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row stretched style={{ position: "fixed", bottom: 0, color: "black" }}>
+          <Grid.Column style={{ width: "100%" }}>
+            <Segment>
+              <PatientFooter />
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </>
   );
 }
