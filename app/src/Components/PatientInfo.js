@@ -8,7 +8,9 @@
 
 import "./PatientInfo.css"
 import ReasonForVisit from "./ReasonForVisit";
+import TeamView from "./TeamView";
 import { Icon } from 'semantic-ui-react';
+import RoomView from "./RoomView";
 
 export default function PatientInfo(patient) {
     return (
@@ -17,6 +19,8 @@ export default function PatientInfo(patient) {
             <h5><Icon name='user' />{patient.patient.name}, {patient.patient.pnum}</h5>
             <h5><Icon name='address book' /> ISS: </h5>
             <h5><Icon name='ambulance' /> Ambulans </h5>
+            <TeamView />
+            <RoomView />
             <ReasonForVisit />
         </div>
     );

@@ -20,7 +20,7 @@ var Reason = "I am having fever and headache...";
 //function for displaying the information.
 const ReasonForVisit = () => 
 <>
-    <h5>Detaljerad information<Icon disabled name='search plus' /></h5>
+    <h5>Aktuellt händelseförlopp<Icon disabled name='search plus' /></h5>
     <Segment compact>{Reason}</Segment>
 </>
 export default ReasonForVisit
