@@ -1,6 +1,4 @@
 import "./Patient.css";
-import NameDisplay from "../../Components/NameDisplay";
-import ReasonForVisit from "../../Components/ReasonForVisit";
 
 import PatientNavBar from "../../Components/PatientNavBar";
 import PatientInfo from "../../Components/PatientInfo";
