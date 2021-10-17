@@ -1,18 +1,28 @@
 image: node:latest
 
 stages:
-  - build
+  - lint
   - test
   - deploy
 
-# Check if the code compiles
-build:
-  stage: build
+# Checks the code standard using pylint
+# TODO: update path to real python code when we start using python
+python_lint:
+  image: python:latest
+  stage: lint
+  script:
+    - pip install pylint
+    - cd unit_testing/python/
+    - pylint *.py --disable=imports
+
+# Checks the code standard using eslint for React js
+reactjs_lint:
+  stage: lint
   script:
     - cd app/
-    - npm install
-  
-        
+    - npm install eslint-plugin-react --save-dev
+    - npx eslint src/**/*.js src/*.js
+      
 # Testing for JavaScript
 js_test:
   stage: test
@@ -40,6 +50,6 @@ deploy:
     - gem install dpl
     - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
   only:
-        - development
-        - master
+    - development
+    - master
 

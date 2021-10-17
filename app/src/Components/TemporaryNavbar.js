@@ -6,23 +6,24 @@
  * function TemporaryNavbar() - Erik Jareman
  */
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import React from 'react'
 
-export default function TemporaryNavbar() {
+export default function TemporaryNavbar () {
   return (
-    <nav style={{ backgroundColor: "lightGrey" }}>
+    <nav style={{ backgroundColor: 'lightGrey' }}>
       ----- This is a temporary navbar used only for development -----
       <ul>
         <li>
-          <Link to="/">Home Page</Link>
+          <Link to='/'>Home Page</Link>
         </li>
         <li>
-          <Link to="/patient">Patient Page</Link>
+          <Link to='/patient'>Patient Page</Link>
         </li>
         <li>
-          <Link to="/login">Login Page</Link>
+          <Link to='/login'>Login Page</Link>
         </li>
       </ul>
     </nav>
-  );
+  )
 }

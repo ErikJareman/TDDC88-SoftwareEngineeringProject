@@ -3,10 +3,11 @@
  *
  * function PatientNavList() - Philip Nylén, Erik Jareman - DRAFT
  */
-import "./PatientNavList.css";
-import { Link } from "react-router-dom";
-import trends from "../assets/trends.png";
-import notificationBell from "../assets/notificationBell.png";
+import './PatientNavList.css'
+import { Link } from 'react-router-dom'
+import trends from '../assets/trends.png'
+import notificationBell from '../assets/notificationBell.png'
+import React from 'react'
 
 /**
  * The function PatientNavList renders the list of patients, currently
@@ -14,29 +15,29 @@ import notificationBell from "../assets/notificationBell.png";
  * Philip Nylén, Erik Jareman
  * FIXING
  */
-export default function PatientNavList() {
+export default function PatientNavList () {
   const patients = [
     {
       id: 1,
-      name: "Fredrik Olsson",
-      pnum: "930217-5150",
-      timer: "00:15",
-      arrival: "13:15",
-      reasonForVisit: "Benbrott",
-      team: "A",
-      room: 1,
+      name: 'Fredrik Olsson',
+      pnum: '930217-5150',
+      timer: '00:15',
+      arrival: '13:15',
+      reasonForVisit: 'Benbrott',
+      team: 'A',
+      room: 1
     },
     {
       id: 2,
-      name: "Karl Boström",
-      pnum: "870427-0227",
-      timer: "05:34",
-      arrival: "14:27",
-      reasonForVisit: "Buksmärtor",
-      team: "B",
-      room: 5,
-    },
-  ];
+      name: 'Karl Boström',
+      pnum: '870427-0227',
+      timer: '05:34',
+      arrival: '14:27',
+      reasonForVisit: 'Buksmärtor',
+      team: 'B',
+      room: 5
+    }
+  ]
 
   return (
     <ul>
@@ -46,33 +47,33 @@ export default function PatientNavList() {
             <Link
               to={{
                 pathname: `/patient/${patient.id}`,
-                state: { patients: patient },
+                state: { patients: patient }
               }}
             >
               <table>
-                {/*Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3>*/}
-                <h3 className="medium">{patient.timer}</h3>
+                {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
+                <h3 className='medium'>{patient.timer}</h3>
                 <h3>{patient.arrival}</h3>
-                <h3 className="long">{patient.name}</h3>
-                <h3 className="long">{patient.id}</h3>
-                <h3 className="long">{patient.reasonForVisit}</h3>
+                <h3 className='long'>{patient.name}</h3>
+                <h3 className='long'>{patient.id}</h3>
+                <h3 className='long'>{patient.reasonForVisit}</h3>
                 <h3>{patient.team}</h3>
                 <h3>{patient.room}</h3>
               </table>
             </Link>
-            <a className="nav-link" href="/" id="profilePicture">
-              <img src={trends} className="trends" alt="Not found" />
+            <a className='nav-link' href='/' id='profilePicture'>
+              <img src={trends} className='trends' alt='Not found' />
             </a>
-            <a className="nav-link" href="/" id="profilePicture">
+            <a className='nav-link' href='/' id='profilePicture'>
               <img
                 src={notificationBell}
-                className="notificationBell"
-                alt="Not found"
+                className='notificationBell'
+                alt='Not found'
               />
             </a>
           </li>
-        );
+        )
       })}
     </ul>
-  );
+  )
 }
