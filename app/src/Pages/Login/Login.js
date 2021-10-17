@@ -6,10 +6,10 @@
  * Documentation not complete.
  */
 
-import "./Login.css";
-import LoginForm from "../../Components/LoginForm";
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import './Login.css'
+import LoginForm from '../../Components/LoginForm'
+import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 
 /**
  * Login() contains logic for the login/logout functionality
@@ -17,14 +17,14 @@ import { Redirect } from "react-router-dom";
  * Erik Jareman
  * DRAFT
  */
-export default function Login() {
+export default function Login () {
   const temporaryLoginAccount = {
-    userID: "123",
-    password: "admin",
-  };
+    userID: '123',
+    password: 'admin'
+  }
 
-  const [user, setUser] = useState({ userID: "", password: "" });
-  const [error, setError] = useState("");
+  const [user, setUser] = useState({ userID: '', password: '' })
+  const [error, setError] = useState('')
 
   const Login = (details) => {
     if (
@@ -32,26 +32,24 @@ export default function Login() {
       details.password === temporaryLoginAccount.password
     ) {
       setUser({
-        userID: details.userID,
-      });
+        userID: details.userID
+      })
     } else {
-      setError("Felaktigt konto / lösenord");
+      setError('Felaktigt konto / lösenord')
     }
-  };
+  }
 
-  const Logout = () => {
-    setUser({ userID: "" });
-  };
+  /* const Logout = () => {
+    setUser({ userID: '' })
+  } */
 
   return (
-    <div className="page-container">
-      {user.userID !== "" ? (
-        //When logged in
-        <Redirect to="/" />
-      ) : (
-        //When not logged in
-        <LoginForm Login={Login} error={error} />
-      )}
+    <div className='page-container'>
+      {
+        user.userID !== ''
+          ? <Redirect to='/' /> // When logged in
+          : <LoginForm Login={Login} error={error} /> // When not logged in
+      }
     </div>
-  );
+  )
 }

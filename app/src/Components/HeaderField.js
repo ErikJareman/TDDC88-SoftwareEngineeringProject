@@ -6,14 +6,15 @@
  * function HeaderField() - Philip Nylén - FINAL
  */
 
-import headerLogo from "../assets/headerLogo.png";
-import "./HeaderField.css";
+import headerLogo from '../assets/headerLogo.png'
+import './HeaderField.css'
+import React from 'react'
 
-export default function HeaderField() {
+export default function HeaderField () {
   return (
     <div id="headerArea">
       <img src={headerLogo} className="header-logo" alt="Not found" />
       <h1 id="headerText"> Norrköping</h1>
     </div>
-  );
+  )
 }

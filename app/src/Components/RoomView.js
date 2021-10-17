@@ -9,15 +9,14 @@
  * function RoomView() - Nikil
  */
 
- import React from 'react';
- import { useLocation } from "react-router-dom";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 
- export default function RoomView() {
-    const { state } = useLocation();
-     return (
-         <div>
-             <h5>Room : {state.patients.room}</h5>
-         </div>
-     )
- }
- 
+export default function RoomView () {
+  const { state } = useLocation()
+  return (
+    <div>
+      <h5>Room : {state.patients.room}</h5>
+    </div>
+  )
+}

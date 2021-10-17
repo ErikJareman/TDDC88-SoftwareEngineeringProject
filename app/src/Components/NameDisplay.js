@@ -10,21 +10,21 @@
  * function NameDisplay() - Nikil
  */
 
-import React from "react";
-import { Message, Icon } from "semantic-ui-react";
+import React from 'react'
+import { Message, Icon } from 'semantic-ui-react'
 
-//function to display the information.
-//Now takes in patient as prop from Patient.js, The two data constants are deleted /erik
+// function to display the information.
+// Now takes in patient as prop from Patient.js, The two data constants are deleted /erik
 const NameDisplay = ({ patient }) => (
   <>
     <div>
-      <Message visible color="red">
-        {patient.name} , {patient.pnum} , Sökorsak :{" "}
-        <Icon disabled name="search plus" />
+      <Message visible color='red'>
+        {patient.name} , {patient.pnum} , Sökorsak :{' '}
+        <Icon disabled name='search plus' />
         {patient.reasonForVisit}
       </Message>
     </div>
   </>
-);
+)
 
-export default NameDisplay;
+export default NameDisplay

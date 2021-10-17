@@ -9,15 +9,14 @@
  * function TeamView() - Nikil
  */
 
- import React from 'react';
- import { useLocation } from "react-router-dom";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 
- export default function TeamView() {
-    const { state } = useLocation();
-     return (
-         <div>
-             <h5>Team : {state.patients.team}</h5>
-         </div>
-     )
- }
- 
+export default function TeamView () {
+  const { state } = useLocation()
+  return (
+    <div>
+      <h5>Team : {state.patients.team}</h5>
+    </div>
+  )
+}
