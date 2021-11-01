@@ -12,7 +12,7 @@ Most of our tests will be writen in JavaScript and we will use Jest to write uni
 2. Open a new terminal and go to emergency-journal-application/app/testing
 3. Run the tests:
 * Running all tests: 'npm test'
-* Running specific modules: 'npm test -- [name-identifier]' (ie 'npm test --1' to run all test suites containing a '1' in the file-name)
+* Running specific modules: 'npm test -- [name-identifier]' (ie 'npm test -- 1' to run all test suites containing a '1' in the file-name)
 
 OBS! The web-driver in the repo is for Chrome version 95.0.4638.54. If you use another version of Chrome you will either have to update your Chrome to the version above, or download another web-driver for the version of Chrome you are using. You can click on the 'Chrome' tab and then on 'About Google Chrome' to find out what version you are using. OBS!
 
