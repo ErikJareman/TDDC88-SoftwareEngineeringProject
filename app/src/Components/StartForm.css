@@ -1,0 +1,19 @@
+
+.regionen-logo {
+  width: 280px;
+}
+
+.start_container {
+    width: fit-content;
+    background-color:midnightblue;
+    padding: 5px;
+    margin: auto;
+    box-shadow: 0 2px 5px black;
+}
+
+.start{
+    width: 100%;
+    height: 80vw;
+    background-color: cornflowerblue;
+}
+
