@@ -1,0 +1,32 @@
+/**
+* PatientNavList.css
+*
+* Contains all the css applied to the PatientNavList.js component.
+*
+* Philip Nylén - DRAFT
+*/
+
+#patient-inlagd-group {
+  width: 264px;
+  height: 40px;
+  background-color: #ffffff;
+  border: black solid 2px;
+}
+
+#rectangle {
+  width: 45px;
+  height: 40px;
+  padding: 2px 2px 2px 50px;
+  border-radius: 5px;
+  border: 1px solid #797979;
+  background-color: #2c58a6;
+  box-sizing: border-box;
+}
+
+#shape {
+  width: 23px;
+  height: 25px;
+  padding: 2px 2px 2px 2px;
+  background-color: #333333;
+  box-sizing: border-box;
+}
