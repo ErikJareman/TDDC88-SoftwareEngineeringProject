@@ -4,7 +4,7 @@ const { testPatientList } = require('./1_test_home/1_testPatientList.js')
 const { getHomePageHeading } = require('./1_test_home/homeUtilities.js')
 const { goToPatient } = require('./3_test_patient/patientUtilities.js')
 
-describe('Testing document functionality', () => {
+describe('Testing home page', () => {
   beforeAll(async () => {
     driver = await buildDriver(url)
     // await isLoggedIn(driver)
@@ -15,15 +15,15 @@ describe('Testing document functionality', () => {
     return await driver.quit()
   })
 
-  test('Home-page heading', async () => {
+  test('Test home-page heading', async () => {
     expect(await getHomePageHeading(driver)).toBe('Norrköping')
   })
 
-  test('Test patient info', async () => {
-    expect(await goToPatient(driver)).toBe(true)
+  test('Test select patient in patient list', async () => {
+    expect(await goToPatient(driver, 'Fredrik Olsson')).toBe(true)
   })
 
-  test('Test patient list in home view', async () => {
+  test('Test content in patient list in home view', async () => {
     expect(await testPatientList(driver)).toBe(2)
   })
 
