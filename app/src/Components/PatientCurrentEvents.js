@@ -12,6 +12,7 @@ export default function PatientCurrentEvents (patient) {
   return (
     <div>
       <EventCard />
+      <EventCard />
     </div>
   )
 }

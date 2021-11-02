@@ -1,12 +1,17 @@
+import './EventCard.css'
 import React from 'react'
-import Card from 'react-bootstrap/Card'
 // import { Message, Icon } from 'semantic-ui-react'
 export default function EventCard () {
   return (
     <>
-      <Card>
-        <h2>Innuti kortet</h2>
-      </Card>
+      <table id='patient-inlagd-group'>
+        <tr>
+          <th><div id='rectangle'></div></th>
+          <th><h4>Intagning typ</h4></th>
+          <th><div id='shape'></div></th>
+          <th><h4>15.40</h4></th>
+        </tr>
+      </table>
     </>
   )
 }
