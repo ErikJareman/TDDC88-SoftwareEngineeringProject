@@ -8,7 +8,7 @@
 import React from 'react'
 import EventCard from './EventCard'
 
-export default function PatientCurrentEvents (patient) {
+export default function PatientCurrentEvents () {
   return (
     <div>
       <EventCard />
