@@ -4,5 +4,6 @@ unit_testing/javascript/node_modules
 unit_testing/javascript/coverage
 unit_testing/javascript/package-lock.json
 unit_testing/javascript/package.json
+app/package-lock.json
 .vs/
 *.pyc
