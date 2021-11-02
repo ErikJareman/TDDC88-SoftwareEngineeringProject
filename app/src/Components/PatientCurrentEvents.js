@@ -6,11 +6,12 @@
  *  Author David Råsberg
  */
 import React from 'react'
+import EventCard from './EventCard'
 
 export default function PatientCurrentEvents (patient) {
   return (
     <div>
-      <h1>  Aktuella händelser </h1>
+      <EventCard />
     </div>
   )
 }
