@@ -19,5 +19,10 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 0
+  },
+  settings: {
+    react: {
+      version: '17.0.2'
+    }
   }
 }

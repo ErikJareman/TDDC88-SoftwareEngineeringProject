@@ -1,5 +1,5 @@
 import React from 'react'
-// import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card'
 // import { Message, Icon } from 'semantic-ui-react'
 export default function EventCard () {
   return (

@@ -14,7 +14,7 @@ Open up a terminal, navigate to where you would like to put the repository and t
 In order to start the application (development build), you will need to have node.js installed. If you don't have node.js installed on your computer, go to `https://nodejs.org/en/download/` and install the Latest LTS version of node.js. If you have node.js installed, do the following:
 
 1. Enter the repository by typing `cd emergency-journal-application` in a terminal
-2. Enter the Deveopment branch by typing `git checkout -b development`
+2. Enter the Deveopment branch by typing `git checkout development`
 3. Enter the application directory by typing `cd app`
 4. Install dependencies with `npm install`
 5. Start the application with `npm start`
