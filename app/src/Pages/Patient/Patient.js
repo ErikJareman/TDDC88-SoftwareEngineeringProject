@@ -8,6 +8,7 @@ import PatientFooter from '../../Components/PatientFooter'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import React from 'react'
+import PatientNavList from '../../Components/PatientNavList'
 
 export default function Patient () {
   const { state } = useLocation()
@@ -33,6 +34,16 @@ export default function Patient () {
           <Grid.Column style={{ width: '33%' }}>
             <Segment>
               <PatientCurrentEvents patient={state.patients} />
+            </Segment>
+          </Grid.Column>
+          <Grid.Column style={{ width: '33%' }}>
+            <Segment>
+              <PatientCurrentEvents patient={state.patients} />
+            </Segment>
+          </Grid.Column>
+          <Grid.Column style={{ width: '33%' }}>
+            <Segment>
+              <PatientNavList />
             </Segment>
           </Grid.Column>
         </Grid.Row>
