@@ -9,7 +9,7 @@
 */
 import regionenLogo from '../assets/regionenLogo.png'
 import './StartForm.css'
-import React from 'react'
+import React, { useState } from 'react'
 import { Dropdown, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
@@ -34,6 +34,27 @@ const roleOptions = [
   }
 ]
 
+const hospitalOptions = [
+  {
+    key: 'Linköping',
+    text: 'Linköping',
+    value: 'Linköping',
+    image: { avatar: true, src: '/images/avatar/small/jenny.jpg' }
+  },
+  {
+    key: 'Norrköping',
+    text: 'Norrköping',
+    value: 'Norrköping',
+    image: { avatar: true, src: '/images/avatar/small/elliot.jpg' }
+  },
+  {
+    key: 'Motala',
+    text: 'Motala',
+    value: 'Motala',
+    image: { avatar: true, src: '/images/avatar/small/stevie.jpg' }
+  }
+]
+
 /**
  * Function StartForm () currently renders a dropdown with alternatives
  * of roles that can be selected. This will determine the information they have access
@@ -43,20 +64,46 @@ const roleOptions = [
  */
 
 export default function StartForm () {
+  const [role, setRole] = useState({ role: '' })
+  const [location, setLocation] = useState({ location: '' })
+
+  const saveDetails = (event) => {
+    localStorage.setItem('localRole', role)
+    localStorage.setItem('localLocation', location)
+  }
+
+  const handleSelectedRole = (event, data) => {
+    setRole(data.value)
+  }
+
+  const handleSelectedLocation = (event, data) => {
+    setLocation(data.value)
+  }
+
   return (
       <div className='start'>
         <div className='start_container'>
           <img src={regionenLogo} className='regionen-logo' alt='Not found' />
           <Dropdown
+          id='roles'
           placeholder='Välj roll'
           fluid
           selection
           clearable
           options={roleOptions}
+          onChange = {handleSelectedRole}
+          />
+          <Dropdown
+          placeholder='Välj sjukhus'
+          fluid
+          selection
+          clearable
+          options={hospitalOptions}
+          onChange = {handleSelectedLocation}
           />
           <Link
               to = '/home'>
-                  <Button className='startButton'>Klicka här</Button>
+                  <Button className='startButton' onClick={saveDetails}>Klicka här</Button>
               </Link>
         </div>
       </div>
