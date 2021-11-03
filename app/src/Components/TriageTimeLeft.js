@@ -9,29 +9,39 @@
  */
 
 import { useEffect, useState } from "react";
-
+import { Icon } from 'semantic-ui-react';
 
 export default function TriageTimeLeft(timeChecked) {
-    const arrival = new Date(timeChecked.timeChecked);
-
-    const calculateTimeLeft = () => {
-        //console.log(arrival);
-        let now = new Date();
-        let timeLeft = {
-            hour: now.getHours() - arrival.getHours(),
-            minutes: now.getMinutes() - arrival.getMinutes(),
-            seconds: now.getSeconds() - arrival.getSeconds()
-        }
-        //console.log(timeLeft);
-        return timeLeft;
+    //cleaner way to take in variables needed
+    let patient = timeChecked.timeChecked;
+    let checkPatientNowWarning = false;
+    //Calculates time to check on patient.
+    const calculateTimeToCheck = (patient) => {
+        const { timeChecked } = patient;
+        return (new Date(timeChecked + (5 * 60 * 1000)));
     };
 
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    let timeToCheck = calculateTimeToCheck(patient); //last time checked + 5 minutes
+
+    const calculateTimeLeft = (timeToCheck) => {
+        let now = Date.now();
+        let timeLeft = new Date(timeToCheck - now);
+
+        let timeLeftMap = {
+            minutes: timeLeft.getMinutes(),
+            seconds: timeLeft.getSeconds()
+        }
+
+        console.log(timeLeft);
+        return timeLeftMap;
+    };
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(timeToCheck));
 
     //useEffect will fire after each render and update
     useEffect(() => {
         setTimeout(() => {
-            setTimeLeft(calculateTimeLeft());
+            setTimeLeft(calculateTimeLeft(timeToCheck));
         }, 1000);
     });
 
@@ -39,18 +49,18 @@ export default function TriageTimeLeft(timeChecked) {
 
     //loop over each property in timeLeft
     Object.keys(timeLeft).forEach((interval) => {
-
+        //console.log(interval + ":" + timeLeft[interval]);
         timerComponents.push(
             <>
-                {interval < 10 ? "0" : ""}
-                {interval === "seconds" ? + timeLeft[interval] : + timeLeft[interval] + ":"}
+
+                {interval === "seconds" ? timeLeft[interval] : timeLeft[interval] + ":"}
             </>
         );
-        console.log(timerComponents[0]);
+        //{timeLeft[interval] < 10 ? "0" : ""}
     });
     return (
         <>
-            {timerComponents.length ? timerComponents : <span>!</span>}
+            {timerComponents.length ? timerComponents : <Icon name='warning' />}
         </>
     );
 }
