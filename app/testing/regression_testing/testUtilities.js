@@ -163,5 +163,5 @@ module.exports = {
   getRandomString,
   findElementInList,
   getElementListXpath,
-  getElementTextCss,
+  getElementTextCss
 }

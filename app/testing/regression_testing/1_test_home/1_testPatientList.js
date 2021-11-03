@@ -1,19 +1,19 @@
 const { getElementText, findElementInList } = require('../testUtilities.js')
 const { getPatientList } = require('./homeUtilities.js')
 
-/** Looks for the patient list in home page and returns the amount of 
+/** Looks for the patient list in home page and returns the amount of
  * patients in the list */
-async function getPatientListLength(driver) {
+async function getPatientListLength (driver) {
   const patientList = await getPatientList(driver)
   return patientList.length
 }
 
-/** Looks for patients in patient list on home page and checks if the reason for 
+/** Looks for patients in patient list on home page and checks if the reason for
  * visit is diplayed with the correct patient */
-async function getReasonForVisit(driver) {
+async function getReasonForVisit (driver) {
   const result = {
-    fredrikOk : false,
-    karlOk : false
+    fredrikOk: false,
+    karlOk: false
   }
   const patientList = await getPatientList(driver)
   const testPatient1 = await getElementText(

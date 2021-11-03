@@ -1,12 +1,13 @@
 const { url } = require('./testConfig.js')
 const { buildDriver } = require('./testUtilities.js')
-const { getPatientListLength, getReasonForVisit } = 
+const { getPatientListLength, getReasonForVisit } =
   require('./1_test_home/1_testPatientList.js')
 const { getHomePageHeading } = require('./1_test_home/homeUtilities.js')
 const { goToPatient } = require('./3_test_patient/patientUtilities.js')
+let driver
 const result = {
-  fredrikOk : true,
-  karlOk : true
+  fredrikOk: true,
+  karlOk: true
 }
 
 describe('Testing home page', () => {
@@ -34,5 +35,4 @@ describe('Testing home page', () => {
   test('Test reason for visit in patient list in home view', async () => {
     expect(await getReasonForVisit(driver)).toMatchObject(result)
   })
-
 })

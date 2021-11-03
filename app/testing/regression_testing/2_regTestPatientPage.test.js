@@ -1,6 +1,7 @@
 const { url } = require('./testConfig.js')
 const { buildDriver } = require('./testUtilities.js')
 const { testPatientInfoBox } = require('./3_test_patient/1_testPatientInfoBox.js')
+let driver
 
 describe('Testing pateint page', () => {
   beforeAll(async () => {
@@ -15,5 +16,4 @@ describe('Testing pateint page', () => {
   test('Test patient info for correct data', async () => {
     expect(await testPatientInfoBox(driver)).toBe(true)
   })
-
 })
