@@ -7,6 +7,8 @@ const patientListElement = {
   cssEnd : ') > table'
 }
 
+/** Navigates to the patient page correlating to the patient-name parameter 
+ * passed in */
 async function goToPatient(driver, patientName) {
   await driver.get(url)
   await sleep(500)
