@@ -1,12 +1,32 @@
-const { sleep, getElementListCss } = require('../testUtilities.js')
-const { url } = require('../testConfig.js')
-const { patientListElement } = require('../3_test_patient/patientUtilities.js')
+const { getElementText, findElementInList } = require('../testUtilities.js')
+const { getPatientList } = require('./homeUtilities.js')
 
-async function testPatientList(driver) {
-  await driver.get(url)
-  await sleep(500)
-  const patientList = await getElementListCss(driver, patientListElement)
+/** Looks for the patient list in home page and returns the amount of 
+ * patients in the list */
+async function getPatientListLength(driver) {
+  const patientList = await getPatientList(driver)
   return patientList.length
 }
 
-module.exports = { testPatientList }
+/** Looks for patients in patient list on home page and checks if the reason for 
+ * visit is diplayed with the correct patient */
+async function getReasonForVisit(driver) {
+  const result = {
+    fredrikOk : false,
+    karlOk : false
+  }
+  const patientList = await getPatientList(driver)
+  const testPatient1 = await getElementText(
+    await findElementInList(patientList, 'Fredrik Olsson'))
+  const testPatient2 = await getElementText(
+    await findElementInList(patientList, 'Karl Boström'))
+  if (testPatient1.includes('Benbrott')) {
+    result.fredrikOk = true
+  }
+  if (testPatient2.includes('Buksmärtor')) {
+    result.karlOk = true
+  }
+  return result
+}
+
+module.exports = { getPatientListLength, getReasonForVisit }
