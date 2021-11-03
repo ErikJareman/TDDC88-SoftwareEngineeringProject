@@ -16,8 +16,6 @@ Most of our tests will be writen in JavaScript and we will use Jest to write uni
 
 OBS! The web-driver in the repo is for Chrome version 95.0.4638.54. If you use another version of Chrome you will either have to update your Chrome to the version above, or download another web-driver for the version of Chrome you are using. You can click on the 'Chrome' tab and then on 'About Google Chrome' to find out what version you are using. OBS!
 
-HUR BLIR DET MED PIPELINEN? KAN BLI PROBLEM EFTERSOM MAN BEHÖVER HA APPLIKATIONEN IGÅNG FÖR ATT KUNNA KÖRA TESTERNA
-
 ## PYTHON : UNITTEST
 Some might want to write tests in Python and for this we will use 'unittest' by Python.
 
