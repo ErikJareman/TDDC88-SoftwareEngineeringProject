@@ -25,10 +25,13 @@ div#headerArea {
     display: flex;
 }
 
-link#sign-in {
-    display: flex;
-    color: white;
+#linkarea {
     margin: auto;
-    margin-left: 80%;
     margin-right: 1%;
+}
+
+#signin {
+    color: white;
+    width: fit-content;
+    height: fit-content;
 }

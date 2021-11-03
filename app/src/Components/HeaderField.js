@@ -16,8 +16,8 @@ export default function HeaderField () {
     <div id="headerArea">
       <img src={headerLogo} className="header-logo" alt="Not found" />
       <h1 id="headerText"> {localStorage.getItem('localLocation')}</h1>
-      <Link to = '/'>
-       <i className='sign-in alternate big icon' id='sign-in'></i>
+      <Link id="linkarea" to = '/'>
+        <i className='sign-in alternate big icon' id='signin'></i>
       </Link>
     </div>
   )

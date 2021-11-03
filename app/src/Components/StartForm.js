@@ -68,8 +68,17 @@ export default function StartForm () {
   const [location, setLocation] = useState({ location: '' })
 
   const saveDetails = (event) => {
-    localStorage.setItem('localRole', role)
-    localStorage.setItem('localLocation', location)
+    if (role === 'Läkare' || role === 'Sjuksköterska' || role === 'Undersköterska') {
+      localStorage.setItem('localRole', role)
+    } else {
+      localStorage.setItem('localRole', '')
+    }
+
+    if (location === 'Linköping' || location === 'Norrköping' || location === 'Motala') {
+      localStorage.setItem('localLocation', location)
+    } else {
+      localStorage.setItem('localLocation', 'Välj din arbetsplats...')
+    }
   }
 
   const handleSelectedRole = (event, data) => {
@@ -91,6 +100,7 @@ export default function StartForm () {
           selection
           clearable
           options={roleOptions}
+          defaultValue = ''
           onChange = {handleSelectedRole}
           />
           <Dropdown
@@ -101,10 +111,9 @@ export default function StartForm () {
           options={hospitalOptions}
           onChange = {handleSelectedLocation}
           />
-          <Link
-              to = '/home'>
-                  <Button className='startButton' onClick={saveDetails}>Klicka här</Button>
-              </Link>
+          <Link to = '/home'>
+            <Button className='startButton' onClick={saveDetails}>Klicka här</Button>
+          </Link>
         </div>
       </div>
   )
