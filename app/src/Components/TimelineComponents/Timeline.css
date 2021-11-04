@@ -19,3 +19,31 @@
   border-right: 2px solid black;
   padding-top: 0 !important;
 }
+
+.no-padding {
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+    padding-right: 0 !important;
+}
+
+.center-all {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.event-text-adjust {
+    line-height: 1;
+    font-size: 0.8rem !important;
+}
+
+.icon-img {
+    padding-top: 0.7em;
+    padding-bottom: 0.1em;
+}
+
+.event-row {
+    padding-top: 0 !important;
+    margin-left: 14px;
+}

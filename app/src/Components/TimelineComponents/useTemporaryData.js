@@ -11,12 +11,20 @@ export default function useTemporaryData () {
       time: '13:38'
     },
     {
-      name: 'Skickat',
+      name: 'Prov',
       time: '15:10'
     },
     {
+      name: 'Skickat',
+      time: '15:14'
+    },
+    {
       name: 'Vård',
-      time: '15:40'
+      time: '15:20'
+    },
+    {
+      name: 'Snacks',
+      time: '15:23'
     },
     {
       name: 'Svar',
