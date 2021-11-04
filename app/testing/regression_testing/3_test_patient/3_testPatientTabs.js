@@ -15,9 +15,8 @@ async function testTabs (driver) {
     const tab2 = await driver.wait(until.elementLocated(By.css('.envelope')), 3000)
     const tab3 = await driver.wait(until.elementLocated(By.css('.location')), 3000)
     const contentBox = await driver.wait(until.elementLocated(By.css('.bottom')), 3000)
-    let content = await getElementText(contentBox)
     await tab2.click()
-    content = await getElementText(contentBox)
+    let content = await getElementText(contentBox)
     if (content === 'Tab 2 Content') {
       tabContents.tab2 = true
     }

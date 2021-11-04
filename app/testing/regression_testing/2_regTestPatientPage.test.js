@@ -3,6 +3,7 @@ const { buildDriver } = require('./testUtilities.js')
 const { testPatientInfoBox } = require('./3_test_patient/1_testPatientInfoBox.js')
 const { testHomePageBtn } = require('./3_test_patient/2_testBackToHomePageBtn.js')
 const { testTabs } = require('./3_test_patient/3_testPatientTabs.js')
+const { testPatientRoom } = require('./3_test_patient/4_testPatientInfoRoom.js')
 let driver
 const tabContents = {
   tab1: true,
@@ -31,4 +32,9 @@ describe('Testing pateint page', () => {
   test('Test the patient tabs', async () => {
     expect(await testTabs(driver)).toMatchObject(tabContents)
   })
+
+  test('Test patient info: room', async () => {
+    expect(await testPatientRoom(driver)).toBe(true)
+  })
+
 })

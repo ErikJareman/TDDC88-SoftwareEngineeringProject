@@ -17,5 +17,16 @@ async function testPatientInfoBox (driver) {
   }
   return 0
 }
+async function testPatientRoom (driver) {
+  if (await goToPatient(driver, 'Fredrik Olsson')) {
+    const patientInfo = await driver.wait(until.elementLocated(By.css('.PatientInfo-div')), 3000).getText().then((val) => {
+      return val
+    })
+    if (patientInfo.includes('Room : 1')) {
+      return true
+    }
+  }
+  return false
+}
 
-module.exports = { testPatientInfoBox }
+module.exports = { testPatientInfoBox, testPatientRoom }
