@@ -1,9 +1,7 @@
-unit_testing/node_modules
-unit_testing/javascript/node_modules
+testing/node_modules
 *__pycache__
-unit_testing/javascript/coverage
-unit_testing/javascript/package-lock.json
-unit_testing/javascript/package.json
 app/package-lock.json
 .vs/
 *.pyc
+node_modules
+testing/package-lock.json
