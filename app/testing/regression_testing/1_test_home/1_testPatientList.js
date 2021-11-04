@@ -8,8 +8,8 @@ async function getPatientListLength (driver) {
   return patientList.length
 }
 
-/** Looks for patients in patient list on home page and checks if the reason for
- * visit is diplayed with the correct patient */
+/** Looks for patients in patient list on home page and checks if the
+ * reason for visit is diplayed with the correct patient */
 async function getReasonForVisit (driver) {
   const result = {
     fredrikOk: false,

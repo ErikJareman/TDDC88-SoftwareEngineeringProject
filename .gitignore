@@ -1,6 +1,5 @@
 testing/node_modules
 *__pycache__
-testing/coverage
 testing/package-lock.json
 .vs/
 *.pyc
