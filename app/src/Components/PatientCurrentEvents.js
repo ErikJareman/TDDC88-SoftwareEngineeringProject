@@ -11,8 +11,8 @@ import EventCard from './EventCard'
 export default function PatientCurrentEvents () {
   return (
     <div>
-      <EventCard />
-      <EventCard />
+      <EventCard name='Test' time='15.40' />
+      <EventCard name='Test2' time='14.30' />
     </div>
   )
 }

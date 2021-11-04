@@ -1,18 +1,22 @@
 import './EventCard.css'
-import React from 'react'
+import React, { Component } from 'react'
 import homeImage from '../assets/home.png'
 
-export default function EventCard () {
-  return (
-    <>
-      <table id='patient-inlagd-group'>
-        <tr>
-          <th><div style='background-color: red;' id='rectangle'></div></th>
-          <th><h4>Ankomst</h4></th>
-          <th><img src={homeImage} id='shape'></img></th>
-          <th><h4>15.40</h4></th>
-        </tr>
-      </table>
-    </>
-  )
+class EventCard extends Component {
+  render () {
+    return (
+      <>
+        <table id='patient-inlagd-group'>
+          <tr>
+            <th><div id='rectangle'></div></th>
+            <th><h4>{this.props.name}</h4></th>
+            <th><img src={homeImage} id='shape'></img></th>
+            <th><h4>{this.props.time}</h4></th>
+          </tr>
+        </table>
+      </>
+    )
+  }
 }
+
+export default EventCard
