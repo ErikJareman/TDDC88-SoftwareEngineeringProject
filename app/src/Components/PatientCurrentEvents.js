@@ -9,7 +9,6 @@
  *  Done by Nikil
  */
 import React from 'react'
-<<<<<<< HEAD
 import AktuellaTab from './AktuellaTab'
 
 export default function PatientCurrentEvents () {
