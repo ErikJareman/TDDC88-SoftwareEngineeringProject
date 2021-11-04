@@ -1,18 +1,18 @@
 /**
-* PatientNavList.css
+* PatientInUt.css
 *
-* Contains all the css applied to the PatientNavList.js component.
+* Contains all the css applied to the PatientInUt.js component.
 *
-* Philip Nylén - DRAFT
+* Marcus Vidgren, Viktor Storsved - DRAFT
 */
 
-ul.inUt {
+ul.injections {
     list-style-type: none;
     padding-top: 1%;
     padding-bottom: 1%;
 }
 
-ul.inUt li {
+ul.injections li {
     width: 100%;
     height: 40pt;
     border-radius: 20px;
@@ -31,38 +31,17 @@ table {
     display: inline-table;
 }
 
-h3 {
-    margin: 0 auto;
-    padding-bottom: 12pt;
-    padding-top: 13pt;
-    padding-left: 14pt;
-    display: table-cell;
-    width: 5%;
-    font-size: 10pt;
-}
-
-a.nav-link {
-    margin: 0;
-    padding-left: 7pt;
-    padding-right: 7pt;
-    padding-top: 5pt;
-    padding-bottom: 5pt;
-    width: 10%;
-}
-
-h3.table-long {
+h3.inUtTextBox {
     width: 23%;
     font-family: "Arial Normal", "Arial", sans-serif;
     font-weight: 700;
     color: #ffffff;
     text-align: center;
     font-size: medium;
-
-
+    margin: 0 auto;
+    padding-bottom: 12pt;
+    padding-top: 13pt;
+    padding-left: 14pt;
+    display: table-cell;
+    width: 5%;
 }
-
-h3.medium {
-    width: 16%;
-    border-radius: 20px 0px 0px 20px;
-}
-

@@ -7,3 +7,4 @@ unit_testing/javascript/package.json
 app/package-lock.json
 .vs/
 *.pyc
+package-lock.json
