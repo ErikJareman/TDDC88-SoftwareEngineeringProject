@@ -1,5 +1,6 @@
 testing/node_modules
 *__pycache__
+app/package-lock.json
 .vs/
 *.pyc
 node_modules
