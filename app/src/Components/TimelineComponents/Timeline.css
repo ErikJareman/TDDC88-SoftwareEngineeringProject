@@ -1,0 +1,21 @@
+.timestamp-row {
+    padding-bottom: 0 !important;
+    text-align: center !important;
+}
+
+.line-row {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 12px;
+}
+
+.timeline-adjust-left {
+  border-right: 2px solid black;
+  padding-top: 0 !important;
+}
+
+.timeline-adjust-center {
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  padding-top: 0 !important;
+}

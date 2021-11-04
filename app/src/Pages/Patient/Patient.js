@@ -2,7 +2,7 @@ import './Patient.css'
 
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
-import PatientTimeLine from '../../Components/PatientTimeLine'
+import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
 import PatientFooter from '../../Components/PatientFooter'
 import { Grid, Segment } from 'semantic-ui-react'
@@ -25,7 +25,7 @@ export default function Patient () {
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
             <Segment>
-              <PatientTimeLine patient={state.patients} />
+              <TimelineComponent />
             </Segment>
           </Grid.Column>
         </Grid.Row>
