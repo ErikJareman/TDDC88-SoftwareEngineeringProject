@@ -19,7 +19,7 @@ python_lint:
   stage: lint
   script:
     - pip install pylint
-    - cd unit_testing/python/
+    - cd app/testing/unit_testing/python
     - pylint *.py --disable=imports
 
 # Checks the code standard using eslint for React js
