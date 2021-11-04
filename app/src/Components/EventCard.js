@@ -8,7 +8,7 @@ class EventCard extends Component {
       <>
         <table id='patient-inlagd-group'>
           <tr>
-            <th><div id='rectangle'></div></th>
+            <th><div style={{ backgroundColor: this.props.color }} id='rectangle'></div></th>
             <th><h4>{this.props.name}</h4></th>
             <th><img src={homeImage} id='shape'></img></th>
             <th><h4>{this.props.time}</h4></th>
