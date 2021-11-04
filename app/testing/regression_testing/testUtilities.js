@@ -162,5 +162,9 @@ module.exports = {
   getRandomString,
   findElementInList,
   getElementListXpath,
+<<<<<<< HEAD
   getElementTextCss
+=======
+  getElementTextCss,
+>>>>>>> development
 }
