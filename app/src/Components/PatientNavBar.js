@@ -14,7 +14,7 @@ export default function PatientNavBar (patient) {
   return (
     <div className='patient-nav-bar'>
        <NameDisplay patient={patient.patient} />
-        <Link to='/'>
+        <Link to='/home'>
         <button style={{ backgroundColor: 'lightGrey' }}>
            Back to patient list
         </button>
