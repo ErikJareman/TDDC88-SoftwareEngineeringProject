@@ -10,6 +10,7 @@ import './Login.css'
 import LoginForm from '../../Components/LoginForm'
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
+import HeaderField from '../../Components/HeaderField'
 
 /**
  * Login() contains logic for the login/logout functionality
@@ -45,6 +46,7 @@ export default function Login () {
 
   return (
     <div className='page-container'>
+      <HeaderField />
       {
         user.userID !== ''
           ? <Redirect to='/' /> // When logged in

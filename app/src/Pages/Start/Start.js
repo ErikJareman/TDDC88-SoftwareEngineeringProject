@@ -1,13 +1,13 @@
-import PatientNavList from '../../Components/PatientNavList'
-import './Home.css'
+import './Start.css'
 import React from 'react'
+import StartForm from '../../Components/StartForm'
 import HeaderField from '../../Components/HeaderField'
 
-export default function Home () {
+export default function Start () {
   return (
     <div>
       <HeaderField />
-      <PatientNavList />
+      <StartForm/>
     </div>
   )
 }

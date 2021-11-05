@@ -22,6 +22,16 @@ img {
 }
 div#headerArea {
     background-color: darkblue;
-    align-items: flex-start;
     display: flex;
+}
+
+#linkarea {
+    margin: auto;
+    margin-right: 1%;
+}
+
+#signin {
+    color: white;
+    width: fit-content;
+    height: fit-content;
 }

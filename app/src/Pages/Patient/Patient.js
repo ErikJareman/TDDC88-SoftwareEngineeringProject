@@ -9,12 +9,15 @@ import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import React from 'react'
 import PatientInUt from '../../Components/PatientInUt'
+import HeaderField from '../../Components/HeaderField'
+
 
 export default function Patient () {
   const { state } = useLocation()
 
   return (
     <>
+      <HeaderField />
       <PatientNavBar patient={state.patients} />
       <Grid>
         <Grid.Row stretched>
