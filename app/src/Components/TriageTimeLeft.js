@@ -1,10 +1,9 @@
 /**
  * Function to calculate time left before patient need attention.
  * 
- * David Råsberg, hugh amount of inspiration drawn from this https://github.com/do-community/react-hooks-timer/blob/master/src/App.js
- * Draft
+ * David Råsberg and Gustav, inspiration drawn from this https://github.com/do-community/react-hooks-timer/blob/master/src/App.js
  * 
- * 
+ * 2021-11-5: Works to functional requirements, but results in "warning".
  * 
  */
 
@@ -12,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Icon } from 'semantic-ui-react';
 
 export default function TriageTimeLeft(timeChecked) {
-    //cleaner way to take in variables needed
+    //is there a cleaner way to take in parameters?
     let patient = timeChecked.timeChecked;
     let checkPatientNowWarning = false;
     //Calculates time to check on patient.
@@ -25,14 +24,18 @@ export default function TriageTimeLeft(timeChecked) {
 
     const calculateTimeLeft = (timeToCheck) => {
         let now = Date.now();
-        let timeLeft = new Date(timeToCheck - now);
-
+        let timeLeft;
+        if ((timeToCheck - now) > 0) {
+            timeLeft = new Date(timeToCheck - now);
+        } else {
+            checkPatientNowWarning = true;
+            timeLeft = new Date(now - timeToCheck);
+        }
+        
         let timeLeftMap = {
             minutes: timeLeft.getMinutes(),
             seconds: timeLeft.getSeconds()
         }
-
-        console.log(timeLeft);
         return timeLeftMap;
     };
 
@@ -45,22 +48,24 @@ export default function TriageTimeLeft(timeChecked) {
         }, 1000);
     });
 
-    const timerComponents = [];
+    let timerComponents = [];
 
     //loop over each property in timeLeft
     Object.keys(timeLeft).forEach((interval) => {
-        //console.log(interval + ":" + timeLeft[interval]);
         timerComponents.push(
             <>
-
+                {timeLeft[interval] < 10 ? "0" : ""}
                 {interval === "seconds" ? timeLeft[interval] : timeLeft[interval] + ":"}
             </>
         );
-        //{timeLeft[interval] < 10 ? "0" : ""}
     });
+    
+    if (checkPatientNowWarning) {
+        timerComponents = [<Icon name='warning' color='red'/>, "-", ...timerComponents];
+    };
     return (
         <>
-            {timerComponents.length ? timerComponents : <Icon name='warning' />}
+            {timerComponents}
         </>
     );
 }
