@@ -1,3 +1,11 @@
+/**
+* Timeline.css
+*
+* Contains all the css applied to the TimelineComponent.js component.
+*
+* Erik Jareman - DRAFT
+*/
+
 .timestamp-row {
     padding-bottom: 0 !important;
     text-align: center !important;
