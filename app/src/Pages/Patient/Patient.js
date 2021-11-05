@@ -11,7 +11,6 @@ import React from 'react'
 import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
 
-
 export default function Patient () {
   const { state } = useLocation()
 
@@ -40,9 +39,6 @@ export default function Patient () {
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientCurrentEvents patient={state.patients} />
-            </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '33%' }}>
             <Segment>
