@@ -10,7 +10,6 @@ export default function App () {
   return (
     <>
       <Router>
-        {/* <HeaderField /> */}
         <div className="App">
           <Switch>
             <Route path="/patient" component={Patient} />

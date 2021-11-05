@@ -3,34 +3,31 @@
  *
  * Component for the starting page where the user can select their role (E.g. Doctor, Nurse, Etc.)
  *
- * WIP
+ * FINAL
  *
- * Authors Philip Löfgren, Philip Nylén
+ * Authors Philip Löfgren, Philip Nylén, Marcus Alvebro
 */
 import regionenLogo from '../assets/regionenLogo.png'
 import './StartForm.css'
 import React, { useState } from 'react'
-import { Dropdown, Button } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const roleOptions = [
   {
     key: 'Läkare',
     text: 'Läkare',
-    value: 'Läkare',
-    image: { avatar: true, src: '/images/avatar/small/jenny.jpg' }
+    value: 'Läkare'
   },
   {
     key: 'Sjuksköterska',
     text: 'Sjuksköterska',
-    value: 'Sjuksköterska',
-    image: { avatar: true, src: '/images/avatar/small/elliot.jpg' }
+    value: 'Sjuksköterska'
   },
   {
     key: 'Undersköterska',
     text: 'Undersköterska',
-    value: 'Undersköterska',
-    image: { avatar: true, src: '/images/avatar/small/stevie.jpg' }
+    value: 'Undersköterska'
   }
 ]
 
@@ -38,20 +35,17 @@ const hospitalOptions = [
   {
     key: 'Linköping',
     text: 'Linköping',
-    value: 'Linköping',
-    image: { avatar: true, src: '/images/avatar/small/jenny.jpg' }
+    value: 'Linköping'
   },
   {
     key: 'Norrköping',
     text: 'Norrköping',
-    value: 'Norrköping',
-    image: { avatar: true, src: '/images/avatar/small/elliot.jpg' }
+    value: 'Norrköping'
   },
   {
     key: 'Motala',
     text: 'Motala',
-    value: 'Motala',
-    image: { avatar: true, src: '/images/avatar/small/stevie.jpg' }
+    value: 'Motala'
   }
 ]
 
@@ -59,13 +53,11 @@ const hospitalOptions = [
  * Function StartForm () currently renders a dropdown with alternatives
  * of roles that can be selected. This will determine the information they have access
  * to and also which hospital will be shown in the navbar.
- *
- * Currently not complete - more functionality to be added.
  */
 
 export default function StartForm () {
-  const [role, setRole] = useState({ role: '' })
-  const [location, setLocation] = useState({ location: '' })
+  const [role, setRole] = useState('')
+  const [location, setLocation] = useState('')
 
   const saveDetails = (event) => {
     if (role === 'Läkare' || role === 'Sjuksköterska' || role === 'Undersköterska') {
@@ -77,7 +69,7 @@ export default function StartForm () {
     if (location === 'Linköping' || location === 'Norrköping' || location === 'Motala') {
       localStorage.setItem('localLocation', location)
     } else {
-      localStorage.setItem('localLocation', 'Välj din arbetsplats...')
+      localStorage.setItem('localLocation', '')
     }
   }
 
@@ -93,27 +85,33 @@ export default function StartForm () {
       <div className='start'>
         <div className='start_container'>
           <img src={regionenLogo} className='regionen-logo' alt='Not found' />
-          <Dropdown
-          id='roles'
-          placeholder='Välj roll'
+          <Form>
+          <Form.Select
+          className='roles'
+          label ='Roll'
+          placeholder='Välj en roll'
           fluid
           selection
           clearable
           options={roleOptions}
-          defaultValue = ''
           onChange = {handleSelectedRole}
           />
-          <Dropdown
-          placeholder='Välj sjukhus'
+          <Form.Select
+          className='locations'
+          label='Sjukhus'
+          placeholder='Välj ett sjukhus'
           fluid
           selection
           clearable
           options={hospitalOptions}
           onChange = {handleSelectedLocation}
           />
-          <Link to = '/home'>
-            <Button className='startButton' onClick={saveDetails}>Klicka här</Button>
-          </Link>
+          {
+            role !== '' && location !== ''
+              ? <Link to = '/home'><Button className='startButton' onClick={saveDetails}>Logga in</Button></Link>
+              : <Link to = '/'><Button className='startButton' disabled onClick={saveDetails}>Logga in</Button></Link>
+          }
+          </Form>
         </div>
       </div>
   )
