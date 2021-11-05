@@ -1,16 +1,8 @@
-stages:
-  - build
-  - lint
-  - test
-  - deploy
+image: node:17.0.1
 
-npm_install:
-  image: node:17.0.1
-  stage: build
-  script:
-    - cd app/
-    - npm install
-    - cd ..
+stages:
+  - lint
+  - deploy
 
 # Checks the code standard using pylint
 # TODO: update path to real python code when we start using python
@@ -24,7 +16,6 @@ python_lint:
 
 # Checks the code standard using eslint for React js
 reactjs_lint:
-  image: node:17.0.1
   stage: lint
   script:
     - cd app/
@@ -37,6 +28,7 @@ deploy:
   stage: deploy
   script:
     - cd app
+    - npm install
     - apt-get update -qy
     - apt-get install -y ruby-dev
     - gem install dpl
