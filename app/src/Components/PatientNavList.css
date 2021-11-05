@@ -1,0 +1,61 @@
+/**
+* PatientNavList.css
+*
+* Contains all the css applied to the PatientNavList.js component.
+*
+* Philip Nylén - DRAFT
+*/
+
+ul {
+    list-style-type: none;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+ul li {
+    width: 80%;
+    height: 40pt;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    border: 1px solid black;
+    /* text-align: center; */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.374);
+}
+
+table {
+    width: 85%;
+    margin: 0;
+    display: inline-table;
+}
+
+h3 {
+    margin: 0 auto;
+    padding-bottom: 12pt;
+    padding-top: 13pt;
+    padding-left: 14pt;
+    display: table-cell;
+    width: 5%;
+    font-size: 10pt;
+}
+
+a.nav-link {
+    margin: 0;
+    padding-left: 7pt;
+    padding-right: 7pt;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    width: 10%;
+}
+
+h3.long {
+    width: 23%;
+}
+
+h3.medium {
+    width: 16%;
+    background-color: crimson;
+    border-radius: 20px 0px 0px 20px;
+}
+
