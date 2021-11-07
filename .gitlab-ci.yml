@@ -1,16 +1,6 @@
 stages:
-  - build
   - lint
-  - test
   - deploy
-
-npm_install:
-  image: node:17.0.1
-  stage: build
-  script:
-    - cd app/
-    - npm install
-    - cd ..
 
 # Checks the code standard using pylint
 # TODO: update path to real python code when we start using python
@@ -43,4 +33,3 @@ deploy:
     - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
   only:
     - development
-

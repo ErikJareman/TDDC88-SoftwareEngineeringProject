@@ -11,12 +11,12 @@
 import React from 'react'
 import AktuellaTab from './AktuellaTab'
 
-export default function PatientCurrentEvents (patient) {
+export default function PatientCurrentEvents () {
   return (
     <>
-    <div>
-      <AktuellaTab />
-    </div>
+      <div>
+        <AktuellaTab />
+      </div>
     </>
   )
 }

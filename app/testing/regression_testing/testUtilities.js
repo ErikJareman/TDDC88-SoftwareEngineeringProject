@@ -1,4 +1,3 @@
-require('dotenv').config()
 const { Builder, By, until } = require('selenium-webdriver')
 const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
@@ -163,5 +162,9 @@ module.exports = {
   getRandomString,
   findElementInList,
   getElementListXpath,
+<<<<<<< HEAD
+  getElementTextCss
+=======
   getElementTextCss,
+>>>>>>> development
 }
