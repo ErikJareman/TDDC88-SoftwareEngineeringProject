@@ -7,7 +7,8 @@ import './PatientNavList.css'
 import { Link } from 'react-router-dom'
 import trends from '../assets/trends.png'
 import notificationBell from '../assets/notificationBell.png'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 /**
  * The function PatientNavList renders the list of patients, currently
@@ -16,7 +17,7 @@ import React from 'react'
  * FIXING
  */
 export default function PatientNavList () {
-  const patients = [
+  /* const patients = [
     {
       id: 1,
       name: 'Fredrik Olsson',
@@ -37,7 +38,23 @@ export default function PatientNavList () {
       team: 'B',
       room: 5
     }
-  ]
+  ] */
+
+  /**
+  * Below code snippet currently only works for location = Motala since the others contain 'åäö'
+  * The below snippet is done, the name handling for Linköping & Norrköping needs to be altered in Startform.js
+  * or in the backend
+  * Philip Nylén
+  * FINAL
+  */
+  const [patients, setPatients] = useState([])
+  useEffect(() => {
+    axios.get('http://127.0.0.1:5000/patients/' + localStorage.getItem('localLocation'))
+      .then(res => {
+        const persons = res.data
+        setPatients(persons)
+      })
+  }, [])
 
   return (
     <ul>
@@ -56,7 +73,7 @@ export default function PatientNavList () {
                 <h3>{patient.arrival}</h3>
                 <h3 className='long'>{patient.name}</h3>
                 <h3 className='long'>{patient.id}</h3>
-                <h3 className='long'>{patient.reasonForVisit}</h3>
+                <h3 className='long'>{patient.reason}</h3>
                 <h3>{patient.team}</h3>
                 <h3>{patient.room}</h3>
               </table>
