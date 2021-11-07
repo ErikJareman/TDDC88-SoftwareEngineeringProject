@@ -6,3 +6,5 @@ testing/package-lock.json
 *.pyc
 node_modules
 app/package-lock.json
+*.csv
+venv/
