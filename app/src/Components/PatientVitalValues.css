@@ -1,0 +1,19 @@
+/**
+* css for vital values component
+* Isak Berntsson & Linus Bäckbro Kuusisto
+* issue 31
+*/
+
+h5#varNameHeader{
+    height: 60px;
+    line-height: 60px;
+    text-align: left;
+}
+
+h5#varNumbHeader{
+    text-align: right;
+}
+
+h5#timeHeader{
+    text-align: right;
+}
