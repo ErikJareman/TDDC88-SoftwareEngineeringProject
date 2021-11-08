@@ -10,9 +10,17 @@ import { useLocation } from 'react-router-dom'
 import React from 'react'
 import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
+import EventCard from '../../Components/EventCard'
 
 export default function Patient () {
   const { state } = useLocation()
+
+  const cards = [
+    <EventCard key='dosering' name='Medicindosering' time='13.38' color='green' image='accessability' />,
+    <EventCard key='ordination' name='Medicin ordination' time='17.00' color='blue' image='portal' />,
+    <EventCard key='Mat' name='Smörgås och saft' time='15.40' color='green' image='firstAid' />,
+    <EventCard key='Mat' name='Patient inlagd' time='13.00' color='blue' image='firstAid' />
+  ]
 
   return (
     <>
@@ -35,7 +43,7 @@ export default function Patient () {
         <Grid.Row stretched>
           <Grid.Column style={{ width: '33%' }}>
             <Segment>
-              <PatientCurrentEvents patient={state.patients} />
+              <PatientCurrentEvents cards={cards} patient={state.patients} />
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '33%' }}>

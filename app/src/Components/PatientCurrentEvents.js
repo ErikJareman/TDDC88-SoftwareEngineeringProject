@@ -9,14 +9,25 @@
  *  Done by Nikil
  */
 import React from 'react'
-import AktuellaTab from './AktuellaTab'
+import { Tab } from 'semantic-ui-react'
 
-export default function PatientCurrentEvents () {
+function PatientCurrentEvents (props) {
+  const panes = [
+    {
+      menuItem: { icon: 'address card outline' }, render: () => <Tab.Pane>{props.cards[0]}</Tab.Pane>
+    },
+    {
+      menuItem: { icon: 'envelope' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
+    },
+    {
+      menuItem: { icon: 'location arrow' }, render: () => <Tab.Pane>{props.cards[3]} </Tab.Pane>
+    }
+  ]
   return (
-    <>
-      <div>
-        <AktuellaTab />
-      </div>
-    </>
+    <div>
+      <Tab panes={panes} />
+    </div>
   )
 }
+
+export default PatientCurrentEvents
