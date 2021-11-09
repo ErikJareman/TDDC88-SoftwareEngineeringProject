@@ -31,7 +31,7 @@ export default function TriageTimeLeft(timeChecked) {
             checkPatientNowWarning = true;
             timeLeft = new Date(now - timeToCheck);
         }
-        
+
         let timeLeftMap = {
             minutes: timeLeft.getMinutes(),
             seconds: timeLeft.getSeconds()
@@ -43,9 +43,13 @@ export default function TriageTimeLeft(timeChecked) {
 
     //useEffect will fire after each render and update
     useEffect(() => {
+        let isMounted = true
         setTimeout(() => {
-            setTimeLeft(calculateTimeLeft(timeToCheck));
+            if (isMounted) {
+                setTimeLeft(calculateTimeLeft(timeToCheck));
+            }
         }, 1000);
+        return () => { isMounted = false }
     });
 
     let timerComponents = [];
@@ -59,9 +63,9 @@ export default function TriageTimeLeft(timeChecked) {
             </>
         );
     });
-    
+
     if (checkPatientNowWarning) {
-        timerComponents = [<Icon name='warning' color='red'/>, "-", ...timerComponents];
+        timerComponents = [<Icon name='warning' color='red' />, "-", ...timerComponents];
     };
     return (
         <>
