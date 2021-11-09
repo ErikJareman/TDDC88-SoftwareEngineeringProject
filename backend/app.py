@@ -26,4 +26,6 @@ def patients_at(location):
 @app.route("/")
 def hello_world():
     return "Mock Database for Emergency Journal Application C4."
-app.run()
+
+if __name__ == "__main__":
+    app.run()
