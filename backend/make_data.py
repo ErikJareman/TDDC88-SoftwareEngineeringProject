@@ -43,6 +43,9 @@ def generate_reason():
 def make_data(NUM_PATIENTS = 100):
     LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
     df_patients = pd.DataFrame(columns = ["id", "timer", "arrival", "reason", "name", "SSN","location", "team", "room"])
+    df_vitals = pd.DataFrame(columns = ["id", "time", "type", "value", "level"])
+    df_injections = pd.DataFrame(columns = ["id", "timein", "timeout", "type", "value", "localization", "procedure"])
+    df_events = pd.DataFrame(columns = ["id", "time", "category", "type"])
 
     fake = Faker()
     df_patients["id"] = [i for i in range(NUM_PATIENTS)]
