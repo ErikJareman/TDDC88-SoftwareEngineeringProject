@@ -19,7 +19,7 @@ const NameDisplay = ({ patient }) => (
   <>
     <div>
       <Message visible color='red'>
-        {patient.name} , {patient.pnum} , Sökorsak :{' '}
+        {patient.name} , {patient.SSN} , Sökorsak :{' '}
         <Icon disabled name='search plus' />
         {patient.reasonForVisit}
       </Message>
