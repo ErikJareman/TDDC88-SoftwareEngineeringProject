@@ -14,10 +14,10 @@ import umsLogo from '../assets/ums.svg'
 const testPatient = {
   id: 1,
   UMS: {
-    sensLevel: 1,
-    medCondition: false,
+    sensLevel: 2,
+    medCondition: true,
     careDeviation: true,
-    infection: false,
+    infection: true,
     noStructureInfo: false
   }
 }
