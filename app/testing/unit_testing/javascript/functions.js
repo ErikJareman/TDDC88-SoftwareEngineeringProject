@@ -1,11 +1,11 @@
-function sum(a, b) {
+function sum (a, b) {
   if (a > 1000) {
     throw new TypeError('Invalid input')
   }
-  return a + b;
+  return a + b
 }
 
-function returnObject() {
+function returnObject () {
   const object = {
     shouldMatch: true,
     TDDIsBest: true,
@@ -14,4 +14,4 @@ function returnObject() {
   return object
 }
 
-module.exports = { sum, returnObject };
+module.exports = { sum, returnObject }
