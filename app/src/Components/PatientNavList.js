@@ -17,7 +17,6 @@ import axios from 'axios'
  * FIXING
  */
 export default function PatientNavList () {
-
   /**
   * Below code snippet currently only works for location = Motala since the others contain 'åäö'
   * The below snippet is done, the name handling for Linköping & Norrköping needs to be altered in Startform.js
