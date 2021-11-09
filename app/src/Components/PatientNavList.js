@@ -49,7 +49,7 @@ export default function PatientNavList () {
   */
   const [patients, setPatients] = useState([])
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/patients/' + localStorage.getItem('localLocation'))
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + localStorage.getItem('localLocation'))
       .then(res => {
         const persons = res.data
         setPatients(persons)
