@@ -56,7 +56,7 @@ export default function PatientNavList() {
             >
               <table>
                 {/*Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3>*/}
-                <h3 className="medium" style={{ backgroundColor: patient.triage }}><TriageTimeLeft timeChecked={patient}/></h3> 
+                <h3 className="medium" style={{ backgroundColor: patient.triage }}><TriageTimeLeft key={patient.id + ".timeChecked"} timeChecked={patient.timeChecked} /></h3>
                 <h3>{patient.arrival}</h3>
                 <h3 className="long">{patient.name}</h3>
                 <h3 className="long">{patient.id}</h3>

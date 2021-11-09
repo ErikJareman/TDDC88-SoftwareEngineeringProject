@@ -10,17 +10,15 @@
 import { useEffect, useState } from "react";
 import { Icon } from 'semantic-ui-react';
 
-export default function TriageTimeLeft(timeChecked) {
-    //is there a cleaner way to take in parameters?
-    let patient = timeChecked.timeChecked;
+export default function TriageTimeLeft(props) {
+    let timeChecked = props.timeChecked;
     let checkPatientNowWarning = false;
     //Calculates time to check on patient.
-    const calculateTimeToCheck = (patient) => {
-        const { timeChecked } = patient;
+    const calculateTimeToCheck = (timeChecked) => {
         return (new Date(timeChecked + (5 * 60 * 1000)));
     };
 
-    let timeToCheck = calculateTimeToCheck(patient); //last time checked + 5 minutes
+    let timeToCheck = calculateTimeToCheck(timeChecked); //last time checked + 5 minutes
 
     const calculateTimeLeft = (timeToCheck) => {
         let now = Date.now();
