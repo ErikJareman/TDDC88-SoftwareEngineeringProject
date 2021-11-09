@@ -13,7 +13,7 @@ import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
 import EventCard from '../../Components/EventCard'
 
-export default function Patient() {
+export default function Patient () {
   const { state } = useLocation()
 
   const cards = [

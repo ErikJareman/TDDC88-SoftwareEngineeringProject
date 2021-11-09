@@ -6,7 +6,7 @@
 import './PatientNavList.css'
 import { Link } from 'react-router-dom'
 import trends from '../assets/trends.png'
-import TriageTimeLeft from './TriageTimeLeft';
+import TriageTimeLeft from './TriageTimeLeft'
 import notificationBell from '../assets/notificationBell.png'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -17,7 +17,7 @@ import axios from 'axios'
  * Philip Nylén, Erik Jareman
  * FIXING
  */
-export default function PatientNavList() {
+export default function PatientNavList () {
   /* const patients = [
     {
       id: 1,
@@ -73,7 +73,7 @@ export default function PatientNavList() {
             >
               <table>
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: patient.triage }}><TriageTimeLeft timeChecked={patient.timeChecked} /></h3>
+                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: patient.triage }}><TriageTimeLeft timeChecked={patient.timer} /></h3>
                 <h3>{patient.arrival}</h3>
                 <h3 className='long'>{patient.name}</h3>
                 <h3 className='long'>{patient.id}</h3>
