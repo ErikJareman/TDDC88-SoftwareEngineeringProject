@@ -14,6 +14,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app)
 
+
 make_data(50)
 
 
@@ -27,4 +28,6 @@ def patients_at(location):
 @app.route("/")
 def hello_world():
     return "Mock Database for Emergency Journal Application C4."
-app.run()
+
+if __name__ == "__main__":
+    app.run()
