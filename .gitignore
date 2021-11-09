@@ -3,4 +3,7 @@ testing/node_modules
 .vs/
 *.pyc
 node_modules
+app/package-lock.json
+*.csv
+venv/
 testing/package-lock.json
