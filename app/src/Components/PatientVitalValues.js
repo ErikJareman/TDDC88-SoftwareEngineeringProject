@@ -11,22 +11,6 @@ import './PatientVitalValues.css'
  */
 function generateSegement (vitals) {
   return (
-  //  <Segment.Group horizontal size='mini'>
-  //       <Segment> <Icon fitted name='arrow right' size='huge' id="icon"/></Segment>
-  //       <Segment>
-  //         <Header as='h5' id="varNameHeader">
-  //           {vitals.type}
-  //         </Header>
-  //       </Segment>
-  //       <Segment>
-  //        <Header as='h5' id="varNumbHeader">
-  //           {vitals.value}
-  //        </Header>
-  //        {/* <Header as='h5' id="timeHeader">
-  //           {vitals.time}
-  //        </Header> */}
-  //       </Segment>
-  //     </Segment.Group>
   <Segment size='mini'>
     <Grid columns={3}>
       <Grid.Row verticalAlign='middle'>
