@@ -55,19 +55,19 @@ export default function TriageTimeLeft(props) {
     //loop over each property in timeLeft
     Object.keys(timeLeft).forEach((interval, index) => {
         timerComponents.push(
-            <p key={index}>
+            <span key={index}>
                 {timeLeft[interval] < 10 ? "0" : ""}
                 {interval === "seconds" ? timeLeft[interval] : timeLeft[interval] + ":"}
-            </p>
+            </span>
         );
     });
 
     if (checkPatientNowWarning) {
-        timerComponents = [<Icon key={"icon_" + timerComponents} name='warning' color='red' />, "-", ...timerComponents];
+        timerComponents = [<Icon key={"icon_" + timeChecked} name='warning' color='red' />, "-", ...timerComponents];
     };
     return (
-        <p key={timeChecked}>
+        <>
             {timerComponents}
-        </p>
+        </>
     );
 }
