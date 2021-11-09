@@ -4,29 +4,51 @@
  * issue #31
  */
 import React from 'react'
-import { Header, Segment, Icon } from 'semantic-ui-react'
+import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 /**
  * Function that generates segment for one patient vaital-value.
  */
 function generateSegement (vitals) {
   return (
- <Segment.Group horizontal size='mini'>
-      <Segment> <Icon fitted name='arrow right' size='huge' id="icon"/></Segment>
-      <Segment>
-        <Header as='h5' id="varNameHeader">
+  //  <Segment.Group horizontal size='mini'>
+  //       <Segment> <Icon fitted name='arrow right' size='huge' id="icon"/></Segment>
+  //       <Segment>
+  //         <Header as='h5' id="varNameHeader">
+  //           {vitals.type}
+  //         </Header>
+  //       </Segment>
+  //       <Segment>
+  //        <Header as='h5' id="varNumbHeader">
+  //           {vitals.value}
+  //        </Header>
+  //        {/* <Header as='h5' id="timeHeader">
+  //           {vitals.time}
+  //        </Header> */}
+  //       </Segment>
+  //     </Segment.Group>
+  <Segment size='mini'>
+    <Grid columns={3}>
+      <Grid.Row verticalAlign='middle'>
+        <Grid.Column>
+          <Icon fitted name='arrow right' size='huge' id="icon"/>
+        </Grid.Column>
+        <Grid.Column textAlign='left'>
+          <Header id="typeHeader">
           {vitals.type}
-        </Header>
-      </Segment>
-      <Segment>
-       <Header as='h5' id="varNumbHeader">
-          {vitals.value}
-       </Header>
-       <Header as='h5' id="timeHeader">
-          {vitals.time}
-       </Header>
-      </Segment>
-    </Segment.Group>
+          </Header>
+        </Grid.Column>
+        <Grid.Column textAlign='right'>
+          <Header id="valHeader">
+            {vitals.value}
+          </Header>
+          <Header id="timeHeader">
+            {vitals.time}
+          </Header>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </Segment>
   )
 }
 /**
@@ -43,7 +65,12 @@ function getVitals (patientID) {
     {
       type: 'ANDNING',
       time: '12:03',
-      value: '52'
+      value: '16'
+    },
+    {
+      type: 'BLODTRYCK',
+      time: '12:00',
+      value: '177/84'
     }
   ]
   return vitals
@@ -53,7 +80,7 @@ function getVitals (patientID) {
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
 const SegmentHorizontalSegments = () => (
-  <Segment.Group >
+  <Segment.Group size='mini'>
     {getVitals('__temp__').map(generateSegement)}
   </Segment.Group>
 )

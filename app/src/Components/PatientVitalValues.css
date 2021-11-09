@@ -4,16 +4,12 @@
 * issue 31
 */
 
-h5#varNameHeader{
-    height: 60px;
-    line-height: 60px;
-    text-align: left;
+#timeHeader {
+    margin: 0;
+    padding: 0;
 }
 
-h5#varNumbHeader{
-    text-align: right;
-}
-
-h5#timeHeader{
-    text-align: right;
+#typeHeader {
+    display: inline-block;
+    vertical-align: middle;
 }
