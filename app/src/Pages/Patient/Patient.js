@@ -4,6 +4,7 @@ import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
+import PatientVitalValues from '../../Components/PatientVitalValues'
 import PatientFooter from '../../Components/PatientFooter'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
@@ -51,6 +52,11 @@ export default function Patient () {
           <Grid.Column style={{ width: '33%' }}>
             <Segment>
               <PatientInUt />
+            </Segment>
+          </Grid.Column>
+          <Grid.Column style={{ width: '33%' }}>
+            <Segment>
+              <PatientVitalValues patient={state.patients} />
             </Segment>
           </Grid.Column>
         </Grid.Row>

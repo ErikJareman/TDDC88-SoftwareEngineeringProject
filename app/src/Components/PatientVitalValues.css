@@ -1,0 +1,15 @@
+/**
+* css for vital values component
+* Isak Berntsson & Linus Bäckbro Kuusisto
+* issue 31
+*/
+
+#timeHeader {
+    margin: 0;
+    padding: 0;
+}
+
+#typeHeader {
+    display: inline-block;
+    vertical-align: middle;
+}
