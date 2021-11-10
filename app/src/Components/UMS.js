@@ -63,8 +63,6 @@ export default function UMS () {
     }
   }
   return (
-    <div className='UMS-Container'>
         <object className='UMS-logo' onLoad={modifyUMS} id="svg-object" data={umsLogo} type="image/svg+xml"></object>
-    </div>
   )
 }
