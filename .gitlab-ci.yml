@@ -21,6 +21,18 @@ reactjs_lint:
     - npm install eslint-plugin-react@7.26.1 --save-dev
     - npx eslint src/**/*.js src/*.js
     
+#deploy back-end to heroku
+deploy:
+  image: ruby:3.0.2
+  stage: deploy
+  script:
+    - cd backend
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=backend-c4company --api-key=$HEROKU_APP_KEY
+  only:
+    - checkingcicd
 
 #deploy to heroku
 deploy:
