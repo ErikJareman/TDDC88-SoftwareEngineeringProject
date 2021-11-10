@@ -18,8 +18,8 @@ export default function PatientInfo (props) {
   return (
     <div className='PatientInfo-div'>
       <h1> Patientinfo  </h1>
-      <h5><Icon name='user' />{props.patient.name}, {props.patient.pnum}</h5>
-      <h5><Icon name='clock' /> <TriageTimeLeft key={props.patient.id + '.timeChecked'} timeChecked={props.patient.timeChecked} /></h5>
+      <h5><Icon name='user' />{props.patient.name}, {props.patient.SSN}</h5>
+      <h5><Icon name='clock' /> <TriageTimeLeft key={props.patient.id + '.timeChecked'} triageLevel={props.patient.triageLevel} /></h5>
       <h5><Icon name='address book' /> ISS: </h5>
       <h5><Icon name='ambulance' /> Ambulans </h5>
       <TeamView />

@@ -18,7 +18,7 @@ const calcTimeChecked = (triageColor) => {
 }
 
 export default function TriageTimeLeft (props) {
-  // triageColor will be taken in as prop in the future
+  // patient.triageLevel will be used as soon as its available in the back-end
   const [triageColor] = useState(triageColors[Math.floor(Math.random() * Object.keys(triage).length)])
   const [timeChecked] = useState(calcTimeChecked(triageColor)) // I don't think we need to implement a way to change this
   let checkPatientNowWarning = false

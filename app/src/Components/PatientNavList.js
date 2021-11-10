@@ -18,32 +18,6 @@ import axios from 'axios'
  * FIXING
  */
 export default function PatientNavList () {
-  /* const patients = [
-    {
-      id: 1,
-      name: "Fredrik Olsson",
-      pnum: "930217-5150",
-      timer: "00:15",
-      arrival: "13:15",
-      reasonForVisit: "Benbrott",
-      team: "A",
-      room: 1,
-      timeChecked: Date.now() - 120 * 1000, //current time - 2 minutes. Arbitrary somewhat recent time patient was last checked. Temporary...
-      triage: "red"
-    },
-    {
-      id: 2,
-      name: "Karl Boström",
-      pnum: "870427-0227",
-      timer: "05:34",
-      arrival: "14:27",
-      reasonForVisit: "Buksmärtor",
-      team: "B",
-      room: 5,
-      timeChecked: Date.now() - 270 * 1000, //current time - 4.5 minutes. Arbitrary somewhat recent time patient was last checked. Temporary...
-      triage: "yellow"
-    },
-  ];
   /**
   * Below code snippet currently only works for location = Motala since the others contain 'åäö'
   * The below snippet is done, the name handling for Linköping & Norrköping needs to be altered in Startform.js
@@ -53,7 +27,7 @@ export default function PatientNavList () {
   */
   const [patients, setPatients] = useState([])
   useEffect(() => {
-    axios.get('http://127.0.0.1:5000/patients/' + localStorage.getItem('localLocation'))
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + localStorage.getItem('localLocation'))
       .then(res => {
         const persons = res.data
         setPatients(persons)
@@ -73,7 +47,7 @@ export default function PatientNavList () {
             >
               <table>
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: patient.triage }}><TriageTimeLeft timeChecked={patient.timer} /></h3>
+                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: patient.triage }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                 <h3>{patient.arrival}</h3>
                 <h3 className='long'>{patient.name}</h3>
                 <h3 className='long'>{patient.id}</h3>
