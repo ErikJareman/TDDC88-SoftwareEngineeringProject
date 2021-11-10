@@ -14,13 +14,13 @@ const triage = { green: 15, yellow: 10, red: 5 }
 const triageColors = ['green', 'yellow', 'red']
 
 const calcTimeChecked = (triageColor) => {
-  return new Date(Date.now() - ((triage[triageColor] - Math.floor(Math.random() * triage[triageColor]) - 1) * 60 * 1000))
+  return new Date(Date.now() - triage[triageColor] * 60 * 1000 + Math.floor(Math.random() * triage[triageColor] * 60 * 1000))
 }
 
 export default function TriageTimeLeft (props) {
-  // triageColor will probably be part of props in the future
+  // triageColor will be taken in as prop in the future
   const [triageColor] = useState(triageColors[Math.floor(Math.random() * Object.keys(triage).length)])
-  const [timeChecked] = useState(calcTimeChecked(triageColor))
+  const [timeChecked] = useState(calcTimeChecked(triageColor)) // I don't think we need to implement a way to change this
   let checkPatientNowWarning = false
   // Calculates time to check on patient.
   const calculateTimeToCheck = (timeChecked) => {
@@ -73,7 +73,7 @@ export default function TriageTimeLeft (props) {
   })
 
   if (checkPatientNowWarning) {
-    timerComponents = [<Icon key={'icon_' + timeChecked} name='warning' color='red' />, '-', ...timerComponents]
+    timerComponents = [<Icon key={'icon'} name='warning' color='red' />, '-', ...timerComponents]
   };
   return (
     <>
