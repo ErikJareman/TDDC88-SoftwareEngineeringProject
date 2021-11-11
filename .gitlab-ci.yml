@@ -41,5 +41,23 @@ install_chrome:
   image: ubuntu:18.04
   stage: test
   script:
-    - cd pipeline
-    - apt install ./google-chrome-stable_current_amd64.deb
+    - apt-get update
+    - apt-get install -y python3-pip
+    # Install robot framework and the selenium library
+    - pip3 install robotframework
+    - pip3 install robotframework-seleniumlibrary
+    # Install the chrome and chrome webdriver
+    - apt-get install -y xvfb
+    - apt-get install -y zip
+    - apt-get install -y wget
+    - apt-get install -y ca-certificates
+    - apt-get install -y libnss3-dev libasound2 libxss1 libappindicator3-1 libindicator7 gconf-service libgconf-2-4 libpango1.0-0 xdg-utils fonts-liberation libgbm1
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+    - dpkg -i google-chrome*.deb 
+    - rm google-chrome*.deb
+    - wget -N http://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip
+    - unzip chromedriver_linux64.zip
+    - chmod +x chromedriver
+    - cp chromedriver /usr/local/bin
+    - rm chromedriver_linux64.zip
+    - rm chromedriver
