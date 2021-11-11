@@ -52,7 +52,6 @@ install_chrome:
     - rm chromedriver_linux64.zip
     - chmod +x chromedriver
     - ls
-    - mkdir app/testing/regression_testing/driver
     - mv chromedriver app/testing/regression_testing/driver/chromedriver
 
 testing:
