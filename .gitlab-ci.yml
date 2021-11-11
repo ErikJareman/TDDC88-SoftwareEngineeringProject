@@ -41,7 +41,7 @@ download_chrome:
   stage: test
   script:
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt-get install google-chrome-stable_current_amb64.deb
+    - apt-get install google-browser
 
 install_chrome:
   image: ubuntu:18.04
