@@ -3,18 +3,18 @@
  *
  *  WIP
  *
- *  Author David Råsberg
  *
  *  Adding tabs into the Aktuelle as part of user story
  *  Done by Nikil
  */
 import React from 'react'
 import { Tab } from 'semantic-ui-react'
+import SortAndFilterEvents from './SortAndFilterEvents'
 
 function PatientCurrentEvents (props) {
   const panes = [
     {
-      menuItem: { icon: 'address card outline' }, render: () => <Tab.Pane>{props.cards[0]}</Tab.Pane>
+      menuItem: { icon: 'newspaper outline' }, render: () => <Tab.Pane>{<SortAndFilterEvents sortBy={'time'} filterBy={'hej'} events={props.cards} />}</Tab.Pane>
     },
     {
       menuItem: { icon: 'envelope' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
