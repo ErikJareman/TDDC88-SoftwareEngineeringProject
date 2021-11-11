@@ -36,7 +36,6 @@ deploy:
   only:
     - development
 
-
 install_chrome:
   image: ubuntu:18.04
   stage: test
@@ -51,10 +50,9 @@ install_chrome:
     - apt-get install -y zip
     - unzip chromedriver_linux64.zip
     - rm chromedriver_linux64.zip
-    - mv chromedriver app/testing/drivers/chromedriver
+    - mv chromedriver app/testing/regression_testing/drivers/chromedriver
     - cd app/testing
     - chmod +x chromedriver
-    
 
 testing:
   image: node:17.0.1
