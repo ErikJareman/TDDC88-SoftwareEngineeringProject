@@ -91,14 +91,14 @@ function TimelineComponent ({ size }) {
   const spacingPerTimestamp = getSpacingPerTimestamp(timestamps)
   const maxEventWidth = 40 // the maximum width given to each event-row displayed under the timeline, pixels
   const structuredEventArray = getStructuredEventArray(events, timestamps, size.width, maxEventWidth)
-  console.log('structuredEventArray: ' + structuredEventArray)
+  // console.log('structuredEventArray: ' + structuredEventArray)
   return (
-  <div>
-    <h1>
-      Timeline
-    </h1>
+    <div>
+      <h1>
+        Timeline
+      </h1>
 
-    <Grid className='timeline'>
+      <Grid className='timeline'>
 
         <Grid.Row className='timestamp-row'>{/* This grid-row displays all timestamps */}
           {timestamps.map((hour, index) => {
@@ -113,29 +113,29 @@ function TimelineComponent ({ size }) {
         <Grid.Row className='line-row'>{/* This grid-row displays the actual line of the timeline */}
           {getTimelineSpacings(spacingPerTimestamp).map((columnWidth, index) => {
             return (
-              <Grid.Column key={index} className={`${index === 0 ? 'timeline-adjust-left' : 'timeline-adjust-center'}`} style={{ width: `${columnWidth}%` }}/>
+              <Grid.Column key={index} className={`${index === 0 ? 'timeline-adjust-left' : 'timeline-adjust-center'}`} style={{ width: `${columnWidth}%` }} />
             )
           })}
         </Grid.Row>
 
         <Grid.Row className='event-row'>{/* This grid-row displays all events that are in the span of the timeline */}
-        <Grid.Column className='no-padding' style={{ width: `${(size.width - ((structuredEventArray.length) * maxEventWidth)) / 2}px` }}/>
+          <Grid.Column className='no-padding' style={{ width: `${(size.width - ((structuredEventArray.length) * maxEventWidth)) / 2}px` }} />
           {structuredEventArray.map((column, index) => {
             return (
-              <Grid.Column className='no-padding center-all' key={ index } style={{ width: maxEventWidth }}>
+              <Grid.Column className='no-padding center-all' key={index} style={{ width: maxEventWidth }}>
                 {structuredEventArray[index].map((event, innerIndex) => {
                   return (
-                  <div key={ innerIndex }>
-                    <Grid.Row>
-                      <img className= 'icon-img' src={ getIcon(event.name) } alt='Not Found' />
-                    </Grid.Row>
-                    <Grid.Row className='event-text-adjust'>
-                      {event.name}
-                    </Grid.Row>
-                    <Grid.Row className='event-text-adjust'>
-                      {event.time}
-                    </Grid.Row>
-                  </div>
+                    <div key={innerIndex}>
+                      <Grid.Row>
+                        <img className='icon-img' src={getIcon(event.name)} alt='Not Found' />
+                      </Grid.Row>
+                      <Grid.Row className='event-text-adjust'>
+                        {event.name}
+                      </Grid.Row>
+                      <Grid.Row className='event-text-adjust'>
+                        {event.time}
+                      </Grid.Row>
+                    </div>
                   )
                 })}
               </Grid.Column>
@@ -143,7 +143,7 @@ function TimelineComponent ({ size }) {
           })}
         </Grid.Row>
       </Grid>
-  </div>
+    </div>
   )
 }
 
