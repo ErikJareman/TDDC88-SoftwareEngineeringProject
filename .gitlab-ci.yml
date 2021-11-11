@@ -57,6 +57,8 @@ testing:
   image: node:17.0.1
   needs: ["install_chrome"]
   script:
-    - cd app/testing
+    - cd app/testing/regression_testing/drivers
+    - ls
+    - cd ../..
     - npm install
     - npm test
