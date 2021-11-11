@@ -46,13 +46,6 @@ install_chrome:
     - apt-get install -y fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcairo2 libcups2 libcurl3-gnutls libcurl3-nss libcurl4 libdbus-1-3 libdrm2 libexpat1 libgbm1 libglib2.0-0 libgtk-3-0 libpango-1.0-0 libxcomposite1 libxdamage1 libxfixes3 libxkbcommon0 libxrandr2 libxshmfence1 xdg-utils
     - dpkg -i google-chrome*.deb 
     - rm google-chrome*.deb
-    - wget -N http://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip
-    - apt-get install -y zip
-    - unzip chromedriver_linux64.zip
-    - rm chromedriver_linux64.zip
-    - chmod +x chromedriver
-    - ls
-    - mv chromedriver app/testing/regression_testing/driver/chromedriver
 
 testing:
   image: node:17.0.1
@@ -68,7 +61,7 @@ testing:
     - ls
     - cd regression_testing
     - ls
-    - cd driver
+    - cd drivers
     - ls
     - cd ../..
     - npm install
