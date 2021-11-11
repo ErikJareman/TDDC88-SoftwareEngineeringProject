@@ -5,6 +5,8 @@
  *
  * 2021-11-5: Works to functional requirements, but results in "warning".
  *
+ * 2021-11-11: Works. Does not use data from back-end yet, but only requires minor change to do so.
+ *
  */
 
 import React, { useEffect, useState } from 'react'
