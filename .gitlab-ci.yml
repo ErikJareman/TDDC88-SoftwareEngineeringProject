@@ -61,7 +61,14 @@ testing:
   services:
     - selenium/standalone-chrome
   script:
-    - cd app/testing/regression_testing/drivers
+    - ls
+    - cd app
+    - ls
+    - cd testing
+    - ls
+    - cd regression_testing
+    - ls
+    - cd drivers
     - ls
     - cd ../..
     - npm install
