@@ -46,5 +46,4 @@ install_chrome:
   image: ubuntu:18.04
   stage: test
   script:
-    - su ~
     - sudo apt install ./google-chrome-stable_current_amd64.deb
