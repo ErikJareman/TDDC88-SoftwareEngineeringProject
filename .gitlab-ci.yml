@@ -37,12 +37,17 @@ deploy:
     - development
 
 download_chrome:
-  image: ruby:3.0.2
+  image: ubuntu:18.04
   stage: test
   script:
+    - apt update
+    - apt upgrade
+    - wget --version
+    - apt install wget
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt-get update -qy
-    - apt-get install -y chrome-browser
+    - ls
+    - dpgk -i google-chrome-stable_current_amd64.deb
+    - google-chrome
 
 install_chrome:
   image: ubuntu:18.04
