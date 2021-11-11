@@ -42,13 +42,13 @@ download_chrome:
   script:
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     - ls
+    - sudo dpgk -i google-chrome-stable_current_amd64.deb
 
 install_chrome:
   image: ubuntu:18.04
   stage: test
   script:
     - ls
-    - dpgk -i google-chrome-stable_current_amd64.deb
     - apt update
     - apt upgrade
     - sudo apt install ./google-chrome-stable_current_amd64.deb
