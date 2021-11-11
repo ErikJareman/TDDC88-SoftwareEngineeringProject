@@ -36,12 +36,13 @@ deploy:
   only:
     - development
 
-regression_test:
+download_chrome:
   image: ruby:3.0.2
   stage: test
   script:
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-regression_test:
+
+install_chrome:
   image: ubuntu:12.04
   stage: test
   script:
