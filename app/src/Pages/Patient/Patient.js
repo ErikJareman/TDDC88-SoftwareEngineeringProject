@@ -1,5 +1,6 @@
 import './Patient.css'
 
+import Refresher from '../../Components/Refresher'
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
@@ -63,6 +64,7 @@ export default function Patient () {
         <Grid.Row stretched style={{ position: 'fixed', bottom: 0, color: 'black' }}>
           <Grid.Column style={{ width: '100%' }}>
             <Segment>
+              <Refresher />
               <PatientFooter />
             </Segment>
           </Grid.Column>

@@ -8,8 +8,10 @@ import React from 'react'
 
 export default function PatientFooter () {
   return (
+    <>
     <div style={{ textAlign: 'center' }}>
       <button className='ui button'>A button should be placed here</button>
     </div >
+    </>
   )
 }
