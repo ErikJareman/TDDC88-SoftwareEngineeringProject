@@ -54,3 +54,5 @@ install_chrome:
     - cp chromedriver /usr/local/bin
     - rm chromedriver_linux64.zip
     - rm chromedriver
+    - cd app/testing
+    - npm test
