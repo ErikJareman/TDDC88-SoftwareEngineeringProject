@@ -24,7 +24,7 @@ async function testLogin (driver) {
       'li:nth-child(1) > a:nth-child(1)')), 3000) // Patient list
   } catch (err) {
     if (err.name === 'TimeoutError') {
-      return 'Login was unsuccessful'
+      return 'Login was unsuccessful (did not reach home page view)'
     } else {
       return err
     }

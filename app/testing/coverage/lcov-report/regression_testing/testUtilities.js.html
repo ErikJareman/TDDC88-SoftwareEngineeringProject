@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.82% </span>
+                <span class="strong">19.48% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/78</span>
+                <span class='fraction'>15/77</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.88% </span>
+                <span class="strong">29.41% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/17</span>
+                <span class='fraction'>5/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.51% </span>
+                <span class="strong">20.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/74</span>
+                <span class='fraction'>15/73</span>
             </div>
         
             
@@ -223,25 +223,23 @@
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
 <a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L167'></a><a href='#L167'>167</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,9 +247,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -347,10 +345,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -379,7 +377,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -391,8 +389,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">require('dotenv').config()
-const { Builder, By, until } = require('selenium-webdriver')
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Builder, By, until } = require('selenium-webdriver')
 const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 &nbsp;
@@ -415,10 +412,10 @@ async function buildDriver (url) {
 };
 &nbsp;
 /** Puases test for ms milliseconds */
-function <span class="fstat-no" title="function not covered" >sleep </span>(ms) {
-<span class="cstat-no" title="statement not covered" >  ms *= waitFactor</span>
-<span class="cstat-no" title="statement not covered" >  return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setTimeout(resolve, ms)</span>
+function sleep (ms) {
+  ms *= waitFactor
+  return new Promise((resolve) =&gt; {
+    setTimeout(resolve, ms)
   })
 };
 &nbsp;
@@ -513,11 +510,11 @@ async function <span class="fstat-no" title="function not covered" >getElementTe
 <span class="cstat-no" title="statement not covered" >  return elementText</span>
 }
 &nbsp;
-async function <span class="fstat-no" title="function not covered" >getElementText </span>(element) {
-  const elementText = <span class="cstat-no" title="statement not covered" >await element.getText().then(<span class="fstat-no" title="function not covered" >(v</span>al) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return val</span>
+async function getElementText (element) {
+  const elementText = await element.getText().then((val) =&gt; {
+    return val
   })
-<span class="cstat-no" title="statement not covered" >  return elementText</span>
+  return elementText
 };
 &nbsp;
 /** Returns the first part of an elements text-value split by separator */
@@ -556,7 +553,7 @@ module.exports = {
   getRandomString,
   findElementInList,
   getElementListXpath,
-  getElementTextCss,
+  getElementTextCss
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -565,7 +562,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Nov 01 2021 13:33:50 GMT+0100 (centraleuropeisk normaltid)
+                at Wed Nov 10 2021 13:24:28 GMT+0100 (centraleuropeisk normaltid)
             </div>
         </div>
         <script src="../prettify.js"></script>

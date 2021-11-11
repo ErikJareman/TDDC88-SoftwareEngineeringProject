@@ -35,6 +35,6 @@ describe('Testing home page', () => {
   test('Test patient list length in home view', async () => {
     await driver.get(url + 'home')
     await sleep(500)
-    expect(await getPatientListLength(driver)).toBe(12)
+    expect(await getPatientListLength(driver)).toBe(20)
   })
 })
