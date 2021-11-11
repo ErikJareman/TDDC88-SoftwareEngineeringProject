@@ -56,7 +56,6 @@ install_chrome:
 testing:
   image: node:17.0.1
   stage: test
-  needs: ["install_chrome"]
   services:
     - selenium/standalone-chrome
   script:
