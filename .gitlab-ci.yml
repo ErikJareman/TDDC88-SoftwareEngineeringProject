@@ -53,22 +53,11 @@ install_chrome:
     - chmod +x chromedriver
     - mv chromedriver app/testing/regression_testing/drivers/chromedriver   
 
-npm_start:
+testing:
   image: node:17.0.1
   stage: test
   needs: ["install_chrome"]
   script:
-    - cd app
-    - npm install
-    - npm start
-
-testing:
-  image: node:17.0.1
-  stage: test
-  needs: ["npm_start"]
-  script:
-    - cd app/testing/regression_testing/drivers
-    - ls
-    - cd ../..
+    - cd app/testing
     - npm install
     - npm test
