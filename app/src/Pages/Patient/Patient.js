@@ -4,13 +4,14 @@ import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
-import PatientVitalValues from '../../Components/PatientVitalValues'
+// import PatientVitalValues from '../../Components/PatientVitalValues'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import React from 'react'
-import PatientInUt from '../../Components/PatientInUt'
+// import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
 import EventCard from '../../Components/EventCard'
+import VitalsField from '../../Components/VitalsField'
 
 export default function Patient () {
   const { state } = useLocation()
@@ -42,11 +43,14 @@ export default function Patient () {
         </Grid.Row>
         <Grid.Row stretched>
           <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientCurrentEvents cards={cards} patient={state.patients} />
-            </Segment>
+
+            <PatientCurrentEvents cards={cards} patient={state.patients} />
+
           </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
+          <Grid.Column style={{ width: '67%' }}>
+            <VitalsField />
+          </Grid.Column>
+          {/* <Grid.Column style={{ width: '33%' }}>
             <Segment>
               <PatientInUt />
             </Segment>
@@ -55,7 +59,7 @@ export default function Patient () {
             <Segment>
               <PatientVitalValues patient={state.patients} />
             </Segment>
-          </Grid.Column>
+          </Grid.Column> */}
         </Grid.Row>
       </Grid>
     </>

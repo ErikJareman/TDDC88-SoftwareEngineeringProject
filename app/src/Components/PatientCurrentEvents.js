@@ -14,13 +14,13 @@ import SortAndFilterEvents from './SortAndFilterEvents'
 function PatientCurrentEvents (props) {
   const panes = [
     {
-      menuItem: { icon: 'newspaper outline' }, render: () => <Tab.Pane>{<SortAndFilterEvents sortBy={'time'} filterBy={'hej'} events={props.cards} />}</Tab.Pane>
+      menuItem: { icon: 'newspaper outline big' }, render: () => <Tab.Pane>{<SortAndFilterEvents sortBy={'time'} filterBy={'hej'} events={props.cards} />}</Tab.Pane>
     },
     {
-      menuItem: { icon: 'envelope' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
+      menuItem: { icon: 'envelope  big' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
     },
     {
-      menuItem: { icon: 'location arrow' }, render: () => <Tab.Pane>{props.cards[3]} </Tab.Pane>
+      menuItem: { icon: 'location arrow big' }, render: () => <Tab.Pane>{props.cards[3]} </Tab.Pane>
     }
   ]
   return (
