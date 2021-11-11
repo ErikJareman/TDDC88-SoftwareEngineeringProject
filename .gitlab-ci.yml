@@ -48,6 +48,7 @@ install_chrome:
   image: ubuntu:18.04
   stage: test
   script:
+    - apt-get -y install google-chrome-stable=80.0.3987.10
     - ls
     - apt update
     - apt upgrade
