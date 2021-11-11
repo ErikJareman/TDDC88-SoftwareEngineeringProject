@@ -54,6 +54,6 @@ install_chrome:
     - cp chromedriver /usr/local/bin
     - rm chromedriver_linux64.zip
     - rm chromedriver
-    - apt install -y nodejs
     - cd app/testing
+    - apt install -y nodejs
     - npm test
