@@ -19,7 +19,12 @@
 }
 
 .patient-nav-bar {
-    background-color: rgb(110, 146, 247);
+    background-color: #2c58a6;
     align-items: flex-start;
     display: flex;
+}
+
+#buttonright{
+    right: 10px;
+    position: absolute;
 }

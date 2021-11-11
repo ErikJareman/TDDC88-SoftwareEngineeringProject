@@ -1,5 +1,6 @@
 import './Patient.css'
 
+import Refresher from '../../Components/Refresher'
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
@@ -54,6 +55,7 @@ export default function Patient () {
           <Grid.Column style={{ width: '33%' }}>
             <Segment>
               <PatientVitalValues patient={state.patients} />
+              <Refresher />
             </Segment>
           </Grid.Column>
         </Grid.Row>

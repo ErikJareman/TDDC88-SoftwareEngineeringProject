@@ -1,0 +1,38 @@
+/**
+* NameDisplay
+*
+* Contains all the css applied to the NameDisplay.js component.
+*
+*   Nikil & Victor
+*
+* Documentation not complete.
+*/
+h1#subheaderText {
+    position: absolute;
+    left: 5%;
+    width: fit-content;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    color: rgb(243, 241, 241);
+}
+h1#subheaderTextright {
+    position: absolute;
+    right: 10px;
+    width: fit-content;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    color: rgb(243, 241, 241);
+}
+img {
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    vertical-align: middle;
+}
+
+#sublinkarea {
+    margin: auto;
+    margin-right: 1%;
+}
