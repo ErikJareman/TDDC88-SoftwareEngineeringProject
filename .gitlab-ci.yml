@@ -48,6 +48,7 @@ install_chrome:
     - dpkg -i google-chrome*.deb 
     - rm google-chrome*.deb
     - wget -N http://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip
+    - apt-get install -y zip
     - unzip chromedriver_linux64.zip
     - chmod +x chromedriver
     - cp chromedriver /usr/local/bin
