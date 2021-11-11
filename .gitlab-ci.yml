@@ -51,18 +51,7 @@ testing:
   image: node:17.0.1
   stage: test
   needs: ["install_chrome"]
-  services:
-    - selenium/standalone-chrome
   script:
-    - ls
-    - cd app
-    - ls
-    - cd testing
-    - ls
-    - cd regression_testing
-    - ls
-    - cd drivers
-    - ls
-    - cd ../..
+    - cd app/testing
     - npm install
-    - npm test --host=selenium__standalone-chrome
+    - npm test
