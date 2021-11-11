@@ -61,4 +61,5 @@ testing:
   needs: ["install_chrome"]
   script:
     - cd app/testing
+    - npm install
     - npm test
