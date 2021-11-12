@@ -36,15 +36,15 @@ deploy:
     - backend
 
 #deploy to heroku
-deploy:
-  image: ruby:3.0.2
-  stage: deploy
-  script:
-    - cd app
-    - apt-get update -qy
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
-  only:
-    - development
+# deploy:
+#   image: ruby:3.0.2
+#   stage: deploy
+#   script:
+#     - cd app
+#     - apt-get update -qy
+#     - apt-get install -y ruby-dev
+#     - gem install dpl
+#     - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
+#   only:
+#     - development
 
