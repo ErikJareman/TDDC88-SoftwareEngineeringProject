@@ -17,7 +17,7 @@ export default function PatientNavBar (patient) {
       <UMS/>
        <NameDisplay patient={patient.patient} />
         <Link to='/home'>
-        <button style={{ backgroundColor: 'lightGrey' }}>
+        <button id= 'buttonright' style={{ backgroundColor: 'lightGrey' }}>
            Back to patient list
         </button>
         </Link>

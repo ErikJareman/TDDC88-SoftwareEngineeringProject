@@ -7,26 +7,27 @@
  *
  * 2021-11-11: Works. Does not use data from back-end yet, but only requires minor change to do so.
  *
+ * 2021-11-12: Takes triageLevel from back-end. But timeLastChecked is still (pseudo-)randomly generated in component.
+ *
  */
 
 import React, { useEffect, useState } from 'react'
 import { Icon } from 'semantic-ui-react'
 
-const triage = { green: 15, yellow: 10, red: 5 }
-const triageColors = ['green', 'yellow', 'red']
+// Time corresponding to triageLevels
+const triageTimes = [0, 20, 15, 10, 5]
 
-const calcTimeChecked = (triageColor) => {
-  return new Date(Date.now() - triage[triageColor] * 60 * 1000 + Math.floor(Math.random() * triage[triageColor] * 60 * 1000))
+const calcTimeChecked = (triageTime) => {
+  return new Date(Date.now() - triageTime * 60 * 1000 + Math.floor(Math.random() * triageTime * 60 * 1000))
 }
 
 export default function TriageTimeLeft (props) {
-  // patient.triageLevel will be used as soon as its available in the back-end
-  const [triageColor] = useState(triageColors[Math.floor(Math.random() * Object.keys(triage).length)])
-  const [timeChecked] = useState(calcTimeChecked(triageColor)) // I don't think we need to implement a way to change this
+  const [triageTime] = useState(triageTimes[props.triageLevel])
+  const [timeChecked] = useState(calcTimeChecked(triageTime))
   let checkPatientNowWarning = false
   // Calculates time to check on patient.
   const calculateTimeToCheck = (timeChecked) => {
-    return (new Date(Date.parse(timeChecked) + (triage[triageColor] * 60 * 1000)))
+    return (new Date(Date.parse(timeChecked) + (triageTime * 60 * 1000)))
   }
 
   // Time to check on patient next time
