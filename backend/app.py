@@ -6,7 +6,7 @@
 #
 # FIXING
 
-from backend.helper_funcs import get_pulse
+from helper_funcs import get_pulse
 from make_data import make_data
 from flask import Flask, jsonify
 import pandas as pd
@@ -32,7 +32,7 @@ def patient_vitals(patient_id):
     return jsonify(vitals.to_dict('records')) 
 
 @app.route('/patients/<int:patient_id>/vitals/puls')
-def patient_vitals(patient_id):
+def puls(patient_id):
     df_puls = pd.read_csv("mock_vitals.csv", delimiter=',')
     puls = df_puls.loc[df_puls['id'] == patient_id, 'Puls']
     puls_output = get_pulse(puls)
