@@ -15,7 +15,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 
-make_data(50)
+make_data(50) 
 
 
 @app.route('/patients/<string:location>')
