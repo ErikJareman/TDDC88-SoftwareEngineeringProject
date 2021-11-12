@@ -28,7 +28,7 @@ def patients_at(location):
 def patient_vitals(patient_id):
     df_vitals = pd.read_csv("mock_vitals.csv", delimiter=',')
     vitals = df_vitals[df_vitals["id"] == patient_id]
-    return jsonify(vitals.to_dict('records'))
+    return jsonify(vitals.to_dict('records')) 
 
 """ @app.route('/patients/<int:patient_id>/injections')
 def patient_vitals(patient_id):
