@@ -52,4 +52,11 @@ describe('Testing pateint page', () => {
     await sleep(500)
     expect(await testTabs(driver)).toMatchObject(tabContents)
   })
+  test('Test the input and output', async ()=> {
+    await driver.get(url + 'home')
+    await sleep(500)
+    const inOut = await getInOut(driver)
+    const match = inOut.includes('PVK')
+    expect(match).toBe(True)
+  })
 })
