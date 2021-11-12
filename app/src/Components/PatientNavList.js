@@ -25,6 +25,7 @@ export default function PatientNavList () {
   * Philip Nylén
   * FINAL
   */
+  const triageColors = ['green', 'yellow', 'orange', 'red']
   const [patients, setPatients] = useState([])
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + localStorage.getItem('localLocation'))
@@ -42,12 +43,12 @@ export default function PatientNavList () {
             <Link
               to={{
                 pathname: `/patient/${patient.id}`,
-                state: { patients: patient }
+                state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
               }}
             >
               <table>
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: patient.triage }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                 <h3>{patient.arrival}</h3>
                 <h3 className='long'>{patient.name}</h3>
                 <h3 className='long'>{patient.id}</h3>

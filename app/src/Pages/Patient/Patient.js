@@ -31,7 +31,7 @@ export default function Patient () {
           <Grid.Column style={{ width: '33%' }}>
             <Segment >
 
-              <PatientInfo patient={state.patients} />
+              <PatientInfo patient={state.patients} triageColor={state.triageColor} />
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
