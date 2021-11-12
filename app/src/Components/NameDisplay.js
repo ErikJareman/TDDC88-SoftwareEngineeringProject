@@ -11,19 +11,24 @@
  */
 
 import React from 'react'
-import { Message, Icon } from 'semantic-ui-react'
+import './NameDisplay.css'
 
 // function to display the information.
 // Now takes in patient as prop from Patient.js, The two data constants are deleted /erik
 const NameDisplay = ({ patient }) => (
   <>
-    <div>
-      <Message visible color='red'>
-        {patient.name} , {patient.SSN} , Sökorsak :{' '}
-        <Icon disabled name='search plus' />
+    <div id="subheader" >
+      <h1 id="subheaderText">
+        {patient.name} , {patient.SSN}
         {patient.reasonForVisit}
-      </Message>
+      </h1>
     </div>
+    <div >
+      <h1 id="subheaderTextright">
+        Team {patient.team}, Rum {patient.room}
+      </h1>
+    </div>
+
   </>
 )
 
