@@ -9,15 +9,16 @@
  */
 import React from 'react'
 import { Tab } from 'semantic-ui-react'
-import SortAndFilterEvents from './SortAndFilterEvents'
+import FilterEvents from './FilterEvents'
 
 function PatientCurrentEvents (props) {
+  const id = props.patient.id
   const panes = [
     {
-      menuItem: { icon: 'newspaper outline big' }, render: () => <Tab.Pane>{<SortAndFilterEvents sortBy={'time'} filterBy={'hej'} events={props.cards} />}</Tab.Pane>
+      menuItem: { icon: 'newspaper outline big' }, render: () => <Tab.Pane>{<FilterEvents id={id} sortBy={'time'} />}</Tab.Pane>
     },
     {
-      menuItem: { icon: 'envelope  big' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
+      menuItem: { icon: 'envelope outline big' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
     },
     {
       menuItem: { icon: 'location arrow big' }, render: () => <Tab.Pane>{props.cards[3]} </Tab.Pane>

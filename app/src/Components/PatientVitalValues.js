@@ -11,28 +11,28 @@ import './PatientVitalValues.css'
  */
 function generateSegement (vitals) {
   return (
-  <Segment size='mini'>
-    <Grid columns={3}>
-      <Grid.Row verticalAlign='middle'>
-        <Grid.Column>
-          <Icon fitted name='arrow right' size='huge' id="icon"/>
-        </Grid.Column>
-        <Grid.Column textAlign='left'>
-          <Header id="typeHeader">
-          {vitals.type}
-          </Header>
-        </Grid.Column>
-        <Grid.Column textAlign='right'>
-          <Header id="valHeader">
-            {vitals.value}
-          </Header>
-          <Header id="timeHeader">
-            {vitals.time}
-          </Header>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  </Segment>
+    <Segment size='mini'>
+      <Grid columns={3}>
+        <Grid.Row verticalAlign='middle'>
+          <Grid.Column>
+            <Icon fitted name='arrow up' size='huge' id="icon" />
+          </Grid.Column>
+          <Grid.Column textAlign='left'>
+            <Header id="typeHeader">
+              {vitals.type}
+            </Header>
+          </Grid.Column>
+          <Grid.Column textAlign='right'>
+            <Header id="valHeader">
+              {vitals.value}
+            </Header>
+            <Header id="timeHeader">
+              {vitals.time}
+            </Header>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
   )
 }
 /**
