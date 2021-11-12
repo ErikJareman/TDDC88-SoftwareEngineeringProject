@@ -29,7 +29,7 @@ export default function VitalFields (props) {
               <PatientVitalValues />
             </Grid.Column>
             <Grid.Column style={{ width: '50%' }}>
-              <FilterEvents id={id} filterBy={'Puls'} />
+              <FilterEvents id={id} type={'vitals'} filterBy={'Puls'} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
