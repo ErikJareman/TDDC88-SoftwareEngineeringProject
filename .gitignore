@@ -1,5 +1,5 @@
 testing/node_modules
-app/testing/coverage
+app/testing/coverage/*
 *__pycache__
 .vs/
 *.pyc
