@@ -37,7 +37,7 @@ describe('Testing pateint page', () => {
     return await driver.quit()
   })
 
-  test('Test patient info for correct data', async () => {
+  test('#51, #53 : Test patient info for correct data regarding Room number and Assigned team', async () => {
     expect(await testPatientInfoBox(driver)).toMatchObject(PatientInfoResult)
   })
 

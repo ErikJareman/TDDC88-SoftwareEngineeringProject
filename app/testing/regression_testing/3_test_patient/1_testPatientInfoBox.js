@@ -27,6 +27,7 @@ async function testPatientInfoBox (driver) {
     '.PatientInfo-div')), 3000).getText().then((val) => {
     return val
   })
+  console.log(patientInfo)
   // Check if data in patient list (home view) matches Patientinfo data (patient view)
   if (patientInfo.includes('Room : ' + textList[6])) {
     PatientInfoResult.roomOk = true
