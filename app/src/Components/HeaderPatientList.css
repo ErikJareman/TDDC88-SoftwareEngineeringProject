@@ -1,0 +1,30 @@
+/**
+*
+*
+* Contains all the css applied to the HeaderPatientList.js component.
+*
+* Nikil - DRAFT
+*
+* Documentation not complete.
+*/
+
+div#headersubArea1 {
+    background-color: rgb(241, 234, 234);
+    height: 30px;
+    display: flex;
+    padding-left: 14pt;
+}
+
+#timer1 {
+    width: 59px;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0);
+    box-sizing: border-box;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: #333333;
+    line-height: normal;
+    font-size: 10pt;
+    margin: 0 auto;
+    padding-top: 5pt;
+  }
