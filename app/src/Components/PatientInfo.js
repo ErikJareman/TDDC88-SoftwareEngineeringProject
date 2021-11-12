@@ -22,7 +22,7 @@ export default function PatientInfo (patient) {
       .then(res => {
         setVitals(res.data)
       })
-  })
+  }, [])
 
   return (
     <div className='PatientInfo-div'>

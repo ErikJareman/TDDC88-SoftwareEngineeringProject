@@ -1,25 +1,25 @@
 stages:
-  - lint
+  #- lint
   - deploy
 
 # Checks the code standard using pylint
 # TODO: update path to real python code when we start using python
-python_lint:
-  image: python:3.9.7
-  stage: lint
-  script:
-    - pip install pylint
-    - cd app/testing/unit_testing/python
-    - pylint *.py --disable=imports
+# python_lint:
+#   image: python:3.9.7
+#   stage: lint
+#   script:
+#     - pip install pylint
+#     - cd app/testing/unit_testing/python
+#     - pylint *.py --disable=imports
 
-# Checks the code standard using eslint for React js
-reactjs_lint:
-  image: node:17.0.1
-  stage: lint
-  script:
-    - cd app/
-    - npm install eslint-plugin-react@7.26.1 --save-dev
-    - npx eslint src/**/*.js src/*.js
+# # Checks the code standard using eslint for React js
+# reactjs_lint:
+#   image: node:17.0.1
+#   stage: lint
+#   script:
+#     - cd app/
+#     - npm install eslint-plugin-react@7.26.1 --save-dev
+#     - npx eslint src/**/*.js src/*.js
     
 #deploy back-end to heroku
 deploy:
@@ -33,6 +33,7 @@ deploy:
     - dpl --provider=heroku --app=backend-c4company --api-key=$HEROKU_APP_KEY
   only:
     - development
+    - backend
 
 #deploy to heroku
 deploy:
