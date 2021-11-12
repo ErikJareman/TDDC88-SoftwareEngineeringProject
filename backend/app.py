@@ -34,7 +34,7 @@ def patient_vitals(patient_id):
 @app.route('/patients/<int:patient_id>/vitals/puls')
 def patient_vitals(patient_id):
     df_puls = pd.read_csv("mock_vitals.csv", delimiter=',')
-    puls = df_puls.loc['id', 'Puls']
+    puls = df_puls.loc[df_puls['id'] == patient_id, 'Puls']
     puls_output = get_pulse(puls)
     return jsonify(puls_output.to_dict('records')) 
 
