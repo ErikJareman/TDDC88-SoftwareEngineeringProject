@@ -5,6 +5,7 @@ const { testHomePageBtn } = require('./3_test_patient/2_testBackToHomePageBtn.js
 const { testTabs } = require('./3_test_patient/3_testPatientTabs.js')
 const { testLogin } = require('./2_test_login/1_testLogin.js')
 const { loginIfNeeded } = require('./2_test_login/loginUtilities.js')
+const { testPatientNameAndSSN } = require('./3_test_patient/5_testPatientNameAndSSN.js')
 let driver
 const tabContents = {
   tab1: true,
@@ -16,6 +17,11 @@ const PatientInfoResult = {
   roomOk: true,
   teamOk: true,
   nameOk: true
+}
+
+const patientHeader = {
+  patientName: true,
+  patientSSN: true
 }
 
 describe('Testing pateint page', () => {
@@ -51,5 +57,11 @@ describe('Testing pateint page', () => {
     await driver.get(url + 'home')
     await sleep(500)
     expect(await testTabs(driver)).toMatchObject(tabContents)
+  })
+
+  test('#10 : Check if patient page displays patient name and SSN', async () => {
+    await driver.get(url + 'home')
+    await sleep(500)
+    expect(await testPatientNameAndSSN(driver)).toMatchObject(patientHeader)
   })
 })
