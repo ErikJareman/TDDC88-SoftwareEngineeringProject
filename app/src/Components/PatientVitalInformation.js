@@ -10,10 +10,10 @@ import { Tab } from 'semantic-ui-react'
 import PatientInUt from '../Components/PatientInUt'
 import PatientVitalValues from '../Components/PatientVitalValues'
 
-function PatientVitalEvents (props) {
+function PatientVitalEvents (patient) {
   const panes = [
     {
-      menuItem: { icon: 'user md icon' }, render: () => <Tab.Pane><PatientVitalValues/></Tab.Pane>
+      menuItem: { icon: 'user md icon' }, render: () => <Tab.Pane><PatientVitalValues patient={patient}/></Tab.Pane>
     },
     {
       menuItem: { icon: 'heartbeat icon' }, render: () => <Tab.Pane> </Tab.Pane>
@@ -22,7 +22,7 @@ function PatientVitalEvents (props) {
       menuItem: { icon: 'pills icon' }, render: () => <Tab.Pane> </Tab.Pane>
     },
     {
-      menuItem: { icon: 'exchange alternate icon' }, render: () => <Tab.Pane><PatientInUt/></Tab.Pane>
+      menuItem: { icon: 'exchange alternate icon' }, render: () => <Tab.Pane><PatientInUt patient={patient.patient} /></Tab.Pane>
     },
     {
       menuItem: { icon: 'users icon' }, render: () => <Tab.Pane> </Tab.Pane>

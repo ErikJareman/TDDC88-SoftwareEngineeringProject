@@ -31,18 +31,21 @@ export default function PatientInUt (patient) {
       {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
       <li>
       <table>
-      <h3 className='inUtTextBox'>{patient.name}</h3>
+      <h3 className='inUtTextBox'> Typ</h3>
       <h3 className ='inUtTextBox'>Storlek</h3>
       <h3 className='inUtTextBox'>Lokalisation</h3>
       <h3 className='inUtTextBox'>Tid</h3>
       </table>
       </li>
-      {intravenousInjection.map((patient) => {
+      {intravenousInjection.map((injection) => {
         return (
-          <li key={patient.id} >
+          <li key={injection.id}>
             <table>
               {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-              <h3 className='inUtTextBox'>{patient.name}</h3>
+              <h3 className='inUtTextBox'>{injection.type}</h3>
+              <h3 className='inUtTextBox'>{injection.size}</h3>
+              <h3 className='inUtTextBox'>{injection.locatization}</h3>
+              <h3 className='inUtTextBox'>{injection.time}</h3>
             </table>
           </li>
         )
