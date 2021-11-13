@@ -47,7 +47,7 @@ install_chrome:
     - dpkg -i google-chrome*.deb 
     - rm google-chrome*.deb
     - whereis google-chrome
-    - google-chrome --no-sandbox
+    #- google-chrome --no-sandbox
 
 testing:
   image: node:17.0.1
