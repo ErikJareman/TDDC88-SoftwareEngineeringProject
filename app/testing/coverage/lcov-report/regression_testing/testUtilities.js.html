@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">22.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/77</span>
+                <span class='fraction'>18/80</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.64% </span>
+                <span class="strong">29.41% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/17</span>
+                <span class='fraction'>5/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.06% </span>
+                <span class="strong">23.68% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/73</span>
+                <span class='fraction'>18/76</span>
             </div>
         
             
@@ -223,7 +223,12 @@
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
 <a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,25 +236,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -345,10 +355,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -389,25 +399,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Builder, By, until } = require('selenium-webdriver')
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Builder, By, until, Capabilities } = require('selenium-webdriver')
 const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 &nbsp;
 /** Sets up and returns driver */
 async function buildDriver (url) {
-  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver.exe')
+  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver')
   let driver
-&nbsp;
+  capabilities = Capabilities.chrome()
+  options = {
+    'args': ['--no-sandbox', '--disable-dev-shm-usage']
+  }
+  capabilities.set('chromeOptions', options)
   try {
     driver = await new Builder()
+      .withCapabilities(capabilities)
       .forBrowser('chrome')
       .setChromeService(serviceBuilder)
       .setChromeOptions(new Options().setAcceptInsecureCerts(true))
       .build()
-<span class="cstat-no" title="statement not covered" >    await driver.get(url)</span>
-<span class="cstat-no" title="statement not covered" >    return driver</span>
+    await driver.get(url)
+    return driver
   } catch (err) {
-    throw Error('Could not build webdriver. Check PATH. ' + err)
+<span class="cstat-no" title="statement not covered" >    throw Error('Could not build webdriver. Check PATH. ' + err)</span>
   }
 };
 &nbsp;
@@ -510,11 +525,11 @@ async function <span class="fstat-no" title="function not covered" >getElementTe
 <span class="cstat-no" title="statement not covered" >  return elementText</span>
 }
 &nbsp;
-async function <span class="fstat-no" title="function not covered" >getElementText </span>(element) {
-  const elementText = <span class="cstat-no" title="statement not covered" >await element.getText().then(<span class="fstat-no" title="function not covered" >(v</span>al) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    return val</span>
+async function getElementText (element) {
+  const elementText = await element.getText().then((val) =&gt; {
+    return val
   })
-<span class="cstat-no" title="statement not covered" >  return elementText</span>
+  return elementText
 };
 &nbsp;
 /** Returns the first part of an elements text-value split by separator */
@@ -562,7 +577,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Nov 13 2021 15:56:37 GMT+0100 (Central European Standard Time)
+                at Sat Nov 13 2021 16:52:05 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

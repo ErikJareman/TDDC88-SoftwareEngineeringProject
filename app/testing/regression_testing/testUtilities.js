@@ -10,7 +10,7 @@ async function buildDriver (url) {
   options = {
     'args': ['--no-sandbox', '--disable-dev-shm-usage']
   }
-  capabilities.setChromeOptions(options)
+  capabilities.set('chromeOptions', options)
   try {
     driver = await new Builder()
       .withCapabilities(capabilities)
