@@ -4,7 +4,7 @@ const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 
 /** Sets up and returns driver */
 async function buildDriver (url) {
-  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver')
+  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver.exe')
   let driver
 
   try {

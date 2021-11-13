@@ -47,6 +47,8 @@ install_chrome:
     - dpkg -i google-chrome*.deb 
     - rm google-chrome*.deb
     - whereis google-chrome
+    - apt-get install -y nodejs
+    - npm install -g npm
     #- google-chrome --no-sandbox
   artifacts:
     paths:
