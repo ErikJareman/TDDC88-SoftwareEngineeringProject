@@ -36,7 +36,7 @@ deploy:
   only:
     - development
 
-install_chrome:
+.install_chrome:
   image: ubuntu:18.04
   stage: test
   script:
@@ -55,10 +55,12 @@ install_chrome:
 testing:
   image: node:17.0.1
   stage: test
-  needs: ["install_chrome"]
+#  needs: ["install_chrome"]
+  services:
+    - selenium/standalone-chrome
   script:
     - whereis google-chrome
-    - google-chrome --no-sandbox
+#    - google-chrome --no-sandbox
     - cd app/
     - ls
     - cd testing/
