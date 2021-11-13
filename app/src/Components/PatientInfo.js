@@ -26,7 +26,7 @@ export default function PatientInfo (patient) {
   }, [])
 
   useEffect(() => {
-    axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.patient.id + '/vitals/puls')
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.patient.id + '/vitals/pulse')
       .then(res => {
         setPulse(res.data)
       })

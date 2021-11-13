@@ -31,13 +31,13 @@ def patient_vitals(patient_id):
     vitals = df_vitals[df_vitals["id"] == patient_id]
     return jsonify(vitals.to_dict('records')) 
 
-""" @app.route('/patients/<int:patient_id>/vitals/pulse')
+@app.route('/patients/<int:patient_id>/vitals/pulse')
 def puls(patient_id):
     df_puls = pd.read_csv("mock_vitals.csv", delimiter=',')
-    puls = df_puls.query(patient_id == df_puls["id"] & 'Puls' == df_puls["type"])
-    puls_output = get_pulse(puls)
-    print(puls_output)
-    return jsonify(puls_output.to_dict('records'))  """
+    puls_table = df_puls.loc[(df_puls["id"]==patient_id) & (df_puls["type"]=='Puls'), ["value"]]
+    puls = float(puls_table.at[puls_table.index.values[0], "value"])
+    puls_output = get_pulse(puls)[0]
+    return jsonify(puls_output) 
 
 
 """ @app.route('/patients/<int:patient_id>/injections')
