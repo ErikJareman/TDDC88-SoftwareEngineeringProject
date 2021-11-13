@@ -6,21 +6,15 @@ const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 async function buildDriver (url) {
   const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver')
   let driver
-  capabilities = Capabilities.chrome()
-  options = {
-    'args': [
-      '--no-sandbox',
-      '--disable-dev-shm-usage',
-      '--headless'
-    ]
-  }
-  capabilities.set('chromeOptions', options)
+  opt = new Option()
+  opt.addArguments('--no-sandbox')
+  opt.addArguments('--disable-dev-shm-usage')
+  opt.addArguments('--headless')
   try {
     driver = await new Builder()
-      .withCapabilities(capabilities)
       .forBrowser('chrome')
       .setChromeService(serviceBuilder)
-      .setChromeOptions(new Options().setAcceptInsecureCerts(true))
+      .setChromeOptions(opt)
       .build()
     await driver.get(url)
     return driver
