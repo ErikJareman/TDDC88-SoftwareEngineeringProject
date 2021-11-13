@@ -4,26 +4,24 @@ stages:
   - test
 
 # Checks the code standard using pylint
-# TODO: update path to real python code when we start using python
-# python_lint:
-#  image: python:3.9.7
-#  stage: lint
-#  script:
-#    - pip install pylint
-#    - cd app/testing/unit_testing/python
-#    - pylint *.py --disable=imports
+python_lint:
+  image: python:3.9.7
+  stage: lint
+  script:
+    - pip install pylint
+    - cd backend
+    - pylint *.py --disable=imports
 
 # Checks the code standard using eslint for React js
-#reactjs_lint:
-#  image: node:17.0.1
-#  stage: lint
-#  script:
-#    - cd app/
-#    - npm install eslint-plugin-react@7.26.1 --save-dev
-#    - npx eslint src/**/*.js src/*.js
+reactjs_lint:
+  image: node:17.0.1
+  stage: lint
+  script:
+    - cd app/
+    - npm install eslint-plugin-react@7.26.1 --save-dev
+    - npx eslint src/**/*.js src/*.js
     
-
-#deploy to heroku
+# Deploy to heroku
 deploy:
   image: ruby:3.0.2
   stage: deploy
@@ -36,7 +34,8 @@ deploy:
   only:
     - development
 
-install_chrome:
+# Web testing with Selenium with Chrome
+web_testing:
   image: ubuntu:18.04
   stage: test
   script:
@@ -55,5 +54,4 @@ install_chrome:
     - chmod +x chromedriver
     - cd ../..
     - npm install
-    - whereis google-chrome
     - npm test
