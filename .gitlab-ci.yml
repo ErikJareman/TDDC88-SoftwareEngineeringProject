@@ -50,7 +50,7 @@ install_chrome:
     #- google-chrome --no-sandbox
   artifacts:
     paths:
-      - usr/bin/google-chrome
+      - /usr/bin/google-chrome
 
 testing:
   image: node:17.0.1
