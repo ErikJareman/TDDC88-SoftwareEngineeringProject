@@ -21,7 +21,7 @@ def get_pulse(mean,num = 1):
 """[returns some number of body_temp values based on some mean. capped at 40.5.]
 """
 def get_body_temp(mean,num = 1):
-    deviations = np.random.lognormal(0,np.sqrt(2),size=num)
+    deviations = np.random.lognormal(0,0.2,size=num)
     return [min(40.5, val) for val in [sum(x) for x in zip([mean]*num, list(deviations))]]
 
 
@@ -29,8 +29,8 @@ def get_body_temp(mean,num = 1):
 """
 def get_blood_pressure(means,num = 1): ## 120/80
     mean1, mean2 = means
-    tops = [mean1 + d for d in np.linspace(mean1-15,mean1+15,8)]
-    bots = [mean2 + d for d in np.linspace(mean2-10,mean2+10,8)]
+    tops = [mean1 + d for d in np.linspace(mean1-25,mean1+15,8)]
+    bots = [mean2 + d for d in np.linspace(mean2-30,mean2+10,8)]
     
     return [(np.random.choice(tops) , np.random.choice(bots)) for _ in range(num)]
 
@@ -52,3 +52,4 @@ if __name__ == '__main__':
     print(get_body_temp(37,N_VALS), "\n")
     print(get_blood_pressure((90,80),N_VALS), "\n")
     print(get_breathing_frequency(12,N_VALS), "\n")
+   

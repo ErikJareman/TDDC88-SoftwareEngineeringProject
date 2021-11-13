@@ -45,6 +45,7 @@ def make_data(NUM_PATIENTS = 100):
     df_vitals = pd.DataFrame(columns = ["id", "time", "type", "value"])
     df_injections = pd.DataFrame(columns = ["id", "timein", "timeout", "type", "value", "localization", "procedure"])
     df_events = pd.DataFrame(columns = ["id", "time", "category", "type"])
+    df_ums = pd.DataFrame(columns= ["id", "sensLevel", "medCondition", "careDeviation", "infection", "noStructureInfo"])
 
     fake = Faker()
     df_patients["id"] = [i for i in range(NUM_PATIENTS)]
@@ -68,7 +69,7 @@ def make_data(NUM_PATIENTS = 100):
     
     """
     
-    blood_pressures = [(90,60),(100, 75), (84,62), (78,59)]
+    blood_pressures = [(90,60),(95, 75), (84,62), (78,59)]
     vitals_counter = 0
     for id in df_patients.id:
         now = datetime.datetime.now().time
@@ -83,7 +84,7 @@ def make_data(NUM_PATIENTS = 100):
         df_vitals.loc[vitals_counter,:] = [id, now(), "Blodtryck", (blood_pressures[np.random.randint(0,len(blood_pressures))] )]
         vitals_counter +=1
         
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Andingsfrekvens", 19*np.random.normal(1,.3)]
+        df_vitals.loc[vitals_counter,:] = [id, now(), "Andningsfrekvens", 19*np.random.normal(1,.3)]
         vitals_counter +=1
 
 
@@ -91,8 +92,8 @@ def make_data(NUM_PATIENTS = 100):
         
     ]
     """
-    INJECTION_TYPES = ["Morfin", "Koksalt", "Näringsvätska" ]
-    INJECTION_LOCALIZATION = ["Höger arm", "Vänster Arm"]    
+    INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska" ]
+    INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]    
     injection_counter = 0
     for id in df_patients.id:
         if np.random.uniform(0,1) < .4: #this changes number of patients with infarter
@@ -108,7 +109,7 @@ def make_data(NUM_PATIENTS = 100):
         ]
     """
     EVENT_CATEGORIES = ["Gubbe", "Doktor", "Pippett", "Ambulans", "Hus"]
-    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Områdnad", "Dosering "]
+    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omradnad", "Dosering "]
     event_counter = 0
     for id in df_patients.id:
         entry_time, exit_time = random_times(2,8*60)
@@ -117,8 +118,19 @@ def make_data(NUM_PATIENTS = 100):
         for _ in range(int(random.randint(2,10))): #number of events per patient
             df_events.loc[event_counter,:] = [id, random_times(1)[0], random.choice(EVENT_CATEGORIES),random.choice(EVENT_TYPES) ]
             event_counter +=1
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Lämnar"]
+        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Lamnar"]
         event_counter +=1
+
+    """  Generates values for the patients UMS """
+    ums_counter = 0
+    for id in df_patients.id:
+        sensLevel = random.randint(0,3)
+        medCondition = random.choice([True, False])
+        careDeviation = random.choice([True, False])
+        infection = random.choice([True, False])
+        noStructureInfo = random.choice([True, False])
+        df_ums.loc[ums_counter,:] = [id, sensLevel, medCondition, careDeviation, infection, noStructureInfo]
+        ums_counter +=1
 
     
     # print(df_patients.head(), "\n")
@@ -139,6 +151,11 @@ def make_data(NUM_PATIENTS = 100):
         
     with open("mock_injections.csv", "w+") as f:
         df_injections.to_csv(f, index=False)
+
+    with open("mock_ums.csv", "w+") as f:
+        df_ums.to_csv(f, index=False)
+
+    
     
     
     

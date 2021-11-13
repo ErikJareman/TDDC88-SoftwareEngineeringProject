@@ -16,7 +16,6 @@ import axios from 'axios'
 
 export default function PatientInfo (patient) {
   const [vitals, setVitals] = useState([])
-  const [pulse, setPulse] = useState()
 
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.patient.id + '/vitals')
@@ -24,13 +23,6 @@ export default function PatientInfo (patient) {
         setVitals(res.data)
       })
   }, [])
-
-  useEffect(() => {
-    axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.patient.id + '/vitals/pulse')
-      .then(res => {
-        setPulse(res.data)
-      })
-  })
 
   return (
     <div className='PatientInfo-div'>
@@ -40,7 +32,6 @@ export default function PatientInfo (patient) {
       <h5><Icon name='ambulance' /> Ambulans </h5>
       {console.log(patient.patient.id)}
       {console.log(vitals)}
-      {console.log(pulse)}
       <TeamView />
       <RoomView />
       <ReasonForVisit />
