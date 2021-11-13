@@ -52,7 +52,14 @@ testing:
   stage: test
   needs: ["install_chrome"]
   script:
-    - cd app/testing/regression_testing/drivers
+    - cd app/
+    - ls
+    - cd testing/
+    - ls
+    - cd regression_testing/
+    - ls 
+    - cd drivers
+    - ls
     - chmod +x chromedriver
     - cd ../..
     - npm install
