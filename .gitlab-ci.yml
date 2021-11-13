@@ -47,14 +47,15 @@ install_chrome:
     - dpkg -i google-chrome*.deb 
     - rm google-chrome*.deb
     - whereis google-chrome
-    - google-chrome
+    - usr/bin/google-chrome
 
 testing:
   image: node:17.0.1
   stage: test
   needs: ["install_chrome"]
   script:
-    - google-chrome
+    - whereis google-chrome
+    - usr/bin/google-chrome
     - cd app/
     - ls
     - cd testing/
