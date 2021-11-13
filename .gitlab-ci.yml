@@ -48,6 +48,9 @@ deploy:
     - rm google-chrome*.deb
     - whereis google-chrome
     #- google-chrome --no-sandbox
+  artifacts:
+    paths:
+      - usr/bin/google-chrome
 
 testing:
   extends: .install_chrome
