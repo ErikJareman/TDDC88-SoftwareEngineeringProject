@@ -50,7 +50,7 @@ install_chrome:
     - apt-get install -y curl
     - curl -sL https://deb.nodesource.com/setup_14.x | bash -
     - cat /etc/apt/sources.list.d/nodesource.list
-    - apt-get install -y nodejs npm
+    - apt-get install -y nodejs
     - cd app/testing/regression_testing/drivers
     - chmod +x chromedriver
     - cd ../..
