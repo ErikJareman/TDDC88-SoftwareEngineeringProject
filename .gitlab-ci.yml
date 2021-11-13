@@ -55,4 +55,5 @@ install_chrome:
     - chmod +x chromedriver
     - cd ../..
     - npm install
+    - whereis google-chrome
     - npm test
