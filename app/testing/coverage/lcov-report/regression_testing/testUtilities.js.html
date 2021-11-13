@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.82% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/78</span>
+                <span class='fraction'>11/77</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.88% </span>
+                <span class="strong">17.64% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/17</span>
+                <span class='fraction'>3/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">13.51% </span>
+                <span class="strong">15.06% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/74</span>
+                <span class='fraction'>11/73</span>
             </div>
         
             
@@ -223,35 +223,33 @@
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
 <a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L167'></a><a href='#L167'>167</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -379,7 +377,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -391,8 +389,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">require('dotenv').config()
-const { Builder, By, until } = require('selenium-webdriver')
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Builder, By, until } = require('selenium-webdriver')
 const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 &nbsp;
@@ -407,18 +404,18 @@ async function buildDriver (url) {
       .setChromeService(serviceBuilder)
       .setChromeOptions(new Options().setAcceptInsecureCerts(true))
       .build()
-    await driver.get(url)
-    return driver
+<span class="cstat-no" title="statement not covered" >    await driver.get(url)</span>
+<span class="cstat-no" title="statement not covered" >    return driver</span>
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    throw Error('Could not build webdriver. Check PATH. ' + err)</span>
+    throw Error('Could not build webdriver. Check PATH. ' + err)
   }
 };
 &nbsp;
 /** Puases test for ms milliseconds */
-function <span class="fstat-no" title="function not covered" >sleep </span>(ms) {
-<span class="cstat-no" title="statement not covered" >  ms *= waitFactor</span>
-<span class="cstat-no" title="statement not covered" >  return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setTimeout(resolve, ms)</span>
+function sleep (ms) {
+  ms *= waitFactor
+  return new Promise((resolve) =&gt; {
+    setTimeout(resolve, ms)
   })
 };
 &nbsp;
@@ -556,7 +553,7 @@ module.exports = {
   getRandomString,
   findElementInList,
   getElementListXpath,
-  getElementTextCss,
+  getElementTextCss
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -565,7 +562,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Nov 01 2021 13:33:50 GMT+0100 (centraleuropeisk normaltid)
+                at Sat Nov 13 2021 14:34:07 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
