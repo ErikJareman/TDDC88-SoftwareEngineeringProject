@@ -10,6 +10,7 @@ async function buildDriver (url) {
   opt.addArguments('--no-sandbox')
   opt.addArguments('--disable-dev-shm-usage')
   opt.addArguments('--headless')
+  opt.addArguments('--start-maximized')
   try {
     driver = await new Builder()
       .forBrowser('chrome')
