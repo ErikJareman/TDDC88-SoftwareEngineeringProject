@@ -8,7 +8,11 @@ async function buildDriver (url) {
   let driver
   capabilities = Capabilities.chrome()
   options = {
-    'args': ['--no-sandbox', '--disable-dev-shm-usage']
+    'args': [
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--headless'
+    ]
   }
   capabilities.set('chromeOptions', options)
   try {
