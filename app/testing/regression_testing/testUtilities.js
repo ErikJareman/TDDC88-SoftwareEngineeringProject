@@ -1,4 +1,4 @@
-const { Builder, By, until } = require('selenium-webdriver')
+const { Builder, By, until, Capabilities } = require('selenium-webdriver')
 const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 
@@ -6,9 +6,14 @@ const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 async function buildDriver (url) {
   const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver')
   let driver
-
+  capabilities = Capabilities.chrome()
+  options = {
+    'args': ['--no-sandbox', '--disable-dev-shm-usage']
+  }
+  capabilities.setChromeOptions(options)
   try {
     driver = await new Builder()
+      .withCapabilities(capabilities)
       .forBrowser('chrome')
       .setChromeService(serviceBuilder)
       .setChromeOptions(new Options().setAcceptInsecureCerts(true))
