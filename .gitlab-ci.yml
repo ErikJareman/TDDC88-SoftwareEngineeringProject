@@ -48,11 +48,11 @@ install_chrome:
     - rm google-chrome*.deb
     - whereis google-chrome
     - apt-get install -y nodejs npm
-    - npm install -g npm
-    #- google-chrome --no-sandbox
-  artifacts:
-    paths:
-      - /usr/bin/google-chrome
+    - cd app/testing/regression_testing/drivers
+    - chmod +x chromedriver
+    - cd ../..
+    - npm install
+    - npm test
 
 testing:
   image: node:17.0.1
