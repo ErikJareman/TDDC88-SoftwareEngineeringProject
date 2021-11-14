@@ -11,7 +11,7 @@ import './PatientVitalValues.css'
  */
 function generateSegement (vitals) {
   return (
-  <Segment size='mini'>
+  <Segment onClick={() => handleClick(vitals.type)} size='mini'>
     <Grid columns={3}>
       <Grid.Row verticalAlign='middle'>
         <Grid.Column>
@@ -35,11 +35,16 @@ function generateSegement (vitals) {
   </Segment>
   )
 }
+// TypeVitalHistory
+function handleClick (type) {
+  this.setState({ TypeVitalHistory: type })
+}
+
 /**
  * Should call backend to get patient information. Currently returns static example information.
  */
 function getVitals (patientID) {
-  // this should be ajax call to backend in future
+  // this should be axios call to backend in future
   const vitals = [
     {
       type: 'PULS',
