@@ -24,17 +24,41 @@ div#headersubArea1 {
     display: flex;
 }
 
-#timer1 {
-    width: 59px;
-    height: 18px;
-    background-color: rgba(255, 0, 0, 0.8);
-    /*box-sizing: border-box;*/
+.longEntity {
+    width: 22.08%;
+    height: fit-content;
     font-family: "Arial Normal", "Arial", sans-serif;
     font-weight: 700;
     color: #333333;
     line-height: normal;
     font-size: 10pt;
-    margin: 0 auto;
-    padding-top: 5pt;
-    padding-bottom: 5pt;
-  }
+    margin: auto;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+    padding-left: 2%;
+    text-align: left;
+}
+.mediumEntity {
+    width: 11.04%;
+    height: fit-content;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: #333333;
+    line-height: normal;
+    font-size: 10pt;
+    margin: auto;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}
+.shortEntity {
+    width: 7.36%;
+    height: fit-content;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: #333333;
+    line-height: normal;
+    font-size: 10pt;
+    margin: auto;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}

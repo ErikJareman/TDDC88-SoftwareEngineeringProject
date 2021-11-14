@@ -49,13 +49,11 @@ export default function PatientNavList () {
       {patients.map((patient) => {
         return (
           <li key={patient.id}>
-            <Link
-              to={{
+            <div id="linkList">
+              <Link to={{
                 pathname: `/patient/${patient.id}`,
                 state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
-              }}
-            >
-              <table>
+              }}>
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
                 <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                 <h3 className='long'>{patient.reason}</h3>
@@ -63,8 +61,8 @@ export default function PatientNavList () {
                 <h3 className='long'>{patient.SSN}</h3>
                 <h3 className='short'>{patient.arrival}</h3>
                 <h3 className='short'>{patient.room}</h3>
-              </table>
-            </Link>
+              </Link>
+            </div>
             <a className='nav-link' href='/home' id='profilePicture'>
               {
                 localStorage.getItem('patient' + patient.id) === true
