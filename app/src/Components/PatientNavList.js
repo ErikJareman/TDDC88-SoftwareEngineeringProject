@@ -5,11 +5,11 @@
  */
 import './PatientNavList.css'
 import { Link } from 'react-router-dom'
-import trends from '../assets/trends.png'
 import TriageTimeLeft from './TriageTimeLeft'
-import notificationBell from '../assets/notificationBell.png'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import checkbox from '../assets/checkbox.png'
+import checkboxselected from '../assets/checkboxselected.png'
 
 /**
  * The function PatientNavList renders the list of patients, currently
@@ -35,37 +35,40 @@ export default function PatientNavList () {
       })
   }, [])
 
+  const handleChange = (id) => {
+    console.log('HEJSAN')
+    if (localStorage.getItem('patient' + id)) {
+      localStorage.setItem('patient' + id, false)
+    } else {
+      localStorage.setItem('patient' + id, true)
+    }
+  }
+
   return (
     <ul>
       {patients.map((patient) => {
         return (
           <li key={patient.id}>
-            <Link
-              to={{
+            <div id="linkList">
+              <Link to={{
                 pathname: `/patient/${patient.id}`,
                 state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
-              }}
-            >
-              <table>
+              }}>
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
                 <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
-                <h3>{patient.arrival}</h3>
-                <h3 className='long'>{patient.name}</h3>
-                <h3 className='long'>{patient.id}</h3>
                 <h3 className='long'>{patient.reason}</h3>
-                <h3>{patient.team}</h3>
-                <h3>{patient.room}</h3>
-              </table>
-            </Link>
-            <a className='nav-link' href='/' id='profilePicture'>
-              <img src={trends} className='trends' alt='Not found' />
-            </a>
-            <a className='nav-link' href='/' id='profilePicture'>
-              <img
-                src={notificationBell}
-                className='notificationBell'
-                alt='Not found'
-              />
+                <h3 className='long'>{patient.name}</h3>
+                <h3 className='long'>{patient.SSN}</h3>
+                <h3 className='short'>{patient.arrival}</h3>
+                <h3 className='short'>{patient.room}</h3>
+              </Link>
+            </div>
+            <a className='nav-link' href='/home' id='profilePicture'>
+              {
+                localStorage.getItem('patient' + patient.id) === true
+                  ? <img src={checkboxselected} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
+                  : <img src={checkbox} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
+              }
             </a>
           </li>
         )

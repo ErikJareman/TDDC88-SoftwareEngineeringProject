@@ -9,16 +9,16 @@ import './HeaderPatientList.css'
 
 export default function HeaderPatientList () {
   return (
-    <div id="headersubArea1">
-      <button id="timer1"> Timer</button>
-      <button id="timer1"> ISS</button>
-      <button id="timer1"> Region</button>
-      <button id="timer1"> AIS</button>
-      <button id="timer1"> Namn</button>
-      <button id="timer1"> Personnummer</button>
-      <button id="timer1"> Ankomst</button>
-      <button id="timer1"> Rum</button>
-      <button id="timer1"> Notis</button>
+    <div id="headerContainer">
+      <div id="headersubArea1">
+        <button className="mediumEntity"> Timer</button>
+        <button className="longEntity"> Sökorsak</button>
+        <button className="longEntity"> Namn</button>
+        <button className="longEntity"> Personnummer</button>
+        <button className="shortEntity"> Ankomst</button>
+        <button className="shortEntity"> Rum</button>
+        <button className="shortEntity"> Notis</button>
+      </div>
     </div>
   )
 }
