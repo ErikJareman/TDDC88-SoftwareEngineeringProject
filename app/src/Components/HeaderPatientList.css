@@ -3,23 +3,32 @@
 *
 * Contains all the css applied to the HeaderPatientList.js component.
 *
-* Nikil - DRAFT
+* Nikil, Philip N - DRAFT
 *
 * Documentation not complete.
 */
 
-div#headersubArea1 {
-    background-color: rgb(241, 234, 234);
+div#headerContainer {
+    background-color: white;
     height: 30px;
+    width: 100%;
     display: flex;
-    padding-left: 14pt;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    justify-content: space-evenly;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+div#headersubArea1 {
+    height: 100%;
+    width: 80%;
+    display: flex;
 }
 
 #timer1 {
     width: 59px;
     height: 18px;
-    background-color: rgba(255, 255, 255, 0);
-    box-sizing: border-box;
+    background-color: rgba(255, 0, 0, 0.8);
+    /*box-sizing: border-box;*/
     font-family: "Arial Normal", "Arial", sans-serif;
     font-weight: 700;
     color: #333333;
@@ -27,4 +36,5 @@ div#headersubArea1 {
     font-size: 10pt;
     margin: 0 auto;
     padding-top: 5pt;
+    padding-bottom: 5pt;
   }

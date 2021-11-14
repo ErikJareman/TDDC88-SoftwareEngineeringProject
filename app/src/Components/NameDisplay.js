@@ -23,7 +23,7 @@ const NameDisplay = ({ patient }) => (
         {patient.reasonForVisit}
       </h1>
     </div>
-    <div >
+    <div id="subheaderRight">
       <h1 id="subheaderTextright">
         Team {patient.team}, Rum {patient.room}
       </h1>
