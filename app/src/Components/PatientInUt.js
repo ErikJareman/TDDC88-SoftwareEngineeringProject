@@ -12,13 +12,23 @@ export default function PatientInUt (patient) {
   Dummy data, shall be updated when the back-end is in place
   */
   //  const inUt = []
+  const obj = { localization: 'bar', procedure: 42, timein: 0, timeout: 0, type: 'aa', value: 0 }
+  const myArray = []
+  console.log(obj)
 
   console.log(patient.patient)
   useEffect(() => {
     axios.get('http://localhost:5000/patients/' + patient.patient + '/injections')
       .then(res => {
         const injections = res.data
+        obj.localization = injections
+        console.log('Injections')
         console.log(injections)
+        console.log('obj')
+        console.log(obj)
+        myArray.push(obj)
+        console.log('array')
+        console.log(myArray)
       })
   }, [])
 
