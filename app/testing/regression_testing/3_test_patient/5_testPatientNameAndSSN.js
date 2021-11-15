@@ -8,7 +8,7 @@ async function testPatientNameAndSSN (driver) {
   }
   const textList = []
   const topPatientInfoList = await driver.wait(until.elementsLocated(By.css(
-    'li:nth-child(1) > a:nth-child(1) > table > h3')), 3000)
+    'li:nth-child(1) #linkList > a > h3')), 3000)
   for (let i = 0; i < topPatientInfoList.length; i++) {
     const info = await topPatientInfoList[i].getText().then((val) => {
       return val
