@@ -12,12 +12,14 @@ import { Icon } from 'semantic-ui-react'
 import React from 'react'
 import TeamView from './TeamView'
 import RoomView from './RoomView'
+import TriageTimeLeft from './TriageTimeLeft'
 
-export default function PatientInfo (patient) {
+export default function PatientInfo (props) {
   return (
     <div className='PatientInfo-div'>
       <h1> Patientinfo  </h1>
-      <h5><Icon name='user' />{patient.patient.name}, {patient.patient.SSN}</h5>
+      <h5><Icon name='user' />{props.patient.name}, {props.patient.SSN}</h5>
+      <h5 style={{ backgroundColor: props.triageColor }}><Icon name='clock' /> <TriageTimeLeft key={props.patient.id + '.timeChecked'} triageLevel={props.patient.triageLevel} /></h5>
       <h5><Icon name='address book' /> ISS: </h5>
       <h5><Icon name='ambulance' /> Ambulans </h5>
       <TeamView />
