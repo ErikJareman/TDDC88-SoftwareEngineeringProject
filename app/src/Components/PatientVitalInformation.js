@@ -11,6 +11,8 @@ import PatientInUt from '../Components/PatientInUt'
 import PatientVitalValues from '../Components/PatientVitalValues'
 
 function PatientVitalEvents (patient) {
+  console.log(patient)
+  // console.log(patient.patient.id)
   const panes = [
     {
       menuItem: { icon: 'user md icon' }, render: () => <Tab.Pane><PatientVitalValues patient={patient}/></Tab.Pane>
@@ -22,7 +24,7 @@ function PatientVitalEvents (patient) {
       menuItem: { icon: 'pills icon' }, render: () => <Tab.Pane> </Tab.Pane>
     },
     {
-      menuItem: { icon: 'exchange alternate icon' }, render: () => <Tab.Pane><PatientInUt patient={patient.patient} /></Tab.Pane>
+      menuItem: { icon: 'exchange alternate icon' }, render: () => <Tab.Pane><PatientInUt patient= {patient.patient.id} /></Tab.Pane>
     },
     {
       menuItem: { icon: 'users icon' }, render: () => <Tab.Pane> </Tab.Pane>
