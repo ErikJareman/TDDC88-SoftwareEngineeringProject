@@ -37,7 +37,7 @@ deploy:
 
 # Web testing with Selenium with Chrome
 web_testing:
-  image: ubuntu:18.04
+  image: ubuntu:latest
   stage: test
   script:
     - apt-get update
