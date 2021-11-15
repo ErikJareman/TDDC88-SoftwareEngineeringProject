@@ -4,14 +4,15 @@
  * issue #31
  */
 import React from 'react'
-import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
+import { Grid, Segment, Header, Icon, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
+import './VitalHistory.js'
 /**
  * Function that generates segment for one patient vaital-value.
  */
 function generateSegement (vitals) {
   return (
-  <Segment onClick={() => handleClick(vitals.type)} size='mini'>
+  <Segment size='mini'>
     <Grid columns={3}>
       <Grid.Row verticalAlign='middle'>
         <Grid.Column>
@@ -34,10 +35,6 @@ function generateSegement (vitals) {
     </Grid>
   </Segment>
   )
-}
-// TypeVitalHistory
-function handleClick (type) {
-  this.setState({ TypeVitalHistory: type })
 }
 
 /**
@@ -65,13 +62,58 @@ function getVitals (patientID) {
   return vitals
 }
 
+// FUNCTION COPIED FROM VitalHistory.js
+function GetVitalData (props) {
+  return ([
+    {
+      Value: 85,
+      Time: '12:03'
+    },
+    {
+      Value: 83,
+      Time: '11:52'
+    },
+    {
+      Value: 86,
+      Time: '11:25'
+    },
+    {
+      Value: 84,
+      Time: '11:19'
+    }
+  ]
+  )
+}
+
 /**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
-const SegmentHorizontalSegments = () => (
+const SegmentHorizontalSegments = (props) => (
   <Segment.Group size='mini'>
     {getVitals('__temp__').map(generateSegement)}
+
+{/* TABLE COPIED FROM VitalHistory.js */}
+    <Table stackable>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell textAlign='center'><b>{props.type}</b></Table.HeaderCell>
+                    <Table.HeaderCell ></Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            {GetVitalData(props).map(MakeTableRow)}
+
+        </Table>
   </Segment.Group>
 )
+
+// FUNCTION INSERTED FROM VitalHistory.js
+function MakeTableRow (event) {
+  return (
+        <Table.Row>
+            <Table.Cell textAlign='center'><b>{event.Value}</b></Table.Cell>
+            <Table.Cell textAlign='center'><b>{event.Time}</b></Table.Cell>
+        </Table.Row>
+  )
+}
 
 export default SegmentHorizontalSegments
