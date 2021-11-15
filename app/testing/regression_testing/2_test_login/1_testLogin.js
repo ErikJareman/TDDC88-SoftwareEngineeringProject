@@ -17,14 +17,13 @@ async function testLogin (driver) {
   // Click on 'Logga in'-button
   await driver.wait(until.elementLocated(By.css(
     "button[class='ui button startButton'")), 3000).click()
-
   // Check if login was successful
   try {
     await driver.wait(until.elementsLocated(By.css(
-      'li:nth-child(1) > a:nth-child(1)')), 3000) // Patient list
+      '#linkList > a')), 3000) // Patient list
   } catch (err) {
     if (err.name === 'TimeoutError') {
-      return 'Login was unsuccessful'
+      return 'Login was unsuccessful (did not reach home page view)'
     } else {
       return err
     }

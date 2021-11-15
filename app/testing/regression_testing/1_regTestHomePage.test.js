@@ -24,7 +24,7 @@ describe('Testing home page', () => {
     return await driver.quit()
   })
 
-  test('Test home-page heading', async () => {
+  test('#72 : Test home-page heading', async () => {
     expect(await getHomePageHeading(driver)).toBe('Motala')
   })
 
@@ -35,6 +35,8 @@ describe('Testing home page', () => {
   test('Test patient list length in home view', async () => {
     await driver.get(url + 'home')
     await sleep(500)
-    expect(await getPatientListLength(driver)).toBe(12)
+    const patientCount = await getPatientListLength(driver)
+    const overTen = patientCount > 10
+    expect(overTen).toBe(true)
   })
 })
