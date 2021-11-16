@@ -48,7 +48,6 @@ def patient_vitals(patient_id):
     bp_high = int(bp[1:3])
     bp_low = int(bp[5:7])
     bp_output = get_blood_pressure((bp_high, bp_low))
-    print(str(bp_output[0]))
     vitals.loc[(vitals["id"]==patient_id) & (vitals["type"]=='Blodtryck'), "value"] = str(bp_output[0])
 
 
@@ -75,12 +74,14 @@ def patient_events(patient_id):
     events = df_events[df_events["id"] == patient_id]
     return jsonify(events.to_dict('records'))
 
+
 # Returns all ums variables for a patient
 @app.route('/patients/<int:patient_id>/ums')
 def patient_ums(patient_id):
     df_ums = pd.read_csv("mock_ums.csv", delimiter=',')
     ums = df_ums[df_ums["id"] == patient_id]
     return jsonify(ums.to_dict('records'))
+
 
 # För att endast skicka puls (Inaktiv)
 """ @app.route('/patients/<int:patient_id>/vitals/heartrate')
