@@ -1,150 +1,123 @@
 /**
- * TimelineComponent.js
- *
- * Author: Erik Jareman - DRAFT
- *
- * This component handles the rendering of the timeline
- * It controls the rendering and uses logic from
- * useIconSelector.js, useTemporaryData.js (I think I will separate the code more once
- * more functionality is added, then more files will be added here)
- *
- * Bad documentation, but only a first draft.
+ * NOTE: Behaviour with event times around/close to midnight is a bit buggy.
+ * This is due to the early event representation of time using only 'HH:mm'-format, and no date.
+ * FIX: Replace all 'HH:mm' representations of time with Date objects (new Date()).
  */
-
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
-import { withSize } from 'react-sizeme'
-import './Timeline.css'
-import useTemporaryData from './useTemporaryData'
-import useIconSelector from './useIconSelector'
+import useDatasetStructure from './useDatasetStructure'
+import useChartOptions from './useChartOptions'
+import useTemporaryData from './useTemporaryData.js'
+import { Chart, Scatter } from 'react-chartjs-2'
+import 'chartjs-adapter-date-fns'
+import ChartDataLabels from 'chartjs-plugin-datalabels'
+import zoomPlugin from 'chartjs-plugin-zoom'
 
-function getSpacingPerTimestamp (timestamps) {
-  return 100 / timestamps.length
-}
+Chart.register(zoomPlugin)
+Chart.register(ChartDataLabels)
+let { events } = useTemporaryData() // assumes events array sorted by time
 
-function getEndTime (events) {
-  const lastEventTime = events[events.length - 1].time.split(':')
-  return +lastEventTime[0] + 1
-}
-
-function getTimeStamps (startTime, endTime) {
-  const timestamps = []
-  for (let i = parseInt(startTime); i < (parseInt(endTime) + 1); i++) {
-    timestamps.push(i)
-  }
-  return timestamps
-}
-
-function getTimelineSpacings (spacingPerTimestamp) {
-  const spacings = []
-  for (let i = spacingPerTimestamp; i < 100; i += spacingPerTimestamp) {
-    spacings.push(spacingPerTimestamp)
-  }
-  spacings.unshift(spacingPerTimestamp / 2)
-  return spacings
-}
-
-function getStructuredEventArray (events, timestamps, windowWidth, eventWidth) {
-  function getNumberOfColumns () {
-    let numberOfColumns = 0
-    while ((numberOfColumns + 1) * eventWidth < windowWidth - (windowWidth * 0.05)) { // '- (windowsWidth * 0.05)' to allow for min 2.5% space on each side
-      numberOfColumns += 1
+function reloadOnZoom (context) {
+  const timelineWidthPX = context.chart.width
+  const minTime = context.chart.scales.x.min
+  const maxTime = context.chart.scales.x.max
+  events = updateCoordinateY(events, minTime, maxTime, timelineWidthPX)
+  for (let j = 0; j < context.chart._sortedMetasets.length - 1; j++) {
+    for (let k = 0; k < context.chart._sortedMetasets[j]._dataset.data.length; k++) {
+      const uniqueID = context.chart._sortedMetasets[j]._dataset.data[k].id
+      if (events[uniqueID].index === 5) { // Bad temporary solution. Used to completely hide events that...
+        events[uniqueID].index = 6 // ...do not fit on timeline. Should be replaced with better solution.
+      }
+      context.chart._sortedMetasets[j]._dataset.data[k].y = events[uniqueID].index
     }
-    return numberOfColumns
   }
+  context.chart.update()
+}
 
-  function convertTimeToMinutes (timeString) {
+function updateCoordinateY (events, startTime, endTime, timelineWidthPX) {
+  function convertTimeStringToMinutes (timeString) {
     const timeArray = timeString.split(':')
     return +(timeArray[0] * 60) + +timeArray[1]
   }
+  const eventWidthPX = 40
+  const timelineWidthInMilliseconds = endTime - startTime
+  const eventWidthInMilliseconds = (eventWidthPX / timelineWidthPX) * timelineWidthInMilliseconds
+  const eventWidthInMinutes = eventWidthInMilliseconds / (1000 * 60)
+  const sortByValueY = [[], [], [], [], []]
 
-  const numberOfColumns = getNumberOfColumns()
-  const minutesPerColumn = (timestamps[timestamps.length - 1] - timestamps[0]) * 60 / numberOfColumns
-  const startMinute = timestamps[0] * 60
-  const structuredEventArray = []
-  let timeRef = startMinute
-  let eventIndexRef = 0
-  let currentEventTimeInMinutes = convertTimeToMinutes(events[eventIndexRef].time)
-
-  for (let i = 0; i < numberOfColumns; i++) {
-    structuredEventArray.push([])
-    while (currentEventTimeInMinutes < timeRef + minutesPerColumn && currentEventTimeInMinutes >= timeRef) {
-      structuredEventArray[i].push(events[eventIndexRef])
-      if (eventIndexRef === events.length - 1) { // TODO add better solution later
+  for (let i = 0; i < events.length; i++) {
+    for (let j = 0; j < sortByValueY.length; j++) {
+      if (sortByValueY[j].length === 0) {
+        sortByValueY[j].push(events[i])
+        events[i].index = j + 1
         break
       }
-      eventIndexRef += 1
-      currentEventTimeInMinutes = convertTimeToMinutes(events[eventIndexRef].time)
+      const previousEventTime = convertTimeStringToMinutes(sortByValueY[j][sortByValueY[j].length - 1].time)
+      const currentEventTime = convertTimeStringToMinutes(events[i].time)
+      if (currentEventTime > previousEventTime + eventWidthInMinutes || j === sortByValueY.length - 1) { // if current event fits next to previous event on same y
+        sortByValueY[j].push(events[i])
+        events[i].index = j + 1
+        break
+      }
     }
-    timeRef += minutesPerColumn
   }
-  return structuredEventArray
+  return events
 }
 
-function TimelineComponent ({ size }) {
-  const { events } = useTemporaryData()
-  const { getIcon } = useIconSelector()
-  const startTime = events[0].time
-  const endTime = getEndTime(events)
-  const timestamps = getTimeStamps(startTime, endTime)
-  const spacingPerTimestamp = getSpacingPerTimestamp(timestamps)
-  const maxEventWidth = 40 // the maximum width given to each event-row displayed under the timeline, pixels
-  const structuredEventArray = getStructuredEventArray(events, timestamps, size.width, maxEventWidth)
-  console.log('structuredEventArray: ' + structuredEventArray)
-  return (
-  <div>
-    <h1>
-      Timeline
-    </h1>
+function getDataPoints (data, events) {
+  function createDataPoint (time, index, uniqueID, label) {
+    return { x: new Date('1970-01-01 ' + time), y: index, id: uniqueID, label: label }
+  }
 
-    <Grid className='timeline'>
+  function getTimelineBounds (events, currentTime) {
+    let startTime = events[0].time
+    let endTime = events[events.length - 1].time
+    startTime = (parseInt(startTime) - 1) * 60 * 60 * 1000 - 10 * 60 * 1000
+    endTime = (parseInt(endTime) - 1) * 60 * 60 * 1000 + 10 * 60 * 1000
+    currentTime = currentTime.getTime()
+    if (currentTime < startTime) {
+      startTime = currentTime - 10 * 60 * 1000
+    } else if (currentTime > endTime) {
+      endTime = currentTime + 10 * 60 * 1000
+    }
+    return [startTime, endTime]
+  }
+  const currentTime = new Date()
+  currentTime.setYear(1970)
+  currentTime.setMonth(0)
+  currentTime.setDate(1)
+  const initialTimespan = getTimelineBounds(events, currentTime)
+  const initialWidth = 1000 // TODO get initial width in pixels
+  events = updateCoordinateY(events, initialTimespan[0], initialTimespan[1], initialWidth)
+  for (let i = 0; i < events.length; i++) {
+    for (let j = 0; j < data.datasets.length; j++) {
+      if (events[i].name === data.datasets[j].label) {
+        data.datasets[j].data.push(createDataPoint(events[i].time, events[i].index, i, events[i].name + '\n' + events[i].time))
+        break
+      }
+    }
+  }
+  data.datasets[data.datasets.length - 1].data.push({ x: currentTime, y: 0.25, label: '' })
+  data.datasets[data.datasets.length - 1].data.push({ x: new Date(initialTimespan[0]), y: 1, label: '' })
+  data.datasets[data.datasets.length - 1].data.push({ x: new Date(initialTimespan[1]), y: 1, label: '' })
+  return data
+}
 
-        <Grid.Row className='timestamp-row'>{/* This grid-row displays all timestamps */}
-          {timestamps.map((hour, index) => {
-            return (
-              <Grid.Column key={index} style={{ width: `${spacingPerTimestamp}%` }}>
-                {hour}
-              </Grid.Column>
-            )
-          })}
-        </Grid.Row>
+function getData () {
+  const { datasetStructure } = useDatasetStructure()
+  const dataset = getDataPoints(datasetStructure, events)
+  return dataset
+}
 
-        <Grid.Row className='line-row'>{/* This grid-row displays the actual line of the timeline */}
-          {getTimelineSpacings(spacingPerTimestamp).map((columnWidth, index) => {
-            return (
-              <Grid.Column key={index} className={`${index === 0 ? 'timeline-adjust-left' : 'timeline-adjust-center'}`} style={{ width: `${columnWidth}%` }}/>
-            )
-          })}
-        </Grid.Row>
+function getOptions () {
+  const { options } = useChartOptions(reloadOnZoom)
+  return options
+}
 
-        <Grid.Row className='event-row'>{/* This grid-row displays all events that are in the span of the timeline */}
-        <Grid.Column className='no-padding' style={{ width: `${(size.width - ((structuredEventArray.length) * maxEventWidth)) / 2}px` }}/>
-          {structuredEventArray.map((column, index) => {
-            return (
-              <Grid.Column className='no-padding center-all' key={ index } style={{ width: maxEventWidth }}>
-                {structuredEventArray[index].map((event, innerIndex) => {
-                  return (
-                  <div key={ innerIndex }>
-                    <Grid.Row>
-                      <img className= 'icon-img' src={ getIcon(event.name) } alt='Not Found' />
-                    </Grid.Row>
-                    <Grid.Row className='event-text-adjust'>
-                      {event.name}
-                    </Grid.Row>
-                    <Grid.Row className='event-text-adjust'>
-                      {event.time}
-                    </Grid.Row>
-                  </div>
-                  )
-                })}
-              </Grid.Column>
-            )
-          })}
-        </Grid.Row>
-      </Grid>
+const TimelineComponent = () => (
+  <div style={{ height: '327px' }}> {/* TODO get actual height available */}
+    <h1 style={{ margin: 0 }}>Timeline</h1>
+    <Scatter data={getData()} options={getOptions()} />
   </div>
-  )
-}
+)
 
-export default withSize()(TimelineComponent)
+export default TimelineComponent

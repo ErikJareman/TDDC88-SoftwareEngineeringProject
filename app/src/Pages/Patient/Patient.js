@@ -1,10 +1,11 @@
 import './Patient.css'
 
+import Refresher from '../../Components/Refresher'
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
-import PatientFooter from '../../Components/PatientFooter'
+import PatientVitalValues from '../../Components/PatientVitalValues'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import React from 'react'
@@ -31,7 +32,7 @@ export default function Patient () {
           <Grid.Column style={{ width: '33%' }}>
             <Segment >
 
-              <PatientInfo patient={state.patients} />
+              <PatientInfo patient={state.patients} triageColor={state.triageColor} />
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
@@ -47,17 +48,14 @@ export default function Patient () {
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '33%' }}>
-          </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
             <Segment>
               <PatientInUt />
             </Segment>
           </Grid.Column>
-        </Grid.Row>
-        <Grid.Row stretched style={{ position: 'fixed', bottom: 0, color: 'black' }}>
-          <Grid.Column style={{ width: '100%' }}>
+          <Grid.Column style={{ width: '33%' }}>
             <Segment>
-              <PatientFooter />
+              <PatientVitalValues patient={state.patients} />
+              <Refresher />
             </Segment>
           </Grid.Column>
         </Grid.Row>

@@ -1,5 +1,5 @@
-const { sum, returnObject } = require('./functions.js');
-
+const { sum, returnObject } = require('./functions.js')
+let testObject
 /*
 .toBe
 .toMatch
@@ -9,8 +9,7 @@ const { sum, returnObject } = require('./functions.js');
 .toContain
 **/
 
-describe('Testing functions in sum.js', () => {
-
+describe('Example unit test suite', () => {
   beforeAll(() => {
     testObject = {
       shouldMatch: true,
@@ -25,17 +24,16 @@ describe('Testing functions in sum.js', () => {
   })
 
   test('Test adding 1 + 2, expecting 3', () => {
-    expect(sum(1, 2)).toBe(3);
-  });
+    expect(sum(1, 2)).toBe(3)
+  })
 
-  test("Test sum Error, expecting TypeError", () => {
-    expect(() => sum(1001,2)).toThrow(TypeError);
-    expect(() => sum(1001,2)).toThrow('Invalid input');
-  });
+  test('Test sum Error, expecting TypeError', () => {
+    expect(() => sum(1001, 2)).toThrow(TypeError)
+    expect(() => sum(1001, 2)).toThrow('Invalid input')
+  })
 
   test('Test matching object', () => {
-    let object = returnObject()
+    const object = returnObject()
     expect(object).toMatchObject(testObject)
   })
-  
 })

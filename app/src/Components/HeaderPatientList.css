@@ -1,0 +1,64 @@
+/**
+*
+*
+* Contains all the css applied to the HeaderPatientList.js component.
+*
+* Nikil, Philip N - DRAFT
+*
+* Documentation not complete.
+*/
+
+div#headerContainer {
+    background-color: white;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    justify-content: space-evenly;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+div#headersubArea1 {
+    height: 100%;
+    width: 80%;
+    display: flex;
+}
+
+.longEntity {
+    width: 22.08%;
+    height: fit-content;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: #333333;
+    line-height: normal;
+    font-size: 10pt;
+    margin: auto;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+    padding-left: 2%;
+    text-align: left;
+}
+.mediumEntity {
+    width: 11.04%;
+    height: fit-content;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: #333333;
+    line-height: normal;
+    font-size: 10pt;
+    margin: auto;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}
+.shortEntity {
+    width: 7.36%;
+    height: fit-content;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: #333333;
+    line-height: normal;
+    font-size: 10pt;
+    margin: auto;
+    padding-top: 0.1%;
+    padding-bottom: 0.1%;
+}

@@ -14,15 +14,26 @@ h1#headerText {
     margin-left: 1%;
     color: white;
 }
+
+#linkarea2 {
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
 img {
     margin-bottom: 1%;
     margin-top: 1%;
     margin-left: 1%;
     vertical-align: middle;
 }
+
 div#headerArea {
     background-color: darkblue;
     display: flex;
+    height: fit-content;
 }
 
 #linkarea {
