@@ -1,10 +1,18 @@
-const { Builder, By, until, Capabilities } = require('selenium-webdriver')
+const { Builder, By, until } = require('selenium-webdriver')
 const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 
 /** Sets up and returns driver */
-async function buildDriver (url) {
-  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver_v95')
+async function buildDriver(url) {
+  let serviceBuilder
+  console.log(navigator.appVersion)
+  if (navigator.appVersion.indexOf("Win") != -1) {
+    serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver.exe')
+  } else if (navigator.appVersion.indexOf("Mac") != -1) {
+    serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver_v95')
+  } else if (navigator.appVersion.indexOf("Linux") != -1) {
+    serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver_linux')
+  }
   let driver
   const opt = new Options()
   opt.addArguments('--no-sandbox')
