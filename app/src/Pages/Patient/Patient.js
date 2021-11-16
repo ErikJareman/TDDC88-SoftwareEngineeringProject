@@ -12,7 +12,6 @@ import React from 'react'
 import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
 import EventCard from '../../Components/EventCard'
-import VitalHistory from '../../Components/VitalHistory'
 
 export default function Patient () {
   const { state } = useLocation()
@@ -36,14 +35,9 @@ export default function Patient () {
               <PatientInfo patient={state.patients} triageColor={state.triageColor} />
             </Segment>
           </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
+          <Grid.Column style={{ width: '66%' }}>
             <Segment>
               <TimelineComponent />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <VitalHistory patient={state.patients} type={state.TypeVitalHistory} />
             </Segment>
           </Grid.Column>
 

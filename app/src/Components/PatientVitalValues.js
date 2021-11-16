@@ -7,6 +7,8 @@ import React from 'react'
 import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
+
+let GLOBAL_TYPE = 'PULS'
 /**
  * Function that generates segment for one patient vaital-value.
  */
@@ -39,6 +41,8 @@ function generateSegement (vitals) {
 
 // Does nothing at the moment.
 function handleClick (type) {
+  GLOBAL_TYPE = type
+  alert('klickat' + type)
 }
 
 /**
@@ -67,46 +71,76 @@ function getVitals (patientID) {
 }
 
 // FUNCTION COPIED FROM VitalHistory.js
-function GetVitalData (props) {
-  return ([
-    {
-      Value: 85,
-      Time: '12:03'
-    },
-    {
-      Value: 83,
-      Time: '11:52'
-    },
-    {
-      Value: 86,
-      Time: '11:25'
-    },
-    {
-      Value: 84,
-      Time: '11:19'
-    }
-  ]
-  )
+function GetVitalData (type) {
+  if (type === 'ANDNING') {
+    return ([
+      {
+        Value: 12,
+        Time: '12:03'
+      },
+      {
+        Value: 14,
+        Time: '11:52'
+      },
+      {
+        Value: 13,
+        Time: '11:25'
+      },
+      {
+        Value: 11,
+        Time: '11:19'
+      }
+    ])
+  } else if (type === 'PULS') {
+    return ([
+      {
+        Value: 12,
+        Time: '12:03'
+      },
+      {
+        Value: 14,
+        Time: '11:52'
+      },
+      {
+        Value: 13,
+        Time: '11:25'
+      },
+      {
+        Value: 11,
+        Time: '11:19'
+      }
+    ])
+  } else {
+    return ([])
+  }
 }
 
 /**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
 const SegmentHorizontalSegments = (props) => (
+  <Segment.Group horizontal>
+    <Segment>
   <Segment.Group size='mini'>
     {getVitals('__temp__').map(generateSegement)}
 
 {/* TABLE COPIED FROM VitalHistory.js */}
-    <Table stackable>
+
+  </Segment.Group>
+</Segment>
+
+<Segment>
+<Table stackable>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell textAlign='center'><b>{props.type}</b></Table.HeaderCell>
+                    <Table.HeaderCell textAlign='center'><b>{GLOBAL_TYPE}</b></Table.HeaderCell>
                     <Table.HeaderCell ></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
-            {GetVitalData(props).map(MakeTableRow)}
+            {GetVitalData(GLOBAL_TYPE).map(MakeTableRow)}
 
         </Table>
+</Segment>
   </Segment.Group>
 )
 
