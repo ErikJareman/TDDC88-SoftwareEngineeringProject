@@ -7,6 +7,8 @@ const { testLogin } = require('./2_test_login/1_testLogin.js')
 const { loginIfNeeded } = require('./2_test_login/loginUtilities.js')
 const { testPatientNameAndSSN } = require('./3_test_patient/5_testPatientNameAndSSN.js')
 const { getInOut } = require('./3_test_patient/4_testInputOutput.js')
+const { testPatientTriageIndication } = require('./3_test_patient/6_testPatientTriageIndication.js')
+
 let driver
 const tabContents = {
   tab1: true,
@@ -73,4 +75,11 @@ describe('Testing pateint page', () => {
     const match = inOut.includes('PVK')
     expect(match).toBe(true)
   })
+
+  test('#13: Check if a timer exists on the patient page', async() => {
+    await driver.get(url + 'home')
+    await sleep(500)
+    expect(await testPatientTriageIndication(driver)).toBe(true)
+  })
+
 })
