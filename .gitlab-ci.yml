@@ -39,6 +39,8 @@ deploy:
 web_testing:
   image: ubuntu:latest
   stage: test
+  only:
+    - development
   script:
     - apt-get update
     - apt-get install -y wget
