@@ -42,7 +42,7 @@ function generateSegement (vitals) {
 // Does nothing at the moment.
 function handleClick (type) {
   GLOBAL_TYPE = type
-  alert('klickat' + type)
+  alert('klickat' + GLOBAL_TYPE)
 }
 
 /**
@@ -94,19 +94,19 @@ function GetVitalData (type) {
   } else if (type === 'PULS') {
     return ([
       {
-        Value: 12,
+        Value: 80,
         Time: '12:03'
       },
       {
-        Value: 14,
+        Value: 79,
         Time: '11:52'
       },
       {
-        Value: 13,
+        Value: 65,
         Time: '11:25'
       },
       {
-        Value: 11,
+        Value: 67,
         Time: '11:19'
       }
     ])
