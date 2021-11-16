@@ -4,9 +4,9 @@ const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 
 /** Sets up and returns driver */
 async function buildDriver (url) {
-  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver')
+  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver_v95')
   let driver
-  opt = new Options()
+  const opt = new Options()
   opt.addArguments('--no-sandbox')
   opt.addArguments('--disable-dev-shm-usage')
   opt.addArguments('--headless')

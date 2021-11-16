@@ -52,7 +52,7 @@ web_testing:
     - cat /etc/apt/sources.list.d/nodesource.list
     - apt-get install -y nodejs
     - cd app/testing/regression_testing/drivers
-    - chmod +x chromedriver
+    - chmod +x chromedriver_v95
     - cd ../..
     - npm install
 #    - npm test
