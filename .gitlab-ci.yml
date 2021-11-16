@@ -41,6 +41,7 @@ web_testing:
   stage: test
   only:
     - development
+    - pipeline-fix
   script:
     - apt-get update
     - apt-get install -y wget
