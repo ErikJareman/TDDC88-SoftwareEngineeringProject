@@ -4,7 +4,7 @@
  * issue #31
  */
 import React from 'react'
-import { Grid, Segment, Header, Icon, Table } from 'semantic-ui-react'
+import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 /**
@@ -12,12 +12,12 @@ import './VitalHistory.js'
  */
 function generateSegement (vitals) {
   return (
-  <Segment size='mini'>
-    <Grid columns={3}>
+  <Segment onClick={() => handleClick(vitals.type)} size='mini'>
+    <Grid columns={2}>
       <Grid.Row verticalAlign='middle'>
-        <Grid.Column>
+        {/* <Grid.Column>
           <Icon fitted name='arrow right' size='huge' id="icon"/>
-        </Grid.Column>
+        </Grid.Column> */}
         <Grid.Column textAlign='left'>
           <Header id="typeHeader">
           {vitals.type}
@@ -35,6 +35,10 @@ function generateSegement (vitals) {
     </Grid>
   </Segment>
   )
+}
+
+// Does nothing at the moment.
+function handleClick (type) {
 }
 
 /**
