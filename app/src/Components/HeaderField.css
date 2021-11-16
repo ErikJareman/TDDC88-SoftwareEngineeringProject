@@ -31,7 +31,7 @@ img {
 }
 
 div#headerArea {
-    background-color: darkblue;
+    background-color: #204581;
     display: flex;
     height: fit-content;
 }
