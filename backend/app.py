@@ -50,7 +50,6 @@ def patient_vitals(patient_id):
     bp_output = get_blood_pressure((bp_high, bp_low))
     vitals.loc[(vitals["id"]==patient_id) & (vitals["type"]=='Blodtryck'), "value"] = str(bp_output[0])
 
-
     bFreq_table = vitals.loc[(vitals["id"]==patient_id) & (vitals["type"]=='Andningsfrekvens'), ["value"]]
     bFreq = float(bFreq_table.at[bFreq_table.index.values[0], "value"])
     bFreq_output = get_breathing_frequency(bFreq)[0]

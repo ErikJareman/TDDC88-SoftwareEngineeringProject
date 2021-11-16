@@ -33,14 +33,14 @@ const roleOptions = [
 
 const hospitalOptions = [
   {
-    key: 'Linköping',
+    key: 'Linkoping',
     text: 'Linköping',
-    value: 'Linköping'
+    value: 'Linkoping'
   },
   {
-    key: 'Norrköping',
+    key: 'Norrkoping',
     text: 'Norrköping',
-    value: 'Norrköping'
+    value: 'Norrkoping'
   },
   {
     key: 'Motala',
@@ -58,6 +58,7 @@ const hospitalOptions = [
 export default function StartForm () {
   const [role, setRole] = useState('')
   const [location, setLocation] = useState('')
+  const [locationText, setLocationText] = useState('')
 
   const saveDetails = (event) => {
     if (role === 'Läkare' || role === 'Sjuksköterska' || role === 'Undersköterska') {
@@ -66,10 +67,12 @@ export default function StartForm () {
       localStorage.setItem('localRole', '')
     }
 
-    if (location === 'Linköping' || location === 'Norrköping' || location === 'Motala') {
+    if (location === 'Linkoping' || location === 'Norrkoping' || location === 'Motala') {
       localStorage.setItem('localLocation', location)
+      localStorage.setItem('locationText', locationText)
     } else {
       localStorage.setItem('localLocation', '')
+      localStorage.setItem('locationText', '')
     }
   }
 
@@ -79,6 +82,15 @@ export default function StartForm () {
 
   const handleSelectedLocation = (event, data) => {
     setLocation(data.value)
+    if (data.value === 'Linkoping') {
+      setLocationText('Linköping')
+    } else if (data.value === 'Norrkoping') {
+      setLocationText('Norrköping')
+    } else if (data.value === 'Motala') {
+      setLocationText('Motala')
+    } else {
+      setLocationText('')
+    }
   }
 
   return (
