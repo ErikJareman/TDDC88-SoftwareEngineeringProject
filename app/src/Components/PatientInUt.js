@@ -1,5 +1,5 @@
 import './PatientInUt.css'
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 /**
@@ -12,63 +12,76 @@ export default function PatientInUt (patient) {
   Dummy data, shall be updated when the back-end is in place
   */
   //  const inUt = []
-  const obj = { localization: 'bar', procedure: 42, timein: 0, timeout: 0, type: 'aa', value: 0 }
-  const myArray = []
-  console.log(obj)
+  //  const obj = { localization: 'bar', procedure: 42, timein: 0, timeout: 0, type: 'aa', value: 0 }
+  //  const myArray = []
+  //  var injections = []
+  const [injections, setInjections] = useState([])
 
   console.log(patient.patient)
   useEffect(() => {
     axios.get('http://localhost:5000/patients/' + patient.patient + '/injections')
       .then(res => {
-        const injections = res.data
-        obj.localization = injections
+        const patientInjection = res.data
+        console.log(res.data)
+        //  obj.localization = injections
         console.log('Injections')
-        console.log(injections)
-        console.log('obj')
-        console.log(obj)
-        myArray.push(obj)
+        console.log(patientInjection)
         console.log('array')
-        console.log(myArray)
+        setInjections(patientInjection)
       })
   }, [])
-
-  const intravenousInjection = [
-    {
-      id: '1',
-      type: 'abc',
-      size: 1.3,
-      locatization: 'Vänster/arm',
-      time: '05:34'
-    }, {
-      id: '2',
-      type: 'CKB',
-      size: 2.3,
-      locatization: 'Höger/ben',
-      time: '14:38'
-    }]
   return (
-    <ul className ="injections">
-      {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-      <li>
+    <ul>
+      {/* <li>
       <table>
       <h3 className='inUtTextBox'> Typ</h3>
       <h3 className ='inUtTextBox'>Storlek</h3>
       <h3 className='inUtTextBox'>Lokalisation</h3>
+      <h3 className='inUtTextBox'>Procedure</h3>
       <h3 className='inUtTextBox'>Tid</h3>
       </table>
-      </li>
-      {intravenousInjection.map((injection) => {
+      </li> */}
+      {injections.map((injection) => {
         return (
           <li key={injection.id}>
-            <table>
-              {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-              <h3 className='inUtTextBox'>{injection.type}</h3>
-              <h3 className='inUtTextBox'>{injection.size}</h3>
-              <h3 className='inUtTextBox'>{injection.locatization}</h3>
-              <h3 className='inUtTextBox'>{injection.time}</h3>
-            </table>
+            <div id="linkList">
+                {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
+                <h3 className='inUtTextBox'>{injection.type}</h3>
+                <h3 className='inUtTextBox'>{injection.value}</h3>
+                <h3 className='inUtTextBox'>{injection.localization}</h3>
+                <h3 className='inUtTextBox'>{injection.timein.split('.', 1)}</h3>
+                <h3 className='inUtTextBox'>{injection.procedure}</h3>
+                <h3 className='inUtTextBox'>{injection.timeout.split('.', 1)}</h3>
+            </div>
           </li>
         )
       })}
-    </ul>)
+    </ul>
+  )
+
+  // return (
+  //   <ul className ="injections">
+  //     {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
+  //     <li>
+  //     <table>
+  //     <h3 className='inUtTextBox'> {injections.type}</h3>
+  //     <h3 className ='inUtTextBox'>Storlek</h3>
+  //     <h3 className='inUtTextBox'>Lokalisation</h3>
+  //     <h3 className='inUtTextBox'>Tid</h3>
+  //     </table>
+  //     </li>
+  //     {injections.map((injection) => {
+  //       return (
+  //         <li key={injection.id}>
+  //           <table>
+  //             {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
+  //             <h3 className='inUtTextBox'>{injection.type}</h3>
+  //             <h3 className='inUtTextBox'>{injection.size}</h3>
+  //             <h3 className='inUtTextBox'>{injection.locatization}</h3>
+  //             <h3 className='inUtTextBox'>{injection.time}</h3>
+  //           </table>
+  //         </li>
+  //       )
+  //     })}
+  //   </ul>)
 }
