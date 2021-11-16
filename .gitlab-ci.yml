@@ -14,13 +14,13 @@ stages:
 #    - pylint *.py --disable=imports
 
 # Checks the code standard using eslint for React js
-reactjs_lint:
-  image: node:17.0.1
-  stage: lint
-  script:
-    - cd app/
-    - npm install eslint-plugin-react@7.26.1 --save-dev
-    - npx eslint src/**/*.js src/*.js
+#reactjs_lint:
+#  image: node:17.0.1
+#  stage: lint
+#  script:
+#    - cd app/
+#    - npm install eslint-plugin-react@7.26.1 --save-dev
+#    - npx eslint src/**/*.js src/*.js
     
 # Deploy to heroku
 deploy:
