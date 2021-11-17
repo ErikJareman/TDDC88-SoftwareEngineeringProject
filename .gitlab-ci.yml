@@ -3,15 +3,15 @@ stages:
   - deploy
   - test
 
-# Checks the code standard using pylint
-# TODO: Uncomment section bellow and correct python files so pipeline succedes
-#python_lint:
-#  image: python:3.9.7
-#  stage: lint
-#  script:
-#    - pip install pylint
-#    - cd backend
-#    - pylint *.py --disable=imports
+#Checks the code standard using pylint
+#TODO: update path to real python code when we start using python
+python_lint:
+  image: python:3.9.7
+  stage: lint
+  script:
+    - pip install pylint
+    - cd app/testing/unit_testing/python
+    - pylint *.py --disable=imports
 
 # Checks the code standard using eslint for React js
 reactjs_lint:

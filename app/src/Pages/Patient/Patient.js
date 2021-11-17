@@ -1,15 +1,16 @@
 import './Patient.css'
 
-import Refresher from '../../Components/Refresher'
+//  import Refresher from '../../Components/Refresher'
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
-import PatientVitalValues from '../../Components/PatientVitalValues'
+import PatientVitalInformation from '../../Components/PatientVitalInformation'
+//  import PatientFooter from '../../Components/PatientFooter'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import React from 'react'
-import PatientInUt from '../../Components/PatientInUt'
+//  import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
 import EventCard from '../../Components/EventCard'
 
@@ -47,15 +48,9 @@ export default function Patient () {
               <PatientCurrentEvents cards={cards} patient={state.patients} />
             </Segment>
           </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
+          <Grid.Column style={{ width: '65%' }}>
             <Segment>
-              <PatientInUt />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientVitalValues patient={state.patients} />
-              <Refresher />
+              <PatientVitalInformation patient={state.patients} />
             </Segment>
           </Grid.Column>
         </Grid.Row>
