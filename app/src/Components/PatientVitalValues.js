@@ -3,15 +3,27 @@
  * Isak Berntsson & Linus Bäckbro Kuusisto
  * issue #31
  */
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 
 let GLOBAL_TYPE = 'PULS'
 
+// DO NOT DELETE: WILL BE IMPLEMENTED FURTHER
+// const testConstVal = {
+//   testVal: '',
+
+//   set theVital (newVal) {
+//     this.testVal = newVal
+//   },
+//   get theVital () {
+//     return this.testVal
+//   }
+// }
+
 /**
- * Function that generates segment for one patient vaital-value.
+ * Function that generates segment for one patient vital-value.
  */
 function generateSegement (vitals) {
   return (
@@ -37,11 +49,17 @@ function generateSegement (vitals) {
   )
 }
 
-// Does nothing at the moment.
 function handleClick (type) {
   GLOBAL_TYPE = type
-  // alert('klickat' + GLOBAL_TYPE)
-  window.location.reload()
+  // testConstVal.theVital(type)
+}
+
+/**
+ * Updates state in order to trigger component (VitalValuesComponent below) to reload
+ */
+function reloadComponent () {
+  const [, setValue] = useState(0)
+  return () => setValue(val => val + 1)
 }
 
 /**
@@ -117,14 +135,11 @@ function GetVitalData (type) {
 /**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
-
 export default function VitalValuesComponent () {
-  // alert('klickat' + GLOBAL_TYPE)
-  // window.location.reload()
+  const makeReload = reloadComponent()
 
   return (
-  // const SegmentHorizontalSegments = (props) => (
-  <Segment.Group horizontal>
+  <Segment.Group onClick={makeReload} horizontal>
     <Segment>
   <Segment.Group size='mini'>
     {getVitals('__temp__').map(generateSegement)}
