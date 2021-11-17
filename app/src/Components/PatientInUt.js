@@ -34,8 +34,7 @@ export default function PatientInUt (patient) {
       </table>
       </li> */}
       {injections.map((injection) => {
-        if (injections.length > 0) {
-          return (
+        return (
           <li key={injection.id}>
             <div id="linkList">
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
@@ -47,16 +46,7 @@ export default function PatientInUt (patient) {
                 <h3 className='inUtTextBox'>{injection.timeout.split('.', 1)}</h3>
             </div>
           </li>
-          )
-        } else {
-          return (
-            <li key={injection.id}>
-              <div id="linkList">
-          <h3 className='inUtTextBox'>No data available</h3>
-          </div>
-          </li>
-          )
-        }
+        )
       })}
     </ul>
     )
