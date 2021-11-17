@@ -8,49 +8,43 @@
  */
 
 export default function useTemporaryData () {
-  const timespan =
-    {
-      start: '13:10',
-      end: '19:00'
-    }
-
   const events = [
     {
       name: 'Inlagd',
-      time: '13:00'
+      time: '08:58'
     },
     {
       name: 'Dos',
-      time: '13:28'
-    },
-    {
-      name: 'Vård',
-      time: '15:03'
+      time: '09:13'
     },
     {
       name: 'Skickat',
-      time: '15:07'
-    },
-    {
-      name: 'Svar1',
-      time: '16:33'
-    },
-    {
-      name: 'Dos',
-      time: '16:34'
+      time: '09:14'
     },
     {
       name: 'Vård',
-      time: '16:35'
+      time: '10:00'
+    },
+    {
+      name: 'Svar1',
+      time: '10:09'
+    },
+    {
+      name: 'Dos',
+      time: '10:18'
+    },
+    {
+      name: 'Vård',
+      time: '10:19'
     },
     {
       name: 'Svar2',
-      time: '16:50'
+      time: '10:52'
     },
     {
       name: 'Hem',
-      time: '18:00'
+      time: '11:00'
     }
   ]
-  return { timespan, events }
+  return { events }
 }

@@ -6,10 +6,10 @@ const { url } = require('../testConfig.js')
  * user to the home page */
 async function testHomePageBtn (driver) {
   await driver.wait(until.elementLocated(By.css(
-    'li:nth-child(1) > a:nth-child(1)')), 3000).click()
+    'li:nth-child(1)')), 3000).click()
   await sleep(500)
   await driver.wait(until.elementLocated(By.css(
-    '.patient-nav-bar > a > button')), 3000).click()
+    "a[id='linkarea2']")), 3000).click()
   await sleep(500)
   const curUrl = await driver.getCurrentUrl()
   if (curUrl === url + 'home') {

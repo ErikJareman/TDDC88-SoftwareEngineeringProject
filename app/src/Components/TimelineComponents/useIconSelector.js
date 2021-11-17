@@ -18,27 +18,36 @@ import {
 } from '../../assets/timelineIcons/index'
 
 const useIconSelector = () => {
-  const getIcon = (eventName) => {
+  const getImg = (eventName) => {
+    const img = new Image()
     switch (eventName) {
       case 'Inlagd':
-        return InlagdIcon
+        img.src = InlagdIcon
+        return img
       case 'Dos':
-        return DosIcon
+        img.src = DosIcon
+        return img
       case 'Hem':
-        return HemIcon
+        img.src = HemIcon
+        return img
       case 'Vård':
-        return VardIcon
+        img.src = VardIcon
+        return img
       case 'Skickat':
-        return SkickatIcon
+        img.src = SkickatIcon
+        return img
       case 'Svar1':
-        return Svar1Icon
+        img.src = Svar1Icon
+        return img
       case 'Svar2':
-        return Svar2Icon
+        img.src = Svar2Icon
+        return img
       default:
-        return NotFoundImage
+        img.src = NotFoundImage
+        return img
     }
   }
-  return { getIcon }
+  return { getImg }
 }
 
 export default useIconSelector

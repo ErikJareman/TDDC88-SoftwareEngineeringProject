@@ -55,7 +55,7 @@ def make_data(NUM_PATIENTS = 100):
     df_patients["name"] = [fake.name() for _ in range(NUM_PATIENTS)]
     df_patients["location"] = [random.choice(LOCATIONS) for _ in range(NUM_PATIENTS)]
     df_patients["SSN"] = [generate_SSN() for _ in range(NUM_PATIENTS)]
-    df_patients["team"] = [random.choice(list("ABC")) for _ in range(NUM_PATIENTS)]
+    df_patients["team"] = [random.choice(list("123")) for _ in range(NUM_PATIENTS)]
     df_patients["room"] = [random.randint(1, 10) for _ in range(NUM_PATIENTS)]
     
   

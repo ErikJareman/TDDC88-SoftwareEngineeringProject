@@ -1,5 +1,5 @@
 const { sum, returnObject } = require('./functions.js')
-
+let testObject
 /*
 .toBe
 .toMatch
