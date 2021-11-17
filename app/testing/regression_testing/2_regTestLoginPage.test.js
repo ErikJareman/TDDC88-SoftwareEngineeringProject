@@ -13,7 +13,7 @@ describe('Testing home page', () => {
     return await driver.quit()
   })
 
-  test('Test login functionality', async () => {
+  test('#2.1 (R1) : Test login functionality', async () => {
     expect(await testLogin(driver)).toBe(true)
   })
 })
