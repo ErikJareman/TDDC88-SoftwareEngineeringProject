@@ -9,6 +9,7 @@ import './PatientVitalValues.css'
 import './VitalHistory.js'
 
 let GLOBAL_TYPE = 'PULS'
+
 /**
  * Function that generates segment for one patient vaital-value.
  */
@@ -17,9 +18,6 @@ function generateSegement (vitals) {
   <Segment onClick={() => handleClick(vitals.type)} size='mini'>
     <Grid columns={2}>
       <Grid.Row verticalAlign='middle'>
-        {/* <Grid.Column>
-          <Icon fitted name='arrow right' size='huge' id="icon"/>
-        </Grid.Column> */}
         <Grid.Column textAlign='left'>
           <Header id="typeHeader">
           {vitals.type}
@@ -42,7 +40,8 @@ function generateSegement (vitals) {
 // Does nothing at the moment.
 function handleClick (type) {
   GLOBAL_TYPE = type
-  alert('klickat' + GLOBAL_TYPE)
+  // alert('klickat' + GLOBAL_TYPE)
+  window.location.reload()
 }
 
 /**
@@ -118,14 +117,17 @@ function GetVitalData (type) {
 /**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
-const SegmentHorizontalSegments = (props) => (
+
+export default function VitalValuesComponent () {
+  // alert('klickat' + GLOBAL_TYPE)
+  // window.location.reload()
+
+  return (
+  // const SegmentHorizontalSegments = (props) => (
   <Segment.Group horizontal>
     <Segment>
   <Segment.Group size='mini'>
     {getVitals('__temp__').map(generateSegement)}
-
-{/* TABLE COPIED FROM VitalHistory.js */}
-
   </Segment.Group>
 </Segment>
 
@@ -142,7 +144,8 @@ const SegmentHorizontalSegments = (props) => (
         </Table>
 </Segment>
   </Segment.Group>
-)
+  )
+}
 
 // FUNCTION INSERTED FROM VitalHistory.js
 function MakeTableRow (event) {
@@ -154,4 +157,4 @@ function MakeTableRow (event) {
   )
 }
 
-export default SegmentHorizontalSegments
+// export default SegmentHorizontalSegments
