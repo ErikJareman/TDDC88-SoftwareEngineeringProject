@@ -3,6 +3,9 @@
  *
  * FINISHED
  * Author: Philip Löfgren
+ *
+ * Bugfix by Philip Nylén 17/11 - bypassing race condition by utilizing local storage
+ *
  */
 
 import React, { useEffect, useState } from 'react'
@@ -23,20 +26,27 @@ export default function UMS (props) {
       .then(res => {
         const temp = res.data
         setUMS(temp)
+        localStorage.setItem('UMS', JSON.stringify(temp))
       })
-  }, setUMS)
+  }, [])
 
   const modifyUMS = () => {
-    if (UMS[0].sensLevel === 1) {
+    let details = 0
+    if (UMS[0] === undefined) {
+      details = JSON.parse(localStorage.getItem('UMS'))
+    } else {
+      details = UMS
+    }
+    if (details[0].sensLevel === 1) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('oversens1').setAttributeNS(null, 'fill', 'red')
-    } else if (UMS[0].sensLevel === 2) {
+    } else if (details[0].sensLevel === 2) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('oversens1').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-1').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-2').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-3').setAttributeNS(null, 'fill', 'red')
-    } else if (UMS[0].sensLevel === 3) {
+    } else if (details[0].sensLevel === 3) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('oversens1').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-1').setAttributeNS(null, 'fill', 'red')
@@ -44,24 +54,24 @@ export default function UMS (props) {
       svgObject.getElementById('oversens2-3').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens3').setAttributeNS(null, 'fill', 'red')
     }
-    if (UMS[0].medCondition) {
+    if (details[0].medCondition) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('medCondition').setAttributeNS(null, 'fill', 'red')
     }
-    if (UMS[0].careDeviation) {
+    if (details[0].careDeviation) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('careDeviation').setAttributeNS(null, 'fill', 'blue')
     }
-    if (UMS[0].infection) {
+    if (details[0].infection) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('infection').setAttributeNS(null, 'fill', 'yellow')
     }
-    if (UMS[0].noStructureInfo) {
+    if (details[0].noStructureInfo) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('noStructureInfo').setAttributeNS(null, 'fill', 'red')
     }
   }
   return (
-        <object className='UMS-logo' onLoad={modifyUMS} id="svg-object" data={umsLogo} type="image/svg+xml"></object>
+    <object className='UMS-logo' onLoad={modifyUMS} id="svg-object" data={umsLogo} type="image/svg+xml"></object>
   )
 }
