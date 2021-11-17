@@ -6,13 +6,8 @@ const { testTabs } = require('./3_test_patient/3_testPatientTabs.js')
 const { testLogin } = require('./2_test_login/1_testLogin.js')
 const { loginIfNeeded } = require('./2_test_login/loginUtilities.js')
 const { testPatientNameAndSSN } = require('./3_test_patient/5_testPatientNameAndSSN.js')
-const { getInOut } = require('./3_test_patient/4_testInputOutput.js')
 let driver
-const tabContents = {
-  tab1: true,
-  tab2: true,
-  tab3: true
-}
+const tabContents = { tab1: true, tab2: true, tab3: true }
 
 const PatientInfoResult = {
   roomOk: true,
@@ -64,13 +59,5 @@ describe('Testing pateint page', () => {
     await driver.get(url + 'home')
     await sleep(500)
     expect(await testPatientNameAndSSN(driver)).toMatchObject(patientHeader)
-  })
-
-  test('#3.5 : Test the input and output', async () => {
-    await driver.get(url + 'home')
-    await sleep(500)
-    const inOut = await getInOut(driver)
-    const match = inOut.includes('PVK')
-    expect(match).toBe(true)
   })
 })
