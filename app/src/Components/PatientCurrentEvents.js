@@ -10,18 +10,27 @@
 import React from 'react'
 import { Tab } from 'semantic-ui-react'
 import FilterEvents from './FilterEvents'
+import EventCard from './EventCard'
 
 function PatientCurrentEvents (props) {
-  const id = props.patient.id
   const panes = [
     {
-      menuItem: { icon: 'newspaper outline big' }, render: () => <Tab.Pane>{<FilterEvents id={id} sortBy={'time'} />}</Tab.Pane>
+      menuItem: { icon: 'newspaper outline big' },
+      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', list: props.currentEvents }).map((event) => {
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
+      })}</Tab.Pane>
     },
     {
-      menuItem: { icon: 'envelope outline big' }, render: () => <Tab.Pane>{props.cards[1]}{props.cards[2]} </Tab.Pane>
+      menuItem: { icon: 'envelope outline big' },
+      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'incoming', list: props.currentEvents }).map((event) => {
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
+      })} </Tab.Pane>
     },
     {
-      menuItem: { icon: 'location arrow big' }, render: () => <Tab.Pane>{props.cards[3]} </Tab.Pane>
+      menuItem: { icon: 'location arrow big' },
+      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'outgoing', list: props.currentEvents }).map((event) => {
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
+      })} </Tab.Pane>
     }
   ]
   return (

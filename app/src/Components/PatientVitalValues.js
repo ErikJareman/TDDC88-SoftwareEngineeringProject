@@ -6,8 +6,9 @@
 import React from 'react'
 import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
 import './PatientVitalValues.css'
+// import FilterEvents from './FilterEvents'
 /**
- * Function that generates segment for one patient vaital-value.
+ * Function that generates segment for one patient vital-value.
  */
 function generateSegement (vitals) {
   return (
@@ -35,38 +36,14 @@ function generateSegement (vitals) {
     </Segment>
   )
 }
-/**
- * Should call backend to get patient information. Currently returns static example information.
- */
-function getVitals (patientID) {
-  // this should be ajax call to backend in future
-  const vitals = [
-    {
-      type: 'PULS',
-      time: '12:02',
-      value: '87'
-    },
-    {
-      type: 'ANDNING',
-      time: '12:03',
-      value: '16'
-    },
-    {
-      type: 'BLODTRYCK',
-      time: '12:00',
-      value: '177/84'
-    }
-  ]
-  return vitals
-}
 
 /**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
-const SegmentHorizontalSegments = () => (
-  <Segment.Group size='mini'>
-    {getVitals('__temp__').map(generateSegement)}
-  </Segment.Group>
-)
+const SegmentHorizontalSegments = (props) => {
+  return (< Segment.Group size='mini' >
+    {props.vitals.map(generateSegement)}
+  </Segment.Group >)
+}
 
 export default SegmentHorizontalSegments
