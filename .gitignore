@@ -8,4 +8,4 @@ app/package-lock.json
 *.csv
 venv/
 testing/package-lock.json
-app/testing/regression_testing/testUtilities.js
+testing/regression_testing/testUtilities.js
