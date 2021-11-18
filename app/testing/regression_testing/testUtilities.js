@@ -3,15 +3,18 @@ const { waitFactor } = require('./testConfig.js')
 const { Options, ServiceBuilder } = require('selenium-webdriver/chrome')
 
 /** Sets up and returns driver */
-async function buildDriver (url) {
-  const serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver')
-  let driver
-
+async function buildDriver(url) {
+  let serviceBuilder = new ServiceBuilder('./regression_testing/drivers/chromedriver_linux')
+  const opt = new Options()
+  opt.addArguments('--no-sandbox')
+  opt.addArguments('--disable-dev-shm-usage')
+  opt.addArguments('--headless')
+  opt.addArguments('--start-maximized')
   try {
-    driver = await new Builder()
+    const driver = await new Builder()
       .forBrowser('chrome')
       .setChromeService(serviceBuilder)
-      .setChromeOptions(new Options().setAcceptInsecureCerts(true))
+      .setChromeOptions(opt)
       .build()
     await driver.get(url)
     return driver
@@ -162,9 +165,5 @@ module.exports = {
   getRandomString,
   findElementInList,
   getElementListXpath,
-<<<<<<< HEAD
   getElementTextCss
-=======
-  getElementTextCss,
->>>>>>> development
 }

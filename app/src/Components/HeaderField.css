@@ -9,20 +9,33 @@
 */
 h1#headerText {
     width: fit-content;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 1%;
+    color: white;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+}
+
+#linkarea2 {
+    width: fit-content;
+    height: fit-content;
     margin-bottom: 1%;
     margin-top: 1%;
     margin-left: 1%;
-    color: white;
 }
+
 img {
-    margin-bottom: 1%;
-    margin-top: 1%;
+    margin-bottom: auto;
+    margin-top: auto;
     margin-left: 1%;
     vertical-align: middle;
 }
+
 div#headerArea {
-    background-color: darkblue;
+    background-color: #204581;
     display: flex;
+    height: fit-content;
 }
 
 #linkarea {

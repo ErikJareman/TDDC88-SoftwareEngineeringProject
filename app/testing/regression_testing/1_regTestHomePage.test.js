@@ -24,17 +24,19 @@ describe('Testing home page', () => {
     return await driver.quit()
   })
 
-  test('Test home-page heading', async () => {
+  test('#1.1 (U72) : Test home-page heading', async () => {
     expect(await getHomePageHeading(driver)).toBe('Motala')
   })
 
-  test('Test select patient in patient list', async () => {
+  test('#1.2 (R2) : Test select patient in patient list', async () => {
     expect(await goToPatient(driver, 'Benbrott')).toBe(true)
   })
 
-  test('Test patient list length in home view', async () => {
+  test('#1.3 (SRS3.1.1.2) : Test patient list length in home view', async () => {
     await driver.get(url + 'home')
     await sleep(500)
-    expect(await getPatientListLength(driver)).toBe(12)
+    const patientCount = await getPatientListLength(driver)
+    const overTen = patientCount > 10
+    expect(overTen).toBe(true)
   })
 })

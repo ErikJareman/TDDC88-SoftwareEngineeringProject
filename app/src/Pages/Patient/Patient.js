@@ -1,17 +1,15 @@
 import './Patient.css'
 
-// import Refresher from '../../Components/Refresher'
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
-// import PatientVitalValues from '../../Components/PatientVitalValues'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
-// import PatientInUt from '../../Components/PatientInUt'
 import HeaderField from '../../Components/HeaderField'
 import VitalsField from '../../Components/VitalsField'
+
 import axios from 'axios'
 
 export default function Patient () {
@@ -55,18 +53,8 @@ export default function Patient () {
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
             <VitalsField id={state.patients.id} vitals={vitals} />
+
           </Grid.Column>
-          {/* <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientInUt />
-            </Segment>
-          </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientVitalValues patient={state.patients} />
-              <Refresher />
-            </Segment>
-          </Grid.Column> */}
         </Grid.Row>
       </Grid>
     </>

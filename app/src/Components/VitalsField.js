@@ -3,9 +3,10 @@
  *
  * WIP
  *
- * Author David
+ * Author Viktor Storsved, Marcus Vidgren and David Råsberg
  *
  * 2021-11-11: Created
+ * 2021-11-17: Vitals connected to back-end
  *
  */
 
