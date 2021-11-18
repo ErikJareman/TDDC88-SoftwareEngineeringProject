@@ -15,13 +15,7 @@ import HeaderField from '../../Components/HeaderField'
 import EventCard from '../../Components/EventCard'
 
 export default function Patient () {
-  const STATE_KEY = 'state'
   state = useLocation()
-  if (state == null) {
-    state = sessionStorage.getItem(STATE_KEY)
-  } else {
-    sessionStorage.setItem(STATE_KEY, state)
-  }
 
   const cards = [
     <EventCard key='dosering' name='Medicindosering' time='13.38' color='green' image='accessability' />,
