@@ -11,39 +11,39 @@ export default function useTemporaryData () {
   const events = [
     {
       name: 'Inlagd',
-      time: '08:58'
+      time: '11:58'
     },
     {
       name: 'Dos',
-      time: '09:13'
+      time: '12:13'
     },
     {
       name: 'Skickat',
-      time: '09:14'
+      time: '12:14'
     },
     {
       name: 'Vård',
-      time: '10:00'
+      time: '13:00'
     },
     {
       name: 'Svar1',
-      time: '10:09'
+      time: '13:09'
     },
     {
       name: 'Dos',
-      time: '10:18'
+      time: '13:18'
     },
     {
       name: 'Vård',
-      time: '10:19'
+      time: '13:19'
     },
     {
       name: 'Svar2',
-      time: '10:52'
+      time: '13:52'
     },
     {
       name: 'Hem',
-      time: '11:00'
+      time: '14:00'
     }
   ]
   return { events }
