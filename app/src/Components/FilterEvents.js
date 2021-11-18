@@ -24,16 +24,15 @@ export default function FilterEvents () {
   const sortedEvents = list
   if (filterBy !== undefined) {
     console.log(filterBy)
-    /* sortedEvents = sortedEvents.filter((event) => {
-      return event.type === filterBy
-    }) */
   }
   if (sortBy !== undefined) {
-    sortedEvents.sort(function (a, b) {
-      const aTime = a[sortBy].split(':')
-      const bTime = b[sortBy].split(':')
-      return compareTime(aTime, bTime, 0)
-    })
+    if (sortBy === 'time') {
+      sortedEvents.sort(function (a, b) {
+        const aTime = a[sortBy].split(':')
+        const bTime = b[sortBy].split(':')
+        return compareTime(aTime, bTime, 0)
+      })
+    }
   }
 
   console.log(sortedEvents)
