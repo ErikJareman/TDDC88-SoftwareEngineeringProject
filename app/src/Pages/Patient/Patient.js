@@ -1,5 +1,4 @@
 import './Patient.css'
-
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
@@ -9,7 +8,6 @@ import { useLocation } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import HeaderField from '../../Components/HeaderField'
 import VitalsField from '../../Components/VitalsField'
-
 import axios from 'axios'
 
 export default function Patient () {
@@ -55,7 +53,7 @@ export default function Patient () {
           <Grid.Column style={{ width: '33%' }}>
             <Segment >
 
-              <PatientInfo patient={state.patients} triageColor={state.triageColor} />
+              <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} />
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
@@ -69,7 +67,7 @@ export default function Patient () {
             <PatientCurrentEvents currentEvents={currentEvents} patient={state.patients} />
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
-            <VitalsField id={state.patients.id} vitals={vitals} injections={injections} ekg={ekg} drugs={drugs} />
+            <VitalsField id={state.patients.id} vitals={vitals} injections={injections} ekg={ekg} drugs={drugs} events={currentEvents} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

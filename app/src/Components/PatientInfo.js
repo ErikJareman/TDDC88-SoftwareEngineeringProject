@@ -13,8 +13,14 @@ import React from 'react'
 import TeamView from './TeamView'
 import RoomView from './RoomView'
 import TriageTimeLeft from './TriageTimeLeft'
+import FilterEvents from './FilterEvents'
 
 export default function PatientInfo (props) {
+  let lastChecked = FilterEvents({ list: props.vitals, sortBy: 'time' })[0]
+  if (lastChecked) {
+    lastChecked = lastChecked.time
+  }
+  console.log(lastChecked)
   return (
     <div className='PatientInfo-div'>
       <h1> Patientinfo  </h1>
