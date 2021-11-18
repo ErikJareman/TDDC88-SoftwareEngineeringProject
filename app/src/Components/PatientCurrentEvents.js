@@ -34,6 +34,7 @@ function PatientCurrentEvents (props) {
       })} </Tab.Pane>
     }
   ]
+
   return (
     <div>
       <Tab panes={panes} />

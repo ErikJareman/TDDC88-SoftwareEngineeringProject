@@ -14,12 +14,16 @@ import React, { useState } from 'react'
 import { Tab, Grid } from 'semantic-ui-react'
 import PatientInUt from './PatientInUt'
 import PatientVitalValues from './PatientVitalValues'
+import PatientEkg from './PatientEkg'
+
+import PatientDrugs from './PatientDrugs'
 
 export default function VitalFields (props) {
   const [id] = useState(props.id)
   const injections = props.injections
-  /* <Ekg ekg={ekg[0]} />
-  const ekg = [{ ekg: '1', time: new Date(now() - 500000) }] */
+  // Temporary. Should come from back-end. Delete later
+  const ekg = { ekg: '1', time: new Date(Date.now() - 500000) }
+  const drugs = [{ name: 'Alvedon', strength: '500mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '2 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 5)) }, { name: 'Ipren', strength: '400mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 8)) }, { name: 'Kodein', strength: '30mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 2)) }]
 
   const panes = [
     {
@@ -40,11 +44,18 @@ export default function VitalFields (props) {
     {
       menuItem: { icon: 'heartbeat big' },
       render: () => <Tab.Pane>
-
+        <PatientEkg ekg={ekg.ekg} time={ekg.time} />
       </Tab.Pane>
     },
     {
-      menuItem: { icon: 'pills big clockwise' }, render: () => <Tab.Pane></Tab.Pane>
+      menuItem: { icon: 'pills big clockwise' },
+      render: () => <Tab.Pane>
+        <ul>
+          {drugs.map((drug) => {
+            return (<PatientDrugs key={drug.name + '_' + drug.time} drug={drug} />)
+          })}
+        </ul>
+      </Tab.Pane>
     },
     {
       menuItem: { icon: 'exchange big' },
