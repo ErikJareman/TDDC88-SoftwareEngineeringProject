@@ -10,7 +10,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import checkbox from '../assets/checkbox.png'
 import checkboxselected from '../assets/checkboxselected.png'
-
+import Paper from '@material-ui/core/Paper'
+import { Grid } from '@material-ui/core'
+import { GroupingState, IntegratedGrouping } from '@devexpress/dx-react-grid'
+// import { Grid, Table, TableHeaderRow, TableGroupRow } from '@devexpress/dx-react-grid-material-ui'
 /**
  * The function PatientNavList renders the list of patients, currently
  * only psuedo-data
@@ -54,6 +57,10 @@ export default function PatientNavList () {
                 pathname: `/patient/${patient.id}`,
                 state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
               }}>
+                <Paper>
+                  <Grid rows={patients}>
+                  <GroupingState grouping={[{ columnName: 'team' }]} />
+                  <IntegratedGrouping />
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
                 <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                 <h3 className='long'>{patient.reason}</h3>
@@ -61,6 +68,8 @@ export default function PatientNavList () {
                 <h3 className='long'>{patient.SSN}</h3>
                 <h3 className='short'>{patient.arrival}</h3>
                 <h3 className='short'>{patient.room}</h3>
+                </Grid>
+                </Paper>
               </Link>
             </div>
             <a className='nav-link' href='/home' id='profilePicture'>
