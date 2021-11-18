@@ -11,9 +11,8 @@
   height: 40px;
   padding: 0px;
   background-color: #ffffff;
-  border: black solid 1px;
-  border-radius: 8px;
-  margin: 3px;
+  border: rgba(211, 211, 211, 0.788) solid 1px;
+  
 }
 
 #rectangle {
@@ -23,8 +22,8 @@
 }
 
 #shape {
-  width: 23px;
-  height: 25px;
+  width: 30px;
+  height: 32px;
   padding: 2px 2px 2px 2px;
   box-sizing: border-box;
 }
