@@ -8,19 +8,17 @@ import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 
-let GLOBAL_TYPE = 'PULS'
+// vitalType is the the vital parameter that the user has pressed on, resulting in a table of historic values in the vital values component
+const vitalType = {
+  vitalTypeVal: sessionStorage.getItem('vitalKey'),
 
-// DO NOT DELETE: WILL BE IMPLEMENTED FURTHER
-// const testConstVal = {
-//   testVal: '',
-
-//   set theVital (newVal) {
-//     this.testVal = newVal
-//   },
-//   get theVital () {
-//     return this.testVal
-//   }
-// }
+  set (newVal) {
+    this.vitalTypeVal = newVal
+  },
+  get () {
+    return this.vitalTypeVal
+  }
+}
 
 /**
  * Function that generates segment for one patient vital-value.
@@ -49,17 +47,12 @@ function generateSegement (vitals) {
   )
 }
 
-function handleClick (type) {
-  GLOBAL_TYPE = type
-  // testConstVal.theVital(type)
-}
-
 /**
- * Updates state in order to trigger component (VitalValuesComponent below) to reload
+ * Gets the vital type that the user has pressed on and saves it in vitalType.
  */
-function reloadComponent () {
-  const [, setValue] = useState(0)
-  return () => setValue(val => val + 1)
+function handleClick (type) {
+  vitalType.set(type)
+  sessionStorage.setItem('vitalKey', vitalType.vitalTypeVal)
 }
 
 /**
@@ -136,33 +129,30 @@ function GetVitalData (type) {
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
 export default function VitalValuesComponent () {
-  const makeReload = reloadComponent()
+  const [val, setValue] = useState(0)
 
   return (
-  <Segment.Group onClick={makeReload} horizontal>
-    <Segment>
-  <Segment.Group size='mini'>
-    {getVitals('__temp__').map(generateSegement)}
-  </Segment.Group>
-</Segment>
+    <Grid columns={2} onClick={() => setValue(val + 1)}>
+      <Grid.Column>
+        {getVitals('__temp__').map(generateSegement)}
+      </Grid.Column>
 
-<Segment>
-<Table stackable>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell textAlign='center'><b>{GLOBAL_TYPE}</b></Table.HeaderCell>
-                    <Table.HeaderCell ></Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            {GetVitalData(GLOBAL_TYPE).map(MakeTableRow)}
+      <Grid.Column stretched>
+        <Table stackable>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign='center'><b>{vitalType.get()}</b></Table.HeaderCell>
+              <Table.HeaderCell ></Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          {GetVitalData(vitalType.get()).map(MakeTableRow)}
 
         </Table>
-</Segment>
-  </Segment.Group>
+      </Grid.Column>
+    </Grid>
   )
 }
 
-// FUNCTION INSERTED FROM VitalHistory.js
 function MakeTableRow (event) {
   return (
         <Table.Row>
@@ -171,5 +161,3 @@ function MakeTableRow (event) {
         </Table.Row>
   )
 }
-
-// export default SegmentHorizontalSegments
