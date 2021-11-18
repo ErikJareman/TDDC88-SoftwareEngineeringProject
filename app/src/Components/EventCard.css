@@ -1,10 +1,32 @@
 /**
-* PatientNavList.css
+* EventCard.css
 *
-* Contains all the css applied to the PatientNavList.js component.
+* Contains all the css applied to the EventCard.js component.
 *
-* Philip Nylén - DRAFT
+* Martin Jonson - DRAFT
 */
+
+.right-adjust {
+  text-align: start;
+}
+
+.event-detail-black-text {
+  font-size: 18px;
+}
+
+.event-detail-grey-text {
+  font-size: 14px;
+  color: grey;
+}
+
+#detail-table {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+#detail-icon {
+  text-align: end;
+}
 
 #patient-inlagd-group {
   width: 100%;
@@ -12,7 +34,6 @@
   padding: 0px;
   background-color: #ffffff;
   border: rgba(211, 211, 211, 0.788) solid 1px;
-  
 }
 
 #event-text {
@@ -54,4 +75,5 @@
   padding: 10px;
   border: solid;
   background-color: white;
+  width: 350px;
 }

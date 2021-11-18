@@ -18,7 +18,27 @@ export default function Patient () {
   const { state } = useLocation()
 
   const cards = [
-    <EventCard key='dosering' name='Medicindosering' time='13.38' color='green' image='accessability' />,
+    <EventCard key='dosering' name='Medicindosering' time='13.38' color='green' image='accessability'
+      details={
+        [
+          {
+            name: 'B-hb',
+            value: '136',
+            reference: '134-170'
+          },
+          {
+            name: 'B-EVF',
+            value: '0,41',
+            reference: '0,40-0,50'
+          },
+          {
+            name: 'B-Etrocyter',
+            value: '4,6',
+            reference: '4,3-5,7'
+          }
+        ]
+      }
+    />,
     <EventCard key='ordination' name='Medicin ordination' time='17.00' color='blue' image='portal' />,
     <EventCard key='Mat' name='Smörgås och saft' time='15.40' color='green' image='firstAid' />,
     <EventCard key='Mat' name='Patient inlagd' time='13.00' color='blue' image='firstAid' />
