@@ -12,10 +12,15 @@
 
 import React, { useState } from 'react'
 import { Tab, Grid } from 'semantic-ui-react'
+import PatientInUt from './PatientInUt'
 import PatientVitalValues from './PatientVitalValues'
 
 export default function VitalFields (props) {
   const [id] = useState(props.id)
+  const injections = props.injections
+  /* <Ekg ekg={ekg[0]} />
+  const ekg = [{ ekg: '1', time: new Date(now() - 500000) }] */
+
   const panes = [
     {
       menuItem: { icon: 'doctor big' },
@@ -33,13 +38,19 @@ export default function VitalFields (props) {
       </Tab.Pane>
     },
     {
-      menuItem: { icon: 'heartbeat big' }, render: () => <Tab.Pane></Tab.Pane>
+      menuItem: { icon: 'heartbeat big' },
+      render: () => <Tab.Pane>
+
+      </Tab.Pane>
     },
     {
       menuItem: { icon: 'pills big clockwise' }, render: () => <Tab.Pane></Tab.Pane>
     },
     {
-      menuItem: { icon: 'exchange big' }, render: () => <Tab.Pane></Tab.Pane>
+      menuItem: { icon: 'exchange big' },
+      render: () => <Tab.Pane>
+        <PatientInUt id={id} injections={injections} />
+      </Tab.Pane>
     },
     {
       menuItem: { icon: 'group big' }, render: () => <Tab.Pane></Tab.Pane>

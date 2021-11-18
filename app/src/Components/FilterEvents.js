@@ -25,8 +25,8 @@ export default function FilterEvents () {
   if (filterBy !== undefined) {
     console.log(filterBy)
   }
-  if (sortBy !== undefined) {
-    if (sortBy === 'time') {
+  if (sortBy !== undefined || list.length > 1) {
+    if (sortBy === 'time' || sortBy === 'timein') {
       sortedEvents.sort(function (a, b) {
         const aTime = a[sortBy].split(':')
         const bTime = b[sortBy].split(':')
@@ -35,6 +35,5 @@ export default function FilterEvents () {
     }
   }
 
-  console.log(sortedEvents)
   return sortedEvents
 }

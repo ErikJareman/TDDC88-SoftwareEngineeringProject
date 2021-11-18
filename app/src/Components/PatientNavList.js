@@ -36,7 +36,6 @@ export default function PatientNavList () {
   }, [])
 
   const handleChange = (id) => {
-    console.log('HEJSAN')
     if (localStorage.getItem('patient' + id)) {
       localStorage.setItem('patient' + id, false)
     } else {

@@ -13,22 +13,23 @@ import FilterEvents from './FilterEvents'
 import EventCard from './EventCard'
 
 function PatientCurrentEvents (props) {
+  const currentEvents = props.currentEvents
   const panes = [
     {
       menuItem: { icon: 'newspaper outline big' },
-      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', list: props.currentEvents }).map((event) => {
+      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', list: currentEvents }).map((event) => {
         return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
       })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'envelope outline big' },
-      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'incoming', list: props.currentEvents }).map((event) => {
+      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'incoming', list: currentEvents }).map((event) => {
         return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
       })} </Tab.Pane>
     },
     {
       menuItem: { icon: 'location arrow big' },
-      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'outgoing', list: props.currentEvents }).map((event) => {
+      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'outgoing', list: currentEvents }).map((event) => {
         return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
       })} </Tab.Pane>
     }
