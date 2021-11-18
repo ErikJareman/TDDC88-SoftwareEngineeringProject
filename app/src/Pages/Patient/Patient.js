@@ -15,7 +15,7 @@ import HeaderField from '../../Components/HeaderField'
 import EventCard from '../../Components/EventCard'
 
 export default function Patient () {
-  state = useLocation()
+  const { state } = useLocation()
 
   const cards = [
     <EventCard key='dosering' name='Medicindosering' time='13.38' color='green' image='accessability' />,
