@@ -19,7 +19,7 @@ cors = CORS(app)
 make_data(50)
 
 
-# The route gives a list of all patients in their database and their triageLevel, arrival, reason, name, SSN, location, team, room
+# The route gives a list of all patients in their database and their triageLevel, arrival, reason, name, SSN, location, team, room, pn
 @app.route('/patients/<string:location>')
 def patients_at(location):
     df_patients = pd.read_csv("mock_patient_data.csv", delimiter=',')
