@@ -74,17 +74,17 @@ def make_data(NUM_PATIENTS = 100):
     for id in df_patients.id:
         now = datetime.datetime.now().time
         
-        df_vitals.loc[vitals_counter,:] = [id, now(),"Puls", 75*np.random.normal(1,.15)]
+        df_vitals.loc[vitals_counter,:] = [id, now(),"Puls", round(75*np.random.normal(1,.15))]
         vitals_counter +=1
         
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Kroppstemperatur", 37.2+np.random.normal(0,.1)]
+        df_vitals.loc[vitals_counter,:] = [id, now(), "Kroppstemperatur", round(37.2+np.random.normal(0,.1), 1)]
         vitals_counter +=1
         
         
         df_vitals.loc[vitals_counter,:] = [id, now(), "Blodtryck", (blood_pressures[np.random.randint(0,len(blood_pressures))] )]
         vitals_counter +=1
         
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Andningsfrekvens", 19*np.random.normal(1,.3)]
+        df_vitals.loc[vitals_counter,:] = [id, now(), "Andningsfrekvens", round(19*np.random.normal(1,.3),1)]
         vitals_counter +=1
 
 
@@ -108,9 +108,10 @@ def make_data(NUM_PATIENTS = 100):
         All Patients have betwen 2 and 10 events.
         ]
     """
-    EVENT_CATEGORIES = ["Gubbe", "Doktor", "Pippett", "Ambulans", "Hus"]
-    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omradnad", "Dosering "]
+    EVENT_CATEGORIES = ["Gubbe", "Doktor", "Pippett", "Ambulans", "Hus", "Medkit", "Heartbeat"]
+    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"] 
     EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+    EVENT_INLAGD = ["Gubbe", "Ambulans"]
 
     def generate_type(isSentType):
         stringToReturn = ""
@@ -119,22 +120,40 @@ def make_data(NUM_PATIENTS = 100):
         else:
             stringToReturn = random.choice(EVENT_TYPES)
         return stringToReturn
-    
+
+    # blodprov = pippett 
+    # Gubbe = inlagd
+    # Doktor = röntgen remiss, omvardnad
+    # Ambulans =
+    # Hus = lamnar
+    # Medkit = dosering
+    # Heartbeat = ekg
+    def generate_category(eventType):
+        stringToReturn = ""
+        if eventType == "Labbsvar Blodprov" or eventType == "Skickat Blodprov":
+            stringToReturn = "Pippett"
+        elif eventType == "Labbsvar EKG" or eventType == "Skickat EKG":
+            stringToReturn = "Heartbeat"
+        elif eventType == "Skickat Röntgen remiss" or eventType == "Omvardnad":
+            stringToReturn = "Doktor"
+        elif eventType == "Dosering":
+            stringToReturn = "Medkit"     
+        return stringToReturn
 
     event_counter = 0
     for id in df_patients.id:
         entry_time, exit_time = random_times(2,8*60)
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Inlagd", False]
+        df_events.loc[event_counter,:] = [id, entry_time,random.choice(EVENT_INLAGD), "Patient Inlagd", False]
         event_counter +=1
         for _ in range(int(random.randint(2,10))): #number of events per patient
             if random.uniform(0,1) < 0.2:
                 isSent = True
             else:
                 isSent = False
-            df_events.loc[event_counter,:] = [id, random_times(1)[0], random.choice(EVENT_CATEGORIES),generate_type(isSent), isSent]
+            eventType = generate_type(isSent)
+            df_events.loc[event_counter,:] = [id, random_times(1)[0], generate_category(eventType), eventType, isSent]
             event_counter +=1
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Lamnar", False]
-        print(df_events.loc[event_counter])
+        df_events.loc[event_counter,:] = [id, exit_time,"Hus", "Patient Lamnar", False]
         event_counter +=1
 
     
