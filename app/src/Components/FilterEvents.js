@@ -23,13 +23,13 @@ export default function FilterEvents () {
   }
 
   const [props] = [...arguments]
-  const [filterBy, sortBy, list] = [props.filterBy, props.sortBy, props.list]
+  const [filterField, filterBy, sortBy, list] = [props.filterField, props.filterBy, props.sortBy, props.list]
   let sortedEvents = list
 
   if (sortedEvents.length > 0) {
-    if (filterBy !== undefined) {
+    if (filterField !== undefined) {
       sortedEvents = sortedEvents.filter((event) => {
-        return event.type === filterBy
+        return event.filterField === filterBy
       })
     }
     if (sortBy !== undefined || list.length > 1) {

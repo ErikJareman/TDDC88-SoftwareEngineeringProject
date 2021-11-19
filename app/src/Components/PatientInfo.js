@@ -20,7 +20,6 @@ export default function PatientInfo (props) {
   if (lastChecked) {
     lastChecked = lastChecked.time
   }
-  console.log(lastChecked)
   return (
     <div className='PatientInfo-div'>
       <h1> Patientinfo  </h1>

@@ -16,8 +16,8 @@ function PatientCurrentEvents (props) {
   const currentEvents = props.currentEvents
   let incoming = props.currentEvents
   let outgoing = props.currentEvents
-  incoming = FilterEvents({ sortBy: 'time', list: incoming, filterBy: 'incoming' })
-  outgoing = FilterEvents({ sortBy: 'time', list: incoming, filterBy: 'outgoing' })
+  incoming = FilterEvents({ sortBy: 'time', list: incoming, filterField: 'sent', filterBy: false })
+  outgoing = FilterEvents({ sortBy: 'time', list: outgoing, filterField: 'sent', filterBy: true })
 
   console.log(incoming, outgoing)
 
