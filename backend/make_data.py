@@ -14,6 +14,7 @@ import datetime
 from helper_funcs import random_times
 
 
+
 def generate_SSN():
     y = str(random.randint(1920,2020))
     m = str(random.randint(1,12))
@@ -57,8 +58,8 @@ def make_data(NUM_PATIENTS = 100):
     df_patients["SSN"] = [generate_SSN() for _ in range(NUM_PATIENTS)]
     df_patients["team"] = [random.choice(list("123")) for _ in range(NUM_PATIENTS)]
     df_patients["room"] = [random.randint(1, 10) for _ in range(NUM_PATIENTS)]
-    
-  
+    df_patients=df_patients.sort_values(by=["team"])
+    print(df_patients)
   
   
     """

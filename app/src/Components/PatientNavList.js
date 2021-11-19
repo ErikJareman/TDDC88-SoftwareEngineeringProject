@@ -12,7 +12,7 @@ import checkbox from '../assets/checkbox.png'
 import checkboxselected from '../assets/checkboxselected.png'
 import Paper from '@material-ui/core/Paper'
 import { Grid } from '@material-ui/core'
-import TableExampleSortable from './Overviewsort'
+import App1 from './Sorter'
 // import { GroupingState, IntegratedGrouping } from '@devexpress/dx-react-grid'
 // import { Grid, Table, TableHeaderRow, TableGroupRow } from '@devexpress/dx-react-grid-material-ui'
 /**
@@ -50,7 +50,7 @@ export default function PatientNavList () {
 
   return (
     <>
-    <TableExampleSortable patients ={patients} />
+    <App1 patients={patients} />
     <ul>
       {patients.map((patient) => {
         return (

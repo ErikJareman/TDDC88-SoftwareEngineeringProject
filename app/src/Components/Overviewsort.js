@@ -32,11 +32,12 @@ function exampleReducer (state, action) {
 }
 
 function TableExampleSortable (props) {
-  console.log(props.patients)
+  const patientdata = props.patients
+  console.log(patientdata)
   console.log(tableData)
   const [state, dispatch] = React.useReducer(exampleReducer, {
     column: null,
-    data: tableData,
+    data: patientdata,
     direction: null
   })
   const { column, data, direction } = state
@@ -60,7 +61,7 @@ function TableExampleSortable (props) {
           </Table.HeaderCell>
           <Table.HeaderCell
             sorted={column === 'gender' ? direction : null}
-            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'gender' })}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'team' })}
           >
             Gender
           </Table.HeaderCell>
