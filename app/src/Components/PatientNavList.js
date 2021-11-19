@@ -12,7 +12,8 @@ import checkbox from '../assets/checkbox.png'
 import checkboxselected from '../assets/checkboxselected.png'
 import Paper from '@material-ui/core/Paper'
 import { Grid } from '@material-ui/core'
-import { GroupingState, IntegratedGrouping } from '@devexpress/dx-react-grid'
+import TableExampleSortable from './Overviewsort'
+// import { GroupingState, IntegratedGrouping } from '@devexpress/dx-react-grid'
 // import { Grid, Table, TableHeaderRow, TableGroupRow } from '@devexpress/dx-react-grid-material-ui'
 /**
  * The function PatientNavList renders the list of patients, currently
@@ -48,6 +49,8 @@ export default function PatientNavList () {
   }
 
   return (
+    <>
+    <TableExampleSortable patients ={patients} />
     <ul>
       {patients.map((patient) => {
         return (
@@ -59,8 +62,6 @@ export default function PatientNavList () {
               }}>
                 <Paper>
                   <Grid rows={patients}>
-                  <GroupingState grouping={[{ columnName: 'team' }]} />
-                  <IntegratedGrouping />
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
                 <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                 <h3 className='long'>{patient.reason}</h3>
@@ -83,5 +84,6 @@ export default function PatientNavList () {
         )
       })}
     </ul>
+    </>
   )
 }
