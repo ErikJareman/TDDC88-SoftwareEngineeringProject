@@ -76,7 +76,7 @@ describe('Testing pateint page', () => {
     expect(match).toBe(true)
   })
 
-  test('#13: Check if a timer exists on the patient page', async() => {
+  test('#13: Check if the triage on the patient page is in the right color', async() => {
     await driver.get(url + 'home')
     await sleep(500)
     expect(await testPatientTriageIndication(driver)).toBe(true)
