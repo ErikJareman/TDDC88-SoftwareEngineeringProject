@@ -17,7 +17,11 @@ const vitalType = {
     this.vitalTypeVal = newVal
   },
   get () {
-    return this.vitalTypeVal
+    if (this.vitalTypeVal !== undefined) {
+      return this.vitalTypeVal
+    } else {
+      console.log('inget värde!!!!!')
+    }
   }
 }
 
@@ -75,8 +79,11 @@ export default function VitalValuesComponent (props) {
   const breathFreq = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Andningsfrekvens', sortBy: 'time' })
 
   // array containing the other arrays
-  const mostRecent = [pulse[0], temperature[0], pressure[0], breathFreq[0]]
-
+  let mostRecent = [pulse[0], temperature[0], pressure[0], breathFreq[0]]
+  // removes undefines values
+  mostRecent = mostRecent.filter((instance) => {
+    return instance !== undefined
+  })
   // function to return array based on type in swedish. Can probably be solved in a better way.
   function typeToArray (type) {
     if (type !== undefined) {
@@ -88,9 +95,11 @@ export default function VitalValuesComponent (props) {
   return (
     <Grid columns={2} onClick={() => setValue(val + 1)}>
       <Grid.Column>
-        {mostRecent.map((type) => {
-          return (generateSegement(type))
-        })}
+        {mostRecent.length > 0
+          ? mostRecent.map((type) => {
+            return (generateSegement(type))
+          })
+          : 'No values'}
       </Grid.Column>
 
       <Grid.Column stretched>
@@ -102,10 +111,10 @@ export default function VitalValuesComponent (props) {
             </Table.Row>
           </Table.Header>
           {/*   SHOULD ONLY BE ONE LINE LATER */}
-          {typeToArray(vitalType.get()).map(MakeTableRow)}
-          {typeToArray(vitalType.get()).map(MakeTableRow)}
-          {typeToArray(vitalType.get()).map(MakeTableRow)}
-          {typeToArray(vitalType.get()).map(MakeTableRow)}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
         </Table>
       </Grid.Column>
     </Grid>
