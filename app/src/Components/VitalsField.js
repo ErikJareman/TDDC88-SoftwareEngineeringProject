@@ -11,7 +11,7 @@
  */
 
 import React, { useState } from 'react'
-import { Tab, Grid } from 'semantic-ui-react'
+import { Tab } from 'semantic-ui-react'
 import PatientInUt from './PatientInUt'
 import PatientVitalValues from './PatientVitalValues'
 import PatientEkg from './PatientEkg'
@@ -29,16 +29,7 @@ export default function VitalFields (props) {
     {
       menuItem: { icon: 'doctor big' },
       render: () => <Tab.Pane>
-        <Grid>
-          <Grid.Row stretched>
-            <Grid.Column style={{ width: '50%' }}>
-              <PatientVitalValues id={id} vitals={props.vitals} />
-            </Grid.Column>
-            <Grid.Column style={{ width: '50%' }}>
-              {/* FilterEvents({ id: id, type: 'vitals', filterBy: 'Puls' }) */}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <PatientVitalValues id={id} vitals={props.vitals} />
       </Tab.Pane>
     },
     {

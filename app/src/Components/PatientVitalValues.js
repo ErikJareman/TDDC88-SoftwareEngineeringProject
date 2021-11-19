@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
+import FilterEvents from './FilterEvents'
 
 // vitalType is the the vital parameter that the user has pressed on, resulting in a table of historic values in the vital values component
 const vitalType = {
@@ -25,25 +26,29 @@ const vitalType = {
  */
 function generateSegement (vitals) {
   return (
-    <Segment onClick={() => handleClick(vitals.type)} size='mini'>
-      <Grid columns={2}>
-        <Grid.Row verticalAlign='middle'>
-          <Grid.Column textAlign='left'>
-            <Header id="typeHeader">
-              {vitals.type}
-            </Header>
-          </Grid.Column>
-          <Grid.Column textAlign='right'>
-            <Header id="valHeader">
-              {vitals.value}
-            </Header>
-            <Header id="timeHeader">
-              {vitals.time}
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
+    <>
+      {vitals !== undefined
+        ? <Segment onClick={() => handleClick(vitals.type)} size='mini'>
+          <Grid columns={2}>
+            <Grid.Row verticalAlign='middle'>
+              <Grid.Column textAlign='left'>
+                <Header id="typeHeader">
+                  {vitals.type}
+                </Header>
+              </Grid.Column>
+              <Grid.Column textAlign='right'>
+                <Header id="valHeader">
+                  {vitals.value}
+                </Header>
+                <Header id="timeHeader">
+                  {vitals.time}
+                </Header>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
+        : 'Ingen data tillgänglig'}
+    </>
   )
 }
 
@@ -56,86 +61,36 @@ function handleClick (type) {
 }
 
 /**
- * Should call backend to get patient information. Currently returns static example information.
- */
-function getVitals (patientID) {
-  // this should be axios call to backend in future
-  const vitals = [
-    {
-      type: 'PULS',
-      time: '12:02',
-      value: '87'
-    },
-    {
-      type: 'ANDNING',
-      time: '12:03',
-      value: '16'
-    },
-    {
-      type: 'BLODTRYCK',
-      time: '12:00',
-      value: '177/84'
-    }
-  ]
-  return vitals
-}
-
-// FUNCTION COPIED FROM VitalHistory.js
-function GetVitalData (type) {
-  if (type === 'ANDNING') {
-    return ([
-      {
-        Value: 12,
-        Time: '12:03'
-      },
-      {
-        Value: 14,
-        Time: '11:52'
-      },
-      {
-        Value: 13,
-        Time: '11:25'
-      },
-      {
-        Value: 11,
-        Time: '11:19'
-      }
-    ])
-  } else if (type === 'PULS') {
-    return ([
-      {
-        Value: 80,
-        Time: '12:03'
-      },
-      {
-        Value: 79,
-        Time: '11:52'
-      },
-      {
-        Value: 65,
-        Time: '11:25'
-      },
-      {
-        Value: 67,
-        Time: '11:19'
-      }
-    ])
-  } else {
-    return ([])
-  }
-}
-
-/**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
 export default function VitalValuesComponent (props) {
   const [val, setValue] = useState(0)
+  // every vital from backend
+  const vitals = props.vitals
+
+  // vitals broken down into the different types
+  const pulse = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Puls', sortBy: 'time' })
+  const temperature = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Kroppstemperatur', sortBy: 'time' })
+  const pressure = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Blodtryck', sortBy: 'time' })
+  const breathFreq = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Andningsfrekvens', sortBy: 'time' })
+
+  // array containing the other arrays
+  const mostRecent = [pulse[0], temperature[0], pressure[0], breathFreq[0]]
+
+  // function to return array based on type in swedish. Can probably be solved in a better way.
+  function typeToArray (type) {
+    if (type !== undefined) {
+      const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
+      return trans[type]
+    }
+  }
 
   return (
     <Grid columns={2} onClick={() => setValue(val + 1)}>
       <Grid.Column>
-        {props.vitals.map(generateSegement)}
-        {getVitals('__temp__').map(generateSegement)}
+        {mostRecent.map((type) => {
+          return (generateSegement(type))
+        })}
       </Grid.Column>
 
       <Grid.Column stretched>
@@ -146,8 +101,11 @@ export default function VitalValuesComponent (props) {
               <Table.HeaderCell ></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          {GetVitalData(vitalType.get()).map(MakeTableRow)}
-
+          {/*   SHOULD ONLY BE ONE LINE LATER */}
+          {typeToArray(vitalType.get()).map(MakeTableRow)}
+          {typeToArray(vitalType.get()).map(MakeTableRow)}
+          {typeToArray(vitalType.get()).map(MakeTableRow)}
+          {typeToArray(vitalType.get()).map(MakeTableRow)}
         </Table>
       </Grid.Column>
     </Grid>
@@ -157,8 +115,8 @@ export default function VitalValuesComponent (props) {
 function MakeTableRow (event) {
   return (
     <Table.Row>
-      <Table.Cell textAlign='center'><b>{event.Value}</b></Table.Cell>
-      <Table.Cell textAlign='center'><b>{event.Time}</b></Table.Cell>
+      <Table.Cell textAlign='center'><b>{event.value}</b></Table.Cell>
+      <Table.Cell textAlign='center'><b>{event.time}</b></Table.Cell>
     </Table.Row>
   )
 }
