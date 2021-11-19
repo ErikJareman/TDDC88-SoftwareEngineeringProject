@@ -6,10 +6,11 @@ const { testTabs } = require('./3_test_patient/3_testPatientTabs.js')
 const { testLogin } = require('./2_test_login/1_testLogin.js')
 const { loginIfNeeded } = require('./2_test_login/loginUtilities.js')
 const { testPatientNameAndSSN } = require('./3_test_patient/5_testPatientNameAndSSN.js')
+const { testPatientUMS } = require('./3_test_patient/7_testPatientUMS.js')
 let driver
 const tabContents = { tab1: true, tab2: true, tab3: true }
 
-const PatientInfoResult = {
+const patientInfoResult = {
   roomOk: true,
   // teamOk: true,
   nameOk: true
@@ -40,7 +41,7 @@ describe('Testing pateint page', () => {
   })
 
   test('#3.1 (U51, U53) : Test patient info for correct data regarding Room number and Assigned team', async () => {
-    expect(await testPatientInfoBox(driver)).toMatchObject(PatientInfoResult) // TEAM IS NOT DISPLAYED IN PATIENT LIST ON HOME PAGE
+    expect(await testPatientInfoBox(driver)).toMatchObject(patientInfoResult) // TEAM IS NOT DISPLAYED IN PATIENT LIST ON HOME PAGE
   })
 
   test('"3.2 (SRS3.1.2.1) : Test the "back to patient list"-button', async () => {
@@ -59,5 +60,11 @@ describe('Testing pateint page', () => {
     await driver.get(url + 'home')
     await sleep(500)
     expect(await testPatientNameAndSSN(driver)).toMatchObject(patientHeader)
+  })
+
+  test('#3.6 (U12) : Test if a UMS element exists in patient page', async () => {
+    await driver.get(url + 'home')
+    await sleep(500)
+    expect(await testPatientUMS(driver)).toBe(true)
   })
 })
