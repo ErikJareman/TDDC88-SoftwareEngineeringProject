@@ -4,8 +4,8 @@ import { Icon } from 'semantic-ui-react'
 
 function EventCard (props) {
   const [color, setColor] = useState(props.color)
-  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pipett: 'syringe' }
-
+  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pipett: 'syringe', Medkit: 'medkit', Heartbeat: 'heartbeat' }
+  console.log(props.image)
   return (
     <>
       <table

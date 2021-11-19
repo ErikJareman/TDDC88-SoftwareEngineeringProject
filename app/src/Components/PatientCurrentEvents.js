@@ -19,7 +19,7 @@ function PatientCurrentEvents (props) {
   incoming = FilterEvents({ sortBy: 'time', list: incoming, filterBy: 'incoming' })
   outgoing = FilterEvents({ sortBy: 'time', list: incoming, filterBy: 'outgoing' })
 
-  console.log(outgoing)
+  console.log(incoming, outgoing)
 
   const panes = [
     {
