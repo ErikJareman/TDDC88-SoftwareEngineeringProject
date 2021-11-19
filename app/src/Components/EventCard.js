@@ -1,17 +1,11 @@
 import './EventCard.css'
 import React, { useState } from 'react'
-import homeImage from '../assets/home.png'
-import portalImage from '../assets/portal.png'
-import firstAidImage from '../assets/first_aid.png'
-import accessabilityImage from '../assets/accessability.png'
+import { Icon } from 'semantic-ui-react'
 
 function EventCard (props) {
   const [color, setColor] = useState(props.color)
-  const imgMap = new Map()
-  imgMap.set('home', homeImage)
-  imgMap.set('portal', portalImage)
-  imgMap.set('firstAid', firstAidImage)
-  imgMap.set('accessability', accessabilityImage)
+  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pipett: 'syringe' }
+
   return (
     <>
       <table
@@ -20,7 +14,7 @@ function EventCard (props) {
         <tr>
           <th><div style={{ backgroundColor: color }} id='rectangle'></div></th>
           <th><h4>{props.name}</h4></th>
-          <th><img src={imgMap.get(props.image)} id='shape'></img></th>
+          <th><h4><Icon name={sweToEng[props.image]} size='large' /></h4></th>
           <th><h4>{props.time}</h4></th>
         </tr>
       </table>

@@ -14,24 +14,31 @@ import EventCard from './EventCard'
 
 function PatientCurrentEvents (props) {
   const currentEvents = props.currentEvents
+  let incoming = props.currentEvents
+  let outgoing = props.currentEvents
+  incoming = FilterEvents({ sortBy: 'time', list: incoming, filterBy: 'incoming' })
+  outgoing = FilterEvents({ sortBy: 'time', list: incoming, filterBy: 'outgoing' })
+
+  console.log(outgoing)
+
   const panes = [
     {
       menuItem: { icon: 'newspaper outline big' },
       render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', list: currentEvents }).map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
       })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'envelope outline big' },
-      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'incoming', list: currentEvents }).map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
-      })} </Tab.Pane>
+      render: () => <Tab.Pane>{incoming.map((event) => {
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
+      })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'location arrow big' },
-      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', filterBy: 'outgoing', list: currentEvents }).map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.categories} />)
-      })} </Tab.Pane>
+      render: () => <Tab.Pane>{outgoing.map((event) => {
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
+      })}</Tab.Pane>
     }
   ]
 
