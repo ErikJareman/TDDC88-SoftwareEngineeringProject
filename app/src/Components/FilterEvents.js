@@ -21,7 +21,7 @@ export default function FilterEvents () {
       return (b[i] - a[i])
     }
   }
-
+  // Test
   const [props] = [...arguments]
   const [filterField, filterBy, sortBy, list] = [props.filterField, props.filterBy, props.sortBy, props.list]
   let sortedEvents = list
