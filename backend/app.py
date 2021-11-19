@@ -82,7 +82,7 @@ def patient_ums(patient_id):
     return jsonify(ums.to_dict('records'))
 
 
-# För att endast skicka puls (Inaktiv)
+# För att endast skicka puls (Inaktiv), pn
 """ @app.route('/patients/<int:patient_id>/vitals/heartrate')
 def puls(patient_id):
     df_puls = pd.read_csv("mock_vitals.csv", delimiter=',')
