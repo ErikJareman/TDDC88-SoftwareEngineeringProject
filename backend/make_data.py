@@ -44,7 +44,7 @@ def make_data(NUM_PATIENTS = 100):
     df_patients = pd.DataFrame(columns = ["id", "triageLevel", "arrival", "reason", "name", "SSN","location", "team", "room"])
     df_vitals = pd.DataFrame(columns = ["id", "time", "type", "value"])
     df_injections = pd.DataFrame(columns = ["id", "timein", "timeout", "type", "value", "localization", "procedure"])
-    df_events = pd.DataFrame(columns = ["id", "time", "category", "type"])
+    df_events = pd.DataFrame(columns = ["id", "time", "category", "type", "sent"])
     df_ums = pd.DataFrame(columns= ["id", "sensLevel", "medCondition", "careDeviation", "infection", "noStructureInfo"])
 
     fake = Faker()
@@ -110,16 +110,34 @@ def make_data(NUM_PATIENTS = 100):
     """
     EVENT_CATEGORIES = ["Gubbe", "Doktor", "Pippett", "Ambulans", "Hus"]
     EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omradnad", "Dosering "]
+    EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+
+    def generate_type(isSentType):
+        stringToReturn = ""
+        if isSentType:
+            stringToReturn = random.choice(EVENT_TYPES_SENT)
+        else:
+            stringToReturn = random.choice(EVENT_TYPES)
+        return stringToReturn
+    
+
     event_counter = 0
     for id in df_patients.id:
         entry_time, exit_time = random_times(2,8*60)
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Inlagd"]
+        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Inlagd", False]
         event_counter +=1
         for _ in range(int(random.randint(2,10))): #number of events per patient
-            df_events.loc[event_counter,:] = [id, random_times(1)[0], random.choice(EVENT_CATEGORIES),random.choice(EVENT_TYPES) ]
+            if random.uniform(0,1) < 0.2:
+                isSent = True
+            else:
+                isSent = False
+            df_events.loc[event_counter,:] = [id, random_times(1)[0], random.choice(EVENT_CATEGORIES),generate_type(isSent), isSent]
             event_counter +=1
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Lamnar"]
+        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Lamnar", False]
+        print(df_events.loc[event_counter])
         event_counter +=1
+
+    
 
     """  Generates values for the patients UMS """
     ums_counter = 0
@@ -135,7 +153,7 @@ def make_data(NUM_PATIENTS = 100):
     
     # print(df_patients.head(), "\n")
     # print(df_vitals.head(), "\n")       
-    # print(df_events.head(), "\n")
+    print(df_events, "\n")
     # print(df_injections.head(), "\n")
     
     
