@@ -74,6 +74,9 @@ export default function StartForm () {
       localStorage.setItem('localLocation', '')
       localStorage.setItem('locationText', '')
     }
+    localStorage.setItem('displayTeam1', true)
+    localStorage.setItem('displayTeam2', true)
+    localStorage.setItem('displayTeam3', true)
   }
 
   const handleSelectedRole = (event, data) => {

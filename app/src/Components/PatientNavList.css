@@ -79,3 +79,27 @@ a.nav-link {
     margin: auto;
 }
 
+div.divideContainer {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.teams {
+    width: fit-content;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+}
+
+.teams:hover {
+    color: rgba(50, 50, 50, 0.9);
+}
+
+.spacer {
+    color: white;
+}
+
