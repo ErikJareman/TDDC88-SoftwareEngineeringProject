@@ -108,17 +108,28 @@ def make_data(NUM_PATIENTS = 100):
         All Patients have betwen 2 and 10 events.
         ]
     """
-    EVENT_CATEGORIES = ["Gubbe", "Doktor", "Pippett", "Ambulans", "Hus"]
-    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omradnad", "Dosering "]
+    EVENT_CATEGORIES = ["eyedropper icon", "doctor icon", "medkit icon", "heartbeat icon", "street view icon"]
+    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering "]
     event_counter = 0
     for id in df_patients.id:
         entry_time, exit_time = random_times(2,8*60)
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Inlagd"]
+        df_events.loc[event_counter,:] = [id, entry_time,"street view icon", "Patient Inlagd"]
         event_counter +=1
         for _ in range(int(random.randint(2,10))): #number of events per patient
-            df_events.loc[event_counter,:] = [id, random_times(1)[0], random.choice(EVENT_CATEGORIES),random.choice(EVENT_TYPES) ]
-            event_counter +=1
-        df_events.loc[event_counter,:] = [id, entry_time,"Gubbe", "Patient Lamnar"]
+            temp_event = random.choice(EVENT_CATEGORIES)
+            if temp_event == "eyedropper icon":
+                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Labbsvar Blodprov" ]
+                event_counter +=1
+            elif temp_event == "doctor icon":
+                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Omvardnad" ]
+                event_counter +=1
+            elif temp_event == "heartbeat icon":
+                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Labbsvar EKG" ]
+                event_counter +=1
+            elif temp_event == "medkit icon":
+                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Dosering" ]
+                event_counter +=1
+        df_events.loc[event_counter,:] = [id, entry_time,"street view icon", "Patient Lamnar"]
         event_counter +=1
 
     """  Generates values for the patients UMS """
