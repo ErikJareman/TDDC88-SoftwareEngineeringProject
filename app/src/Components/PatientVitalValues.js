@@ -85,7 +85,7 @@ export default function VitalValuesComponent (props) {
     return instance !== undefined
   })
   // function to return array based on type in swedish. Can probably be solved in a better way.
-  function typeToArray (type) {
+  /* function typeToArray (type) {
     if (type !== undefined) {
       const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
       console.log(trans[type])
@@ -93,12 +93,26 @@ export default function VitalValuesComponent (props) {
     } else {
       return []
     }
+  } */
+
+  function typeToArray (type) {
+    let result = []
+    if (type !== undefined) {
+      const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
+      console.log(trans[type])
+      result = trans[type]
+      return result
+    }
+    return result
   }
 
   function safeRender () {
     if (vitalType.get() !== undefined) {
-      if (typeToArray(vitalType.get()).length > 0) {
-        return (typeToArray(vitalType.get()).map(MakeTableRow))
+      console.log(typeToArray(vitalType.get()))
+      if (typeToArray(vitalType.get()) !== undefined) {
+        if (typeToArray(vitalType.get()).length > 0) {
+          return (typeToArray(vitalType.get()).map(MakeTableRow))
+        }
       }
     }
   }
