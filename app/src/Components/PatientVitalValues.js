@@ -84,22 +84,12 @@ export default function VitalValuesComponent (props) {
   mostRecent = mostRecent.filter((instance) => {
     return instance !== undefined
   })
-  // function to return array based on type in swedish. Can probably be solved in a better way.
-  /* function typeToArray (type) {
-    if (type !== undefined) {
-      const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
-      console.log(trans[type])
-      return trans[type]
-    } else {
-      return []
-    }
-  } */
 
+  // function to return array based on type in swedish. Can probably be solved in a better way.
   function typeToArray (type) {
     let result = []
     if (type !== undefined) {
       const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
-      console.log(trans[type])
       result = trans[type]
       return result
     }
@@ -108,7 +98,6 @@ export default function VitalValuesComponent (props) {
 
   function safeRender () {
     if (vitalType.get() !== undefined) {
-      console.log(typeToArray(vitalType.get()))
       if (typeToArray(vitalType.get()) !== undefined) {
         if (typeToArray(vitalType.get()).length > 0) {
           return (typeToArray(vitalType.get()).map(MakeTableRow))
