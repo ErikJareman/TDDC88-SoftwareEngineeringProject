@@ -17,6 +17,7 @@ export default function Patient () {
   const [injections, setInjections] = useState()
   const [ekg] = useState()
   const [drugs] = useState()
+
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/vitals')
       .then(res => {
