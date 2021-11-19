@@ -19,7 +19,6 @@ async function testPatientInfoBox (driver) {
     })
     textList.push(info)
   }
-  console.log(textList)
   // Get data from Patientinfo-box (patient view)
   await driver.wait(until.elementLocated(By.css(
     'li:nth-child(1)')), 3000).click()
@@ -28,7 +27,6 @@ async function testPatientInfoBox (driver) {
     '.PatientInfo-div')), 3000).getText().then((val) => {
     return val
   })
-  console.log(patientInfo)
   // Check if data in patient list (home view) matches Patientinfo data (patient view)
   // textList = [0: timer, 1: reasonForVisit, 2: patientName, 3: patientSSN, 4: timeOfArrival, 5: room]
   if (patientInfo.includes('Room : ' + textList[5])) {
