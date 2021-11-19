@@ -19,8 +19,6 @@ function PatientCurrentEvents (props) {
   incoming = FilterEvents({ sortBy: 'time', list: incoming, filterField: 'sent', filterBy: false })
   outgoing = FilterEvents({ sortBy: 'time', list: outgoing, filterField: 'sent', filterBy: true })
 
-  console.log(incoming, outgoing)
-
   const panes = [
     {
       menuItem: { icon: 'newspaper outline big' },

@@ -56,11 +56,12 @@ export default function Patient () {
               <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} />
             </Segment>
           </Grid.Column>
-          <Grid.Column style={{ width: '67%' }}>
+          <Grid.Column style={{ width: '66%' }}>
             <Segment>
               <TimelineComponent />
             </Segment>
           </Grid.Column>
+
         </Grid.Row>
         <Grid.Row stretched>
           <Grid.Column style={{ width: '33%' }}>

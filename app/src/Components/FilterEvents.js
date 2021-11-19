@@ -12,7 +12,9 @@
 // takes a dictionary as parameter. With {sortBy='', filterBy=''}
 // Where:
 //       'sortBy' (optional) = field in list to sort by
-//       'filterBy' (optional) = field in list to filter by
+//       'filterField' (optional) = field in list to filter by
+//        'filterBy' = value field should equal
+
 export default function FilterEvents () {
   function compareTime (a, b, i) {
     if (b[i] === a[i] & i < a.length) {
@@ -25,18 +27,17 @@ export default function FilterEvents () {
   const [props] = [...arguments]
   const [filterField, filterBy, sortBy, list] = [props.filterField, props.filterBy, props.sortBy, props.list]
   let sortedEvents = list
+  // console.log('filterField,', filterField, 'filterBy', filterBy, 'sortBy', sortBy, 'list', list)
 
   if (sortedEvents.length > 0) {
     if (filterField !== undefined) {
       sortedEvents = sortedEvents.filter((event) => {
-        return event.filterField === filterBy
+        return event[filterField] === filterBy
       })
     }
     if (sortBy !== undefined || list.length > 1) {
       if (sortBy === 'time' || sortBy === 'timein') {
-        // console.log(sortedEvents[0][sortBy])
         sortedEvents.sort(function (a, b) {
-          // console.log([...a].length)
           const aTime = a[sortBy].split(':')
           const bTime = b[sortBy].split(':')
           return compareTime(aTime, bTime, 0)
