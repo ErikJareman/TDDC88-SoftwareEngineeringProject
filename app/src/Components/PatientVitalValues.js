@@ -88,7 +88,18 @@ export default function VitalValuesComponent (props) {
   function typeToArray (type) {
     if (type !== undefined) {
       const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
+      console.log(trans[type])
       return trans[type]
+    } else {
+      return []
+    }
+  }
+
+  function safeRender () {
+    if (vitalType.get() !== undefined) {
+      if (typeToArray(vitalType.get()).length > 0) {
+        return (typeToArray(vitalType.get()).map(MakeTableRow))
+      }
     }
   }
 
@@ -111,10 +122,14 @@ export default function VitalValuesComponent (props) {
             </Table.Row>
           </Table.Header>
           {/*   SHOULD ONLY BE ONE LINE LATER */}
+          {/* {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
-          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
-          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'} */}
+          {safeRender()}
+          {safeRender()}
+          {safeRender()}
+          {safeRender()}
         </Table>
       </Grid.Column>
     </Grid>
