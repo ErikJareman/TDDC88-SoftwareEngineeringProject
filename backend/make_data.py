@@ -44,7 +44,7 @@ def make_data(NUM_PATIENTS = 100):
     df_patients = pd.DataFrame(columns = ["id", "triageLevel", "arrival", "reason", "name", "SSN","location", "team", "room"])
     df_vitals = pd.DataFrame(columns = ["id", "time", "type", "value"])
     df_injections = pd.DataFrame(columns = ["id", "timein", "timeout", "type", "value", "localization", "procedure"])
-    df_events = pd.DataFrame(columns = ["id", "time", "category", "type"])
+    df_events = pd.DataFrame(columns = ["id", "time", "category", "type", "sent"])
     df_ums = pd.DataFrame(columns= ["id", "sensLevel", "medCondition", "careDeviation", "infection", "noStructureInfo"])
 
     fake = Faker()
@@ -74,17 +74,17 @@ def make_data(NUM_PATIENTS = 100):
     for id in df_patients.id:
         now = datetime.datetime.now().time
         
-        df_vitals.loc[vitals_counter,:] = [id, now(),"Puls", 75*np.random.normal(1,.15)]
+        df_vitals.loc[vitals_counter,:] = [id, now(),"Puls", round(75*np.random.normal(1,.15))]
         vitals_counter +=1
         
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Kroppstemperatur", 37.2+np.random.normal(0,.1)]
+        df_vitals.loc[vitals_counter,:] = [id, now(), "Kroppstemperatur", round(37.2+np.random.normal(0,.1), 1)]
         vitals_counter +=1
         
         
         df_vitals.loc[vitals_counter,:] = [id, now(), "Blodtryck", (blood_pressures[np.random.randint(0,len(blood_pressures))] )]
         vitals_counter +=1
         
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Andningsfrekvens", 19*np.random.normal(1,.3)]
+        df_vitals.loc[vitals_counter,:] = [id, now(), "Andningsfrekvens", round(19*np.random.normal(1,.3),1)]
         vitals_counter +=1
 
 
@@ -108,29 +108,55 @@ def make_data(NUM_PATIENTS = 100):
         All Patients have betwen 2 and 10 events.
         ]
     """
-    EVENT_CATEGORIES = ["eyedropper icon", "doctor icon", "medkit icon", "heartbeat icon", "street view icon"]
-    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering "]
+    EVENT_CATEGORIES = ["Gubbe", "Doktor", "Pippett", "Ambulans", "Hus", "Medkit", "Heartbeat"]
+    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"] 
+    EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+    EVENT_INLAGD = ["Gubbe", "Ambulans"]
+
+    def generate_type(isSentType):
+        stringToReturn = ""
+        if isSentType:
+            stringToReturn = random.choice(EVENT_TYPES_SENT)
+        else:
+            stringToReturn = random.choice(EVENT_TYPES)
+        return stringToReturn
+
+    # blodprov = pippett 
+    # Gubbe = inlagd
+    # Doktor = röntgen remiss, omvardnad
+    # Ambulans =
+    # Hus = lamnar
+    # Medkit = dosering
+    # Heartbeat = ekg
+    def generate_category(eventType):
+        stringToReturn = ""
+        if eventType == "Labbsvar Blodprov" or eventType == "Skickat Blodprov":
+            stringToReturn = "Pippett"
+        elif eventType == "Labbsvar EKG" or eventType == "Skickat EKG":
+            stringToReturn = "Heartbeat"
+        elif eventType == "Skickat Röntgen remiss" or eventType == "Omvardnad":
+            stringToReturn = "Doktor"
+        elif eventType == "Dosering":
+            stringToReturn = "Medkit"     
+        return stringToReturn
+
     event_counter = 0
     for id in df_patients.id:
         entry_time, exit_time = random_times(2,8*60)
-        df_events.loc[event_counter,:] = [id, entry_time,"street view icon", "Patient Inlagd"]
+        df_events.loc[event_counter,:] = [id, entry_time,random.choice(EVENT_INLAGD), "Patient Inlagd", False]
         event_counter +=1
         for _ in range(int(random.randint(2,10))): #number of events per patient
-            temp_event = random.choice(EVENT_CATEGORIES)
-            if temp_event == "eyedropper icon":
-                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Labbsvar Blodprov" ]
-                event_counter +=1
-            elif temp_event == "doctor icon":
-                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Omvardnad" ]
-                event_counter +=1
-            elif temp_event == "heartbeat icon":
-                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Labbsvar EKG" ]
-                event_counter +=1
-            elif temp_event == "medkit icon":
-                df_events.loc[event_counter,:] = [id, random_times(1)[0], temp_event,"Dosering" ]
-                event_counter +=1
-        df_events.loc[event_counter,:] = [id, entry_time,"street view icon", "Patient Lamnar"]
+            if random.uniform(0,1) < 0.2:
+                isSent = True
+            else:
+                isSent = False
+            eventType = generate_type(isSent)
+            df_events.loc[event_counter,:] = [id, random_times(1)[0], generate_category(eventType), eventType, isSent]
+            event_counter +=1
+        df_events.loc[event_counter,:] = [id, exit_time,"Hus", "Patient Lamnar", False]
         event_counter +=1
+
+    
 
     """  Generates values for the patients UMS """
     ums_counter = 0
@@ -146,7 +172,7 @@ def make_data(NUM_PATIENTS = 100):
     
     # print(df_patients.head(), "\n")
     # print(df_vitals.head(), "\n")       
-    # print(df_events.head(), "\n")
+    print(df_events, "\n")
     # print(df_injections.head(), "\n")
     
     
