@@ -29,7 +29,7 @@ ul li {
 
 div#linkList{
     width: 92%;
-    height: 40pt;
+    height: stretch;
     display: inline-flexbox;
     border-radius: 20px 0px 0px 20px;
     text-align: center;
@@ -44,7 +44,7 @@ h3.long {
     font-size: 18px;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 1.5%;
+    padding-top: 15px;
     padding-left: 2%;
 }
 
@@ -59,7 +59,7 @@ h3.medium {
     font-weight: bold;
     border-radius: 20px 0px 0px 20px;
     vertical-align: middle;
-    padding-top: 1.5%;
+    padding-top: 15px;
     justify-content: center;
 }
 h3.short {
@@ -71,7 +71,7 @@ h3.short {
     font-size: 18px;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 1.5%;
+    padding-top: 15px;
     justify-content: center;
 }
 
