@@ -33,9 +33,7 @@ export default function PatientNavList () {
       .then(res => {
         let persons = []
         persons = res.data
-        console.log(persons)
         persons.sort((a, b) => (a.team > b.team) ? 1 : ((b.team > a.team) ? -1 : 0))
-        console.log(persons)
         setPatients(persons)
       })
   }, [])
@@ -76,9 +74,12 @@ export default function PatientNavList () {
                     index === 1
                       ? <button className="teams" type="submit" onClick={() => { changeActive(1) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 1))]} size='large' /></button>
                       : (index === 2
-                          ? <button className="teams" type="submit" onClick={() => { changeActive(2) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 2))]} size='large' /></button>
-                          : <button className="teams" type="submit" onClick={() => { changeActive(3) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 3))]} size='large' /></button>
-                        )
+                        // eslint-disable-next-line indent
+                        ? <button className="teams" type="submit" onClick={() => { changeActive(2) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 2))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                        : <button className="teams" type="submit" onClick={() => { changeActive(3) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 3))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                      )
                   }
                 </div>
                 <li key={patient.id}>
@@ -114,9 +115,12 @@ export default function PatientNavList () {
                     index === 1
                       ? <button className="teams" type="submit" onClick={() => { changeActive(1) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 1))]} size='large' /></button>
                       : (index === 2
-                          ? <button className="teams" type="submit" onClick={() => { changeActive(2) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 2))]} size='large' /></button>
-                          : <button className="teams" type="submit" onClick={() => { changeActive(3) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 3))]} size='large' /></button>
-                        )
+                        // eslint-disable-next-line indent
+                        ? <button className="teams" type="submit" onClick={() => { changeActive(2) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 2))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                        : <button className="teams" type="submit" onClick={() => { changeActive(3) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 3))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                      )
                   }
                 </div>
                 <div>

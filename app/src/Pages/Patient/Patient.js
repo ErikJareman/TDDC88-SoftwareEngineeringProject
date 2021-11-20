@@ -15,7 +15,6 @@ export default function Patient () {
   const [vitals, setVitals] = useState([])
   const [currentEvents, setCurrentEvents] = useState([])
   const [injections, setInjections] = useState()
-  const [ekg] = useState()
   const [drugs] = useState()
 
   useEffect(() => {
@@ -27,19 +26,16 @@ export default function Patient () {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/events')
       .then(res => {
         setCurrentEvents(res.data)
+        console.log(res.data)
       })
     // request to get injections
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/injections')
       .then(res => {
         setInjections(res.data)
       })
-    // request to get EKG
-    /* axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/ekg')
-      .then(res => {
-        setEkg(res.data)
-      })
+
     // request to get list of drugs
-    axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/drugs')
+    /* axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/drugs')
       .then(res => {
         setDrugs(res.data)
       }) */
@@ -69,7 +65,7 @@ export default function Patient () {
             <PatientCurrentEvents currentEvents={currentEvents} patient={state.patients} />
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>
-            <VitalsField id={state.patients.id} vitals={vitals} injections={injections} ekg={ekg} drugs={drugs} events={currentEvents} />
+            <VitalsField id={state.patients.id} vitals={vitals} injections={injections} drugs={drugs} events={currentEvents} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
