@@ -1,35 +1,37 @@
 /**
  *  Component for the 'Patientinfo'-box on patient page.
  *
- *  WIP
  *
- *  Author David Råsberg
  */
 
-import './PatientInfo.css'
-import ReasonForVisit from './ReasonForVisit'
-import { Icon } from 'semantic-ui-react'
 import React from 'react'
-import TeamView from './TeamView'
-import RoomView from './RoomView'
 import TriageTimeLeft from './TriageTimeLeft'
-import FilterEvents from './FilterEvents'
+import accessability from '../assets/accessability.png'
 
 export default function PatientInfo (props) {
-  let lastChecked = FilterEvents({ list: props.vitals, sortBy: 'time' })[0]
-  if (lastChecked) {
-    lastChecked = lastChecked.time
+  const patient = props.patient
+  const triageColor = props.triageColor
+  const reason = 'I am having fever and headache... I am having fever and headache... I am having fever and headache... I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and  headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache '
+
+  const imageCss =
+  {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '40 %',
+    marginBottom: '5%'
   }
+
   return (
-    <div className='PatientInfo-div'>
-      <h1> Patientinfo  </h1>
-      <h5><Icon name='user' />{props.patient.name}, {props.patient.SSN}</h5>
-      <h5 style={{ backgroundColor: props.triageColor }}><Icon name='clock' /> <TriageTimeLeft key={props.patient.id + '.timeChecked'} triageLevel={props.patient.triageLevel} /></h5>
-      <h5><Icon name='address book' /> ISS: </h5>
-      <h5><Icon name='ambulance' /> Ambulans </h5>
-      <TeamView />
-      <RoomView />
-      <ReasonForVisit />
-    </div>
+    <div>
+      <img src={accessability} style={imageCss} />
+      <div className={'Row'} style={{ display: 'flex' }}>
+        <h5 style={{ backgroundColor: triageColor, width: '35%', padding: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} /></h5>
+        <h5 style={{ padding: '3px', marginTop: '0%', marginLeft: ' 5%' }}>{patient.reason}</h5>
+      </div>
+
+      {/* Cant get 'textOverflow to work...  */}
+      <div style={{ borderStyle: 'ridge', borderRadius: '5%', width: 'auto', height: 'auto', overflow: 'hidden', textOverflow: 'ellipsis' }}> {reason} </div>
+    </div >
   )
 }
