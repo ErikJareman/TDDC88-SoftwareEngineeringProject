@@ -26,7 +26,6 @@ export default function Patient () {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/events')
       .then(res => {
         setCurrentEvents(res.data)
-        console.log(res.data)
       })
     // request to get injections
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/injections')

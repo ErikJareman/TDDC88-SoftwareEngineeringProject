@@ -76,7 +76,7 @@ export default function TriageTimeLeft (props) {
   })
 
   if (checkPatientNowWarning) {
-    timerComponents = [<Icon key={'icon'} name='warning' color='red' />, '-', ...timerComponents]
+    timerComponents = [<Icon inverted key={'icon'} name='warning' color='red' />, '-', ...timerComponents]
   };
   return (
     <>

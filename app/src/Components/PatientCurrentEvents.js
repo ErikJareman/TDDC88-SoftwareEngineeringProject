@@ -18,23 +18,30 @@ function PatientCurrentEvents (props) {
   let outgoing = props.currentEvents
   incoming = FilterEvents({ sortBy: 'time', list: incoming, filterField: 'sent', filterBy: false })
   outgoing = FilterEvents({ sortBy: 'time', list: outgoing, filterField: 'sent', filterBy: true })
+  const eventTabsCss = {
+    width: '100%',
+    height: '50vh',
+    overflow: 'hidden',
+    overflowY: 'scroll',
+    padding: '3px'
+  }
 
   const panes = [
     {
       menuItem: { icon: 'newspaper outline big' },
-      render: () => <Tab.Pane>{FilterEvents({ sortBy: 'time', list: currentEvents }).map((event) => {
+      render: () => <Tab.Pane style={eventTabsCss}>{FilterEvents({ sortBy: 'time', list: currentEvents }).map((event) => {
         return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
       })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'envelope outline big' },
-      render: () => <Tab.Pane>{incoming.map((event) => {
+      render: () => <Tab.Pane style={eventTabsCss}>{incoming.map((event) => {
         return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
       })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'location arrow big' },
-      render: () => <Tab.Pane>{outgoing.map((event) => {
+      render: () => <Tab.Pane style={eventTabsCss}>{outgoing.map((event) => {
         return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
       })}</Tab.Pane>
     }
