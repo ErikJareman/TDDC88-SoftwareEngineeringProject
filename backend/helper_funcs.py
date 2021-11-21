@@ -8,8 +8,14 @@ import datetime,time
     time.hour()
 """
 def random_times(num=2,maxdiff_mins=6*60):
-    start = datetime.datetime.now()
-    return [(start+datetime.timedelta(minutes=np.random.uniform(0,maxdiff_mins))).time() for _ in range(num)]
+    lo = datetime.datetime.now()
+    #hi = lo+datetime.timedelta(minutes=maxdiff_mins)
+    
+    vals = [(lo+datetime.timedelta(minutes=np.random.uniform(1,maxdiff_mins))).time() for _ in range(num)]
+    vals = [v.replace(microsecond=0) for v in vals]
+    
+    vals.sort()
+    return vals
 
 """[returns some number of pulse based on some mean. capped at 180.]
 """
