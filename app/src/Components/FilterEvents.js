@@ -28,22 +28,25 @@ export default function FilterEvents () {
   const [filterField, filterBy, sortBy, list] = [props.filterField, props.filterBy, props.sortBy, props.list]
   let sortedEvents = list
   // console.log('filterField,', filterField, 'filterBy', filterBy, 'sortBy', sortBy, 'list', list)
-
-  if (sortedEvents.length > 0) {
-    if (filterField !== undefined) {
-      sortedEvents = sortedEvents.filter((event) => {
-        return event[filterField] === filterBy
-      })
-    }
-    if (sortBy !== undefined || list.length > 1) {
-      if (sortBy === 'time' || sortBy === 'timein') {
-        sortedEvents.sort(function (a, b) {
-          const aTime = a[sortBy].split(':')
-          const bTime = b[sortBy].split(':')
-          return compareTime(aTime, bTime, 0)
+  try {
+    if (sortedEvents.length > 0) {
+      if (filterField !== undefined) {
+        sortedEvents = sortedEvents.filter((event) => {
+          return event[filterField] === filterBy
         })
       }
+      if (sortBy !== undefined || list.length > 1) {
+        if (sortBy === 'time' || sortBy === 'timein') {
+          sortedEvents.sort(function (a, b) {
+            const aTime = a[sortBy].split(':')
+            const bTime = b[sortBy].split(':')
+            return compareTime(aTime, bTime, 0)
+          })
+        }
+      }
     }
+  } catch (error) {
+    console.log('sortedEvents probably undefined. Error thrown in FilterEvents')
   }
   return sortedEvents
 }

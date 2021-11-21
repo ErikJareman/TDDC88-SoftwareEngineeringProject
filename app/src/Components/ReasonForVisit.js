@@ -12,15 +12,14 @@
  * function ReasonForVisit() - Nikil
  */
 import React from 'react'
-import { Segment, Icon } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 
 // Variable for storing the reason for visit.
 const Reason = 'I am having fever and headache...'
 
 // function for displaying the information.
 const ReasonForVisit = () =>
-<>
-    <h5>Aktuellt händelseförlopp<Icon disabled name='search plus' /></h5>
-    <Segment compact>{Reason}</Segment>
-</>
+    <>
+        <Segment compact>{Reason}</Segment>
+    </>
 export default ReasonForVisit
