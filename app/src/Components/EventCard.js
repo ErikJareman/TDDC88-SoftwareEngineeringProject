@@ -10,6 +10,7 @@ import './EventCard.css'
 import React, { useState } from 'react'
 import { Popup } from 'reactjs-popup'
 import { Icon } from 'semantic-ui-react'
+import pipett from '../assets/pipett.png'
 
 function EventCard (props) {
   const [opa, setOpa] = useState('100%')
@@ -42,14 +43,14 @@ function EventCard (props) {
     </>
   )
 
-  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: 'syringe', Medkit: 'medkit', Heartbeat: 'heartbeat' }
+  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: pipett, Medkit: 'medkit', Heartbeat: 'heartbeat' }
 
   return (
     <>
       <Popup trigger={
         <table id='patient-inlagd-group'>
           <tr>
-            <th style={{ width: '15%' }}><h4><Icon name={sweToEng[props.image]} size='large' /></h4></th>
+            <th style={{ width: '15%' }}><h4>{props.image === 'Pippett' ? <img style={{ height: '2vh' }} src={sweToEng[props.image]}></img> : <Icon name={sweToEng[props.image]} size='large' />}</h4></th>
             <th style={{ width: '60%' }}><h4 id='event-text'>{props.name}</h4></th>
             <th style={{ width: '15%' }}><h4>{props.time}</h4></th>
             <th style={{ width: '10%' }}><div id='dot-div' style={{ opacity: opa }}><span id='dot'></span></div></th>
@@ -63,7 +64,7 @@ function EventCard (props) {
               <p>{props.time}</p>
             </th>
             <th>
-              <Icon name={sweToEng[props.image]} size='large' />
+              {props.image === 'Pippett' ? <img style={{ height: '2vh' }} src={sweToEng[props.image]}></img> : <Icon name={sweToEng[props.image]} size='large' />}
             </th>
           </table>
           {details}
