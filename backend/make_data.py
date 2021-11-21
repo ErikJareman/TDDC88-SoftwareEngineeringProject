@@ -50,7 +50,7 @@ def make_data(NUM_PATIENTS = 100):
     fake = Faker()
     df_patients["id"] = [i for i in range(NUM_PATIENTS)]
     df_patients["triageLevel"] = [random.randint(1, 4) for _ in range(NUM_PATIENTS)]
-    df_patients["arrival"] = [generate_arrival() for _ in range(NUM_PATIENTS)]
+    df_patients["arrival"] = random_times(NUM_PATIENTS,24*60)
     df_patients["reason"] = [generate_reason() for _ in range(NUM_PATIENTS)]
     df_patients["name"] = [fake.name() for _ in range(NUM_PATIENTS)]
     df_patients["location"] = [random.choice(LOCATIONS) for _ in range(NUM_PATIENTS)]
@@ -58,6 +58,7 @@ def make_data(NUM_PATIENTS = 100):
     df_patients["team"] = [random.choice(list("123")) for _ in range(NUM_PATIENTS)]
     df_patients["room"] = [random.randint(1, 10) for _ in range(NUM_PATIENTS)]
     
+    df_patients.sort_values(by=["team","id"],inplace=True)
   
   
   
@@ -71,21 +72,24 @@ def make_data(NUM_PATIENTS = 100):
     
     blood_pressures = [(90,60),(95, 75), (84,62), (78,59)]
     vitals_counter = 0
+    times = random_times(4 ,2*60)
+    
     for id in df_patients.id:
-        now = datetime.datetime.now().time
         
-        df_vitals.loc[vitals_counter,:] = [id, now(),"Puls", round(75*np.random.normal(1,.15))]
-        vitals_counter +=1
-        
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Kroppstemperatur", round(37.2+np.random.normal(0,.1), 1)]
-        vitals_counter +=1
-        
-        
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Blodtryck", (blood_pressures[np.random.randint(0,len(blood_pressures))] )]
-        vitals_counter +=1
-        
-        df_vitals.loc[vitals_counter,:] = [id, now(), "Andningsfrekvens", round(19*np.random.normal(1,.3),1)]
-        vitals_counter +=1
+        for t in times:
+            
+            df_vitals.loc[vitals_counter,:] = [id, t,"Puls", round(75*np.random.normal(1,.15))]
+            vitals_counter +=1
+            
+            df_vitals.loc[vitals_counter,:] = [id, t, "Kroppstemperatur", round(37.2+np.random.normal(0,.1), 1)]
+            vitals_counter +=1
+            
+            
+            df_vitals.loc[vitals_counter,:] = [id, t, "Blodtryck", (blood_pressures[np.random.randint(0,len(blood_pressures))] )]
+            vitals_counter +=1
+            
+            df_vitals.loc[vitals_counter,:] = [id, t, "Andningsfrekvens", round(19*np.random.normal(1,.3),1)]
+            vitals_counter +=1
 
 
     """[Filling in df_injectios. Will need to add all available types, localizationsm and procedures.
@@ -140,21 +144,24 @@ def make_data(NUM_PATIENTS = 100):
             stringToReturn = "Medkit"     
         return stringToReturn
 
-    event_counter = 0
+    total_event_counter = 0
     for id in df_patients.id:
-        entry_time, exit_time = random_times(2,8*60)
-        df_events.loc[event_counter,:] = [id, entry_time,random.choice(EVENT_INLAGD), "Patient Inlagd", False]
-        event_counter +=1
-        for _ in range(int(random.randint(2,10))): #number of events per patient
+        #entry_time, exit_time = random_times(2,8*60)
+        
+        MAX_EVENTS = 12
+        times = random_times(MAX_EVENTS)
+        df_events.loc[total_event_counter,:] = [id, times[0],random.choice(EVENT_INLAGD), "Patient Inlagd", False]
+        total_event_counter +=1
+        for i in range(int(random.randint(2,MAX_EVENTS-2))): #number of events per patient
             if random.uniform(0,1) < 0.2:
                 isSent = True
             else:
                 isSent = False
             eventType = generate_type(isSent)
-            df_events.loc[event_counter,:] = [id, random_times(1)[0], generate_category(eventType), eventType, isSent]
-            event_counter +=1
-        df_events.loc[event_counter,:] = [id, exit_time,"Hus", "Patient Lamnar", False]
-        event_counter +=1
+            df_events.loc[total_event_counter,:] = [id, times[i], generate_category(eventType), eventType, isSent]
+            total_event_counter +=1
+        df_events.loc[total_event_counter,:] = [id, times[-1],"Hus", "Patient Lamnar", False]
+        total_event_counter +=1
 
     
 
@@ -170,10 +177,10 @@ def make_data(NUM_PATIENTS = 100):
         ums_counter +=1
 
     
-    # print(df_patients.head(), "\n")
-    # print(df_vitals.head(), "\n")       
+    print(df_patients.head(), "\n")
+    print(df_vitals.head(), "\n")       
     print(df_events, "\n")
-    # print(df_injections.head(), "\n")
+    print(df_injections.head(), "\n")
     
     
     
