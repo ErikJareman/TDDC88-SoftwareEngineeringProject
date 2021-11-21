@@ -49,7 +49,13 @@ function PatientCurrentEvents (props) {
 
   return (
     <div>
-      <Tab panes={panes} />
+      <Tab
+        menu={{
+          attached: true,
+          tabular: true,
+          style: { display: 'flex', justifyContent: 'center' }
+        }}
+        panes={panes} />
     </div>
   )
 }
