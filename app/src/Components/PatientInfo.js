@@ -11,7 +11,7 @@ import accessability from '../assets/accessability.png'
 export default function PatientInfo (props) {
   const patient = props.patient
   const triageColor = props.triageColor
-  const reason = 'I am having fever and headache... I am having fever and headache... I am having fever and headache... I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and  headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache '
+  const reason = 'I am having fever and headache... I am having fever and headache... I am having fever and headache... I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and  headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache'
 
   const imageCss =
   {
@@ -20,6 +20,17 @@ export default function PatientInfo (props) {
     marginRight: 'auto',
     width: '40 %',
     marginBottom: '5%'
+  }
+
+  const infoBoxCss = {
+    borderStyle: 'ridge',
+    borderRadius: '5%',
+    width: '100%',
+    height: '31vh',
+    overflow: 'hidden',
+    // textOverflow: 'ellipsis'
+    overflowY: 'scroll',
+    padding: '3px'
   }
 
   return (
@@ -31,7 +42,7 @@ export default function PatientInfo (props) {
       </div>
 
       {/* Cant get 'textOverflow to work...  */}
-      <div style={{ borderStyle: 'ridge', borderRadius: '5%', width: 'auto', height: 'auto', overflow: 'hidden', textOverflow: 'ellipsis' }}> {reason} </div>
+      <div style={infoBoxCss}> {reason} </div>
     </div >
   )
 }
