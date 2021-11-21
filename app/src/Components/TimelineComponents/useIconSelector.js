@@ -1,9 +1,10 @@
 /**
  * useIconSelector.js
  *
- * function useIconSelector() - Erik Jareman - DRAFT
+ * Returns the function getImg(eventName) used to select the correct icon based on event name.
+ * The function getImg(eventName) returns an image.
  *
- * this file contains the icon-logic used by the timeline
+ * function useIconSelector() - Erik Jareman - FINAL
  */
 
 import {
@@ -14,6 +15,7 @@ import {
   SkickatIcon,
   Svar1Icon,
   Svar2Icon,
+  PipettIcon,
   NotFoundImage
 } from '../../assets/timelineIcons/index'
 
@@ -41,6 +43,9 @@ const useIconSelector = () => {
         return img
       case 'Svar2':
         img.src = Svar2Icon
+        return img
+      case 'Pipett':
+        img.src = PipettIcon
         return img
       default:
         img.src = NotFoundImage
