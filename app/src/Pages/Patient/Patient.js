@@ -53,7 +53,7 @@ export default function Patient () {
           </Grid.Column>
           <Grid.Column style={{ width: '66%' }}>
             <Segment>
-              <TimelineComponent />
+              <TimelineComponent patient={state.patients}/>
             </Segment>
           </Grid.Column>
 

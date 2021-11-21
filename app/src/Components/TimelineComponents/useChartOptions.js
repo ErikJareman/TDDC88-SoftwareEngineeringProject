@@ -1,6 +1,17 @@
+/**
+ * useChartOptions.js
+ *
+ * Returns all options needed for the timeline chart (timeline component)
+ *
+ * function useChartOptions - Erik Jareman - FINAL
+ */
+
 export default function useChartOptions (reloadOnZoom) {
   const options = {
     plugins: {
+      tooltip: {
+        enabled: false
+      },
       datalabels: {
         textAlign: 'center',
         anchor: 'start',
@@ -34,7 +45,7 @@ export default function useChartOptions (reloadOnZoom) {
     },
     maintainAspectRatio: false,
     scales: {
-      x: { // offset=true gives spacing on side, but also does not disp. time at ends
+      x: {
         type: 'time',
         time: {
           unit: 'hour',
@@ -43,15 +54,15 @@ export default function useChartOptions (reloadOnZoom) {
           }
         },
         grid: {
-          display: true // false = hide gridlines x
+          display: true
         }
       },
       y: {
-        display: false, // hide gridlines & axis y
+        display: false,
         beginAtZero: true,
         steps: 5,
         stepValue: 1,
-        max: 4.3,
+        max: 4.4,
         min: 0.2
       }
     }

@@ -11,6 +11,7 @@ import VardIcon from './vard.svg'
 import SkickatIcon from './skickat.svg'
 import Svar1Icon from './svar1.svg'
 import Svar2Icon from './svar2.svg'
+import PipettIcon from './pipett.svg'
 import NotFoundImage from './notFound.svg'
 
 export {
@@ -21,5 +22,6 @@ export {
   SkickatIcon,
   Svar1Icon,
   Svar2Icon,
+  PipettIcon,
   NotFoundImage
 }
