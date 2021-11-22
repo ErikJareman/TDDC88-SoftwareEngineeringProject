@@ -10,7 +10,7 @@ async function testTabs (driver) {
   }
   // Go to top patient in patient list (home view)
   await driver.wait(until.elementLocated(By.css(
-    'li:nth-child(1)')), 3000).click()
+    'ul > li:nth-child(2)')), 3000).click()
   await sleep(500)
   // Get tabs and content-box under tab
   const tab1 = await driver.wait(until.elementLocated(By.css('.card')), 3000)

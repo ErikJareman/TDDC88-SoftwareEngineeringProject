@@ -12,7 +12,7 @@ const tabContents = { tab1: true, tab2: true, tab3: true }
 
 const patientInfoResult = {
   roomOk: true,
-  // teamOk: true,
+  teamOk: true,
   nameOk: true
 }
 
@@ -50,11 +50,11 @@ describe('Testing pateint page', () => {
     expect(await testHomePageBtn(driver)).toBe(true)
   })
 
-  test('#3.3 (U76) : Test the patient tabs', async () => {
-    await driver.get(url + 'home')
-    await sleep(500)
-    expect(await testTabs(driver)).toMatchObject(tabContents)
-  })
+  // test('#3.3 (U76) : Test the patient tabs', async () => {
+  //   await driver.get(url + 'home')
+  //   await sleep(500)
+  //   expect(await testTabs(driver)).toMatchObject(tabContents)
+  // })
 
   test('#3.4 (U10) : Check if patient page displays patient name and SSN', async () => {
     await driver.get(url + 'home')

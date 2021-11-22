@@ -4,7 +4,7 @@ const { sleep } = require('../testUtilities.js')
 /** Checks if the UMS symbol exists */
 async function testPatientUMS (driver) {
   await driver.wait(until.elementLocated(By.css(
-    'li:nth-child(1)')), 3000).click()
+    'ul > li:nth-child(2)')), 3000).click()
   await sleep(500)
   try {
     const ums = await driver.wait(until.elementLocated(By.css(
