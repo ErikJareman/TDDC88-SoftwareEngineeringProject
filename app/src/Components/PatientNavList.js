@@ -17,6 +17,7 @@ import { Icon } from 'semantic-ui-react'
  * only psuedo-data
  * Philip Nylén, Erik Jareman
  * FIXING
+ * Notification functionality added - Nikil
  */
 export default function PatientNavList () {
   /**
@@ -39,7 +40,8 @@ export default function PatientNavList () {
   }, [])
 
   const handleChange = (id) => {
-    if (localStorage.getItem('patient' + id)) {
+    const Notif = JSON.parse(localStorage.getItem('patient' + id))
+    if (Notif === true) {
       localStorage.setItem('patient' + id, false)
     } else {
       localStorage.setItem('patient' + id, true)
@@ -58,7 +60,6 @@ export default function PatientNavList () {
   }
 
   const booleanToArrow = { true: 'caret down', false: 'caret right' }
-
   let index = 0
 
   return (
@@ -99,9 +100,9 @@ export default function PatientNavList () {
                   </div>
                   <a className='nav-link' href='/home' id='profilePicture'>
                     {
-                      localStorage.getItem('patient' + patient.id) === true
-                        ? <img src={checkboxselected} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
-                        : <img src={checkbox} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
+                      JSON.parse(localStorage.getItem('patient' + patient.id)) === true
+                        ? <img src={checkboxselected} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
+                        : <img src={checkbox} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
                     }
                   </a>
                 </li>
@@ -149,9 +150,9 @@ export default function PatientNavList () {
                 </div>
                 <a className='nav-link' href='/home' id='profilePicture'>
                   {
-                    localStorage.getItem('patient' + patient.id) === true
-                      ? <img src={checkboxselected} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
-                      : <img src={checkbox} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
+                    JSON.parse(localStorage.getItem('patient' + patient.id)) === true
+                      ? <img src={checkboxselected} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
+                      : <img src={checkbox} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
                   }
                 </a>
               </li>
