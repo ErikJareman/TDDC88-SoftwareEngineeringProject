@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 import HeaderField from '../../Components/HeaderField'
 import VitalsField from '../../Components/VitalsField'
 import axios from 'axios'
+import Refresher from '../../Components/Refresher'
 
 export default function Patient () {
   const { state } = useLocation()
@@ -65,6 +66,7 @@ export default function Patient () {
           <Grid.Column style={{ width: '67%' }}>
             <VitalsField id={state.patients.id} vitals={vitals} injections={injections} drugs={drugs} events={currentEvents} />
           </Grid.Column>
+          <Refresher />
         </Grid.Row>
       </Grid>
     </>
