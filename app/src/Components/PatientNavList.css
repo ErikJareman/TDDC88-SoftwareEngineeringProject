@@ -48,8 +48,8 @@ h3.long {
     padding-left: 2%;
 }
 
-/* We need to make the triage box fit in the nav list, we did not manage to move it up from bottom - Gustav and John*/
 h3.medium {
+    position: relative;
     width: 12%;
     display: inline-flex;
     margin: auto;
@@ -59,7 +59,7 @@ h3.medium {
     font-weight: bold;
     border-radius: 20px 0px 0px 20px;
     vertical-align: middle;
-    padding-top: 15px;
+    padding-top: 15px; 
     justify-content: center;
 }
 h3.short {
@@ -101,5 +101,10 @@ div.divideContainer {
 
 .spacer {
     color: white;
+}
+
+#exclamation{
+    margin-top: 1%;
+    margin-right: 5%;
 }
 
