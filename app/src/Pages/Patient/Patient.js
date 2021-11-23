@@ -10,6 +10,7 @@ import HeaderField from '../../Components/HeaderField'
 import VitalsField from '../../Components/VitalsField'
 import axios from 'axios'
 import Refresher from '../../Components/Refresher'
+// import './Patient.css'
 
 export default function Patient () {
   const { state } = useLocation()
@@ -47,7 +48,7 @@ export default function Patient () {
       <PatientNavBar patient={state.patients} />
       <Grid>
         <Grid.Row stretched>
-          <Grid.Column style={{ width: '33%' }}>
+          <Grid.Column id = "topLeft" style={{ width: '33%' }}>
             <Segment >
               <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} />
             </Segment>
@@ -60,7 +61,7 @@ export default function Patient () {
 
         </Grid.Row>
         <Grid.Row stretched>
-          <Grid.Column style={{ width: '33%' }}>
+          <Grid.Column id = "bottomLeft" style={{ width: '33%' }}>
             <PatientCurrentEvents currentEvents={currentEvents} patient={state.patients} />
           </Grid.Column>
           <Grid.Column style={{ width: '67%' }}>

@@ -7,6 +7,7 @@
 import React from 'react'
 import TriageTimeLeft from './TriageTimeLeft'
 import accessability from '../assets/accessability.png'
+import './PatientInfo.css'
 
 export default function PatientInfo (props) {
   const patient = props.patient
@@ -22,7 +23,7 @@ export default function PatientInfo (props) {
     marginBottom: '5%'
   }
 
-  const infoBoxCss = {
+  /* const infoBoxCss = {
     borderStyle: 'ridge',
     borderRadius: '5%',
     width: '100%',
@@ -31,18 +32,18 @@ export default function PatientInfo (props) {
     // textOverflow: 'ellipsis'
     overflowY: 'scroll',
     padding: '3px'
-  }
+  */
 
   return (
-    <div>
+    <div id="divi">
       <img src={accessability} style={imageCss} />
-      <div className={'Row'} style={{ display: 'flex' }}>
+      <div id = "textBox" style={{ display: 'flex' }}>
         <h5 style={{ backgroundColor: triageColor, width: '35%', padding: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} /></h5>
-        <h5 style={{ padding: '3px', marginTop: '0%', marginLeft: ' 5%' }}>{patient.reason}</h5>
+        <h5 style={{ padding: '3px', marginTop: '0%', marginLeft: ' 5%', height: ' 100%' }}>{patient.reason}</h5>
       </div>
 
-      {/* Cant get 'textOverflow to work...  */}
-      <div style={infoBoxCss}> {reason} </div>
+      <div id="textruta"> {reason} </div>
     </div >
   )
+  /* style={infoBoxCss} */
 }
