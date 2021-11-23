@@ -10,7 +10,7 @@ python_lint:
   script:
     - pip install pylint
     - cd backend/
-    - pylint *.py --disable=imports --disable=missing-function-docstring --disable=too-many-locals --disable=too-many-statements
+    - pylint *.py --disable=imports --disable=missing-function-docstring --disable=too-many-locals --disable=too-many-statements --disable=unspecified-encoding
 
 # Checks the code standard using eslint for React js
 reactjs_lint:
