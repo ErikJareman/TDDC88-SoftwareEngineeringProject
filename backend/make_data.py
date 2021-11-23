@@ -13,6 +13,20 @@ import numpy as np
 import datetime
 from helper_funcs import random_times
 
+LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
+REASONS = ["Benbrott", "Buksmartor", "Hjartkramp", "Ryggvark"]
+INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
+INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
+EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]
+EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+EVENT_INLAGD = ["Gubbe", "Ambulans"]
+MEDICIN_NAMES = ["Alvedon"]
+MEDICIN_STRENGTH = ["500mg"]
+MEDICIN_ABSORTION = ["Oralt"]
+MEDICIN_TYPE = ["Filmdragerad tablett"]
+MEDICIN_DOSAGE = ["2 tablett(-er) engangsdos"]
+BLOOD_PRESSURES = [(90, 60), (95, 75), (84, 62), (78, 59)]
+MAX_EVENTS = 12
 
 def generate_ssn():
     year = str(random.randint(1920, 2020))
@@ -33,11 +47,9 @@ def generate_arrival():
     return tim + ":" + sek
 
 def generate_reason():
-    REASONS = ["Benbrott", "Buksmartor", "Hjartkramp", "Ryggvark"]
     return random.choice(REASONS)
 
 def make_data(num_patients=100):
-    LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
     df_patients = pd.DataFrame(columns=["id", "triageLevel", "arrival",
                                         "reason", "name", "SSN", "location",
                                         "team", "room"])
@@ -48,6 +60,8 @@ def make_data(num_patients=100):
     df_events = pd.DataFrame(columns=["id", "time", "category", "type", "sent"])
     df_ums = pd.DataFrame(columns=["id", "sens_level", "med_condition",
                                    "care_deviation", "infection", "no_structure_info"])
+    df_medicin = pd.DataFrame(columns=["id", "name", "strength", "absortion",
+                                       "type", "dosage", "time"])
 
     fake = Faker()
     df_patients["id"] = [range(num_patients)]
@@ -65,7 +79,6 @@ def make_data(num_patients=100):
     # filling in vitals. base values for each patient is normally distributed with mean of
     # standard values. new vital values can be generated using functions in helper_funs.py
 
-    BLOOD_PRESSURES = [(90, 60), (95, 75), (84, 62), (78, 59)]
     vitals_counter = 0
     times = random_times(4, 2 * 60)
 
@@ -100,8 +113,6 @@ def make_data(num_patients=100):
     # [Filling in df_injectios. Will need to add all available types,
     # localizationsm and procedures.]
 
-    INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
-    INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
     injection_counter = 0
     for pid in df_patients.id:
         if np.random.uniform(0, 1) < .4: #this changes number of patients with infarter
@@ -122,10 +133,6 @@ def make_data(num_patients=100):
     # And they should probably be linked together, i assume this is used to specify icons and such.,
     # Entry and exit evennt are always entered.
     # All Patients have betwen 2 and 10 events.]
-
-    EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]
-    EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
-    EVENT_INLAGD = ["Gubbe", "Ambulans"]
 
     def generate_type(is_sent_type):
         string_to_return = ""
@@ -157,7 +164,6 @@ def make_data(num_patients=100):
     total_event_counter = 0
     for pid in df_patients.id:
         #entry_time, exit_time = random_times(2,8*60)
-        MAX_EVENTS = 12
         times = random_times(MAX_EVENTS, maxdiff_mins=3 * 60)
         timein = times[0]
         timeout = datetime.time(times[-1].hour + 1, times[-1].minute, times[-1].second)
@@ -187,6 +193,23 @@ def make_data(num_patients=100):
         total_event_counter += 1
 
     # Generates values for the patients UMS
+
+    # Medicin
+    medicin_counter = 0
+    for pid in df_patients.id:
+        df_medicin.loc[medicin_counter, :] = [
+            pid,
+            random.choice(MEDICIN_NAMES),
+            random.choice(MEDICIN_STRENGTH),
+            random.choice(MEDICIN_ABSORTION),
+            random.choice(MEDICIN_TYPE),
+            random.choice(MEDICIN_DOSAGE),
+            1
+        ]
+        print("Test medicin")
+        medicin_counter += 1
+
+    # Generates values for the patients UMS
     ums_counter = 0
     for pid in df_patients.id:
         sens_level = random.randint(0, 3)
@@ -204,10 +227,12 @@ def make_data(num_patients=100):
         ]
         ums_counter += 1
 
+
     print(df_patients.head(), "\n")
     print(df_vitals.head(), "\n")
     print(df_events, "\n")
     print(df_injections.head(), "\n")
+    print(df_medicin.head(), "\n")
 
     with open("mock_patient_data.csv", "w+") as file:
         df_patients.to_csv(file, index=False)
@@ -223,6 +248,9 @@ def make_data(num_patients=100):
 
     with open("mock_ums.csv", "w+") as file:
         df_ums.to_csv(file, index=False)
+
+    with open("mock_medicin.csv", "w+") as file:
+        df_medicin.to_csv(file, index=False)
 
 if __name__ == '__main__':
     make_data()

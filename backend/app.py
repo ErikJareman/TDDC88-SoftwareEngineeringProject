@@ -97,6 +97,12 @@ def patient_ums(patient_id):
     ums = df_ums[df_ums["id"] == patient_id]
     return jsonify(ums.to_dict('records'))
 
+# Returns information about a patients Medicin: id, name, strength, absortion, type, dosage, time
+@APP.route('/patients/<int:patient_id>/medicin')
+def patient_medicin(patient_id):
+    df_medicin = pd.read_csv("mock_medicin.csv", delimiter=',')
+    medicin = df_medicin[df_medicin["id"] == patient_id]
+    return jsonify(medicin.to_dict('records'))
 
 # För att endast skicka puls (Inaktiv)
 #@APP.route('/patients/<int:patient_id>/vitals/heartrate')
