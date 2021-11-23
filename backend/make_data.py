@@ -46,6 +46,7 @@ def make_data(NUM_PATIENTS = 100):
     df_injections = pd.DataFrame(columns = ["id", "timein", "timeout", "type", "value", "localization", "procedure"])
     df_events = pd.DataFrame(columns = ["id", "time", "category", "type", "sent"])
     df_ums = pd.DataFrame(columns= ["id", "sensLevel", "medCondition", "careDeviation", "infection", "noStructureInfo"])
+    df_medicin = pd.DataFrame(columns= ["id", "name", "strength", "absortion", "type", "dosage", "time"])
 
     fake = Faker()
     df_patients["id"] = [i for i in range(NUM_PATIENTS)]
@@ -165,6 +166,24 @@ def make_data(NUM_PATIENTS = 100):
 
     
 
+    """[Medicin
+        
+    ]
+    """
+ 
+
+    MEDICIN_NAMES = ["Alvedon"]
+    MEDICIN_STRENGTH = ["500mg"]    
+    MEDICIN_ABSORTION = ["Oralt"]    
+    MEDICIN_TYPE = ["Filmdragerad tablett"]    
+    MEDICIN_DOSAGE = ["2 tablett(-er) engangsdos"]    
+    
+    medicin_counter = 0
+    for id in df_patients.id:
+        df_medicin.loc[medicin_counter,:] = [id, random.choice(MEDICIN_NAMES),random.choice(MEDICIN_STRENGTH),random.choice(MEDICIN_ABSORTION),random.choice(MEDICIN_TYPE),random.choice(MEDICIN_DOSAGE), 1 ]
+        print ("Test medicin")
+        medicin_counter += 1
+
     """  Generates values for the patients UMS """
     ums_counter = 0
     for id in df_patients.id:
@@ -176,11 +195,12 @@ def make_data(NUM_PATIENTS = 100):
         df_ums.loc[ums_counter,:] = [id, sensLevel, medCondition, careDeviation, infection, noStructureInfo]
         ums_counter +=1
 
-    
+
     print(df_patients.head(), "\n")
     print(df_vitals.head(), "\n")       
     print(df_events, "\n")
     print(df_injections.head(), "\n")
+    print(df_medicin.head(), "\n")
     
     
     
@@ -198,6 +218,9 @@ def make_data(NUM_PATIENTS = 100):
 
     with open("mock_ums.csv", "w+") as f:
         df_ums.to_csv(f, index=False)
+
+    with open("mock_medicin.csv", "w+") as f:
+        df_medicin.to_csv(f, index=False)
 
     
     

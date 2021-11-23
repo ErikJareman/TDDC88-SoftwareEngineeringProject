@@ -54,7 +54,7 @@ def patient_vitals(patient_id):
     bFreq = float(bFreq_table.at[bFreq_table.index.values[0], "value"])
     bFreq_output = get_breathing_frequency(bFreq)[0]
     vitals.loc[(vitals["id"]==patient_id) & (vitals["type"]=='Andningsfrekvens'), "value"] = bFreq_output
-    
+
     return jsonify(vitals.to_dict('records')) 
 
 
@@ -81,6 +81,12 @@ def patient_ums(patient_id):
     ums = df_ums[df_ums["id"] == patient_id]
     return jsonify(ums.to_dict('records'))
 
+# Returns information about a patients Medicin: id, name, strength, absortion, type, dosage, time
+@app.route('/patients/<int:patient_id>/medicin')
+def patient_medicin(patient_id):
+    df_medicin = pd.read_csv("mock_medicin.csv", delimiter=',')
+    medicin = df_medicin[df_medicin["id"] == patient_id]
+    return jsonify(medicin.to_dict('records'))
 
 # För att endast skicka puls (Inaktiv)
 """ @app.route('/patients/<int:patient_id>/vitals/heartrate')
