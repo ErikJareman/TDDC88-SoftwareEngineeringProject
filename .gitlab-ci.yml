@@ -3,15 +3,14 @@ stages:
   - deploy
   - test
 
-#Checks the code standard using pylint
-#TODO: update path to real python code when we start using python
+# Checks the code standard using pylint
 python_lint:
   image: python:3.9.7
   stage: lint
   script:
     - pip install pylint
-    - cd app/testing/unit_testing/python
-    - pylint *.py --disable=imports
+    - cd backend/
+    - pylint *.py --disable=imports --disable=missing-function-docstring --disable=too-many-locals --disable=too-many-statements --disable=unspecified-encoding
 
 # Checks the code standard using eslint for React js
 reactjs_lint:
