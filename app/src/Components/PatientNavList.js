@@ -27,7 +27,7 @@ export default function PatientNavList () {
   * Philip Nylén
   * FINAL
   */
-  const triageColors = ['green', 'yellow', 'orange', 'red']
+
   const [patients, setPatients] = useState([])
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + localStorage.getItem('localLocation'))
@@ -87,10 +87,10 @@ export default function PatientNavList () {
                   <div id="linkList">
                     <Link to={{
                       pathname: `/patient/${patient.id}`,
-                      state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                      state: { patients: patient }
                     }}>
                       {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                      <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                      <h3 key={patient.id + '.timeChecked'} className='medium'><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                       <h3 className='long'>{patient.reason}</h3>
                       <h3 className='long'>{patient.name}</h3>
                       <h3 className='long'>{patient.SSN}</h3>
@@ -137,10 +137,10 @@ export default function PatientNavList () {
                 <div id="linkList">
                   <Link to={{
                     pathname: `/patient/${patient.id}`,
-                    state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                    state: { patients: patient }
                   }}>
                     {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                    <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                    <h3 key={patient.id + '.timeChecked'} className='medium' ><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
                     <h3 className='long'>{patient.reason}</h3>
                     <h3 className='long'>{patient.name}</h3>
                     <h3 className='long'>{patient.SSN}</h3>

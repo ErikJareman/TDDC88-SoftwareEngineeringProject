@@ -16,6 +16,7 @@ import exclamation from '../assets/exclamation.png'
 
 // Time corresponding to triageLevels
 const triageTimes = [0, 20, 15, 10, 5]
+const triageColors = ['green', 'yellow', 'orange', 'red']
 
 const calcTimeChecked = (triageTime) => {
   return new Date(Date.now() - triageTime * 60 * 1000 + Math.floor(Math.random() * triageTime * 60 * 1000))
@@ -24,6 +25,7 @@ const calcTimeChecked = (triageTime) => {
 export default function TriageTimeLeft (props) {
   const [triageTime] = useState(triageTimes[props.triageLevel])
   const [timeChecked] = useState(calcTimeChecked(triageTime))
+  const triageColor = triageColors[props.triageLevel - 1]
   let checkPatientNowWarning = false
   // Calculates time to check on patient.
   const calculateTimeToCheck = (timeChecked) => {
@@ -76,11 +78,19 @@ export default function TriageTimeLeft (props) {
   })
 
   if (checkPatientNowWarning) {
-    timerComponents = [<img key='icon' src={exclamation}></img>, '  -  ', ...timerComponents]
+    timerComponents = [<img style={{ marginTop: '4px', height: '15px' }} key='icon' src={exclamation}></img>, '  -  ', ...timerComponents]
   };
+
+  const timerCss = {
+    backgroundColor: triageColor,
+    width: '100%',
+    padding: '0px',
+    display: 'flex',
+    wordSpacing: '10px'
+  }
   return (
-    <>
+    <h3 style={timerCss}>
       {timerComponents}
-    </>
+    </h3>
   )
 }

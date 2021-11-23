@@ -37,8 +37,8 @@ export default function PatientInfo (props) {
     <div>
       <img src={accessability} style={imageCss} />
       <div className={'Row'} style={{ display: 'flex' }}>
-        <h5 style={{ backgroundColor: triageColor, width: '35%', padding: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} /></h5>
-        <h5 style={{ padding: '3px', marginTop: '0%', marginLeft: ' 5%' }}>{patient.reason}</h5>
+        <TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} color={triageColor} style={{ width: '50%' }} />
+        <h3 style={{ padding: '3px', marginTop: '0%', marginLeft: ' 5%' }}>{patient.reason}</h3>
       </div>
 
       {/* Cant get 'textOverflow to work...  */}
