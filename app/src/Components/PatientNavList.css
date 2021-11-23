@@ -29,7 +29,7 @@ ul li {
 
 div#linkList{
     width: 92%;
-    height: 40pt;
+    height: stretch;
     display: inline-flexbox;
     border-radius: 20px 0px 0px 20px;
     text-align: center;
@@ -44,20 +44,22 @@ h3.long {
     font-size: 18px;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 1.5%;
+    padding-top: 15px;
     padding-left: 2%;
 }
+
+/* We need to make the triage box fit in the nav list, we did not manage to move it up from bottom - Gustav and John*/
 h3.medium {
     width: 12%;
     display: inline-flex;
     margin: auto;
-    height: 98%;
+    height: 100%;
     color: black;
     font-size: 18px;
     font-weight: bold;
     border-radius: 20px 0px 0px 20px;
     vertical-align: middle;
-    padding-top: 1.5%;
+    padding-top: 15px;
     justify-content: center;
 }
 h3.short {
@@ -69,11 +71,35 @@ h3.short {
     font-size: 18px;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 1.5%;
+    padding-top: 15px;
     justify-content: center;
 }
 
 a.nav-link {
     margin: auto;
+}
+
+div.divideContainer {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.teams {
+    width: fit-content;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+}
+
+.teams:hover {
+    color: rgba(50, 50, 50, 0.9);
+}
+
+.spacer {
+    color: white;
 }
 

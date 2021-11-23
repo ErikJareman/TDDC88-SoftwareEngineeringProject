@@ -3,70 +3,147 @@
  * Isak Berntsson & Linus Bäckbro Kuusisto
  * issue #31
  */
-import React from 'react'
-import { Grid, Segment, Header, Icon } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
+import './VitalHistory.js'
+import FilterEvents from './FilterEvents'
+
+// vitalType is the the vital parameter that the user has pressed on, resulting in a table of historic values in the vital values component
+const vitalType = {
+  vitalTypeVal: sessionStorage.getItem('vitalKey'),
+
+  set (newVal) {
+    this.vitalTypeVal = newVal
+  },
+  get () {
+    if (this.vitalTypeVal !== undefined) {
+      return this.vitalTypeVal
+    } else {
+      console.log('inget värde!!!!!')
+    }
+  }
+}
+
 /**
- * Function that generates segment for one patient vaital-value.
+ * Function that generates segment for one patient vital-value.
  */
 function generateSegement (vitals) {
   return (
-  <Segment size='mini'>
-    <Grid columns={3}>
-      <Grid.Row verticalAlign='middle'>
-        <Grid.Column>
-          <Icon fitted name='arrow right' size='huge' id="icon"/>
-        </Grid.Column>
-        <Grid.Column textAlign='left'>
-          <Header id="typeHeader">
-          {vitals.type}
-          </Header>
-        </Grid.Column>
-        <Grid.Column textAlign='right'>
-          <Header id="valHeader">
-            {vitals.value}
-          </Header>
-          <Header id="timeHeader">
-            {vitals.time}
-          </Header>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  </Segment>
+    <>
+      {vitals !== undefined
+        ? <Segment onClick={() => handleClick(vitals.type)} size='mini'>
+          <Grid columns={2}>
+            <Grid.Row verticalAlign='middle'>
+              <Grid.Column textAlign='left'>
+                <Header id="typeHeader">
+                  {vitals.type}
+                </Header>
+              </Grid.Column>
+              <Grid.Column textAlign='right'>
+                <Header id="valHeader">
+                  {vitals.value}
+                </Header>
+                <Header id="timeHeader">
+                  {vitals.time}
+                </Header>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
+        : 'Ingen data tillgänglig'}
+    </>
   )
 }
+
 /**
- * Should call backend to get patient information. Currently returns static example information.
+ * Gets the vital type that the user has pressed on and saves it in vitalType.
  */
-function getVitals (patientID) {
-  // this should be ajax call to backend in future
-  const vitals = [
-    {
-      type: 'PULS',
-      time: '12:02',
-      value: '87'
-    },
-    {
-      type: 'ANDNING',
-      time: '12:03',
-      value: '16'
-    },
-    {
-      type: 'BLODTRYCK',
-      time: '12:00',
-      value: '177/84'
-    }
-  ]
-  return vitals
+function handleClick (type) {
+  vitalType.set(type)
+  sessionStorage.setItem('vitalKey', vitalType.vitalTypeVal)
 }
 
 /**
  * creates the full component by mapping over patient-data from backend and applying the generateSegment-function.
  */
-const SegmentHorizontalSegments = () => (
-  <Segment.Group size='mini'>
-    {getVitals('__temp__').map(generateSegement)}
-  </Segment.Group>
-)
+export default function VitalValuesComponent (props) {
+  const [val, setValue] = useState(0)
+  // every vital from backend
+  const vitals = props.vitals
 
-export default SegmentHorizontalSegments
+  // vitals broken down into the different types
+  const pulse = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Puls', sortBy: 'time' })
+  const temperature = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Kroppstemperatur', sortBy: 'time' })
+  const pressure = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Blodtryck', sortBy: 'time' })
+  const breathFreq = FilterEvents({ list: vitals, filterField: 'type', filterBy: 'Andningsfrekvens', sortBy: 'time' })
+
+  // array containing the other arrays
+  let mostRecent = [pulse[0], temperature[0], pressure[0], breathFreq[0]]
+  // removes undefines values
+  mostRecent = mostRecent.filter((instance) => {
+    return instance !== undefined
+  })
+
+  // function to return array based on type in swedish. Can probably be solved in a better way.
+  function typeToArray (type) {
+    let result = []
+    if (type !== undefined) {
+      const trans = { Puls: pulse, Kroppstemperatur: temperature, Blodtryck: pressure, Andningsfrekvens: breathFreq }
+      result = trans[type]
+      return result
+    }
+    return result
+  }
+
+  function safeRender () {
+    if (vitalType.get() !== undefined) {
+      if (typeToArray(vitalType.get()) !== undefined) {
+        if (typeToArray(vitalType.get()).length > 0) {
+          return (typeToArray(vitalType.get()).map(MakeTableRow))
+        }
+      }
+    }
+  }
+
+  return (
+    <Grid columns={2} onClick={() => setValue(val + 1)}>
+      <Grid.Column>
+        {mostRecent.length > 0
+          ? mostRecent.map((type) => {
+            return (generateSegement(type))
+          })
+          : 'No values'}
+      </Grid.Column>
+
+      <Grid.Column stretched>
+        <Table stackable>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell textAlign='center'><b>{vitalType.get()}</b></Table.HeaderCell>
+              <Table.HeaderCell ></Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          {/*   SHOULD ONLY BE ONE LINE LATER */}
+          {/* {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
+          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'} */}
+          {safeRender()}
+          {safeRender()}
+          {safeRender()}
+          {safeRender()}
+        </Table>
+      </Grid.Column>
+    </Grid>
+  )
+}
+
+function MakeTableRow (event) {
+  return (
+    <Table.Row>
+      <Table.Cell textAlign='center'><b>{event.value}</b></Table.Cell>
+      <Table.Cell textAlign='center'><b>{event.time}</b></Table.Cell>
+    </Table.Row>
+  )
+}

@@ -10,12 +10,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import checkbox from '../assets/checkbox.png'
 import checkboxselected from '../assets/checkboxselected.png'
+import { Icon } from 'semantic-ui-react'
 
 /**
  * The function PatientNavList renders the list of patients, currently
  * only psuedo-data
  * Philip Nylén, Erik Jareman
  * FIXING
+ * Notification functionality added - Nikil
  */
 export default function PatientNavList () {
   /**
@@ -30,48 +32,137 @@ export default function PatientNavList () {
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + localStorage.getItem('localLocation'))
       .then(res => {
-        const persons = res.data
+        let persons = []
+        persons = res.data
+        persons.sort((a, b) => (a.team > b.team) ? 1 : ((b.team > a.team) ? -1 : 0))
         setPatients(persons)
       })
   }, [])
 
   const handleChange = (id) => {
-    console.log('HEJSAN')
-    if (localStorage.getItem('patient' + id)) {
+    const Notif = JSON.parse(localStorage.getItem('patient' + id))
+    if (Notif === true) {
       localStorage.setItem('patient' + id, false)
     } else {
       localStorage.setItem('patient' + id, true)
     }
   }
 
+  const changeActive = (teamNo) => {
+    console.log(teamNo)
+    const isDisplayed = JSON.parse(localStorage.getItem('displayTeam' + teamNo))
+    if (isDisplayed === true) {
+      localStorage.setItem('displayTeam' + teamNo, false)
+    } else {
+      localStorage.setItem('displayTeam' + teamNo, true)
+    }
+    window.location.href = window.location
+  }
+
+  const booleanToArrow = { true: 'caret down', false: 'caret right' }
+  let index = 0
+
   return (
     <ul>
       {patients.map((patient) => {
-        return (
-          <li key={patient.id}>
-            <div id="linkList">
-              <Link to={{
-                pathname: `/patient/${patient.id}`,
-                state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
-              }}>
-                {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
-                <h3 className='long'>{patient.reason}</h3>
-                <h3 className='long'>{patient.name}</h3>
-                <h3 className='long'>{patient.SSN}</h3>
-                <h3 className='short'>{patient.arrival}</h3>
-                <h3 className='short'>{patient.room}</h3>
-              </Link>
-            </div>
-            <a className='nav-link' href='/home' id='profilePicture'>
-              {
-                localStorage.getItem('patient' + patient.id) === true
-                  ? <img src={checkboxselected} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
-                  : <img src={checkbox} className='trends' alt='Not found' onClick={handleChange(patient.id)} />
-              }
-            </a>
-          </li>
-        )
+        if (patient.team > index) {
+          index += 1
+          if (JSON.parse(localStorage.getItem('displayTeam' + patient.team)) === true) {
+            return (
+              <>
+                <div className="divideContainer">
+                  {
+                    index === 1
+                      ? <button className="teams" type="submit" onClick={() => { changeActive(1) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 1))]} size='large' /></button>
+                      : (index === 2
+                        // eslint-disable-next-line indent
+                        ? <button className="teams" type="submit" onClick={() => { changeActive(2) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 2))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                        : <button className="teams" type="submit" onClick={() => { changeActive(3) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 3))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                      )
+                  }
+                </div>
+                <li key={patient.id}>
+                  <div id="linkList">
+                    <Link to={{
+                      pathname: `/patient/${patient.id}`,
+                      state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                    }}>
+                      {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
+                      <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                      <h3 className='long'>{patient.reason}</h3>
+                      <h3 className='long'>{patient.name}</h3>
+                      <h3 className='long'>{patient.SSN}</h3>
+                      <h3 className='short'>{patient.arrival}</h3>
+                      <h3 className='short'>{patient.room}</h3>
+                    </Link>
+                  </div>
+                  <a className='nav-link' href='/home' id='profilePicture'>
+                    {
+                      JSON.parse(localStorage.getItem('patient' + patient.id)) === true
+                        ? <img src={checkboxselected} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
+                        : <img src={checkbox} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
+                    }
+                  </a>
+                </li>
+              </>
+            )
+          } else {
+            return (
+              <>
+                <div className="divideContainer">
+                  {
+                    index === 1
+                      ? <button className="teams" type="submit" onClick={() => { changeActive(1) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 1))]} size='large' /></button>
+                      : (index === 2
+                        // eslint-disable-next-line indent
+                        ? <button className="teams" type="submit" onClick={() => { changeActive(2) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 2))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                        : <button className="teams" type="submit" onClick={() => { changeActive(3) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 3))]} size='large' /></button>
+                        // eslint-disable-next-line indent
+                      )
+                  }
+                </div>
+                <div>
+                  <h1 className="spacer">Easter egg</h1>
+                </div>
+              </>
+            )
+          }
+        } else {
+          if (JSON.parse(localStorage.getItem('displayTeam' + patient.team)) === true) {
+            return (
+              <li key={patient.id}>
+                <div id="linkList">
+                  <Link to={{
+                    pathname: `/patient/${patient.id}`,
+                    state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                  }}>
+                    {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
+                    <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                    <h3 className='long'>{patient.reason}</h3>
+                    <h3 className='long'>{patient.name}</h3>
+                    <h3 className='long'>{patient.SSN}</h3>
+                    <h3 className='short'>{patient.arrival}</h3>
+                    <h3 className='short'>{patient.room}</h3>
+                  </Link>
+                </div>
+                <a className='nav-link' href='/home' id='profilePicture'>
+                  {
+                    JSON.parse(localStorage.getItem('patient' + patient.id)) === true
+                      ? <img src={checkboxselected} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
+                      : <img src={checkbox} className='trends' alt='Not found' onClick={() => { handleChange(patient.id) }} />
+                  }
+                </a>
+              </li>
+            )
+          } else {
+            return (
+              <></>
+            )
+          }
+        }
       })}
     </ul>
   )

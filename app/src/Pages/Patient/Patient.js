@@ -1,27 +1,45 @@
 import './Patient.css'
-
-import Refresher from '../../Components/Refresher'
 import PatientNavBar from '../../Components/PatientNavBar'
 import PatientInfo from '../../Components/PatientInfo'
 import TimelineComponent from '../../Components/TimelineComponents/TimelineComponent'
 import PatientCurrentEvents from '../../Components/PatientCurrentEvents'
-import PatientVitalValues from '../../Components/PatientVitalValues'
 import { Grid, Segment } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
-import React from 'react'
-import PatientInUt from '../../Components/PatientInUt'
+import React, { useEffect, useState } from 'react'
 import HeaderField from '../../Components/HeaderField'
-import EventCard from '../../Components/EventCard'
+import VitalsField from '../../Components/VitalsField'
+import axios from 'axios'
+import Refresher from '../../Components/Refresher'
 
 export default function Patient () {
   const { state } = useLocation()
+  const [vitals, setVitals] = useState([])
+  const [currentEvents, setCurrentEvents] = useState([])
+  const [injections, setInjections] = useState()
+  const [drugs] = useState()
 
-  const cards = [
-    <EventCard key='dosering' name='Medicindosering' time='13.38' color='green' image='accessability' />,
-    <EventCard key='ordination' name='Medicin ordination' time='17.00' color='blue' image='portal' />,
-    <EventCard key='Mat' name='Smörgås och saft' time='15.40' color='green' image='firstAid' />,
-    <EventCard key='Mat' name='Patient inlagd' time='13.00' color='blue' image='firstAid' />
-  ]
+  useEffect(() => {
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/vitals')
+      .then(res => {
+        setVitals(res.data)
+      })
+    // request to fetch data for currentEvents
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/events')
+      .then(res => {
+        setCurrentEvents(res.data)
+      })
+    // request to get injections
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/injections')
+      .then(res => {
+        setInjections(res.data)
+      })
+
+    // request to get list of drugs
+    /* axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/drugs')
+      .then(res => {
+        setDrugs(res.data)
+      }) */
+  }, [])
 
   return (
     <>
@@ -31,33 +49,24 @@ export default function Patient () {
         <Grid.Row stretched>
           <Grid.Column style={{ width: '33%' }}>
             <Segment >
-
-              <PatientInfo patient={state.patients} triageColor={state.triageColor} />
+              <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} />
             </Segment>
           </Grid.Column>
-          <Grid.Column style={{ width: '67%' }}>
+          <Grid.Column style={{ width: '66%' }}>
             <Segment>
-              <TimelineComponent />
+              <TimelineComponent patient={state.patients}/>
             </Segment>
           </Grid.Column>
+
         </Grid.Row>
         <Grid.Row stretched>
           <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientCurrentEvents cards={cards} patient={state.patients} />
-            </Segment>
+            <PatientCurrentEvents currentEvents={currentEvents} patient={state.patients} />
           </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientInUt />
-            </Segment>
+          <Grid.Column style={{ width: '67%' }}>
+            <VitalsField id={state.patients.id} vitals={vitals} injections={injections} drugs={drugs} events={currentEvents} />
           </Grid.Column>
-          <Grid.Column style={{ width: '33%' }}>
-            <Segment>
-              <PatientVitalValues patient={state.patients} />
-              <Refresher />
-            </Segment>
-          </Grid.Column>
+          <Refresher />
         </Grid.Row>
       </Grid>
     </>

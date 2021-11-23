@@ -12,7 +12,7 @@
  */
 
 import React, { useEffect, useState } from 'react'
-import { Icon } from 'semantic-ui-react'
+import exclamation from '../assets/exclamation.png'
 
 // Time corresponding to triageLevels
 const triageTimes = [0, 20, 15, 10, 5]
@@ -76,7 +76,7 @@ export default function TriageTimeLeft (props) {
   })
 
   if (checkPatientNowWarning) {
-    timerComponents = [<Icon key={'icon'} name='warning' color='red' />, '-', ...timerComponents]
+    timerComponents = [<img key='icon' src={exclamation}></img>, '  -  ', ...timerComponents]
   };
   return (
     <>
