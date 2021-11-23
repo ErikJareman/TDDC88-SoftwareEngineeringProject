@@ -150,8 +150,12 @@ def make_data(NUM_PATIENTS = 100):
         #entry_time, exit_time = random_times(2,8*60)
         
         MAX_EVENTS = 12
-        times = random_times(MAX_EVENTS)
-        df_events.loc[total_event_counter,:] = [id, times[0],random.choice(EVENT_INLAGD), "Patient Inlagd", False]
+        times = random_times(MAX_EVENTS,maxdiff_mins=3*60)
+        timein = times[0]
+        timeout = datetime.time(times[-1].hour+1, times[-1].minute, times[-1].second)
+        times = [datetime.time(t.hour +1, t.minute, t.second) for t in times] # times between 1 and 3 hours
+
+        df_events.loc[total_event_counter,:] = [id, timein,random.choice(EVENT_INLAGD), "Patient Inlagd", False]
         total_event_counter +=1
         for i in range(int(random.randint(2,MAX_EVENTS-2))): #number of events per patient
             if random.uniform(0,1) < 0.2:
@@ -161,7 +165,7 @@ def make_data(NUM_PATIENTS = 100):
             eventType = generate_type(isSent)
             df_events.loc[total_event_counter,:] = [id, times[i], generate_category(eventType), eventType, isSent]
             total_event_counter +=1
-        df_events.loc[total_event_counter,:] = [id, times[-1],"Hus", "Patient Lamnar", False]
+        df_events.loc[total_event_counter,:] = [id, timeout,"Hus", "Patient Lamnar", False]
         total_event_counter +=1
 
     

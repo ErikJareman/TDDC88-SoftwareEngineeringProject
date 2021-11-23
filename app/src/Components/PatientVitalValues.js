@@ -42,10 +42,10 @@ function generateSegement (vitals) {
               </Grid.Column>
               <Grid.Column textAlign='right'>
                 <Header id="valHeader">
-                  {vitals.value}
+                  {floatOrSplit(vitals.value)}
                 </Header>
                 <Header id="timeHeader">
-                  {vitals.time}
+                  {vitals.time.substring(0, 5)}
                 </Header>
               </Grid.Column>
             </Grid.Row>
@@ -139,11 +139,19 @@ export default function VitalValuesComponent (props) {
   )
 }
 
+function floatOrSplit (val) {
+  if (val[0] === '(') {
+    const split = val.substring(1).split(',')
+    return parseFloat(split[0]).toFixed(2).toString() + ' - ' + parseFloat(split[1]).toFixed(2).toString()
+  }
+  return parseFloat(val).toFixed(2).toString()
+}
+
 function MakeTableRow (event) {
   return (
     <Table.Row>
-      <Table.Cell textAlign='center'><b>{event.value}</b></Table.Cell>
-      <Table.Cell textAlign='center'><b>{event.time}</b></Table.Cell>
+      <Table.Cell textAlign='center'><b>{floatOrSplit(event.value)}</b></Table.Cell>
+      <Table.Cell textAlign='center'><b>{event.time.substring(0, 5)}</b></Table.Cell>
     </Table.Row>
   )
 }
