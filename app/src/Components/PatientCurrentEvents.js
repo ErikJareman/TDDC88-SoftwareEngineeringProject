@@ -22,7 +22,7 @@ function PatientCurrentEvents (props) {
     width: '100%',
     height: '40vh',
     overflow: 'hidden',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     padding: '2px',
     backgroundColor: '#f7f7f7',
     borderRadius: '5px'
