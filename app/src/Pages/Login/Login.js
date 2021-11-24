@@ -46,7 +46,7 @@ export default function Login () {
 
   return (
     <div className='page-container'>
-      <HeaderField />
+      <HeaderField notifications={false}/>
       {
         user.userID !== ''
           ? <Redirect to='/' /> // When logged in
