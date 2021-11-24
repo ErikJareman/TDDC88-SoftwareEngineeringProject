@@ -1,0 +1,35 @@
+#textBox {
+    background-color: white;
+    height: 100%;
+}
+div#textBox{
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+#divi{
+    background-color: #f7f7f7;
+}
+
+h5{
+    height: 100%;
+    width: 100%;
+}
+
+div#bottomLeft.column {
+    padding: 0px;
+}
+
+
+#textruta{
+    border-style: ridge;
+    border-radius: 5px;
+    width: 100%;
+    height: 31vh;
+    overflow: hidden;
+    overflow-Y: auto;
+    padding: 3px;
+    background-color: white;
+}
+
+/* f7f7f7 */
