@@ -17,6 +17,7 @@ import PatientVitalValues from './PatientVitalValues'
 import PatientEkg from './PatientEkg'
 import FilterEvents from './FilterEvents'
 import PatientDrugs from './PatientDrugs'
+import NoValueInfo from './NoValueInfo'
 
 export default function VitalFields (props) {
   const [id] = useState(props.id)
@@ -47,7 +48,7 @@ export default function VitalFields (props) {
             ? drugs.map((drug) => {
               return (<PatientDrugs key={drug.name + '_' + drug.time} drug={drug} />)
             })
-            : <>hej </>}
+            : <NoValueInfo />}
         </ul>
       </Tab.Pane>
     },
