@@ -128,7 +128,7 @@ export default function VitalValuesComponent (props) {
         <Table stackable>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell textAlign='center'><b>{vitalType.get()}</b></Table.HeaderCell>
+              <Table.HeaderCell textAlign = 'center' ><b>{vitalType.get()}</b></Table.HeaderCell>
               <Table.HeaderCell ></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -154,9 +154,11 @@ function floatOrSplit (val) {
 
 function MakeTableRow (event) {
   return (
-    <Table.Row>
-      <Table.Cell textAlign='center'><b>{floatOrSplit(event.value)}</b></Table.Cell>
-      <Table.Cell textAlign='center'><b>{event.time.substring(0, 5)}</b></Table.Cell>
+    <Table.Row className = "detailInfoClass">
+      <Table.Cell id = "detailedInfoID">
+      <Table.Cell id = "detailedValue"><b>{floatOrSplit(event.value)}</b></Table.Cell>
+      <Table.Cell id = "detailedTime"><b>{event.time.substring(0, 5)}</b></Table.Cell>
+        </Table.Cell>
     </Table.Row>
   )
 }
