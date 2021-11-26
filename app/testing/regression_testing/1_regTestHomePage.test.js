@@ -46,7 +46,7 @@ describe('Testing home page', () => {
     expect(await getReasonForVisit(driver)).toBe(true)
   })
 
-  test('#13.3 (U13): Check if the triage on the overview page has the right color', async() => {
+  test('#1.5 (U13): Check if the triage on the overview page has the right color', async() => {
     await driver.get(url + 'home')
     await sleep(500)
     expect(await testOverviewTriageIndication(driver)).toBe(true)

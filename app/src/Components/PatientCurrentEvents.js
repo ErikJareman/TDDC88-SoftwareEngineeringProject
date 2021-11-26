@@ -20,10 +20,12 @@ function PatientCurrentEvents (props) {
   outgoing = FilterEvents({ sortBy: 'time', list: outgoing, filterField: 'sent', filterBy: true })
   const eventTabsCss = {
     width: '100%',
-    height: '50vh',
+    height: '40vh',
     overflow: 'hidden',
-    overflowY: 'scroll',
-    padding: '3px'
+    overflowY: 'auto',
+    padding: '2px',
+    backgroundColor: '#f7f7f7',
+    borderRadius: '5px'
   }
 
   const panes = [

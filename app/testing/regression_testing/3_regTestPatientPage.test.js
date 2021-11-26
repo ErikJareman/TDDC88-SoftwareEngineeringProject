@@ -70,7 +70,7 @@ describe('Testing pateint page', () => {
     expect(await testPatientUMS(driver)).toBe(true)
   })
 
-  test('#13.2 (U13): Check if the triage on the patient page has the right color', async() => {
+  test('#3.7 (U13): Check if the triage on the patient page has the right color', async() => {
     await driver.get(url + 'home')
     await sleep(500)
     expect(await testPatientTriageIndication(driver)).toBe(true)

@@ -17,6 +17,14 @@ h1#headerText {
     font-weight: 700;
 }
 
+#linkarea3 {
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 1%;
+}
+
 #linkarea2 {
     width: fit-content;
     height: fit-content;
