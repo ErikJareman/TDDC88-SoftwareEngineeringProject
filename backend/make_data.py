@@ -174,7 +174,7 @@ def make_data(num_patients=100):
             pid,
             timein,
             random.choice(EVENT_INLAGD),
-            "Patient Inlagd",
+            "Patient Inkommen",
             False
         ]
         total_event_counter += 1
