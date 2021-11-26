@@ -8,6 +8,7 @@ import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 import FilterEvents from './FilterEvents'
+import NoValueInfo from './NoValueInfo'
 
 // vitalType is the the vital parameter that the user has pressed on, resulting in a table of historic values in the vital values component
 const vitalType = {
@@ -51,7 +52,7 @@ function generateSegement (vitals) {
             </Grid.Row>
           </Grid>
         </Segment>
-        : 'Ingen data tillgänglig'}
+        : <NoValueInfo />}
     </>
   )
 }
@@ -97,10 +98,17 @@ export default function VitalValuesComponent (props) {
   }
 
   function safeRender () {
+    let i = 0
+    const events = []
+    const vitalArr = typeToArray(vitalType.get())
     if (vitalType.get() !== undefined) {
-      if (typeToArray(vitalType.get()) !== undefined) {
-        if (typeToArray(vitalType.get()).length > 0) {
-          return (typeToArray(vitalType.get()).map(MakeTableRow))
+      if (vitalArr !== undefined) {
+        if (vitalArr.length > 0) {
+          while (i < 4 && i < vitalArr.length) {
+            events.push(MakeTableRow(vitalArr[i]))
+            i += 1
+          }
+          return (events)
         }
       }
     }
@@ -129,9 +137,6 @@ export default function VitalValuesComponent (props) {
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'} */}
-          {safeRender()}
-          {safeRender()}
-          {safeRender()}
           {safeRender()}
         </Table>
       </Grid.Column>
