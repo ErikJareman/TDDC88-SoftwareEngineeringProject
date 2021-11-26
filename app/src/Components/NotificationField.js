@@ -7,20 +7,26 @@
 */
 
 import React from 'react'
-import EventCard from './EventCard'
+import NotificationCard from './NotificationCard'
 import './NotificationField.css'
 
 function NotificationField (props) {
-  const alertList = props.events.map((event) =>
-    <EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category}/>
-  )
+  const alertList = props.events.map((event) => {
+    return (
+      <div key={event.event.id + event.patient.id} id='event-list' style={{ width: '300px' }}>
+        <NotificationCard patient={event.patient} event={event.event} />
+      </div>
+    )
+  })
 
   return (
     <>
-      <div id="not-header">
-        <h3>Notiser</h3>
+      <div id='notifications'>
+        <div id="not-header">
+          <h3>Notiser</h3>
+        </div>
+        {alertList}
       </div>
-      {alertList}
     </>
   )
 }

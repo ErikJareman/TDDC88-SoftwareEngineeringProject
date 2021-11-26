@@ -6,7 +6,7 @@ import HeaderField from '../../Components/HeaderField'
 export default function Start () {
   return (
     <div>
-      <HeaderField />
+      <HeaderField notifications={false} />
       <StartForm/>
     </div>
   )

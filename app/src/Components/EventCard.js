@@ -49,12 +49,14 @@ function EventCard (props) {
     <>
       <Popup trigger={
         <table id='patient-inlagd-group'>
-          <tr>
-            <th style={{ width: '15%' }}><h4>{props.image === 'Pippett' ? <img style={{ height: '2vh' }} src={sweToEng[props.image]}></img> : <Icon name={sweToEng[props.image]} size='large' />}</h4></th>
-            <th style={{ width: '60%' }}><h4 id='event-text'>{props.name}</h4></th>
-            <th style={{ width: '15%' }}><h4>{props.time.substring(0, 5)}</h4></th>
-            <th style={{ width: '10%' }}><div id='dot-div' style={{ opacity: opa }}><span id='dot'></span></div></th>
-          </tr>
+          <tbody>
+            <tr>
+              <th style={{ width: '15%' }}><h4>{props.image === 'Pippett' ? <img style={{ height: '2vh' }} src={sweToEng[props.image]}></img> : <Icon name={sweToEng[props.image]} size='large' />}</h4></th>
+              <th style={{ width: '60%' }}><h4 id='event-text'>{props.name}</h4></th>
+              <th style={{ width: '15%' }}><h4>{props.time.substring(0, 5)}</h4></th>
+              <th style={{ width: '10%' }}><div id='dot-div' style={{ opacity: opa }}><span id='dot'></span></div></th>
+            </tr>
+          </tbody>
         </table>
       } position='right top' onOpen={() => setOpa('0%')}>
         <div id='popup-div'>
