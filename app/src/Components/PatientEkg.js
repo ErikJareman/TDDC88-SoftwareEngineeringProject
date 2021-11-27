@@ -14,13 +14,7 @@ export default function PatientEkg (props) {
     <>
       <h2>
         {ekg !== undefined
-          ? <><img src={patientEkg} ></img>  <h4> Datum: Date here {ekg.time} </h4></>
-          /* <p>
-            {'Datum: ' + ekg.time.getFullYear() + '-' + ekg.time.getMonth() + '-' + ekg.time.getDay()}
-            </p>
-            <p>
-            {ekg.time.getHours() + ':' + ekg.time.getMinutes() + ':' + ekg.time.getSeconds()}
-          </p> */
+          ? <><img src={patientEkg} ></img>  <h4> Tid:  {ekg.time.substring(0, 5)} </h4></>
           : <NoValueInfo />}
       </h2>
     </>
