@@ -13,7 +13,7 @@ import './NotificationField.css'
 function NotificationField (props) {
   const alertList = props.events.map((event) => {
     return (
-      <div key={event.event.id + event.patient.id} id='event-list' style={{ width: '300px' }}>
+      <div className='notification-card' key={event.event.id + event.patient.id}>
         <NotificationCard patient={event.patient} event={event.event} />
       </div>
     )

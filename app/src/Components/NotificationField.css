@@ -5,4 +5,11 @@
 
 #not-header {
 	background-color: blue;
+	padding: 8px;
+}
+
+.notification-card {
+	padding-left: 8px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
