@@ -9,28 +9,31 @@
 import headerLogo from '../assets/headerLogo.png'
 import './HeaderField.css'
 import NotificationField from './NotificationField'
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
+import FilterEvents from './FilterEvents'
 import { Popup } from 'reactjs-popup'
 import { Link } from 'react-router-dom'
 
 function HeaderField (props) {
-  const [currentEvents, setCurrentEvents] = useState([])
-
   const patients = props.patients
-  let events = props.events
-  if (events == null && patients != null) {
+  let events
+  if (props.events == null && patients != null) {
     events = []
-    patients.some((patient) => {
+    patients.forEach((patient) => {
       // request to fetch data for currentEvents
       axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.id + '/events')
         .then(res => {
-          setCurrentEvents(res.data)
+          if (res.data != null) {
+            events.push({ patient: patient, event: FilterEvents({ sortBy: 'time', list: res.data })[0] })
+          }
         })
-      currentEvents.forEach((event) => {
-        events.push({ patient: patient, event: event })
-      })
-      return (events.length < 20)
+    })
+    events.sort((e1, e2) => e1.event.time < e2.event.time)
+  } else if (props.events != null) {
+    events = []
+    FilterEvents({ sortBy: 'time', list: props.events }).forEach((event) => {
+      events.push({ patient: props.patient, event: event })
     })
   }
   const clearLocal = () => {

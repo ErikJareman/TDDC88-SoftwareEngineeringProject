@@ -1,11 +1,24 @@
+/**
+* NotificationField.css
+*
+* Field of notifications when clicking on bell icon
+*
+* Martin Jonson - FINAL
+*/
 
 #notifications {
 	background-color: lightgrey;
+	border-radius: 18px;
+	border-width: 2px;
+	border-color: black;
+	border-style: solid;
+	overflow: hidden;
 }
 
 #not-header {
-	background-color: blue;
+	background-color: #204581;
 	padding: 8px;
+	color: white;
 }
 
 .notification-card {
