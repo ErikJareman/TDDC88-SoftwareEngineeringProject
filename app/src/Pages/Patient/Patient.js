@@ -44,7 +44,7 @@ export default function Patient () {
 
   return (
     <>
-      <HeaderField />
+      <HeaderField events={currentEvents} />
       <PatientNavBar patient={state.patients} />
       <Grid>
         <Grid.Row stretched style={{ paddingBottom: '0px' }}>
