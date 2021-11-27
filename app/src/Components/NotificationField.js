@@ -3,7 +3,7 @@
 *
 * Field of notifications when clicking on bell icon
 *
-* Martin Jonson - DRAFT
+* Martin Jonson - FINAL
 */
 
 import React from 'react'
