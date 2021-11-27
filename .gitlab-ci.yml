@@ -32,6 +32,7 @@ deploy:
     - gem install dpl
     - dpl --provider=heroku --app=backend-c4company --api-key=$HEROKU_APP_KEY
   only:
+    - deployFixes
     - development
 
 

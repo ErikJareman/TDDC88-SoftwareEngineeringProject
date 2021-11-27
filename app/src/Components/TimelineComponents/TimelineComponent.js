@@ -162,8 +162,7 @@ export default function TimelineComponent (patient) {
   }, [])
 
   return (
-  <div ref={targetRef} style={{ height: '330px' }}>
-    <h1 style={{ margin: 0 }}>Tidslinje</h1>
+  <div ref={targetRef} style={{ height: 'calc(25px + 37px + 31vh + 10px)' }}> {/** height based on PatientInfo component */}
     {backendEvents && initialWidth && <Scatter data={getData(backendEvents, initialWidth)} options={getOptions()} />}
   </div>
   )
