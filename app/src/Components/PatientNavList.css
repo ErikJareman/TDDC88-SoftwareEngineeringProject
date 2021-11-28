@@ -109,3 +109,7 @@ div.divideContainer {
     margin-right: 5%;
 }
 
+.trends {
+    filter: drop-shadow(2px 4px 4px rgba(50,50,50, 0.5));
+}
+
