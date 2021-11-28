@@ -14,12 +14,12 @@ export default function useDatasetStructure () {
   const datasetStructure = {
     datasets: [
       {
-        label: ['Patient Inlagd', 'Ankomst', 'Gubbe'], // {type, Short Desc., Category}
+        label: ['Patient Inkommen', 'Ankomst', 'Gubbe'], // {type, Short Desc., Category}
         pointStyle: getImg('Inlagd'),
         data: []
       },
       {
-        label: ['Patient Inlagd', 'Ankomst', 'Ambulans'],
+        label: ['Patient Inkommen', 'Ankomst', 'Ambulans'],
         pointStyle: getImg('Inlagd'),
         data: []
       },
