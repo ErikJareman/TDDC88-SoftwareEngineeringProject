@@ -25,6 +25,16 @@ make_data(50)
 def patients_at(location):
     df_patients = pd.read_csv("mock_patient_data.csv", delimiter=',')
     patients = df_patients[df_patients["location"] == location]
+    print("hej")
+    for patient in patients["id"]:
+        print(patient)
+        df_vitals = pd.read_csv("mock_events.csv", delimiter=',')
+        time = df_vitals[df_vitals["id"] == patient]
+        tid = "0"
+        for element in time["time"]:
+            if element > tid:
+                tid = element
+        patients.loc[patients["id"] == patient, "lastChecked"] = tid
     return jsonify(patients.to_dict('records'))
 
 
