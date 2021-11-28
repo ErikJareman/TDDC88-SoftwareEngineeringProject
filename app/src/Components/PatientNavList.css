@@ -91,6 +91,7 @@ div.divideContainer {
     display: flex;
     margin-top: auto;
     margin-bottom: auto;
+    color: black;
     font-family: "Arial Normal", "Arial", sans-serif;
     font-weight: 700;
 }
