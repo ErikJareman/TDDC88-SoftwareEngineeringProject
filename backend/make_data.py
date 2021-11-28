@@ -165,9 +165,9 @@ def make_data(num_patients=100):
         #entry_time, exit_time = random_times(2,8*60)
         times = random_times(MAX_EVENTS, maxdiff_mins=3 * 60)
         timein = times[0]
-        timeout = datetime.time(times[-1].hour + 1, times[-1].minute, times[-1].second)
+        timeout = datetime.time(times[1].hour + 1, times[1].minute, times[1].second)
         # times between 1 and 3 hours
-        times = [datetime.time(t.hour + 1, t.minute, t.second) for t in times]
+        times = [datetime.time(t.hour, t.minute, t.second) for t in times]
 
         df_events.loc[total_event_counter, :] = [
             pid,
