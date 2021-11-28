@@ -10,6 +10,7 @@
 import {
   InlagdIcon,
   DosIcon,
+  AmbIcon,
   HemIcon,
   VardIcon,
   SkickatIcon,
@@ -25,6 +26,9 @@ const useIconSelector = () => {
     switch (eventName) {
       case 'Inlagd':
         img.src = InlagdIcon
+        return img
+      case 'Ambulans':
+        img.src = AmbIcon
         return img
       case 'Dos':
         img.src = DosIcon

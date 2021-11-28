@@ -20,7 +20,7 @@ export default function useDatasetStructure () {
       },
       {
         label: ['Patient Inkommen', 'Ankomst', 'Ambulans'],
-        pointStyle: getImg('Inlagd'),
+        pointStyle: getImg('Ambulans'),
         data: []
       },
       {
