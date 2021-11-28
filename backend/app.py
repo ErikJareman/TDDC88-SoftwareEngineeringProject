@@ -11,6 +11,7 @@ import pandas as pd
 from flask_cors import CORS
 from helper_funcs import get_pulse, get_body_temp, get_blood_pressure, get_breathing_frequency
 from make_data import make_data
+import datetime
 
 
 app = Flask(__name__)
@@ -82,6 +83,16 @@ def patient_injections(patient_id):
     injections = df_injections[df_injections["id"] == patient_id]
     return jsonify(injections.to_dict('records'))
 
+# Returns last time checked
+@app.route('/patients/<int:patient_id>/lastChecked')
+def patient_checked(patient_id):
+    df_vitals = pd.read_csv("mock_events.csv", delimiter=',')
+    time = df_vitals[df_vitals["id"] == patient_id]
+    tid = "0"
+    for element in time["time"]:
+        if element > tid:
+            tid = element
+    return jsonify(tid)
 
 # Returns all events for a patient
 @app.route('/patients/<int:patient_id>/events')

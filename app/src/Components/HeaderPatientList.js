@@ -11,13 +11,13 @@ export default function HeaderPatientList () {
   return (
     <div id="headerContainer">
       <div id="headersubArea1">
-        <button className="mediumEntity"> Timer</button>
-        <button className="longEntity"> Sökorsak</button>
-        <button className="longEntity"> Namn</button>
-        <button className="longEntity"> Personnummer</button>
-        <button className="shortEntity"> Ankomst</button>
-        <button className="shortEntity"> Rum</button>
-        <button className="shortEntity"> Notis</button>
+        <button className="mediumEntity">Timer</button>
+        <button className="longEntity">Sökorsak</button>
+        <button className="longEntity">Namn</button>
+        <button className="longEntity">Personnummer</button>
+        <button className="shortEntity">Ankomst</button>
+        <button className="shortEntity">Rum</button>
+        <button className="shortEntity">Notis</button>
       </div>
     </div>
   )
