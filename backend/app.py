@@ -93,7 +93,7 @@ def patient_injections(patient_id):
     injections = df_injections[df_injections["id"] == patient_id]
     return jsonify(injections.to_dict('records'))
 
-# Returns last time checked
+# Returns last time checked, ta bort när route 1 fungerar
 @app.route('/patients/<int:patient_id>/lastChecked')
 def patient_checked(patient_id):
     df_vitals = pd.read_csv("mock_events.csv", delimiter=',')
