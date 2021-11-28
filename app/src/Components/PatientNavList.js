@@ -29,6 +29,7 @@ function PatientNavList (props) {
   const triageColors = ['green', 'yellow', 'orange', 'red']
 
   const patients = props.patients
+  console.log(patients)
 
   const handleChange = (id) => {
     const Notif = JSON.parse(localStorage.getItem('patient' + id))
@@ -78,10 +79,10 @@ function PatientNavList (props) {
                   <div id="linkList">
                     <Link to={{
                       pathname: `/patient/${patient.id}`,
-                      state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                      state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1], lastChecked: patient.lastChecked }
                     }}>
                       {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                      <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                      <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} lastChecked={patient.lastChecked} /></h3>
                       <h3 className='long'>{patient.reason}</h3>
                       <h3 className='long'>{patient.name}</h3>
                       <h3 className='long'>{patient.SSN}</h3>
@@ -128,10 +129,10 @@ function PatientNavList (props) {
                 <div id="linkList">
                   <Link to={{
                     pathname: `/patient/${patient.id}`,
-                    state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                    state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1], lastChecked: patient.lastChecked }
                   }}>
                     {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                    <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                    <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} lastChecked={patient.lastChecked} /></h3>
                     <h3 className='long'>{patient.reason}</h3>
                     <h3 className='long'>{patient.name}</h3>
                     <h3 className='long'>{patient.SSN}</h3>

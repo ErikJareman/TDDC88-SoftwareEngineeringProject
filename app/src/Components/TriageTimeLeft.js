@@ -17,13 +17,21 @@ import exclamation from '../assets/exclamation.png'
 // Time corresponding to triageLevels
 const triageTimes = [0, 20, 15, 10, 5]
 
-const calcTimeChecked = (triageTime) => {
+/* const calcTimeChecked = (triageTime) => {
   return new Date(Date.now() - triageTime * 60 * 1000 + Math.floor(Math.random() * triageTime * 60 * 1000))
-}
+} */
 
 export default function TriageTimeLeft (props) {
   const [triageTime] = useState(triageTimes[props.triageLevel])
-  const [timeChecked] = useState(calcTimeChecked(triageTime))
+
+  // Function to turn time in string format to date object
+  const timeStringToDate = (timeString) => {
+    const timeArr = timeString.split(':')
+    return (new Date(2021, 10, 28, timeArr[0], timeArr[1], timeArr[2]))
+  }
+  // Change hard-coded time to => props.lastChecked when available on heroku
+  const [timeChecked] = useState(timeStringToDate('21:09:00'))
+
   let checkPatientNowWarning = false
   // Calculates time to check on patient.
   const calculateTimeToCheck = (timeChecked) => {
@@ -76,7 +84,7 @@ export default function TriageTimeLeft (props) {
   })
 
   if (checkPatientNowWarning) {
-    timerComponents = [<img key='icon' id='exclamation' src={exclamation }></img>, '  -  ', ...timerComponents]
+    timerComponents = [<img key='icon' id='exclamation' src={exclamation}></img>, '  -  ', ...timerComponents]
   };
   return (
     <>
