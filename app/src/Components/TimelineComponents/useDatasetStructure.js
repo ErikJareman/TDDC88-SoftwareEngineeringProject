@@ -59,7 +59,7 @@ export default function useDatasetStructure () {
         data: []
       },
       {
-        label: ['Skickat Röntgen remiss', 'Röntgen', 'Doktor'],
+        label: ['Skickat Rontgen remiss', 'Röntgen', 'Doktor'],
         pointStyle: getImg('Vård'),
         data: []
       },
