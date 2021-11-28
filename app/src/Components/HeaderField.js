@@ -22,12 +22,14 @@ function HeaderField (props) {
     events = []
     patients.forEach((patient) => {
       // request to fetch data for currentEvents
-      axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.id + '/events')
-        .then(res => {
-          if (res.data != null) {
-            events.push({ patient: patient, event: FilterEvents({ sortBy: 'time', list: res.data })[0] })
-          }
-        })
+      if (JSON.parse(localStorage.getItem('patient' + patient.id)) === true) {
+        axios.get('https://backend-c4company.herokuapp.com/patients/' + patient.id + '/events')
+          .then(res => {
+            if (res.data != null) {
+              events.push({ patient: patient, event: FilterEvents({ sortBy: 'time', list: res.data })[0] })
+            }
+          })
+      }
     })
     events.sort((e1, e2) => e1.event.time < e2.event.time)
   } else if (props.events != null) {
