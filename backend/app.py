@@ -2,15 +2,16 @@
 
 This is the server that talks with front-end and database
 
-Isak Berntsson, Hugo Hallstensson Riddargård, Philip Nylén, Philip Löfgren
+Isak Berntsson, Hugo Hallstensson Riddargard, Philip Nylen, Philip Lofgren
 
 FIXING '''
 
-from helper_funcs import get_pulse, get_body_temp, get_blood_pressure, get_breathing_frequency
-from make_data import make_data
 from flask import Flask, jsonify
 import pandas as pd
-from flask_CORS import CORS
+from flask_cors import CORS
+from helper_funcs import get_pulse, get_body_temp, get_blood_pressure, get_breathing_frequency
+from make_data import make_data
+
 
 APP = Flask(__name__)
 CORS = CORS(APP)
@@ -104,7 +105,7 @@ def patient_medicin(patient_id):
     medicin = df_medicin[df_medicin["id"] == patient_id]
     return jsonify(medicin.to_dict('records'))
 
-# För att endast skicka puls (Inaktiv)
+# For att endast skicka puls (Inaktiv)
 #@APP.route('/patients/<int:patient_id>/vitals/heartrate')
 #def puls(patient_id):
 #    df_puls = pd.read_csv("mock_vitals.csv", delimiter=',')
