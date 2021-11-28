@@ -111,7 +111,7 @@ def patient_medicin(patient_id):
 #    puls_table = df_puls.loc[(df_puls["id"]==patient_id) & (df_puls["type"]=='Puls'), ["value"]]
 #    puls = float(puls_table.at[puls_table.index.values[0], "value"])
 #    puls_output = get_pulse(puls)[0]
-#    return jsonify(puls_output)
+#    return jsonify(puls_output),
 
 
 @APP.route("/")
