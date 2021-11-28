@@ -213,7 +213,7 @@ def make_data(num_patients=100):
             medicine_name = random.choice(MEDICIN_NAMES)
             for i in range(events_table.shape[0]):
                 events.append(events_table.at[events_table.index.values[i], "time"])
-                print(events[i])
+                # print(events[i])
                 df_medicin.loc[medicin_counter, :] = [
                     pid,
                     medicine_name,
@@ -245,11 +245,11 @@ def make_data(num_patients=100):
         ums_counter += 1
 
 
-    print(df_patients.head(), "\n")
-    print(df_vitals.head(), "\n")
-    print(df_events, "\n")
-    print(df_injections.head(), "\n")
-    print(df_medicin.head(), "\n")
+    # print(df_patients.head(), "\n")
+    # print(df_vitals.head(), "\n")
+    # print(df_events, "\n")
+    # print(df_injections.head(), "\n")
+    # print(df_medicin.head(), "\n")
 
     with open("mock_patient_data.csv", "w+") as file:
         df_patients.to_csv(file, index=False)
