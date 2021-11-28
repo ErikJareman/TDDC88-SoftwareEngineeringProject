@@ -11,13 +11,19 @@ import NotificationCard from './NotificationCard'
 import './NotificationField.css'
 
 function NotificationField (props) {
-  const alertList = props.events.map((event) => {
-    return (
-      <div className='notification-card' key={event.event.id + event.patient.id}>
-        <NotificationCard patient={event.patient} event={event.event} />
-      </div>
-    )
-  })
+  let alertList
+  console.log(props.events)
+  if (props.events.length === 0) {
+    alertList = <div style={{ padding: '20px' }}>Inga notiser just nu</div>
+  } else {
+    alertList = props.events.map((event) => {
+      return (
+        <div className='notification-card' key={event.event.id + event.patient.id}>
+          <NotificationCard patient={event.patient} event={event.event} />
+        </div>
+      )
+    })
+  }
 
   return (
     <>

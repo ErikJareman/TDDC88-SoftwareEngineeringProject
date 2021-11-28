@@ -13,6 +13,7 @@
 	border-color: black;
 	border-style: solid;
 	overflow: hidden;
+	width: 500px;
 }
 
 #not-header {

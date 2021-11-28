@@ -9,8 +9,8 @@ import patientEkg from '../assets/patient_ekg.png'
 
 export default function PatientEkg (props) {
   const ekg = props.ekg[0]
-  var today = new Date()
-  var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+  const today = new Date()
+  const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
   return (
     <>
       <h2>
