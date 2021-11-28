@@ -2,24 +2,25 @@
 
 This is the server that talks with front-end and database
 
-Isak Berntsson, Hugo Hallstensson Riddargård, Philip Nylén, Philip Löfgren
+Isak Berntsson, Hugo Hallstensson Riddargard, Philip Nylen, Philip Lofgren
 
 FIXING '''
 
-from helper_funcs import get_pulse, get_body_temp, get_blood_pressure, get_breathing_frequency
-from make_data import make_data
 from flask import Flask, jsonify
 import pandas as pd
-from flask_CORS import CORS
+from flask_cors import CORS
+from helper_funcs import get_pulse, get_body_temp, get_blood_pressure, get_breathing_frequency
+from make_data import make_data
 
-APP = Flask(__name__)
-CORS = CORS(APP)
+
+app = Flask(__name__)
+CORS = CORS(app)
 
 make_data(50)
 
 # The route gives a list of all patients in their database and their
 # triageLevel, arrival, reason, name, SSN, location, team, room, pn
-@APP.route('/patients/<string:location>')
+@app.route('/patients/<string:location>')
 def patients_at(location):
     df_patients = pd.read_csv("mock_patient_data.csv", delimiter=',')
     patients = df_patients[df_patients["location"] == location]
@@ -28,7 +29,7 @@ def patients_at(location):
 
 # Returns a dictionary of all vitals for a certain patient. The vitals
 # are heartrate, bdoy temperature, blood pressure and breathing frequency.
-@APP.route('/patients/<int:patient_id>/vitals')
+@app.route('/patients/<int:patient_id>/vitals')
 def patient_vitals(patient_id):
     df_vitals = pd.read_csv("mock_vitals.csv", delimiter=',')
     vitals = df_vitals[df_vitals["id"] == patient_id]
@@ -75,7 +76,7 @@ def patient_vitals(patient_id):
 
 # Returns information about a patients injections: timein,
 # timeout, type, value, localization, procedure
-@APP.route('/patients/<int:patient_id>/injections')
+@app.route('/patients/<int:patient_id>/injections')
 def patient_injections(patient_id):
     df_injections = pd.read_csv("mock_injections.csv", delimiter=',')
     injections = df_injections[df_injections["id"] == patient_id]
@@ -83,7 +84,7 @@ def patient_injections(patient_id):
 
 
 # Returns all events for a patient
-@APP.route('/patients/<int:patient_id>/events')
+@app.route('/patients/<int:patient_id>/events')
 def patient_events(patient_id):
     df_events = pd.read_csv("mock_events.csv", delimiter=',')
     events = df_events[df_events["id"] == patient_id]
@@ -91,21 +92,21 @@ def patient_events(patient_id):
 
 
 # Returns all ums variables for a patient
-@APP.route('/patients/<int:patient_id>/ums')
+@app.route('/patients/<int:patient_id>/ums')
 def patient_ums(patient_id):
     df_ums = pd.read_csv("mock_ums.csv", delimiter=',')
     ums = df_ums[df_ums["id"] == patient_id]
     return jsonify(ums.to_dict('records'))
 
 # Returns information about a patients Medicin: id, name, strength, absortion, type, dosage, time
-@APP.route('/patients/<int:patient_id>/medicin')
+@app.route('/patients/<int:patient_id>/medicin')
 def patient_medicin(patient_id):
     df_medicin = pd.read_csv("mock_medicin.csv", delimiter=',')
     medicin = df_medicin[df_medicin["id"] == patient_id]
     return jsonify(medicin.to_dict('records'))
 
-# För att endast skicka puls (Inaktiv)
-#@APP.route('/patients/<int:patient_id>/vitals/heartrate')
+# For att endast skicka puls (Inaktiv)
+#@app.route('/patients/<int:patient_id>/vitals/heartrate')
 #def puls(patient_id):
 #    df_puls = pd.read_csv("mock_vitals.csv", delimiter=',')
 #    puls_table = df_puls.loc[(df_puls["id"]==patient_id) & (df_puls["type"]=='Puls'), ["value"]]
@@ -114,10 +115,10 @@ def patient_medicin(patient_id):
 #    return jsonify(puls_output),
 
 
-@APP.route("/")
+@app.route("/")
 def hello_world():
-    return "Mock Database for Emergency Journal APPlication C4."
+    return "Mock Database for Emergency Journal application C4."
 
 
 if __name__ == "__main__":
-    APP.run()
+    app.run()

@@ -2,7 +2,7 @@
 
 generates fake data that gets stored in mock_patient_data.csv
 
-Isak Berntsson, Hugo Hallstensson Riddargård, Philip Nylén
+Isak Berntsson, Hugo Hallstensson Riddargard, Philip Nylen
 
 FIXING '''
 
@@ -18,7 +18,7 @@ REASONS = ["Benbrott", "Buksmartor", "Hjartkramp", "Ryggvark"]
 INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
 INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
 EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]
-EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Rontgen remiss"]
 EVENT_INLAGD = ["Gubbe", "Ambulans"]
 MEDICIN_NAMES = ["Alvedon", "Ipren", "Kodein"]
 MEDICIN_STRENGTH = ["500mg", "400mg"]
@@ -143,7 +143,7 @@ def make_data(num_patients=100):
 
     # blodprov = pippett
     # Gubbe = inlagd
-    # Doktor = röntgen remiss, omvardnad
+    # Doktor = rontgen remiss, omvardnad
     # Ambulans =
     # Hus = lamnar
     # Medkit = dosering
@@ -154,7 +154,7 @@ def make_data(num_patients=100):
             string_to_return = "Pippett"
         elif event_type in ("Labbsvar EKG", "Skickat EKG"):
             string_to_return = "Heartbeat"
-        elif event_type in ("Skickat Röntgen remiss", "Omvardnad"):
+        elif event_type in ("Skickat Rontgen remiss", "Omvardnad"):
             string_to_return = "Doktor"
         elif event_type == "Dosering":
             string_to_return = "Medkit"
@@ -271,4 +271,4 @@ def make_data(num_patients=100):
 
 if __name__ == '__main__':
     make_data()
-    #print(generate_single_patient_vitals(1337,tot_num=100)["types"])
+    
