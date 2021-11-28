@@ -22,7 +22,7 @@ reactjs_lint:
     - npx eslint src/**/*.js src/*.js
 
 #deploy back-end to heroku
-deploy:
+deploy_backend:
   image: ruby:3.0.2
   stage: deploy
   script:
