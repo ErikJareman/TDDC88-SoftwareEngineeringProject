@@ -44,9 +44,8 @@ function PatientCurrentEvents (props) {
     return stringToReturn
   }
 
-  const indexState = { activeIndex: (localStorage.getItem( 'activeIndex' ) || 1)}
-  const handleTabChange = (e) => {
-    
+  const handleTabChange = (e, data) => {
+    localStorage.setItem('activeEventIndex', data.activeIndex)
   }
 
   const panes = [
@@ -79,7 +78,7 @@ function PatientCurrentEvents (props) {
           style: { display: 'flex', justifyContent: 'center' }
         }}
         panes={panes}
-        activeIndex={activeIndex}
+        defaultActiveIndex={localStorage.getItem('activeEventIndex') || 0}
         onTabChange={handleTabChange} />
     </div>
   )
