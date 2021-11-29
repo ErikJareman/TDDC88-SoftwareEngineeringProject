@@ -17,7 +17,7 @@ export default function Patient () {
   const [vitals, setVitals] = useState([])
   const [currentEvents, setCurrentEvents] = useState([])
   const [injections, setInjections] = useState()
-  const [drugs] = useState()
+  const [drugs, setDrugs] = useState()
 
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/vitals')
@@ -36,10 +36,10 @@ export default function Patient () {
       })
 
     // request to get list of drugs
-    /* axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/drugs')
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/medicin')
       .then(res => {
         setDrugs(res.data)
-      }) */
+      })
   }, [])
 
   return (
@@ -48,20 +48,20 @@ export default function Patient () {
       <PatientNavBar patient={state.patients} />
       <Grid>
         <Grid.Row stretched style={{ paddingBottom: '0px' }}>
-          <Grid.Column id = "topLeft" style={{ width: '30%' }}>
+          <Grid.Column id="topLeft" style={{ width: '30%' }}>
             <Segment >
               <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} />
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '69%', paddingBottom: '1%' }}>
             <Segment>
-              <TimelineComponent patient={state.patients}/>
+              <TimelineComponent patient={state.patients} />
             </Segment>
           </Grid.Column>
 
         </Grid.Row>
         <Grid.Row stretched style={{ paddingTop: '0px' }}>
-          <Grid.Column id = "bottomLeft" style={{ width: '30%' }}>
+          <Grid.Column id="bottomLeft" style={{ width: '30%' }}>
             <PatientCurrentEvents currentEvents={currentEvents} patient={state.patients} />
           </Grid.Column>
           <Grid.Column style={{ width: '69%' }}>

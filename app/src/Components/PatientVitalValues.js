@@ -8,6 +8,7 @@ import { Grid, Segment, Header, Table } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 import FilterEvents from './FilterEvents'
+import NoValueInfo from './NoValueInfo'
 
 // vitalType is the the vital parameter that the user has pressed on, resulting in a table of historic values in the vital values component
 const vitalType = {
@@ -42,7 +43,7 @@ function generateSegement (vitals) {
               </Grid.Column>
               <Grid.Column textAlign='right'>
                 <Header id="valHeader">
-                  {floatOrSplit(vitals.value)}
+                  {floatOrSplit(vitals.type, vitals.value)}
                 </Header>
                 <Header id="timeHeader">
                   {vitals.time.substring(0, 5)}
@@ -51,7 +52,7 @@ function generateSegement (vitals) {
             </Grid.Row>
           </Grid>
         </Segment>
-        : 'Ingen data tillgänglig'}
+        : <NoValueInfo />}
     </>
   )
 }
@@ -97,10 +98,17 @@ export default function VitalValuesComponent (props) {
   }
 
   function safeRender () {
+    let i = 0
+    const events = []
+    const vitalArr = typeToArray(vitalType.get())
     if (vitalType.get() !== undefined) {
-      if (typeToArray(vitalType.get()) !== undefined) {
-        if (typeToArray(vitalType.get()).length > 0) {
-          return (typeToArray(vitalType.get()).map(MakeTableRow))
+      if (vitalArr !== undefined) {
+        if (vitalArr.length > 0) {
+          while (i < 4 && i < vitalArr.length) {
+            events.push(MakeTableRow(vitalArr[i]))
+            i += 1
+          }
+          return (events)
         }
       }
     }
@@ -120,7 +128,7 @@ export default function VitalValuesComponent (props) {
         <Table stackable>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell textAlign='center'><b>{vitalType.get()}</b></Table.HeaderCell>
+              <Table.HeaderCell textAlign='center' ><b>{vitalType.get()}</b></Table.HeaderCell>
               <Table.HeaderCell ></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -130,28 +138,30 @@ export default function VitalValuesComponent (props) {
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
           {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'} */}
           {safeRender()}
-          {safeRender()}
-          {safeRender()}
-          {safeRender()}
         </Table>
       </Grid.Column>
     </Grid>
   )
 }
 
-function floatOrSplit (val) {
+function floatOrSplit (type, val) {
+  if (type === 'Kroppstemperatur') {
+    return parseFloat(val).toFixed(1).toString()
+  }
   if (val[0] === '(') {
     const split = val.substring(1).split(',')
-    return parseFloat(split[0]).toFixed(2).toString() + ' - ' + parseFloat(split[1]).toFixed(2).toString()
+    return parseFloat(split[0]).toFixed(0).toString() + ' / ' + parseFloat(split[1]).toFixed(0).toString()
   }
-  return parseFloat(val).toFixed(2).toString()
+  return parseFloat(val).toFixed(0).toString()
 }
 
 function MakeTableRow (event) {
   return (
-    <Table.Row>
-      <Table.Cell textAlign='center'><b>{floatOrSplit(event.value)}</b></Table.Cell>
-      <Table.Cell textAlign='center'><b>{event.time.substring(0, 5)}</b></Table.Cell>
+    <Table.Row className="detailInfoClass">
+      <Table.Cell id="detailedInfoID">
+        <Table.Cell id="detailedValue"><b>{floatOrSplit(event.value)}</b></Table.Cell>
+        <Table.Cell id="detailedTime"><b>{event.time.substring(0, 5)}</b></Table.Cell>
+      </Table.Cell>
     </Table.Row>
   )
 }
