@@ -29,8 +29,7 @@ export default function TriageTimeLeft (props) {
     const timeArr = timeString.split(':')
     return (new Date(2021, 10, 28, timeArr[0], timeArr[1], timeArr[2]))
   }
-  // Change hard-coded time to => props.lastChecked when available on heroku
-  const [timeChecked] = useState(timeStringToDate('21:09:00'))
+  const [timeChecked] = useState(timeStringToDate(props.lastChecked))
 
   let checkPatientNowWarning = false
   // Calculates time to check on patient.
