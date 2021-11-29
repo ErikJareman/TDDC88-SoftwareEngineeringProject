@@ -18,8 +18,6 @@ import PatientEkg from './PatientEkg'
 import FilterEvents from './FilterEvents'
 import PatientDrugs from './PatientDrugs'
 import NoValueInfo from './NoValueInfo'
-import InOut from '../assets/inut.png'
-import Vitals from '../assets/vitals.png'
 
 export default function VitalFields (props) {
   const [id] = useState(props.id)
@@ -27,22 +25,12 @@ export default function VitalFields (props) {
   const ekg = FilterEvents({ list: props.events, filterField: 'type', filterBy: 'Labbsvar EKG', sortBy: 'time' })
   const drugs = FilterEvents({ list: props.drugs, sortBy: 'time' })
 
-  const CustomInUt = (
-    <i className="tabIcon">
-      <img id="tabImage" src={InOut} />
-    </i>
-  )
-  const CustomVitals = (
-    <i className="tabIcon">
-      <img id="tabImage" src={Vitals} />
-    </i>
-  )
   const handleTabChange = (e, data) => {
     localStorage.setItem('activeVitalIndex', data.activeIndex)
   }
   const panes = [
     {
-      menuItem: { icon: CustomVitals },
+      menuItem: { icon: 'doctor big' },
       render: () => <Tab.Pane>
         <PatientVitalValues id={id} vitals={props.vitals} />
       </Tab.Pane>
@@ -66,7 +54,7 @@ export default function VitalFields (props) {
       </Tab.Pane>
     },
     {
-      menuItem: { icon: CustomInUt },
+      menuItem: { icon: 'exchange big' },
       render: () => <Tab.Pane>
         <PatientInUt id={id} injections={injections} />
       </Tab.Pane>
