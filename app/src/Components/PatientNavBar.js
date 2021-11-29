@@ -12,6 +12,7 @@ import React from 'react'
 export default function PatientNavBar (patient) {
   return (
     <div className='patient-nav-bar'>
+      <UMS patient={patient} />
       <NameDisplay patient={patient.patient} />
     </div>
   )

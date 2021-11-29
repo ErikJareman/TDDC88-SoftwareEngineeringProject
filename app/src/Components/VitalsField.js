@@ -25,7 +25,11 @@ export default function VitalFields (props) {
   const [id] = useState(props.id)
   const injections = props.injections
   const ekg = FilterEvents({ list: props.events, filterField: 'type', filterBy: 'Labbsvar EKG', sortBy: 'time' })
+<<<<<<< HEAD
   const drugs = props.drugs
+=======
+  const drugs = FilterEvents({ list: props.drugs, sortBy: 'time' })
+>>>>>>> 8e760c1a72e39b8ccf0406276cbf11f6bc379d17
 
   const CustomInUt = (
     <i className="tabIcon">
@@ -37,7 +41,9 @@ export default function VitalFields (props) {
       <img id="tabImage" src={Vitals} />
     </i>
   )
-
+  const handleTabChange = (e, data) => {
+    localStorage.setItem('activeVitalIndex', data.activeIndex)
+  }
   const panes = [
     {
       menuItem: { icon: CustomVitals },
@@ -81,7 +87,9 @@ export default function VitalFields (props) {
           tabular: true,
           style: { display: 'flex', justifyContent: 'center' }
         }}
-        panes={panes} />
+        panes={panes}
+        defaultActiveIndex={localStorage.getItem('activeVitalIndex') || 0}
+        onTabChange={handleTabChange} />
     </div>
   )
 }
