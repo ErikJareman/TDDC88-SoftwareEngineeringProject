@@ -2,6 +2,7 @@ import './PatientInUt.css'
 import React from 'react'
 // import axios from 'axios'
 import FilterEvents from './FilterEvents'
+import NoValueInfo from './NoValueInfo'
 
 /**
  * The function PatientInUt renders the list of patients intravenous injections
@@ -49,11 +50,7 @@ export default function PatientInUt (props) {
     return (
       <ul>
         {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-        <li>
-          <table>
-            <h3 className='inUtTextBox'> Ingen data tillgängligt </h3>
-          </table>
-        </li>
+        <NoValueInfo />
       </ul>
     )
   }

@@ -17,6 +17,7 @@ import PatientVitalValues from './PatientVitalValues'
 import PatientEkg from './PatientEkg'
 import FilterEvents from './FilterEvents'
 import PatientDrugs from './PatientDrugs'
+import NoValueInfo from './NoValueInfo'
 import InOut from '../assets/inut.png'
 import Vitals from '../assets/vitals.png'
 
@@ -24,8 +25,10 @@ export default function VitalFields (props) {
   const [id] = useState(props.id)
   const injections = props.injections
   const ekg = FilterEvents({ list: props.events, filterField: 'type', filterBy: 'Labbsvar EKG', sortBy: 'time' })
+  const drugs = props.drugs
+  console.log(drugs)
   // Temporary. Should come from back-end. Delete later
-  const drugs = [{ name: 'Alvedon', strength: '500mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '2 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 5)) }, { name: 'Ipren', strength: '400mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 8)) }, { name: 'Kodein', strength: '30mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 2)) }]
+  // const drugs = [{ name: 'Alvedon', strength: '500mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '2 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 5)) }, { name: 'Ipren', strength: '400mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 8)) }, { name: 'Kodein', strength: '30mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 2)) }]
 
   const CustomInUt = (
     <i className="tabIcon">
@@ -55,9 +58,11 @@ export default function VitalFields (props) {
       menuItem: { icon: 'pills big clockwise' },
       render: () => <Tab.Pane>
         <ul>
-          {drugs.map((drug) => {
-            return (<PatientDrugs key={drug.name + '_' + drug.time} drug={drug} />)
-          })}
+          {drugs !== undefined && drugs.length > 0
+            ? drugs.map((drug) => {
+              return (<PatientDrugs key={drug.name + '_' + drug.time} drug={drug} />)
+            })
+            : <NoValueInfo />}
         </ul>
       </Tab.Pane>
     },
