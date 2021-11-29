@@ -25,7 +25,7 @@ export default function VitalFields (props) {
   const [id] = useState(props.id)
   const injections = props.injections
   const ekg = FilterEvents({ list: props.events, filterField: 'type', filterBy: 'Labbsvar EKG', sortBy: 'time' })
-  const drugs = props.drugs
+  const drugs = FilterEvents({ list: props.drugs, sortBy: 'time' })
 
   const CustomInUt = (
     <i className="tabIcon">
