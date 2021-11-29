@@ -55,7 +55,7 @@ def compare_reference_values(ssn, type, value):
     birth = datetime.date(year=int(ssn[:4]), month=int(ssn[4:6]), day = int(ssn[6:8]))
 
     age = np.floor((now-birth).days / 365.2425)
-    print(age)
+    #print(age)
     if type == "Blodtryck":
             return 0
     elif type == "Puls":

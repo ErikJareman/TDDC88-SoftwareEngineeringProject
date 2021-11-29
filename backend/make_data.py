@@ -255,8 +255,7 @@ def make_data(num_patients=100):
     # print(df_events, "\n")
     # print(df_injections.head(), "\n")
     # print(df_medicin.head(), "\n")
-    print(df_vitals)
-    print(df_vitals["reference"].value_counts())
+
     
     with open("mock_patient_data.csv", "w+") as file:
         df_patients.to_csv(file, index=False)
