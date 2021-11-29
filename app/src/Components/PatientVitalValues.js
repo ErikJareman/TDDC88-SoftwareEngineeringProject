@@ -1,6 +1,6 @@
 /**
  * Component for the vital parameters on the patient page.
- * Isak Berntsson & Linus Bäckbro Kuusisto
+ * Isak Berntsson & Linus Bäckbro Kuusisto & Nikil(added color coded arrows)
  * issue #31
  */
 import React, { useState } from 'react'
