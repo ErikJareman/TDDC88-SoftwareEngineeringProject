@@ -60,6 +60,7 @@ h3.medium {
     border-radius: 20px 0px 0px 20px;
     vertical-align: middle;
     padding-top: 15px;
+    padding-bottom: 25px;
     justify-content: center;
 }
 h3.short {
