@@ -44,6 +44,11 @@ function PatientCurrentEvents (props) {
     return stringToReturn
   }
 
+  const indexState = { activeIndex: (localStorage.getItem( 'activeIndex' ) || 1)}
+  const handleTabChange = (e) => {
+    
+  }
+
   const panes = [
     {
       menuItem: { icon: CustomIcon },
@@ -73,7 +78,9 @@ function PatientCurrentEvents (props) {
           tabular: true,
           style: { display: 'flex', justifyContent: 'center' }
         }}
-        panes={panes} />
+        panes={panes}
+        activeIndex={activeIndex}
+        onTabChange={handleTabChange} />
     </div>
   )
 }
