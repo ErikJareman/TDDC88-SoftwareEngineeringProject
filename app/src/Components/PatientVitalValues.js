@@ -43,7 +43,7 @@ function generateSegement (vitals) {
               </Grid.Column>
               <Grid.Column textAlign='right'>
                 <Header id="valHeader">
-                  {floatOrSplit(vitals.value)}
+                  {floatOrSplit(vitals.type, vitals.value)}
                 </Header>
                 <Header id="timeHeader">
                   {vitals.time.substring(0, 5)}
@@ -144,12 +144,15 @@ export default function VitalValuesComponent (props) {
   )
 }
 
-function floatOrSplit (val) {
+function floatOrSplit (type, val) {
+  if (type === 'Kroppstemperatur') {
+    return parseFloat(val).toFixed(1).toString()
+  }
   if (val[0] === '(') {
     const split = val.substring(1).split(',')
-    return parseFloat(split[0]).toFixed(2).toString() + ' - ' + parseFloat(split[1]).toFixed(2).toString()
+    return parseFloat(split[0]).toFixed(0).toString() + ' / ' + parseFloat(split[1]).toFixed(0).toString()
   }
-  return parseFloat(val).toFixed(2).toString()
+  return parseFloat(val).toFixed(0).toString()
 }
 
 function MakeTableRow (event) {
