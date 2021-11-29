@@ -15,16 +15,18 @@ export default function generateSegment () {
     points.push(currentData)
   }
   // P
-  /* for (let i = 0; i < 10; ++i) {
-    points.push(-(currentData ^ 2))
-    ++currentData
+  for (let i = 0; i < 10; ++i) {
+    points.push(++currentData)
   }
   for (let i = 0; i < 10; ++i) {
     points.push(--currentData)
-  } */
-  for (let i = 0; i < 20; ++i) {
-    points.push(1.8 * i - ((0.3 * i) ^ 2))
   }
+
+  /* Tried to make in into a curve. Did not work...
+   for (let i = 0; i <= 20; ++i) {
+    points.push(1.8 * i - ((0.3 * i) ^ 2))
+    console.log(i, 1.8 * i - ((0.3 * i) ^ 2))
+  } */
 
   for (let i = 0; i < 10; ++i) {
     points.push(currentData)

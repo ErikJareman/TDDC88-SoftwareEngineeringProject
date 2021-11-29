@@ -37,7 +37,8 @@ export const options = {
       radius: 0
     }
   },
-  responsive: true,
+  // maintainAspectRatio: false,
+
   interaction: {
     mode: 'index',
     intersect: false
@@ -59,8 +60,8 @@ export const options = {
     y: {
       type: 'linear',
       display: true,
-      max: 150,
-      min: -80,
+      max: 100,
+      min: -20,
       ticks: {
         display: false,
         stepSize: 2
@@ -78,11 +79,9 @@ export const options = {
   }
 }
 
-// const labels = ['', '', '', '', '', '', '']
-
 function generateEkg () {
   const data = []
-  for (let i = 0; i < 100; ++i) {
+  for (let i = 0; i < 10; ++i) {
     data.push(...generateSegment())
   }
   return data
@@ -102,5 +101,5 @@ export const data = {
 }
 
 export default function PatientEkgChart () {
-  return <Line options={options} data={data} style={{ height: '50px' }} />
+  return <Line options={options} data={data} style={{ height: '10vh', width: '10vw' }} />
 }
