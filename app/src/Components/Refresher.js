@@ -7,7 +7,7 @@ import React from 'react'
 
 setTimeout(function () {
   window.location.href = window.location
-}, 300000)
+}, 30000)
 
 export default function Refresher () {
   return (
