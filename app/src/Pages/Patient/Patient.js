@@ -50,7 +50,7 @@ export default function Patient () {
         <Grid.Row stretched style={{ paddingBottom: '0px' }}>
           <Grid.Column id="topLeft" style={{ width: '30%' }}>
             <Segment >
-              <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} />
+              <PatientInfo patient={state.patients} triageColor={state.triageColor} vitals={currentEvents} lastChecked={state.lastChecked} />
             </Segment>
           </Grid.Column>
           <Grid.Column style={{ width: '69%', paddingBottom: '1%' }}>
