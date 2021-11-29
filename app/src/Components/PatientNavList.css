@@ -60,7 +60,6 @@ h3.medium {
     border-radius: 20px 0px 0px 20px;
     vertical-align: middle;
     padding-top: 15px;
-    background-color: cornflowerblue;
     justify-content: center;
 }
 h3.short {
@@ -107,7 +106,6 @@ div.divideContainer {
 
 #exclamation{
     margin-top: 2px;
-    background-color: chartreuse;
     margin-right: 5%;
 }
 
