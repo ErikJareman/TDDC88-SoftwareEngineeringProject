@@ -31,8 +31,8 @@ div#linkList{
     width: 92%;
     height: stretch;
     /* display: inline-flexbox; */
-    border-radius: 20px 0px 0px 20px;
-    text-align: center;
+    /* border-radius: 20px 0px 0px 20px; */
+    /* text-align: center; */
 }
 
 h3.long {
@@ -53,13 +53,14 @@ h3.medium {
     width: 12%;
     display: inline-flex;
     margin: auto;
-    height: stretch;
+    height: inherit;
     color: black;
-    background-color: greenyellow;
+    /* background-color: greenyellow;
+    background-position-y: 0; */
     font-size: 18px;
     font-weight: bold;
     border-radius: 20px 0px 0px 20px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     padding-top: 15px;
     padding-bottom: 10px;
     justify-content: center;
