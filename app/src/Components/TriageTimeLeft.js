@@ -32,9 +32,18 @@ export default function TriageTimeLeft (props) {
     timeAsDate.setMinutes(timeArr[1])
     timeAsDate.setSeconds(timeArr[2])
     return timeAsDate
-    // return (new Date(2021, 10, 28, timeArr[0], timeArr[1], timeArr[2]))
   }
-  const [timeChecked] = useState(timeStringToDate(props.lastChecked))
+
+  const lastChecked = timeStringToDate(props.lastChecked)
+
+  // if lastChecked is in future, move back in time enough so that its within the triage time
+  const checkValidTime = (time) => {
+    if (time - Date.now() > 0) {
+      time = new Date(Date.parse(time) - triageTime * 1000 * 60 * (1 + parseInt((time - Date.now()) / (triageTime * 60 * 1000))))
+    }
+    return time
+  }
+  const [timeChecked] = useState(checkValidTime(lastChecked))
 
   let checkPatientNowWarning = false
   // Calculates time to check on patient.
@@ -75,8 +84,13 @@ export default function TriageTimeLeft (props) {
     return () => { isMounted = false }
   })
 
-  let timerComponents = []
+  /* console.log(timeLeft, triageTime)
+ if (timeLeft.minutes > triageTime) {
+    setTimeLeft({ mintues: triageTime, seconds: 0 })
+  }
+    } */
 
+  let timerComponents = []
   // loop over each property in timeLeft
   Object.keys(timeLeft).forEach((interval, index) => {
     timerComponents.push(
