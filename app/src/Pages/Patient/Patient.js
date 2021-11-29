@@ -17,7 +17,7 @@ export default function Patient () {
   const [vitals, setVitals] = useState([])
   const [currentEvents, setCurrentEvents] = useState([])
   const [injections, setInjections] = useState()
-  const [drugs] = useState()
+  const [drugs, setDrugs] = useState()
 
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/vitals')
@@ -36,10 +36,10 @@ export default function Patient () {
       })
 
     // request to get list of drugs
-    /* axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/drugs')
+    axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/medicin')
       .then(res => {
         setDrugs(res.data)
-      }) */
+      })
   }, [])
 
   return (

@@ -27,7 +27,12 @@ export default function TriageTimeLeft (props) {
   // Function to turn time in string format to date object
   const timeStringToDate = (timeString) => {
     const timeArr = timeString.split(':')
-    return (new Date(2021, 10, 28, timeArr[0], timeArr[1], timeArr[2]))
+    const timeAsDate = new Date()
+    timeAsDate.setHours(timeArr[0])
+    timeAsDate.setMinutes(timeArr[1])
+    timeAsDate.setSeconds(timeArr[2])
+    return timeAsDate
+    // return (new Date(2021, 10, 28, timeArr[0], timeArr[1], timeArr[2]))
   }
   const [timeChecked] = useState(timeStringToDate(props.lastChecked))
 

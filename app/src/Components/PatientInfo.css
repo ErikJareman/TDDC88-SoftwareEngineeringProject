@@ -13,7 +13,20 @@ div#textBox{
 
 h5{
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
+}
+
+#triageBox {
+    width: calc(10% + 30px);
+    overflow-x: visible;
+}
+
+#shortReason {
+    width: fit-content;
+    display: flex;
+    margin: 0%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div#bottomLeft.column {
@@ -30,6 +43,7 @@ div#bottomLeft.column {
     overflow-Y: auto;
     padding: 3px;
     background-color: white;
+    font-size: 17px;
 }
 
 /* f7f7f7 */

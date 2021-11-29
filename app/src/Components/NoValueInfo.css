@@ -1,0 +1,14 @@
+.NoValueInfo {
+    width: 23%;
+    font-family: "Arial Normal", "Arial", sans-serif;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+    font-size: medium;
+    margin: 0 auto;
+    padding-bottom: 12pt;
+    padding-top: 13pt;
+    padding-left: 14pt;
+    display: table-cell;
+    width: 5%;
+}

@@ -13,7 +13,7 @@ export default function PatientInfo (props) {
   const patient = props.patient
   const triageColor = props.triageColor
   const lastChecked = props.lastChecked
-  const reason = 'I am having fever anheadacheheadacheheadacheheadacheheadache headache headache d headache... I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and headache...I am having fever and  headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache headacheheadacheheadacheheadacheheadache headache headache headache headache headache headache headache headache headache'
+  const reason = 'Anledningen till ' + props.patient.name + 's vistelse är problem med ' + props.patient.reason + ' med triage nivå ' + props.patient.triageLevel + '. Patienten är tilldelad team ' + props.patient.team + ' och är placerad i rum ' + props.patient.room + '. Anhöriga till patienten är kontaktade.'
 
   const imageCss =
   {
@@ -39,8 +39,8 @@ export default function PatientInfo (props) {
     <div id="divi">
       <img src={accessability} style={imageCss} />
       <div id="textBox" style={{ display: 'flex' }}>
-        <h5 style={{ backgroundColor: triageColor, width: '25%', padding: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} lastChecked={lastChecked} /></h5>
-        <h5 style={{ padding: '3px', marginTop: '0%', marginLeft: '29%', height: ' 100%' }}>{patient.reason}</h5>
+        <h5 id="triageBox" style={{ backgroundColor: triageColor, padding: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} lastChecked={lastChecked} /></h5>
+        <h5 id="shortReason" style={{ padding: '3px', height: ' 100%' }}>{patient.reason}</h5>
       </div>
 
       <div id="textruta"> {reason} </div>

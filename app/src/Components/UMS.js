@@ -24,9 +24,8 @@ export default function UMS (props) {
   useEffect(() => {
     axios.get('https://backend-c4company.herokuapp.com/patients/' + props.patient.patient.id + '/ums')
       .then(res => {
-        const temp = res.data
-        setUMS(temp)
-        localStorage.setItem('UMS', JSON.stringify(temp))
+        setUMS(res.data)
+        localStorage.setItem('UMS', JSON.stringify(res.data))
       })
   }, [])
 
@@ -37,16 +36,16 @@ export default function UMS (props) {
     } else {
       details = UMS
     }
-    if (details[0].sensLevel === 1) {
+    if (details[0].sens_level === 1) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('oversens1').setAttributeNS(null, 'fill', 'red')
-    } else if (details[0].sensLevel === 2) {
+    } else if (details[0].sens_level === 2) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('oversens1').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-1').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-2').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-3').setAttributeNS(null, 'fill', 'red')
-    } else if (details[0].sensLevel === 3) {
+    } else if (details[0].sens_level === 3) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('oversens1').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens2-1').setAttributeNS(null, 'fill', 'red')
@@ -54,11 +53,11 @@ export default function UMS (props) {
       svgObject.getElementById('oversens2-3').setAttributeNS(null, 'fill', 'red')
       svgObject.getElementById('oversens3').setAttributeNS(null, 'fill', 'red')
     }
-    if (details[0].medCondition) {
+    if (details[0].med_condition) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('medCondition').setAttributeNS(null, 'fill', 'red')
     }
-    if (details[0].careDeviation) {
+    if (details[0].care_deviation) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('careDeviation').setAttributeNS(null, 'fill', 'blue')
     }
@@ -66,7 +65,7 @@ export default function UMS (props) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('infection').setAttributeNS(null, 'fill', 'yellow')
     }
-    if (details[0].noStructureInfo) {
+    if (details[0].no_structure_info) {
       const svgObject = document.getElementById('svg-object').contentDocument
       svgObject.getElementById('noStructureInfo').setAttributeNS(null, 'fill', 'red')
     }
