@@ -45,42 +45,42 @@ def patient_vitals(patient_id):
     df_vitals = pd.read_csv("mock_vitals.csv", delimiter=',')
     vitals = df_vitals[df_vitals["id"] == patient_id]
 
-    puls_table = vitals.loc[(vitals["id"] == patient_id) & (vitals["type"] == 'Puls'), ["value"]]
-    puls = float(puls_table.at[puls_table.index.values[0], "value"])
-    puls_output = get_pulse(puls)[0]
-    vitals.loc[(vitals["id"] == patient_id) & (vitals["type"] == 'Puls'), "value"] = puls_output
+    # puls_table = vitals.loc[(vitals["id"] == patient_id) & (vitals["type"] == 'Puls'), ["value"]]
+    # puls = float(puls_table.at[puls_table.index.values[0], "value"])
+    # puls_output = get_pulse(puls)[0]
+    # vitals.loc[(vitals["id"] == patient_id) & (vitals["type"] == 'Puls'), "value"] = puls_output
 
-    bodytemp_table = vitals.loc[
-        (vitals["id"] == patient_id) & (vitals["type"] == 'Kroppstemperatur'),
-        ["value"]
-    ]
-    bodytemp = float(bodytemp_table.at[bodytemp_table.index.values[0], "value"])
-    bodytemp_output = get_body_temp(bodytemp)[0]
-    vitals.loc[
-        (vitals["id"] == patient_id) & (vitals["type"] == 'Kroppstemperatur'),
-        "value"
-    ] = bodytemp_output
+    # bodytemp_table = vitals.loc[
+    #     (vitals["id"] == patient_id) & (vitals["type"] == 'Kroppstemperatur'),
+    #     ["value"]
+    # ]
+    # bodytemp = float(bodytemp_table.at[bodytemp_table.index.values[0], "value"])
+    # bodytemp_output = get_body_temp(bodytemp)[0]
+    # vitals.loc[
+    #     (vitals["id"] == patient_id) & (vitals["type"] == 'Kroppstemperatur'),
+    #     "value"
+    # ] = bodytemp_output
 
-    bp_table = vitals.loc[(vitals["id"] == patient_id) & (vitals["type"] == 'Blodtryck'), ["value"]]
-    bp_level = bp_table.at[bp_table.index.values[0], "value"]
-    bp_high = int(bp_level[1:3])
-    bp_low = int(bp_level[5:7])
-    bp_output = get_blood_pressure((bp_high, bp_low))
-    vitals.loc[
-        (vitals["id"] == patient_id) & (vitals["type"] == 'Blodtryck'),
-        "value"
-    ] = str(bp_output[0])
+    # bp_table = vitals.loc[(vitals["id"] == patient_id) & (vitals["type"] == 'Blodtryck'), ["value"]]
+    # bp_level = bp_table.at[bp_table.index.values[0], "value"]
+    # bp_high = int(bp_level[1:3])
+    # bp_low = int(bp_level[5:7])
+    # bp_output = get_blood_pressure((bp_high, bp_low))
+    # vitals.loc[
+    #     (vitals["id"] == patient_id) & (vitals["type"] == 'Blodtryck'),
+    #     "value"
+    # ] = str(bp_output[0])
 
-    b_freq_table = vitals.loc[
-        (vitals["id"] == patient_id) & (vitals["type"] == 'Andningsfrekvens'),
-        ["value"]
-    ]
-    b_freq = float(b_freq_table.at[b_freq_table.index.values[0], "value"])
-    b_freq_output = get_breathing_frequency(b_freq)[0]
-    vitals.loc[
-        (vitals["id"] == patient_id) & (vitals["type"] == 'Andningsfrekvens'),
-        "value"
-    ] = b_freq_output
+    # b_freq_table = vitals.loc[
+    #     (vitals["id"] == patient_id) & (vitals["type"] == 'Andningsfrekvens'),
+    #     ["value"]
+    # ]
+    # b_freq = float(b_freq_table.at[b_freq_table.index.values[0], "value"])
+    # b_freq_output = get_breathing_frequency(b_freq)[0]
+    # vitals.loc[
+    #     (vitals["id"] == patient_id) & (vitals["type"] == 'Andningsfrekvens'),
+    #     "value"
+    # ] = b_freq_output
 
     return jsonify(vitals.to_dict('records'))
 
