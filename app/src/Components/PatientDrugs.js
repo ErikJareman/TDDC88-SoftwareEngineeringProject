@@ -11,7 +11,6 @@ import React from 'react'
 
 export default function PatientDrugs (props) {
   const drug = props.drug
-  console.log(drug)
   // Absorption is misspelled in backend, will have to misspell here to match
   return (
     <div>
