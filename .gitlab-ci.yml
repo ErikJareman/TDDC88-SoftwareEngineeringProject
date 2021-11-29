@@ -4,13 +4,13 @@ stages:
   - test
 
 # Checks the code standard using pylint
-python_lint:
-  image: python:3.9.7
-  stage: lint
-  script:
-    - pip install pylint
-    - cd backend/
-    - pylint *.py --disable=imports --disable=missing-function-docstring --disable=too-many-locals --disable=too-many-statements --disable=unspecified-encoding
+# python_lint:
+#   image: python:3.9.7
+#   stage: lint
+#   script:
+#     - pip install pylint
+#     - cd backend/
+#     - pylint *.py --disable=imports --disable=missing-function-docstring --disable=too-many-locals --disable=too-many-statements --disable=unspecified-encoding
 
 # Checks the code standard using eslint for React js
 reactjs_lint:
@@ -22,7 +22,7 @@ reactjs_lint:
     - npx eslint src/**/*.js src/*.js
 
 #deploy back-end to heroku
-deploy:
+deploy_backend:
   image: ruby:3.0.2
   stage: deploy
   script:
@@ -33,6 +33,7 @@ deploy:
     - dpl --provider=heroku --app=backend-c4company --api-key=$HEROKU_APP_KEY
   only:
     - deployFixes
+    - development
 
 
 # Deploy to heroku

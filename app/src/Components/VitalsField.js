@@ -18,6 +18,8 @@ import PatientEkg from './PatientEkg'
 import FilterEvents from './FilterEvents'
 import PatientDrugs from './PatientDrugs'
 import NoValueInfo from './NoValueInfo'
+import InOut from '../assets/inut.png'
+import Vitals from '../assets/vitals.png'
 
 export default function VitalFields (props) {
   const [id] = useState(props.id)
@@ -27,9 +29,20 @@ export default function VitalFields (props) {
   // Temporary. Should come from back-end. Delete later
   // const drugs = [{ name: 'Alvedon', strength: '500mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '2 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 5)) }, { name: 'Ipren', strength: '400mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 8)) }, { name: 'Kodein', strength: '30mg', absorption: 'Oralt', type: 'Filmdragerad tablett', dosage: '1 tablett(-er) engangsdos', time: new Date((Date.now() - 60 * 1000 * 2)) }]
 
+  const CustomInUt = (
+    <i className="tabIcon">
+      <img id="tabImage" src={InOut} />
+    </i>
+  )
+  const CustomVitals = (
+    <i className="tabIcon">
+      <img id="tabImage" src={Vitals} />
+    </i>
+  )
+
   const panes = [
     {
-      menuItem: { icon: 'doctor big' },
+      menuItem: { icon: CustomVitals },
       render: () => <Tab.Pane>
         <PatientVitalValues id={id} vitals={props.vitals} />
       </Tab.Pane>
@@ -53,7 +66,7 @@ export default function VitalFields (props) {
       </Tab.Pane>
     },
     {
-      menuItem: { icon: 'exchange big' },
+      menuItem: { icon: CustomInUt },
       render: () => <Tab.Pane>
         <PatientInUt id={id} injections={injections} />
       </Tab.Pane>

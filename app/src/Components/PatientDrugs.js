@@ -11,7 +11,7 @@ import React from 'react'
 
 export default function PatientDrugs (props) {
   const drug = props.drug
-  console.log('hej')
+  console.log(drug)
 
   return (
     <div>

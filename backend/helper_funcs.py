@@ -54,9 +54,9 @@ def get_breathing_frequency(mean, num=1):
 if __name__ == '__main__':
 
     N_VALS = 15
-    print(random_times(N_VALS, 120), "\n")
-    print(get_pulse(80, N_VALS), "\n")
-    print(get_body_temp(37, N_VALS), "\n")
-    print(get_blood_pressure((90, 80), N_VALS), "\n")
-    print(get_breathing_frequency(12, N_VALS), "\n")
+    # print(random_times(N_VALS, 120), "\n")
+    # print(get_pulse(80, N_VALS), "\n")
+    # print(get_body_temp(37, N_VALS), "\n")
+    # print(get_blood_pressure((90, 80), N_VALS), "\n")
+    # print(get_breathing_frequency(12, N_VALS), "\n")
    

@@ -5,6 +5,7 @@
  */
 
 import InlagdIcon from './inlagd.svg'
+import AmbIcon from './amb.svg'
 import DosIcon from './dos.svg'
 import HemIcon from './hem.svg'
 import VardIcon from './vard.svg'
@@ -16,6 +17,7 @@ import NotFoundImage from './notFound.svg'
 
 export {
   InlagdIcon,
+  AmbIcon,
   DosIcon,
   HemIcon,
   VardIcon,

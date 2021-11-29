@@ -38,14 +38,13 @@ export default function Patient () {
     // request to get list of drugs
     axios.get('https://backend-c4company.herokuapp.com/patients/' + state.patients.id + '/medicin')
       .then(res => {
-        console.log(res.data)
         setDrugs(res.data)
       })
   }, [])
 
   return (
     <>
-      <HeaderField />
+      <HeaderField patient={state.patients} events={currentEvents} />
       <PatientNavBar patient={state.patients} />
       <Grid>
         <Grid.Row stretched style={{ paddingBottom: '0px' }}>
