@@ -35,21 +35,31 @@ export default function TriageTimeLeft (props) {
   }
 
   const lastChecked = timeStringToDate(props.lastChecked)
+  // Calculates time to check on patient.
+  const calculateTimeToCheck = (timeChecked) => {
+    return (new Date(Date.parse(timeChecked) + (triageTime * 60 * 1000)))
+  }
 
-  // if lastChecked is in future, move back in time enough so that its within the triage time
+  // if lastChecked is in future, move back in time enough so that its within the triage time our at most 40 mins ago
   const checkValidTime = (time) => {
+    const timeToCheck = calculateTimeToCheck(time)
+    // låt den gå ner till - 40 min
     if (time - Date.now() > 0) {
-      time = new Date(Date.parse(time) - triageTime * 1000 * 60 * (1 + parseInt((time - Date.now()) / (triageTime * 60 * 1000))))
+      // which one of these?
+      time = new Date(Date.parse(time) - (triageTime + 40) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((40 + triageTime) * 60 * 1000))))
+      // time = new Date(Date.parse(time) - 40 * 1000 * 60 * (1 + parseInt((time - Date.now()) / (40 * 60 * 1000))))
+
+      // if last checked more than 40 mins ago, reset from triageTime
+    } else if (Date.now() - timeToCheck > 40 * 60 * 1000) {
+      // how many 40 minutes ago should we have checked?
+      // Parse as int and add that many
+      time = new Date(Date.parse(timeToCheck) + 40 * 1000 * 60 * (parseInt((Date.now() - timeToCheck) / (40 * 60 * 1000))))
     }
     return time
   }
   const [timeChecked] = useState(checkValidTime(lastChecked))
 
   let checkPatientNowWarning = false
-  // Calculates time to check on patient.
-  const calculateTimeToCheck = (timeChecked) => {
-    return (new Date(Date.parse(timeChecked) + (triageTime * 60 * 1000)))
-  }
 
   // Time to check on patient next time
   const [timeToCheck] = useState(calculateTimeToCheck(timeChecked))
@@ -83,12 +93,6 @@ export default function TriageTimeLeft (props) {
     }, 1000)
     return () => { isMounted = false }
   })
-
-  /* console.log(timeLeft, triageTime)
- if (timeLeft.minutes > triageTime) {
-    setTimeLeft({ mintues: triageTime, seconds: 0 })
-  }
-    } */
 
   let timerComponents = []
   // loop over each property in timeLeft
