@@ -40,7 +40,9 @@ export default function VitalFields (props) {
       <img id="tabImage" src={Vitals} />
     </i>
   )
-
+  const handleTabChange = (e, data) => {
+    localStorage.setItem('activeVitalIndex', data.activeIndex)
+  }
   const panes = [
     {
       menuItem: { icon: CustomVitals },
@@ -84,7 +86,9 @@ export default function VitalFields (props) {
           tabular: true,
           style: { display: 'flex', justifyContent: 'center' }
         }}
-        panes={panes} />
+        panes={panes}
+        defaultActiveIndex={localStorage.getItem('activeVitalIndex') || 0}
+        onTabChange={handleTabChange} />
     </div>
   )
 }
