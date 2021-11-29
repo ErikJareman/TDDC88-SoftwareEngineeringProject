@@ -13,3 +13,18 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+
+#detailedInfoID {
+    display: flex;
+    flex-direction: row wrap;
+    height: 70px;
+    align-items: center;
+    font-size: 18px;
+}
+
+#detailedValue {
+    margin-left: 5%;
+    width: 75%;
+}
+

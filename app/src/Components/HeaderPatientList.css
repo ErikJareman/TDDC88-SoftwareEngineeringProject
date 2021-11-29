@@ -59,6 +59,8 @@ div#headersubArea1 {
     line-height: normal;
     font-size: 10pt;
     margin: auto;
+    padding-left: 0%;
+    padding-right: 0%;
     padding-top: 0.1%;
     padding-bottom: 0.1%;
 }

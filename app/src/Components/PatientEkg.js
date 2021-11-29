@@ -6,6 +6,7 @@
 
 import React from 'react'
 import PatientEkgChart from './PatientEkgChart'
+import NoValueInfo from './NoValueInfo'
 
 export default function PatientEkg (props) {
   const ekg = props.ekg[0]
@@ -22,7 +23,7 @@ export default function PatientEkg (props) {
             <p>
             {ekg.time.getHours() + ':' + ekg.time.getMinutes() + ':' + ekg.time.getSeconds()}
           </p> */
-          : 'Ingen EKG'}
+          : <NoValueInfo />}
       </h2>
     </>
   )

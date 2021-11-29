@@ -2,7 +2,7 @@
 
 generates fake data that gets stored in mock_patient_data.csv
 
-Isak Berntsson, Hugo Hallstensson Riddargård, Philip Nylén
+Isak Berntsson, Hugo Hallstensson Riddargard, Philip Nylen
 
 FIXING '''
 
@@ -18,13 +18,12 @@ REASONS = ["Benbrott", "Buksmartor", "Hjartkramp", "Ryggvark"]
 INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
 INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
 EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]
-EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Rontgen remiss"]
 EVENT_INLAGD = ["Gubbe", "Ambulans"]
-MEDICIN_NAMES = ["Alvedon"]
-MEDICIN_STRENGTH = ["500mg"]
+MEDICIN_NAMES = ["Alvedon", "Ipren", "Kodein"]
+MEDICIN_STRENGTH = ["500mg", "400mg"]
 MEDICIN_ABSORTION = ["Oralt"]
 MEDICIN_TYPE = ["Filmdragerad tablett"]
-MEDICIN_DOSAGE = ["2 tablett(-er) engangsdos"]
 BLOOD_PRESSURES = [(90, 60), (95, 75), (84, 62), (78, 59)]
 MAX_EVENTS = 12
 
@@ -64,7 +63,7 @@ def make_data(num_patients=100):
                                        "type", "dosage", "time"])
 
     fake = Faker()
-    df_patients["id"] = [range(num_patients)]
+    df_patients["id"] = [i for i in range(num_patients)]
     df_patients["triageLevel"] = [random.randint(1, 4) for _ in range(num_patients)]
     df_patients["arrival"] = random_times(num_patients, 24 * 60)
     df_patients["reason"] = [generate_reason() for _ in range(num_patients)]
@@ -144,7 +143,7 @@ def make_data(num_patients=100):
 
     # blodprov = pippett
     # Gubbe = inlagd
-    # Doktor = röntgen remiss, omvardnad
+    # Doktor = rontgen remiss, omvardnad
     # Ambulans =
     # Hus = lamnar
     # Medkit = dosering
@@ -155,7 +154,7 @@ def make_data(num_patients=100):
             string_to_return = "Pippett"
         elif event_type in ("Labbsvar EKG", "Skickat EKG"):
             string_to_return = "Heartbeat"
-        elif event_type in ("Skickat Röntgen remiss", "Omvardnad"):
+        elif event_type in ("Skickat Rontgen remiss", "Omvardnad"):
             string_to_return = "Doktor"
         elif event_type == "Dosering":
             string_to_return = "Medkit"
@@ -166,9 +165,9 @@ def make_data(num_patients=100):
         #entry_time, exit_time = random_times(2,8*60)
         times = random_times(MAX_EVENTS, maxdiff_mins=3 * 60)
         timein = times[0]
-        timeout = datetime.time(times[-1].hour + 1, times[-1].minute, times[-1].second)
+        timeout = datetime.time(times[1].hour + 1, times[1].minute, times[1].second)
         # times between 1 and 3 hours
-        times = [datetime.time(t.hour + 1, t.minute, t.second) for t in times]
+        times = [datetime.time(t.hour, t.minute, t.second) for t in times]
 
         df_events.loc[total_event_counter, :] = [
             pid,
@@ -195,19 +194,37 @@ def make_data(num_patients=100):
     # Generates values for the patients UMS
 
     # Medicin
+
+    def generate_strength(medicine_type):
+        return_string = ""
+        if medicine_type in ("Alvedon"):
+            return_string = "500mg"
+        elif medicine_type in ("Ipren"):
+            return_string = "400mg"
+        elif medicine_type in ("Kodein"):
+            return_string = "30mg"
+        return return_string
+
     medicin_counter = 0
     for pid in df_patients.id:
-        df_medicin.loc[medicin_counter, :] = [
-            pid,
-            random.choice(MEDICIN_NAMES),
-            random.choice(MEDICIN_STRENGTH),
-            random.choice(MEDICIN_ABSORTION),
-            random.choice(MEDICIN_TYPE),
-            random.choice(MEDICIN_DOSAGE),
-            1
-        ]
-        print("Test medicin")
-        medicin_counter += 1
+        if not (df_events.loc[(df_events["id"] == pid) & (df_events["type"] == 'Dosering'), ["time"]].empty) :
+            events_table = df_events.loc[(df_events["id"] == pid) & (df_events["type"] == 'Dosering'), ["time"]]
+            events = []
+            medicine_name = random.choice(MEDICIN_NAMES)
+            for i in range(events_table.shape[0]):
+                events.append(events_table.at[events_table.index.values[i], "time"])
+                # print(events[i])
+                df_medicin.loc[medicin_counter, :] = [
+                    pid,
+                    medicine_name,
+                    generate_strength(medicine_name),
+                    random.choice(MEDICIN_ABSORTION),
+                    random.choice(MEDICIN_TYPE),
+                    random.randint(1,2),
+                    events[i]
+                ]
+                medicin_counter += 1
+    
 
     # Generates values for the patients UMS
     ums_counter = 0
@@ -228,11 +245,11 @@ def make_data(num_patients=100):
         ums_counter += 1
 
 
-    print(df_patients.head(), "\n")
-    print(df_vitals.head(), "\n")
-    print(df_events, "\n")
-    print(df_injections.head(), "\n")
-    print(df_medicin.head(), "\n")
+    # print(df_patients.head(), "\n")
+    # print(df_vitals.head(), "\n")
+    # print(df_events, "\n")
+    # print(df_injections.head(), "\n")
+    # print(df_medicin.head(), "\n")
 
     with open("mock_patient_data.csv", "w+") as file:
         df_patients.to_csv(file, index=False)
@@ -254,4 +271,4 @@ def make_data(num_patients=100):
 
 if __name__ == '__main__':
     make_data()
-    #print(generate_single_patient_vitals(1337,tot_num=100)["types"])
+    

@@ -59,8 +59,12 @@ export const options = {
     y: {
       type: 'linear',
       display: true,
+      max: 150,
+      min: -80,
       ticks: {
-        display: false
+        display: false,
+        stepSize: 2
+
       }
     }
     /* x: {
@@ -85,7 +89,7 @@ function generateEkg () {
 }
 
 export const data = {
-  labels: new Array(500).fill(''),
+  labels: new Array(1000).fill(''),
   datasets: [
     {
       label: 'Normal Ekg',
@@ -98,5 +102,5 @@ export const data = {
 }
 
 export default function PatientEkgChart () {
-  return <Line options={options} data={data} />
+  return <Line options={options} data={data} style={{ height: '50px' }} />
 }
