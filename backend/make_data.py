@@ -14,7 +14,7 @@ import datetime
 from helper_funcs import random_times
 
 LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
-REASONS = ["Benbrott", "Buksmartor", "Ryggvark", "Skada höft", "onormal hjärtrytm"]
+REASONS = ["Benbrott", "Buksmärtor", "Ryggvärk", "Skada höft", "Onormal hjärtrytm"]
 INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
 INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
 EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]

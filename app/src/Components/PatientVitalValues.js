@@ -159,7 +159,7 @@ function MakeTableRow (event) {
   return (
     <Table.Row className="detailInfoClass">
       <Table.Cell id="detailedInfoID">
-        <Table.Cell id="detailedValue"><b>{floatOrSplit(event.value)}</b></Table.Cell>
+        <Table.Cell id="detailedValue"><b>{floatOrSplit(event.type, event.value)}</b></Table.Cell>
         <Table.Cell id="detailedTime"><b>{event.time.substring(0, 5)}</b></Table.Cell>
       </Table.Cell>
     </Table.Row>
