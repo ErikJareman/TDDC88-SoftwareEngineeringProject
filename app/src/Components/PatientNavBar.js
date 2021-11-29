@@ -8,6 +8,7 @@
 import './PatientNavBar.css'
 import NameDisplay from './NameDisplay'
 import React from 'react'
+import UMS from './UMS'
 
 export default function PatientNavBar (patient) {
   return (

@@ -37,7 +37,7 @@ export const options = {
       radius: 0
     }
   },
-  // maintainAspectRatio: false,
+  maintainAspectRatio: false,
 
   interaction: {
     mode: 'index',
@@ -61,14 +61,13 @@ export const options = {
       type: 'linear',
       display: true,
       max: 100,
-      min: -20,
+      min: -40,
       ticks: {
         display: false,
         stepSize: 2
-
       }
-    }
-    /* x: {
+    }/* ,
+    x: {
       type: 'linear',
       display: true,
       ticks: {
@@ -88,18 +87,18 @@ function generateEkg () {
 }
 
 export const data = {
-  labels: new Array(1000).fill(''),
+  labels: new Array(2500).fill(''),
   datasets: [
     {
       label: 'Normal Ekg',
       data: generateEkg(),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      borderColor: 'rgb(60, 10, 10)',
+      borderWidth: 1,
       yAxisID: 'y'
     }
   ]
 }
 
 export default function PatientEkgChart () {
-  return <Line options={options} data={data} style={{ height: '10vh', width: '10vw' }} />
+  return <Line options={options} data={data} />
 }
