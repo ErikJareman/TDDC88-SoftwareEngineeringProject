@@ -58,9 +58,6 @@ export default function VitalFields (props) {
       render: () => <Tab.Pane>
         <PatientInUt id={id} injections={injections} />
       </Tab.Pane>
-    },
-    {
-      menuItem: { icon: 'group big' }, render: () => <Tab.Pane></Tab.Pane>
     }
   ]
   return (
