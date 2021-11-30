@@ -17,18 +17,49 @@ import exclamation from '../assets/exclamation.png'
 // Time corresponding to triageLevels
 const triageTimes = [0, 20, 15, 10, 5]
 
-const calcTimeChecked = (triageTime) => {
+/* const calcTimeChecked = (triageTime) => {
   return new Date(Date.now() - triageTime * 60 * 1000 + Math.floor(Math.random() * triageTime * 60 * 1000))
-}
+} */
 
 export default function TriageTimeLeft (props) {
   const [triageTime] = useState(triageTimes[props.triageLevel])
-  const [timeChecked] = useState(calcTimeChecked(triageTime))
-  let checkPatientNowWarning = false
+
+  // Function to turn time in string format to date object
+  const timeStringToDate = (timeString) => {
+    const timeArr = timeString.split(':')
+    const timeAsDate = new Date()
+    timeAsDate.setHours(timeArr[0])
+    timeAsDate.setMinutes(timeArr[1])
+    timeAsDate.setSeconds(timeArr[2])
+    return timeAsDate
+  }
+
+  const lastChecked = timeStringToDate(props.lastChecked)
   // Calculates time to check on patient.
   const calculateTimeToCheck = (timeChecked) => {
     return (new Date(Date.parse(timeChecked) + (triageTime * 60 * 1000)))
   }
+
+  // since lastChecked from backend isnt always logic we need this
+  const checkValidTime = (time) => {
+    const timeToCheck = calculateTimeToCheck(time)
+    // if lastChecked is in future, move back in time enough so that its within the triage time our at most 40 mins ago
+    if (time - Date.now() > 0) {
+      // which one of these?
+      // time = new Date(Date.parse(time) - (triageTime + 40) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((40 + triageTime) * 60 * 1000))))
+      time = new Date(Date.parse(time) - (20 + triageTime) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((20 + triageTime) * 60 * 1000))))
+
+      // if last checked more than 40 mins ago, reset from triageTime
+    } else if (Date.now() - timeToCheck > 40 * 60 * 1000) {
+      // how many 40 minutes ago should we have checked?
+      // Parse as int and add that many
+      time = new Date(Date.parse(timeToCheck) + 40 * 1000 * 60 * (parseInt((Date.now() - timeToCheck) / (40 * 60 * 1000))))
+    }
+    return time
+  }
+  const [timeChecked] = useState(checkValidTime(lastChecked))
+
+  let checkPatientNowWarning = false
 
   // Time to check on patient next time
   const [timeToCheck] = useState(calculateTimeToCheck(timeChecked))
@@ -64,7 +95,6 @@ export default function TriageTimeLeft (props) {
   })
 
   let timerComponents = []
-
   // loop over each property in timeLeft
   Object.keys(timeLeft).forEach((interval, index) => {
     timerComponents.push(
@@ -76,7 +106,7 @@ export default function TriageTimeLeft (props) {
   })
 
   if (checkPatientNowWarning) {
-    timerComponents = [<img key='icon' id='exclamation' src={exclamation }></img>, '  -  ', ...timerComponents]
+    timerComponents = [<img key='icon' id='exclamation' src={exclamation}></img>, '  -  ', ...timerComponents]
   };
   return (
     <>

@@ -12,4 +12,28 @@
 #typeHeader {
     display: inline-block;
     vertical-align: middle;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 6px;
+}
+
+
+#detailedInfoID {
+    display: flex;
+    flex-direction: row wrap;
+    height: 70px;
+    align-items: center;
+    font-size: 18px;
+}
+
+#detailedValue {
+    margin-left: 5%;
+    width: 75%;
+}
+
+#leftColumn {
+    width: 75%;
+}
+#rightColumn {
+    width: 25%;
 }

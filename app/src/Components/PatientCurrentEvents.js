@@ -37,24 +37,27 @@ function PatientCurrentEvents (props) {
 
   function imageToLoad (category) {
     let stringToReturn = category
-    console.log(category)
     if (category === 'Gubbe') {
       stringToReturn = 'Inkommen'
     }
     return stringToReturn
   }
 
+  const handleTabChange = (e, data) => {
+    localStorage.setItem('activeEventIndex', data.activeIndex)
+  }
+
   const panes = [
     {
       menuItem: { icon: CustomIcon },
       render: () => <Tab.Pane style={eventTabsCss}>{FilterEvents({ sortBy: 'time', list: currentEvents }).map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={imageToLoad(event.category) } />)
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={imageToLoad(event.category)} />)
       })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'envelope outline big' },
       render: () => <Tab.Pane style={eventTabsCss}>{incoming.map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={imageToLoad(event.category) } />)
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={imageToLoad(event.category)} />)
       })}</Tab.Pane>
     },
     {
@@ -73,7 +76,9 @@ function PatientCurrentEvents (props) {
           tabular: true,
           style: { display: 'flex', justifyContent: 'center' }
         }}
-        panes={panes} />
+        panes={panes}
+        defaultActiveIndex={localStorage.getItem('activeEventIndex') || 0}
+        onTabChange={handleTabChange} />
     </div>
   )
 }

@@ -11,15 +11,13 @@ import React from 'react'
 
 export default function PatientDrugs (props) {
   const drug = props.drug
-  const time = new Date(drug.time)
+  // Absorption is misspelled in backend, will have to misspell here to match
   return (
     <div>
-      {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-
       <h3 className='inUtTextBox'>{drug.name + ', ' + drug.strength}</h3>
-      <h3 className='inUtTextBox'>{drug.absorption + ', ' + drug.type}</h3>
-      <h3 className='inUtTextBox'>{drug.dosage}</h3>
-      <h3 className='inUtTextBox'>{time.getHours() + ':' + time.getMinutes()}</h3>
+      <h3 className='inUtTextBox'>{drug.absortion + ', ' + drug.type}</h3>
+      <h3 className='inUtTextBox'>{drug.dosage + ' tablett(-er)'}</h3>
+      <h3 className='inUtTextBox'>{drug.time}</h3>
     </div>
 
   )

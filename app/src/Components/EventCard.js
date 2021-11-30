@@ -10,8 +10,7 @@ import './EventCard.css'
 import React, { useState } from 'react'
 import { Popup } from 'reactjs-popup'
 import { Icon } from 'semantic-ui-react'
-import pipett from '../assets/pipett.png'
-import { InlagdIcon } from '../assets/timelineIcons/index'
+import { InlagdIcon, Svar1Icon } from '../assets/timelineIcons/index'
 
 function EventCard (props) {
   const [opa, setOpa] = useState('100%')
@@ -44,8 +43,7 @@ function EventCard (props) {
     </>
   )
 
-  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: pipett, Medkit: 'medkit', Heartbeat: 'heartbeat' }
-
+  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: 'pipett', Medkit: 'medkit', Heartbeat: 'heartbeat' }
   return (
     <>
       <Popup trigger={
@@ -54,7 +52,7 @@ function EventCard (props) {
             <tr>
               <th style={{ width: '15%' }}>
                 <h4>{props.image === 'Pippett'
-                  ? <img style={{ height: '2vh' }} src={sweToEng[props.image]}></img>
+                  ? <img src={Svar1Icon}></img>
                   : (props.image === 'Inkommen'
                       ? <img src={InlagdIcon}></img>
                       : <Icon name={sweToEng[props.image]} size='large' />)

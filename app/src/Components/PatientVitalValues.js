@@ -61,21 +61,35 @@ const vitalType = {
 /**
  * Function that generates segment for one patient vital-value.
  */
+
 function generateSegement (vitals) {
+  function p () {
+    console.log(vitals.reference)
+    if (vitals.reference === 1) {
+      return (<Icon fitted name='arrow up' size='huge' color='red'></Icon>)
+    }
+    if (vitals.reference === 0) {
+      return (<Icon fitted name='arrow right' size='huge' color='green'></Icon>)
+    }
+    if (vitals.reference === -1) {
+      return (<Icon fitted name='arrow down' size='huge' color='red'></Icon>)
+    }
+  }
   return (
     <>
       {vitals !== undefined
         ? <Segment onClick={() => handleClick(vitals.type)} size='mini'>
           <Grid columns={2}>
             <Grid.Row verticalAlign='middle'>
-              <Grid.Column textAlign='left'>
+              <Grid.Column id="leftColumn" textAlign='left'>
+                {p()}
                 <Header id="typeHeader">
                   {vitals.type}
                 </Header>
               </Grid.Column>
-              <Grid.Column textAlign='right'>
+              <Grid.Column id="rightColumn" textAlign='right'>
                 <Header id="valHeader">
-                  {floatOrSplit(vitals.value)}
+                  {floatOrSplit(vitals.type, vitals.value)}
                 </Header>
                 <Header id="timeHeader">
                   {vitals.time.substring(0, 5)}
@@ -84,7 +98,7 @@ function generateSegement (vitals) {
             </Grid.Row>
           </Grid>
         </Segment>
-        : 'Ingen data tillgänglig'}
+        : <NoValueInfo />}
     </>
   )
 }
@@ -181,6 +195,9 @@ export default function VitalValuesComponent (props) {
   }
 
   function safeRender () {
+    let i = 0
+    const events = []
+    const vitalArr = typeToArray(vitalType.get())
     if (vitalType.get() !== undefined) {
       if (typeToArray(vitalType.get()) !== undefined) {
         if (typeToArray(vitalType.get()).length > 0) {
@@ -206,10 +223,13 @@ export default function VitalValuesComponent (props) {
   )
 }
 
-function floatOrSplit (val) {
+function floatOrSplit (type, val) {
+  if (type === 'Kroppstemperatur') {
+    return parseFloat(val).toFixed(1).toString()
+  }
   if (val[0] === '(') {
     const split = val.substring(1).split(',')
-    return parseFloat(split[0]).toFixed(2).toString() + ' - ' + parseFloat(split[1]).toFixed(2).toString()
+    return parseFloat(split[0]).toFixed(0).toString() + ' / ' + parseFloat(split[1]).toFixed(0).toString()
   }
-  return parseFloat(val).toFixed(2).toString()
+  return parseFloat(val).toFixed(0).toString()
 }
