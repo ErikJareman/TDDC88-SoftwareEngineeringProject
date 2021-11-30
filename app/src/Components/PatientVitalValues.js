@@ -1,10 +1,10 @@
 /**
  * Component for the vital parameters on the patient page.
- * Isak Berntsson & Linus Bäckbro Kuusisto
+ * Isak Berntsson & Linus Bäckbro Kuusisto & Nikil(added color coded arrows)
  * issue #31
  */
 import React, { useState } from 'react'
-import { Grid, Segment, Header, Table } from 'semantic-ui-react'
+import { Grid, Segment, Header, Table, Icon } from 'semantic-ui-react'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 import FilterEvents from './FilterEvents'
@@ -29,7 +29,20 @@ const vitalType = {
 /**
  * Function that generates segment for one patient vital-value.
  */
+
 function generateSegement (vitals) {
+  function p () {
+    console.log(vitals.reference)
+    if (vitals.reference === 1) {
+      return (<Icon fitted name='arrow up' size='huge' color='red'></Icon>)
+    }
+    if (vitals.reference === 0) {
+      return (<Icon fitted name='arrow right' size='huge' color='green'></Icon>)
+    }
+    if (vitals.reference === -1) {
+      return (<Icon fitted name='arrow down' size='huge' color='red'></Icon>)
+    }
+  }
   return (
     <>
       {vitals !== undefined
@@ -37,6 +50,7 @@ function generateSegement (vitals) {
           <Grid columns={2}>
             <Grid.Row verticalAlign='middle'>
               <Grid.Column textAlign='left'>
+                {p()}
                 <Header id="typeHeader">
                   {vitals.type}
                 </Header>
