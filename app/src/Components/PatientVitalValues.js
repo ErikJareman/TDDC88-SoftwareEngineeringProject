@@ -5,12 +5,13 @@
  * issue #31
  */
 import React, { useState } from 'react'
-import { Grid, Segment, Header, Table } from 'semantic-ui-react'
+import { Grid, Segment, Header, Table, Icon } from 'semantic-ui-react'
 import { Chart, Line } from 'react-chartjs-2'
 import 'chartjs-adapter-date-fns'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 import FilterEvents from './FilterEvents'
+import NoValueInfo from './NoValueInfo'
 Chart.register()
 
 // chartOptions are settings used for chartjs graph
