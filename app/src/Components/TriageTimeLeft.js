@@ -40,14 +40,14 @@ export default function TriageTimeLeft (props) {
     return (new Date(Date.parse(timeChecked) + (triageTime * 60 * 1000)))
   }
 
-  // if lastChecked is in future, move back in time enough so that its within the triage time our at most 40 mins ago
+  // since lastChecked from backend isnt always logic we need this
   const checkValidTime = (time) => {
     const timeToCheck = calculateTimeToCheck(time)
-    // låt den gå ner till - 40 min
+    // if lastChecked is in future, move back in time enough so that its within the triage time our at most 40 mins ago
     if (time - Date.now() > 0) {
       // which one of these?
-      time = new Date(Date.parse(time) - (triageTime + 40) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((40 + triageTime) * 60 * 1000))))
-      // time = new Date(Date.parse(time) - 40 * 1000 * 60 * (1 + parseInt((time - Date.now()) / (40 * 60 * 1000))))
+      // time = new Date(Date.parse(time) - (triageTime + 40) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((40 + triageTime) * 60 * 1000))))
+      time = new Date(Date.parse(time) - 20 * 1000 * 60 * (1 + parseInt((time - Date.now()) / (20 * 60 * 1000))))
 
       // if last checked more than 40 mins ago, reset from triageTime
     } else if (Date.now() - timeToCheck > 40 * 60 * 1000) {
