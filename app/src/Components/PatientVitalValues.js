@@ -1,14 +1,47 @@
 /**
  * Component for the vital parameters on the patient page.
- * Isak Berntsson & Linus Bäckbro Kuusisto & Nikil(added color coded arrows)
+ * Isak Berntsson & Linus Bäckbro Kuusisto
+ * Responsible for graphs - Erik Jareman
  * issue #31
  */
 import React, { useState } from 'react'
 import { Grid, Segment, Header, Table, Icon } from 'semantic-ui-react'
+import { Chart, Line } from 'react-chartjs-2'
+import 'chartjs-adapter-date-fns'
 import './PatientVitalValues.css'
 import './VitalHistory.js'
 import FilterEvents from './FilterEvents'
 import NoValueInfo from './NoValueInfo'
+Chart.register()
+
+// chartOptions are settings used for chartjs graph
+const chartOptions = {
+  plugins: {
+    datalabels: {
+      display: false
+    },
+    legend: {
+      display: false
+    }
+  },
+  maintainAspectRatio: false,
+  scale: {
+    ticks: {
+      precision: 1
+    }
+  },
+  scales: {
+    x: {
+      type: 'time',
+      time: {
+        unit: 'hour',
+        displayFormats: {
+          hour: 'HH:mm'
+        }
+      }
+    }
+  }
+}
 
 // vitalType is the the vital parameter that the user has pressed on, resulting in a table of historic values in the vital values component
 const vitalType = {
@@ -111,18 +144,62 @@ export default function VitalValuesComponent (props) {
     return result
   }
 
+  // getDataset returns a dataset object that can be used as input to chartjs chart.
+  // creates datapoints and sets color them
+  function getDataset (datapoints, values) {
+    const dataset = []
+    const backgroundColor = []
+    for (let i = 0; i < datapoints.length; i++) {
+      if (values === null) {
+        dataset.push({ x: new Date('1970-01-01 ' + datapoints[i].time), y: datapoints[i].value })
+      } else {
+        dataset.push({ x: new Date('1970-01-01 ' + datapoints[i].time), y: values[i] })
+      }
+      if (datapoints[i].reference === 0) {
+        backgroundColor.push('black')
+      } else {
+        backgroundColor.push('red')
+      }
+    }
+    return (
+      {
+        data: dataset,
+        backgroundColor: backgroundColor,
+        pointRadius: 4
+      }
+    )
+  }
+
+  // renderVitalChart returns a chartjs line chart with data for a vital parameter.
+  function renderVitalChart (datapoints) {
+    const datasets = []
+    if (datapoints[0].type === 'Blodtryck') { // add two datasets for 'Blodtryck' (separate value string)
+      const lowerValues = []
+      const upperValues = []
+      for (let j = 0; j < Object.keys(datapoints).length; j++) {
+        lowerValues.push(datapoints[j].value.substring(5, 7))
+        upperValues.push(datapoints[j].value.substring(1, 3))
+      }
+      datasets.push(getDataset(datapoints, lowerValues))
+      datasets.push(getDataset(datapoints, upperValues))
+    } else { // add one dataset for other vital parameter
+      datasets.push(getDataset(datapoints, null))
+    }
+    const chartData = {
+      datasets: datasets
+    }
+    return ( // redraw={ true } fixes chartjs bug (TypeError) when changing data in line chart
+    <Table.Row>
+      <Line style={{ height: '40vh', width: '100%' }} data={chartData} options={chartOptions} redraw={ true }></Line>
+    </Table.Row>
+    )
+  }
+
   function safeRender () {
-    let i = 0
-    const events = []
-    const vitalArr = typeToArray(vitalType.get())
     if (vitalType.get() !== undefined) {
-      if (vitalArr !== undefined) {
-        if (vitalArr.length > 0) {
-          while (i < 4 && i < vitalArr.length) {
-            events.push(MakeTableRow(vitalArr[i]))
-            i += 1
-          }
-          return (events)
+      if (typeToArray(vitalType.get()) !== undefined) {
+        if (typeToArray(vitalType.get()).length > 0) {
+          return renderVitalChart(typeToArray(vitalType.get()))
         }
       }
     }
@@ -137,22 +214,8 @@ export default function VitalValuesComponent (props) {
           })
           : 'No values'}
       </Grid.Column>
-
-      <Grid.Column stretched>
-        <Table stackable>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell textAlign='center' ><b>{vitalType.get()}</b></Table.HeaderCell>
-              <Table.HeaderCell ></Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          {/*   SHOULD ONLY BE ONE LINE LATER */}
-          {/* {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
-          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
-          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'}
-          {vitalType.get() !== undefined ? typeToArray(vitalType.get()).map(MakeTableRow) : 'No values'} */}
+      <Grid.Column>
           {safeRender()}
-        </Table>
       </Grid.Column>
     </Grid>
   )
@@ -167,15 +230,4 @@ function floatOrSplit (type, val) {
     return parseFloat(split[0]).toFixed(0).toString() + ' / ' + parseFloat(split[1]).toFixed(0).toString()
   }
   return parseFloat(val).toFixed(0).toString()
-}
-
-function MakeTableRow (event) {
-  return (
-    <Table.Row className="detailInfoClass">
-      <Table.Cell id="detailedInfoID">
-        <Table.Cell id="detailedValue"><b>{floatOrSplit(event.type, event.value)}</b></Table.Cell>
-        <Table.Cell id="detailedTime"><b>{event.time.substring(0, 5)}</b></Table.Cell>
-      </Table.Cell>
-    </Table.Row>
-  )
 }
