@@ -49,13 +49,13 @@ function generateSegement (vitals) {
         ? <Segment onClick={() => handleClick(vitals.type)} size='mini'>
           <Grid columns={2}>
             <Grid.Row verticalAlign='middle'>
-              <Grid.Column textAlign='left'>
+              <Grid.Column id="leftColumn" textAlign='left'>
                 {p()}
                 <Header id="typeHeader">
                   {vitals.type}
                 </Header>
               </Grid.Column>
-              <Grid.Column textAlign='right'>
+              <Grid.Column id="rightColumn" textAlign='right'>
                 <Header id="valHeader">
                   {floatOrSplit(vitals.type, vitals.value)}
                 </Header>
