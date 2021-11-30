@@ -48,7 +48,6 @@ deploy:
     - dpl --provider=heroku --app=development-c4 --api-key=$HEROKU_API_KEY
   only:
     - development
-    - productiondeploy
 
 # Web testing with Selenium with Chrome
 web_testing:
