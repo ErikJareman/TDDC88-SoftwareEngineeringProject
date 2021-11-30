@@ -196,9 +196,6 @@ export default function VitalValuesComponent (props) {
   }
 
   function safeRender () {
-    let i = 0
-    const events = []
-    const vitalArr = typeToArray(vitalType.get())
     if (vitalType.get() !== undefined) {
       if (typeToArray(vitalType.get()) !== undefined) {
         if (typeToArray(vitalType.get()).length > 0) {
