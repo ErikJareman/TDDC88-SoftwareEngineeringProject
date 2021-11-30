@@ -27,7 +27,7 @@ export default function FilterEvents () {
   const [props] = [...arguments]
   const [filterField, filterBy, sortBy, list] = [props.filterField, props.filterBy, props.sortBy, props.list]
   let sortedEvents = list
-  // console.log('filterField,', filterField, 'filterBy', filterBy, 'sortBy', sortBy, 'list', list)
+
   try {
     if (sortedEvents.length > 0) {
       if (filterField !== undefined) {
@@ -46,7 +46,7 @@ export default function FilterEvents () {
       }
     }
   } catch (error) {
-    console.log('sortedEvents probably undefined. Error thrown in FilterEvents')
+    console.log('Error thrown in FilterEvents. List taken as parameter is probably undefined. ')
   }
   return sortedEvents
 }

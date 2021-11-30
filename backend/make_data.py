@@ -11,7 +11,7 @@ from faker import Faker
 import random
 import numpy as np
 import datetime
-from helper_funcs import random_times
+from helper_funcs import random_times, compare_reference_values
 
 LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
 REASONS = ["Benbrott", "Buksmärtor", "Ryggvärk", "Skada höft", "Onormal hjärtrytm"]
@@ -52,7 +52,7 @@ def make_data(num_patients=100):
     df_patients = pd.DataFrame(columns=["id", "triageLevel", "arrival",
                                         "reason", "name", "SSN", "location",
                                         "team", "room"])
-    df_vitals = pd.DataFrame(columns=["id", "time", "type", "value"])
+    df_vitals = pd.DataFrame(columns=["id", "time", "type", "value","reference"])
     df_injections = pd.DataFrame(columns=["id", "timein", "timeout",
                                           "type", "value", "localization",
                                           "procedure"])
@@ -72,7 +72,7 @@ def make_data(num_patients=100):
     df_patients["SSN"] = [generate_ssn() for _ in range(num_patients)]
     df_patients["team"] = [random.choice(list("123")) for _ in range(num_patients)]
     df_patients["room"] = [random.randint(1, 10) for _ in range(num_patients)]
-
+    #df_patients["age"] = [2021 - int(ssn[:4]) for ssn in df_patients.SSN]
     df_patients.sort_values(by=["team", "id"], inplace=True)
 
     # filling in vitals. base values for each patient is normally distributed with mean of
@@ -80,33 +80,38 @@ def make_data(num_patients=100):
 
     vitals_counter = 0
     times = random_times(4, 2 * 60)
-
+    pid_ssn = dict(zip(df_patients["id"],df_patients["SSN"]))
+    print(pid_ssn)
     for pid in df_patients.id:
 
         for time in times:
-
+            PULSE_VAL = round(75 * np.random.normal(1, .15))
             df_vitals.loc[vitals_counter, :] = [
                 pid,
                 time,
                 "Puls",
-                round(75 * np.random.normal(1, .15))
+                PULSE_VAL,
+                compare_reference_values(pid_ssn[pid], "Puls",PULSE_VAL)
+                
             ]
             vitals_counter += 1
-
+            TEMP_VAL = round(37.2 + np.random.normal(0, .1), 1)
             df_vitals.loc[vitals_counter, :] = [pid, time, "Kroppstemperatur",
-                                                round(37.2 + np.random.normal(0, .1), 1)]
+                                                TEMP_VAL, compare_reference_values(pid_ssn[pid],"Kroppstemperatur",TEMP_VAL)]
             vitals_counter += 1
-
+            BP_VAL = (BLOOD_PRESSURES[int(np.random.randint(0, len(BLOOD_PRESSURES)))])
             df_vitals.loc[vitals_counter, :] = [
                 pid,
                 time,
                 "Blodtryck",
-                (BLOOD_PRESSURES[int(np.random.randint(0, len(BLOOD_PRESSURES)))])
+                BP_VAL
+                ,
+                compare_reference_values(pid_ssn[pid],"Blodtryck",BP_VAL)
             ]
             vitals_counter += 1
-
-            df_vitals.loc[vitals_counter, :] = [pid, time, "Andningsfrekvens",
-                                                round(19 * np.random.normal(1, .3), 1)]
+            
+            BREATHING_VAL = round(19 * np.random.normal(1, .3), 1)
+            df_vitals.loc[vitals_counter, :] = [pid, time, "Andningsfrekvens", BREATHING_VAL, compare_reference_values(pid_ssn[pid],"Andningsfrekvens",BREATHING_VAL)]
             vitals_counter += 1
 
     # [Filling in df_injectios. Will need to add all available types,
@@ -251,6 +256,7 @@ def make_data(num_patients=100):
     # print(df_injections.head(), "\n")
     # print(df_medicin.head(), "\n")
 
+    
     with open("mock_patient_data.csv", "w+") as file:
         df_patients.to_csv(file, index=False)
 
