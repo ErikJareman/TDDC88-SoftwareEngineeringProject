@@ -47,7 +47,7 @@ export default function TriageTimeLeft (props) {
     if (time - Date.now() > 0) {
       // which one of these?
       // time = new Date(Date.parse(time) - (triageTime + 40) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((40 + triageTime) * 60 * 1000))))
-      time = new Date(Date.parse(time) - 20 * 1000 * 60 * (1 + parseInt((time - Date.now()) / (20 * 60 * 1000))))
+      time = new Date(Date.parse(time) - (20 + triageTime) * 1000 * 60 * (1 + parseInt((time - Date.now()) / ((20 + triageTime) * 60 * 1000))))
 
       // if last checked more than 40 mins ago, reset from triageTime
     } else if (Date.now() - timeToCheck > 40 * 60 * 1000) {
