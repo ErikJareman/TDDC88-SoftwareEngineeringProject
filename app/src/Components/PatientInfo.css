@@ -1,10 +1,8 @@
-#textBox {
-    background-color: white;
-    height: 100%;
-}
 div#textBox{
+    background-color: white;
     height: 25px;
     margin-bottom: 5px;
+    display: flex;
 }
 
 #divi{
@@ -17,8 +15,11 @@ h5{
 }
 
 #triageBox {
-    width: calc(10% + 30px);
-    overflow-x: visible;
+    display: flex;
+    width: calc(15% + 30px);
+    justify-content: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 #shortReason {
@@ -46,4 +47,7 @@ div#bottomLeft.column {
     font-size: 17px;
 }
 
+#exclamation {
+    margin-top: 0;
+}
 /* f7f7f7 */

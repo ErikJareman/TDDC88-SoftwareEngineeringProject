@@ -38,8 +38,8 @@ export default function PatientInfo (props) {
   return (
     <div id="divi">
       <img src={accessability} style={imageCss} />
-      <div id="textBox" style={{ display: 'flex' }}>
-        <h5 id="triageBox" style={{ backgroundColor: triageColor, padding: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} lastChecked={lastChecked} /></h5>
+      <div id="textBox">
+        <h5 id="triageBox" style={{ backgroundColor: triageColor, paddingLeft: '3px', paddingRight: '3px' }}><TriageTimeLeft key={patient.id + '.timeChecked'} triageLevel={patient.triageLevel} lastChecked={lastChecked} /></h5>
         <h5 id="shortReason" style={{ padding: '3px', height: ' 100%' }}>{patient.reason}</h5>
       </div>
 
