@@ -12,6 +12,9 @@
 #typeHeader {
     display: inline-block;
     vertical-align: middle;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-left: 6px;
 }
 
 
@@ -28,3 +31,9 @@
     width: 75%;
 }
 
+#leftColumn {
+    width: 75%;
+}
+#rightColumn {
+    width: 25%;
+}
