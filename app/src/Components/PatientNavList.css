@@ -41,7 +41,7 @@ h3.long {
     font-size: 18px;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 15px;
+    padding-top: 11px;
     padding-left: 2%;
 }
 
@@ -67,7 +67,7 @@ h3.short {
     font-size: 18px;
     font-weight: bold;
     vertical-align: middle;
-    padding-top: 15px;
+    padding-top: 11px;
     justify-content: center;
 }
 
