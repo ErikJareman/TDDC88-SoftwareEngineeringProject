@@ -10,7 +10,7 @@ import './EventCard.css'
 import React, { useState } from 'react'
 import { Popup } from 'reactjs-popup'
 import { Icon } from 'semantic-ui-react'
-import { InlagdIcon, Svar1Icon } from '../assets/timelineIcons/index'
+import { InlagdIcon, Svar1Icon, DosIcon } from '../assets/timelineIcons/index'
 
 function EventCard (props) {
   const [opa, setOpa] = useState('100%')
@@ -55,7 +55,9 @@ function EventCard (props) {
                   ? <img src={Svar1Icon}></img>
                   : (props.image === 'Inkommen'
                       ? <img src={InlagdIcon}></img>
-                      : <Icon name={sweToEng[props.image]} size='large' />)
+                      : (props.image === 'Medkit'
+                          ? <img src={DosIcon}></img>
+                          : <Icon name={sweToEng[props.image]} size='large' />))
                   }
                 </h4>
               </th>

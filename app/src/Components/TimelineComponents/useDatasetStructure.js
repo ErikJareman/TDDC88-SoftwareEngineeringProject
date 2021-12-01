@@ -68,8 +68,8 @@ export default function useDatasetStructure () {
         pointRadius: 6,
         pointHoverRadius: 7,
         data: [],
-        backgroundColor: ['red', '#ffffff00', '#ffffff00'],
-        borderColor: ['red', '#ffffff00', '#ffffff00']
+        backgroundColor: ['#0042ac', '#ffffff00', '#ffffff00'],
+        borderColor: ['#0042ac', '#ffffff00', '#ffffff00']
       }
     ]
   }

@@ -112,7 +112,7 @@ function initDataPoints (dataset, backendEvents, initialWidth) {
   currentTime.setMonth(0)
   currentTime.setDate(1)
   const initialTimespan = getTimelineBounds(backendEvents, currentTime)
-  backendEvents = backendEvents.filter(a => (new Date('1970-01-01 ' + a.time).getTime() < currentTime.getTime()) || (a.type === 'Dosering' || a.type === 'Omvardnad'))
+  backendEvents = backendEvents.filter(a => (new Date('1970-01-01 ' + a.time).getTime() < currentTime.getTime()) || (a.type === 'Dosering' || a.type === 'Omvårdnad'))
   backendEvents = updateCoordinateY(backendEvents, initialTimespan[0], initialTimespan[1], initialWidth)
   for (let i = 0; i < backendEvents.length; i++) {
     for (let j = 0; j < dataset.datasets.length; j++) {

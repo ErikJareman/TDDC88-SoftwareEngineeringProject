@@ -14,11 +14,11 @@ import datetime
 from helper_funcs import random_times, compare_reference_values
 
 LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
-REASONS = ["Benbrott", "Buksmärtor", "Ryggvärk", "Skada höft", "Onormal hjärtrytm"]
+REASONS = ["Bröstsmärta", "Buksmärtor", "Skada höft", "Onormal hjärtrytm"]
 INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
-INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
-EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]
-EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Rontgen remiss"]
+INJECTION_LOCALIZATION = ["Höger arm", "Vänster Arm"]
+EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvårdnad", "Dosering"]
+EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
 EVENT_INLAGD = ["Gubbe", "Ambulans"]
 MEDICIN_NAMES = ["Alvedon", "Ipren", "Kodein"]
 MEDICIN_STRENGTH = ["500mg", "400mg"]
@@ -81,7 +81,7 @@ def make_data(num_patients=100):
     vitals_counter = 0
     times = random_times(4, 2 * 60)
     pid_ssn = dict(zip(df_patients["id"],df_patients["SSN"]))
-    print(pid_ssn)
+    # print(pid_ssn)
     for pid in df_patients.id:
 
         for time in times:
@@ -148,7 +148,7 @@ def make_data(num_patients=100):
 
     # blodprov = pippett
     # Gubbe = inlagd
-    # Doktor = rontgen remiss, omvardnad
+    # Doktor = röntgen remiss, omvårdnad
     # Ambulans =
     # Hus = lamnar
     # Medkit = dosering
@@ -159,7 +159,7 @@ def make_data(num_patients=100):
             string_to_return = "Pippett"
         elif event_type in ("Labbsvar EKG", "Skickat EKG"):
             string_to_return = "Heartbeat"
-        elif event_type in ("Skickat Rontgen remiss", "Omvardnad"):
+        elif event_type in ("Skickat Röntgen remiss", "Omvårdnad"):
             string_to_return = "Doktor"
         elif event_type == "Dosering":
             string_to_return = "Medkit"
@@ -170,7 +170,7 @@ def make_data(num_patients=100):
         #entry_time, exit_time = random_times(2,8*60)
         times = random_times(MAX_EVENTS, maxdiff_mins=3 * 60)
         timein = times[0]
-        timeout = datetime.time(times[1].hour + 1, times[1].minute, times[1].second)
+        # timeout = datetime.time(times[1].hour + 1, times[1].minute, times[1].second)
         # times between 1 and 3 hours
         times = [datetime.time(t.hour, t.minute, t.second) for t in times]
 
@@ -183,17 +183,20 @@ def make_data(num_patients=100):
         ]
         total_event_counter += 1
         for i in range(int(random.randint(2, MAX_EVENTS - 2))): #number of events per patient
-            is_sent = random.uniform(0, 1) < 0.2
-            event_type = generate_type(is_sent)
-            df_events.loc[total_event_counter, :] = [
-                pid,
-                times[i],
-                generate_category(event_type),
-                event_type,
-                is_sent
-            ]
-            total_event_counter += 1
-        df_events.loc[total_event_counter, :] = [pid, timeout, "Hus", "Patient Lamnar", False]
+            if i != 0:
+                is_sent = random.uniform(0, 1) < 0.2
+                event_type = generate_type(is_sent)
+                df_events.loc[total_event_counter, :] = [
+                    pid,
+                    times[i],
+                    generate_category(event_type),
+                    event_type,
+                    is_sent
+                ]
+                total_event_counter += 1
+        lastTime = datetime.time(times[total_event_counter - 1].hour, times[total_event_counter - 1].minute, times[total_event_counter - 1].second)
+        lastTime = lastTime + datetime.timedelta(minutes=random.randint(2, 40))
+        df_events.loc[total_event_counter, :] = [pid, lastTime, "Hus", "Patient Lamnar", False]
         total_event_counter += 1
 
     # Generates values for the patients UMS
