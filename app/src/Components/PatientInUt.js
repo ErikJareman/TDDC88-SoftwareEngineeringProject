@@ -37,7 +37,14 @@ export default function PatientInUt (props) {
                 {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
                 <h3 className='inUtTextBox'>{injection.type}</h3>
                 <h3 className='inUtTextBox'>{injection.value}</h3>
-                <h3 className='inUtTextBox'>{injection.localization}</h3>
+                <h3 className='inUtTextBox'>
+                  {injection.localization === 'Vanster Arm'
+                    ? 'Vänster Arm'
+                    : (injection.localization === 'Hoger arm'
+                        ? 'Höger Arm'
+                        : '')
+                  }
+                </h3>
                 <h3 className='inUtTextBox'>{injection.timein.split('.', 1)}</h3>
                 <h3 className='inUtTextBox'>{injection.procedure}</h3>
                 <h3 className='inUtTextBox'>{injection.timeout.split('.', 1)}</h3>
