@@ -6,7 +6,7 @@
 
 import InlagdIcon from './inlagd.svg'
 import AmbIcon from './amb.svg'
-import DosIcon from './dos.svg'
+import DosIcon from './dosPills.svg'
 import HemIcon from './hem.svg'
 import VardIcon from './vard.svg'
 import SkickatIcon from './skickat.svg'
