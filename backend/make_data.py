@@ -197,7 +197,6 @@ def make_data(num_patients=100):
                 ]
                 total_event_counter += 1
                 person_event_counter += 1
-        print("Length: " + str(len(times)) + ", conuter: " + str(person_event_counter - 1))
         d1 = datetime.datetime(2000, 1, 1, times[person_event_counter - 1].hour,
         times[person_event_counter - 1].minute,
         times[person_event_counter - 1].second)
