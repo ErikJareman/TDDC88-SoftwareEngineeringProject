@@ -167,6 +167,7 @@ def make_data(num_patients=100):
 
     total_event_counter = 0
     for pid in df_patients.id:
+        person_event_counter = 0
         #entry_time, exit_time = random_times(2,8*60)
         times = random_times(MAX_EVENTS, maxdiff_mins=3 * 60)
         timein = times[0]
@@ -182,6 +183,7 @@ def make_data(num_patients=100):
             False
         ]
         total_event_counter += 1
+        person_event_counter += 1
         for i in range(int(random.randint(2, MAX_EVENTS - 2))): #number of events per patient
             if i != 0:
                 is_sent = random.uniform(0, 1) < 0.2
@@ -194,8 +196,13 @@ def make_data(num_patients=100):
                     is_sent
                 ]
                 total_event_counter += 1
-        lastTime = datetime.time(times[total_event_counter - 1].hour, times[total_event_counter - 1].minute, times[total_event_counter - 1].second)
-        lastTime = lastTime + datetime.timedelta(minutes=random.randint(2, 40))
+                person_event_counter += 1
+        print("Length: " + str(len(times)) + ", conuter: " + str(person_event_counter - 1))
+        d1 = datetime.datetime(2000, 1, 1, times[person_event_counter - 1].hour,
+        times[person_event_counter - 1].minute,
+        times[person_event_counter - 1].second)
+        d2 = d1 + datetime.timedelta(minutes=random.randint(2, 40))
+        lastTime = d2.time()
         df_events.loc[total_event_counter, :] = [pid, lastTime, "Hus", "Patient Lamnar", False]
         total_event_counter += 1
 
