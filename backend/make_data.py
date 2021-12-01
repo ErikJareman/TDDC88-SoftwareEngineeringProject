@@ -16,9 +16,9 @@ from helper_funcs import random_times, compare_reference_values
 LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
 REASONS = ["Bröstsmärta", "Buksmärtor", "Skada höft", "Onormal hjärtrytm"]
 INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
-INJECTION_LOCALIZATION = ["Höger arm", "Vänster Arm"]
-EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvårdnad", "Dosering"]
-EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
+INJECTION_LOCALIZATION = ["Hoger arm", "Vanster Arm"]
+EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvardnad", "Dosering"]
+EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Rontgen remiss"]
 EVENT_INLAGD = ["Gubbe", "Ambulans"]
 MEDICIN_NAMES = ["Alvedon", "Ipren", "Kodein"]
 MEDICIN_STRENGTH = ["500mg", "400mg"]
@@ -148,7 +148,7 @@ def make_data(num_patients=100):
 
     # blodprov = pippett
     # Gubbe = inlagd
-    # Doktor = röntgen remiss, omvårdnad
+    # Doktor = rontgen remiss, omvardnad
     # Ambulans =
     # Hus = lamnar
     # Medkit = dosering
@@ -159,7 +159,7 @@ def make_data(num_patients=100):
             string_to_return = "Pippett"
         elif event_type in ("Labbsvar EKG", "Skickat EKG"):
             string_to_return = "Heartbeat"
-        elif event_type in ("Skickat Röntgen remiss", "Omvårdnad"):
+        elif event_type in ("Skickat Rontgen remiss", "Omvardnad"):
             string_to_return = "Doktor"
         elif event_type == "Dosering":
             string_to_return = "Medkit"
