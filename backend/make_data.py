@@ -16,7 +16,7 @@ from helper_funcs import random_times, compare_reference_values
 LOCATIONS = ["Linkoping", "Norrkoping", "Motala"]
 REASONS = ["Bröstsmärta", "Buksmärtor", "Skada höft", "Onormal hjärtrytm"]
 INJECTION_TYPES = ["Morfin", "Koksalt", "Naringsvatska"]
-INJECTION_LOCALIZATION = ["Hoger arm", "Vänster Arm"]
+INJECTION_LOCALIZATION = ["Höger arm", "Vänster Arm"]
 EVENT_TYPES = ["Labbsvar Blodprov", "Labbsvar EKG", "Omvårdnad", "Dosering"]
 EVENT_TYPES_SENT = ["Skickat Blodprov", "Skickat EKG", "Skickat Röntgen remiss"]
 EVENT_INLAGD = ["Gubbe", "Ambulans"]
