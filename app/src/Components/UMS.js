@@ -4,7 +4,7 @@
  * FINISHED
  * Author: Philip Löfgren
  *
- * Bugfix by Philip Nylén 17/11 - bypassing race condition by utilizing local storage
+ * Bugfix by Philip Nylén 17/11 - bypassing race condition by utilizing the local storage
  *
  */
 
