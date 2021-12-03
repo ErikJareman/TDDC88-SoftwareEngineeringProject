@@ -6,8 +6,7 @@
 import './PatientNavList.css'
 import { Link } from 'react-router-dom'
 import TriageTimeLeft from './TriageTimeLeft'
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
 import checkbox from '../assets/checkbox.png'
 import checkboxselected from '../assets/checkboxselected.png'
 import { Icon } from 'semantic-ui-react'
@@ -19,7 +18,7 @@ import { Icon } from 'semantic-ui-react'
  * FIXING
  * Notification functionality added - Nikil
  */
-export default function PatientNavList () {
+function PatientNavList (props) {
   /**
   * Below code snippet currently only works for location = Motala since the others contain 'åäö'
   * The below snippet is done, the name handling for Linköping & Norrköping needs to be altered in Startform.js
@@ -28,16 +27,9 @@ export default function PatientNavList () {
   * FINAL
   */
   const triageColors = ['green', 'yellow', 'orange', 'red']
-  const [patients, setPatients] = useState([])
-  useEffect(() => {
-    axios.get('https://backend-c4company.herokuapp.com/patients/' + localStorage.getItem('localLocation'))
-      .then(res => {
-        let persons = []
-        persons = res.data
-        persons.sort((a, b) => (a.team > b.team) ? 1 : ((b.team > a.team) ? -1 : 0))
-        setPatients(persons)
-      })
-  }, [])
+
+  const patients = props.patients
+  console.log(patients)
 
   const handleChange = (id) => {
     const Notif = JSON.parse(localStorage.getItem('patient' + id))
@@ -70,7 +62,7 @@ export default function PatientNavList () {
           if (JSON.parse(localStorage.getItem('displayTeam' + patient.team)) === true) {
             return (
               <>
-                <div className="divideContainer">
+                <div key={patient.id + patient.name} className="divideContainer">
                   {
                     index === 1
                       ? <button className="teams" type="submit" onClick={() => { changeActive(1) }}>TEAM {index}<Icon name={booleanToArrow[JSON.parse(localStorage.getItem('displayTeam' + 1))]} size='large' /></button>
@@ -87,10 +79,10 @@ export default function PatientNavList () {
                   <div id="linkList">
                     <Link to={{
                       pathname: `/patient/${patient.id}`,
-                      state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                      state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1], lastChecked: patient.lastChecked }
                     }}>
                       {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                      <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                      <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} lastChecked={patient.lastChecked} /></h3>
                       <h3 className='long'>{patient.reason}</h3>
                       <h3 className='long'>{patient.name}</h3>
                       <h3 className='long'>{patient.SSN}</h3>
@@ -137,10 +129,10 @@ export default function PatientNavList () {
                 <div id="linkList">
                   <Link to={{
                     pathname: `/patient/${patient.id}`,
-                    state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1] }
+                    state: { patients: patient, triageColor: triageColors[patient.triageLevel - 1], lastChecked: patient.lastChecked }
                   }}>
                     {/* Children in order <table> --> <thead> --> <tr> --> <td> to avoid warning, not <table> --> <h3> */}
-                    <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} /></h3>
+                    <h3 key={patient.id + '.timeChecked'} className='medium' style={{ backgroundColor: triageColors[patient.triageLevel - 1] }}><TriageTimeLeft triageLevel={patient.triageLevel} lastChecked={patient.lastChecked} /></h3>
                     <h3 className='long'>{patient.reason}</h3>
                     <h3 className='long'>{patient.name}</h3>
                     <h3 className='long'>{patient.SSN}</h3>
@@ -167,3 +159,5 @@ export default function PatientNavList () {
     </ul>
   )
 }
+
+export default PatientNavList

@@ -2,6 +2,7 @@
 
 import numpy as np
 import datetime
+import pandas as pd
 
 
 # [returns a num-long list of random timesstamps, all bwtween
@@ -49,14 +50,52 @@ def get_breathing_frequency(mean, num=1):
     return [min(45, val) for val in [sum(x) for x in zip([mean]*num, list(deviations))]]
 
 
+def compare_reference_values(ssn, type, value):
+    now = datetime.datetime.now().date()
+    birth = datetime.date(year=int(ssn[:4]), month=int(ssn[4:6]), day = int(ssn[6:8]))
+
+    age = np.floor((now-birth).days / 365.2425)
+    #print(age)
+    if type == "Blodtryck":
+            return 0
+    elif type == "Puls":
+        if value > 90:
+            return 1
+        elif value < 60:
+            return -1
+        else:
+            return 0
+    elif type == "Kropptstemperatur":
+        if value > 38:
+            return 1
+        elif value < 36:
+            return -1
+        else:
+            return 0
+    elif type == "Andningsfrekvens":
+            if value > 20.5:
+                return 1
+            elif value <17.5:
+                return -1
+            else:
+                return 0
+    else:
+        return 0
+    
+            
+    
+    
 
 # run this file to see example poutputs
 if __name__ == '__main__':
+    
+    compare_reference_values(1234, "Puls", 12)
 
-    N_VALS = 15
-    print(random_times(N_VALS, 120), "\n")
-    print(get_pulse(80, N_VALS), "\n")
-    print(get_body_temp(37, N_VALS), "\n")
-    print(get_blood_pressure((90, 80), N_VALS), "\n")
-    print(get_breathing_frequency(12, N_VALS), "\n")
+    
+    # N_VALS = 15
+    # print(random_times(N_VALS, 120), "\n")
+    # print(get_pulse(80, N_VALS), "\n")
+    # print(get_body_temp(37, N_VALS), "\n")
+    # print(get_blood_pressure((90, 80), N_VALS), "\n")
+    # print(get_breathing_frequency(12, N_VALS), "\n")
    

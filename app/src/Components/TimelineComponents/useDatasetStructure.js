@@ -14,13 +14,13 @@ export default function useDatasetStructure () {
   const datasetStructure = {
     datasets: [
       {
-        label: ['Patient Inlagd', 'Ankomst', 'Gubbe'], // {type, Short Desc., Category}
+        label: ['Patient Inkommen', 'Ankomst', 'Gubbe'], // {type, Short Desc., Category}
         pointStyle: getImg('Inlagd'),
         data: []
       },
       {
-        label: ['Patient Inlagd', 'Ankomst', 'Ambulans'],
-        pointStyle: getImg('Inlagd'),
+        label: ['Patient Inkommen', 'Ankomst', 'Ambulans'],
+        pointStyle: getImg('Ambulans'),
         data: []
       },
       {
@@ -59,7 +59,7 @@ export default function useDatasetStructure () {
         data: []
       },
       {
-        label: ['Skickat Röntgen remiss', 'Röntgen', 'Doktor'],
+        label: ['Skickat Rontgen remiss', 'Röntgen', 'Doktor'],
         pointStyle: getImg('Vård'),
         data: []
       },
@@ -68,8 +68,8 @@ export default function useDatasetStructure () {
         pointRadius: 6,
         pointHoverRadius: 7,
         data: [],
-        backgroundColor: ['red', '#ffffff00', '#ffffff00'],
-        borderColor: ['red', '#ffffff00', '#ffffff00']
+        backgroundColor: ['#0042ac', '#ffffff00', '#ffffff00'],
+        borderColor: ['#0042ac', '#ffffff00', '#ffffff00']
       }
     ]
   }

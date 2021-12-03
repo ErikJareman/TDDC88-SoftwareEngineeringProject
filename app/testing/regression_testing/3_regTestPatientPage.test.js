@@ -6,6 +6,8 @@ const { testTabs } = require('./3_test_patient/3_testPatientTabs.js')
 const { testLogin } = require('./2_test_login/1_testLogin.js')
 const { loginIfNeeded } = require('./2_test_login/loginUtilities.js')
 const { testPatientNameAndSSN } = require('./3_test_patient/5_testPatientNameAndSSN.js')
+const { getInOut } = require('./3_test_patient/4_testInputOutput.js')
+const { testPatientTriageIndication } = require('./3_test_patient/6_testPatientTriageIndication.js')
 const { testPatientUMS } = require('./3_test_patient/7_testPatientUMS.js')
 let driver
 const tabContents = { tab1: true, tab2: true, tab3: true }
@@ -67,4 +69,11 @@ describe('Testing pateint page', () => {
     await sleep(500)
     expect(await testPatientUMS(driver)).toBe(true)
   })
+
+  test('#3.7 (U13): Check if the triage on the patient page has the right color', async() => {
+    await driver.get(url + 'home')
+    await sleep(500)
+    expect(await testPatientTriageIndication(driver)).toBe(true)
+  })
+
 })

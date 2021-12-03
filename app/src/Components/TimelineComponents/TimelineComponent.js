@@ -112,6 +112,7 @@ function initDataPoints (dataset, backendEvents, initialWidth) {
   currentTime.setMonth(0)
   currentTime.setDate(1)
   const initialTimespan = getTimelineBounds(backendEvents, currentTime)
+  backendEvents = backendEvents.filter(a => (new Date('1970-01-01 ' + a.time).getTime() < currentTime.getTime()) || (a.type === 'Dosering' || a.type === 'Omvardnad'))
   backendEvents = updateCoordinateY(backendEvents, initialTimespan[0], initialTimespan[1], initialWidth)
   for (let i = 0; i < backendEvents.length; i++) {
     for (let j = 0; j < dataset.datasets.length; j++) {
@@ -129,7 +130,6 @@ function initDataPoints (dataset, backendEvents, initialWidth) {
 }
 
 function getData (backendEvents, initialWidth) {
-  console.log(backendEvents)
   const { datasetStructure } = useDatasetStructure()
   const dataset = initDataPoints(datasetStructure, backendEvents, initialWidth)
   return dataset
@@ -162,8 +162,7 @@ export default function TimelineComponent (patient) {
   }, [])
 
   return (
-  <div ref={targetRef} style={{ height: '330px' }}>
-    <h1 style={{ margin: 0 }}>Tidslinje</h1>
+  <div ref={targetRef} style={{ height: 'calc(25px + 37px + 31vh + 10px)' }}> {/** height based on PatientInfo component */}
     {backendEvents && initialWidth && <Scatter data={getData(backendEvents, initialWidth)} options={getOptions()} />}
   </div>
   )

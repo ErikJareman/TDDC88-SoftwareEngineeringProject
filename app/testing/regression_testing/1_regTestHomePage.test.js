@@ -5,6 +5,7 @@ const { getHomePageHeading } = require('./1_test_home/homeUtilities.js')
 const { goToPatient } = require('./3_test_patient/patientUtilities.js')
 const { loginIfNeeded } = require('./2_test_login/loginUtilities.js')
 const { getReasonForVisit } = require('./1_test_home/2_testReasonForVisit.js')
+const { testOverviewTriageIndication } = require('./1_test_home/1_testOverviewTriageIndication')
 let driver
 
 describe('Testing home page', () => {
@@ -44,4 +45,11 @@ describe('Testing home page', () => {
   test('#1.4 (U50, SRS3.1.1.2) : Test to see if reason for visit is displayed in the patient list on the overview page', async () => {
     expect(await getReasonForVisit(driver)).toBe(true)
   })
+
+  test('#1.5 (U13): Check if the triage on the overview page has the right color', async() => {
+    await driver.get(url + 'home')
+    await sleep(500)
+    expect(await testOverviewTriageIndication(driver)).toBe(true)
+  })
+
 })

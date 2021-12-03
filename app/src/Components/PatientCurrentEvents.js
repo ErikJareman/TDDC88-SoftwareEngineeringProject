@@ -11,6 +11,8 @@ import React from 'react'
 import { Tab } from 'semantic-ui-react'
 import FilterEvents from './FilterEvents'
 import EventCard from './EventCard'
+import './PatientCurrentEvents.css'
+import Current from '../assets/current2.png'
 
 function PatientCurrentEvents (props) {
   const currentEvents = props.currentEvents
@@ -27,18 +29,35 @@ function PatientCurrentEvents (props) {
     backgroundColor: '#f7f7f7',
     borderRadius: '5px'
   }
+  const CustomIcon = (
+    <i className="tabIcon">
+      <img id="tabImage" src={Current} />
+    </i>
+  )
+
+  function imageToLoad (category) {
+    let stringToReturn = category
+    if (category === 'Gubbe') {
+      stringToReturn = 'Inkommen'
+    }
+    return stringToReturn
+  }
+
+  const handleTabChange = (e, data) => {
+    localStorage.setItem('activeEventIndex', data.activeIndex)
+  }
 
   const panes = [
     {
-      menuItem: { icon: 'newspaper outline big' },
+      menuItem: { icon: CustomIcon },
       render: () => <Tab.Pane style={eventTabsCss}>{FilterEvents({ sortBy: 'time', list: currentEvents }).map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={imageToLoad(event.category)} />)
       })}</Tab.Pane>
     },
     {
       menuItem: { icon: 'envelope outline big' },
       render: () => <Tab.Pane style={eventTabsCss}>{incoming.map((event) => {
-        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={event.category} />)
+        return (<EventCard event={event} key={event.category + '_' + event.time} name={event.type} time={event.time} color='green' image={imageToLoad(event.category)} />)
       })}</Tab.Pane>
     },
     {
@@ -57,7 +76,9 @@ function PatientCurrentEvents (props) {
           tabular: true,
           style: { display: 'flex', justifyContent: 'center' }
         }}
-        panes={panes} />
+        panes={panes}
+        defaultActiveIndex={localStorage.getItem('activeEventIndex') || 0}
+        onTabChange={handleTabChange} />
     </div>
   )
 }

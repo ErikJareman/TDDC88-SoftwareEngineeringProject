@@ -10,7 +10,7 @@ import './EventCard.css'
 import React, { useState } from 'react'
 import { Popup } from 'reactjs-popup'
 import { Icon } from 'semantic-ui-react'
-import pipett from '../assets/pipett.png'
+import { InlagdIcon, Svar1Icon, DosIcon } from '../assets/timelineIcons/index'
 
 function EventCard (props) {
   const [opa, setOpa] = useState('100%')
@@ -43,18 +43,42 @@ function EventCard (props) {
     </>
   )
 
-  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: pipett, Medkit: 'medkit', Heartbeat: 'heartbeat' }
-
+  const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: 'pipett', Medkit: 'medkit', Heartbeat: 'heartbeat' }
   return (
     <>
       <Popup trigger={
         <table id='patient-inlagd-group'>
-          <tr>
-            <th style={{ width: '15%' }}><h4>{props.image === 'Pippett' ? <img style={{ height: '2vh' }} src={sweToEng[props.image]}></img> : <Icon name={sweToEng[props.image]} size='large' />}</h4></th>
-            <th style={{ width: '60%' }}><h4 id='event-text'>{props.name}</h4></th>
-            <th style={{ width: '15%' }}><h4>{props.time.substring(0, 5)}</h4></th>
-            <th style={{ width: '10%' }}><div id='dot-div' style={{ opacity: opa }}><span id='dot'></span></div></th>
-          </tr>
+          <tbody>
+            <tr>
+              <th style={{ width: '15%' }}>
+                <h4>{props.image === 'Pippett'
+                  ? <img src={Svar1Icon}></img>
+                  : (props.image === 'Inkommen'
+                      ? <img src={InlagdIcon}></img>
+                      : (props.image === 'Medkit'
+                          ? <img src={DosIcon}></img>
+                          : <Icon name={sweToEng[props.image]} size='large' />))
+                  }
+                </h4>
+              </th>
+              <th style={{ width: '60%' }}><h4 id='event-text'>
+                {props.name === 'Patient Lamnar'
+                  ? 'Patient Lämnar'
+                  : (props.name === 'Omvardnad'
+                      ? 'Omvårdnad'
+                      : (props.name === 'Skickat Rontgen remiss'
+                          ? 'Skickat Röntgen remiss'
+                          : props.name))
+                }
+              </h4></th>
+              <th style={{ width: '15%' }}><h4>{props.time.substring(0, 5)}</h4></th>
+              <th style={{ width: '10%' }}>
+                <div id='dot-div' style={{ opacity: opa }}>
+                  <span id='dot'></span>
+                </div>
+              </th>
+            </tr>
+          </tbody>
         </table>
       } position='right top' onOpen={() => setOpa('0%')}>
         <div id='popup-div'>
