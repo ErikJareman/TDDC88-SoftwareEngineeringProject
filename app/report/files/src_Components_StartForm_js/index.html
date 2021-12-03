@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jschecker - src/Components/StartForm.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/css/jschecker.css" rel="stylesheet" type="text/css">
+  <link href="../../assets/css/jschecker-file.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" >JS Complexity</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+      <li class="active">
+        <a href="display.html">Summary Display</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>src/Components/StartForm.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">65.40</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">134</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">31.70</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">0.64</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">/**
+ * StartForm.js
+ *
+ * Component for the starting page where the user can select their role (E.g. Doctor, Nurse, Etc.)
+ *
+ * FINAL
+ *
+ * Authors Philip Löfgren, Philip Nylén, Marcus Alvebro
+*/
+import regionenLogo from &#039;../assets/regionenLogo.png&#039;
+import &#039;./StartForm.css&#039;
+import React, { useState } from &#039;react&#039;
+import { Button, Form } from &#039;semantic-ui-react&#039;
+import { Link } from &#039;react-router-dom&#039;
+
+const roleOptions = [
+  {
+    key: &#039;Läkare&#039;,
+    text: &#039;Läkare&#039;,
+    value: &#039;Läkare&#039;
+  },
+  {
+    key: &#039;Sjuksköterska&#039;,
+    text: &#039;Sjuksköterska&#039;,
+    value: &#039;Sjuksköterska&#039;
+  },
+  {
+    key: &#039;Undersköterska&#039;,
+    text: &#039;Undersköterska&#039;,
+    value: &#039;Undersköterska&#039;
+  }
+]
+
+const hospitalOptions = [
+  {
+    key: &#039;Linkoping&#039;,
+    text: &#039;Linköping&#039;,
+    value: &#039;Linkoping&#039;
+  },
+  {
+    key: &#039;Norrkoping&#039;,
+    text: &#039;Norrköping&#039;,
+    value: &#039;Norrkoping&#039;
+  },
+  {
+    key: &#039;Motala&#039;,
+    text: &#039;Motala&#039;,
+    value: &#039;Motala&#039;
+  }
+]
+
+/**
+ * Function StartForm () currently renders a dropdown with alternatives
+ * of roles that can be selected. This will determine the information they have access
+ * to and also which hospital will be shown in the navbar.
+ */
+
+export default function StartForm () {
+  const [role, setRole] = useState(&#039;&#039;)
+  const [location, setLocation] = useState(&#039;&#039;)
+  const [locationText, setLocationText] = useState(&#039;&#039;)
+
+  const saveDetails = (event) =&gt; {
+    if (role === &#039;Läkare&#039; || role === &#039;Sjuksköterska&#039; || role === &#039;Undersköterska&#039;) {
+      localStorage.setItem(&#039;localRole&#039;, role)
+    } else {
+      localStorage.setItem(&#039;localRole&#039;, &#039;&#039;)
+    }
+
+    if (location === &#039;Linkoping&#039; || location === &#039;Norrkoping&#039; || location === &#039;Motala&#039;) {
+      localStorage.setItem(&#039;localLocation&#039;, location)
+      localStorage.setItem(&#039;locationText&#039;, locationText)
+    } else {
+      localStorage.setItem(&#039;localLocation&#039;, &#039;&#039;)
+      localStorage.setItem(&#039;locationText&#039;, &#039;&#039;)
+    }
+    localStorage.setItem(&#039;displayTeam1&#039;, true)
+    localStorage.setItem(&#039;displayTeam2&#039;, true)
+    localStorage.setItem(&#039;displayTeam3&#039;, true)
+  }
+
+  const handleSelectedRole = (event, data) =&gt; {
+    setRole(data.value)
+  }
+
+  const handleSelectedLocation = (event, data) =&gt; {
+    setLocation(data.value)
+    if (data.value === &#039;Linkoping&#039;) {
+      setLocationText(&#039;Linköping&#039;)
+    } else if (data.value === &#039;Norrkoping&#039;) {
+      setLocationText(&#039;Norrköping&#039;)
+    } else if (data.value === &#039;Motala&#039;) {
+      setLocationText(&#039;Motala&#039;)
+    } else {
+      setLocationText(&#039;&#039;)
+    }
+  }
+
+  return (
+      &lt;div className=&#039;start&#039;&gt;
+        &lt;div className=&#039;start_container&#039;&gt;
+          &lt;img src={regionenLogo} className=&#039;regionen-logo&#039; alt=&#039;Not found&#039; /&gt;
+          &lt;Form&gt;
+          &lt;Form.Select
+          className=&#039;roles&#039;
+          label =&#039;Roll&#039;
+          placeholder=&#039;Välj en roll&#039;
+          fluid
+          selection
+          clearable
+          options={roleOptions}
+          onChange = {handleSelectedRole}
+          /&gt;
+          &lt;Form.Select
+          className=&#039;locations&#039;
+          label=&#039;Sjukhus&#039;
+          placeholder=&#039;Välj ett sjukhus&#039;
+          fluid
+          selection
+          clearable
+          options={hospitalOptions}
+          onChange = {handleSelectedLocation}
+          /&gt;
+          {
+            role !== &#039;&#039; &amp;&amp; location !== &#039;&#039;
+              ? &lt;Link to = &#039;/home&#039;&gt;&lt;Button className=&#039;startButton&#039; onClick={saveDetails}&gt;Logga in&lt;/Button&gt;&lt;/Link&gt;
+              : &lt;Link to = &#039;/&#039;&gt;&lt;Button className=&#039;startButton&#039; disabled onClick={saveDetails}&gt;Logga in&lt;/Button&gt;&lt;/Link&gt;
+          }
+          &lt;/Form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+  )
+}
+</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/jschecker-file.js"></script>
+</body>
+</html>

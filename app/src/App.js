@@ -8,17 +8,15 @@ import Start from './Pages/Start/Start'
 
 export default function App () {
   return (
-    <>
-      <Router>
-        <div className="App">
-          <Switch>
-            <Route path="/patient" component={Patient} />
-            <Route path="/login" component={Login} />
-            <Route path="/home" component={Home} />
-            <Route path="/" component={Start} />
-          </Switch>
-        </div>
-      </Router>
-    </>
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/patient" component={Patient} />
+          <Route path="/login" component={Login} />
+          <Route path="/home" component={Home} />
+          <Route path="/" component={Start} />
+        </Switch>
+      </div>
+    </Router>
   )
 }

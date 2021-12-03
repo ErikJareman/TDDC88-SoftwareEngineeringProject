@@ -1,11 +1,9 @@
 module.exports = {
   env: {
-    browser: true,
-    es2021: true
+    browser: true
   },
   extends: [
-    'plugin:react/recommended',
-    'standard'
+    'plugin:react/recommended'
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -18,7 +16,10 @@ module.exports = {
     'react'
   ],
   rules: {
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    'enforceForClassMembers': 'off',
+    'setWithoutGet': 'off',
+    'accessor-pairs': 'off'
   },
   settings: {
     react: {
