@@ -20,7 +20,9 @@ async function testPatientTriageIndication (driver) {
   let triageLevel = patients[0].triageLevel
   // Gets the patient's triage color and checks if it matches the patient's triage level
   const triageColor = await driver.wait(until.elementLocated(By.css(
-      'div.Row > h5:nth-child(1)')), 3000).getAttribute('style')
+      "h5[id='triageBox']")), 3000).getAttribute('style')
+      // 'div.Row > h5:nth-child(1)'
+      console.log(triageColor)
   if (triageColor.includes("red")) {
       if (triageLevel == 4) {
           return true

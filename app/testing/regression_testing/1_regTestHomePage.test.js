@@ -31,7 +31,7 @@ describe('Testing home page', () => {
   })
 
   test('#1.2 (R2) : Test select patient in patient list', async () => {
-    expect(await goToPatient(driver, 'Benbrott')).toBe(true)
+    expect(await goToPatient(driver, 'Buksmärtor')).toBe(true)
   })
 
   test('#1.3 (SRS3.1.1.2) : Test if a list of patients is displayed in the overview page', async () => {

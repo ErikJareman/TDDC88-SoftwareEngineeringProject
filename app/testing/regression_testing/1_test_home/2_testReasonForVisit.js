@@ -7,7 +7,6 @@ async function getReasonForVisit (driver) {
   const patientDataList = []
   const patientList = await driver.wait(until.elementsLocated(By.css(
     'li')), 3000)
-  console.log(patientList.length)
   for (let i = 0; i < patientList.length; i++) {
     const elementText = await patientList[i].getText().then((val) => {
       return val
@@ -15,10 +14,10 @@ async function getReasonForVisit (driver) {
     patientDataList.push(elementText)
   }
   for (const element of patientDataList) {
-    if (element.includes('Hjartkramp') ||
-      element.includes('Benbrott') ||
-      element.includes('Ryggvark') ||
-      element.includes('Buksmartor')) {
+    if (element.includes('Bröstsmärta') ||
+      element.includes('Buksmärtor') ||
+      element.includes('Skada höft') ||
+      element.includes('Onormal hjärtrytm')) {
       continue
     } else {
       return 'Could not find the reason for visit on patient: ' + element
