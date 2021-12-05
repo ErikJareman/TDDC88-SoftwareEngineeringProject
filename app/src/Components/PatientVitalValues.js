@@ -2,6 +2,7 @@
  * Component for the vital parameters on the patient page.
  * Isak Berntsson & Linus Bäckbro Kuusisto
  * Responsible for graphs - Erik Jareman
+ * Responsible for arrows - Nikil Johny Kunnappallil
  * issue #31
  */
 import React, { useState } from 'react'
@@ -156,7 +157,7 @@ export default function VitalValuesComponent (props) {
         dataset.push({ x: new Date('1970-01-01 ' + datapoints[i].time), y: values[i] })
       }
       if (datapoints[i].reference === 0) {
-        backgroundColor.push('black')
+        backgroundColor.push('green')
       } else {
         backgroundColor.push('red')
       }
