@@ -4,6 +4,7 @@ const { sleep } = require('../testUtilities.js')
 /** Checks if the patient data in patient list (home view) matches patient data
  * in Patientinfo-box (patient view) */
 async function testPatientInfoBox (driver) {
+  let i = 0; 
   const patientInfoResult = {
     roomOk: false,
     teamOk: false,
@@ -30,8 +31,11 @@ async function testPatientInfoBox (driver) {
     const splitList = val.split(' ', 2)
     return splitList[1]
   })
-  patientInfoCollection.room = ('Rum ' + infoList[6])
-  patientInfoCollection.patientName = infoList[3]
+  if (infoList[0] === '-') {
+    i = 1; 
+  }
+  patientInfoCollection.room = ('Rum ' + infoList[6+i])
+  patientInfoCollection.patientName = infoList[3+i]
   patientInfoCollection.team = ('Team ' + teamNum)
   await topPatientInfoList[0].click()
   await sleep(500)
