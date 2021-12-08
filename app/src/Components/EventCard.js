@@ -1,9 +1,9 @@
 /**
 * EventCard.js
 *
-* Cards that display an event for a patient.
+* Cards that display an event in detail for a patient.
 *
-* Martin Jonson - DRAFT
+* Martin Jonson - FINAL
 */
 
 import './EventCard.css'
@@ -44,6 +44,12 @@ function EventCard (props) {
   )
 
   const sweToEng = { Gubbe: 'street view', Doktor: 'doctor', Ambulans: 'ambulance', Hus: 'home', Pippett: 'pipett', Medkit: 'medkit', Heartbeat: 'heartbeat' }
+  
+  /**
+   * A clickable popup card is returned containing info about an event
+   * Martin Jonsson
+   * FINAL
+   */
   return (
     <>
       <Popup trigger={

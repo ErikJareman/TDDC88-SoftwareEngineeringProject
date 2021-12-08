@@ -2,9 +2,9 @@
  * Component that renders the drugs given to a patient
  *
  *
- * 2021-11-18: created
+ * 2021-11-18: created by David Råsberg
  *
- * WIP
+ * FINAL
  */
 
 import React from 'react'

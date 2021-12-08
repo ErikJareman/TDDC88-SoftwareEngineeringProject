@@ -1,7 +1,9 @@
 /**
- *  Component for the 'Patientinfo'-box on patient page.
+ * Component for the 'Patientinfo'-box on patient page.
  *
- *
+ * David Råsberg
+ * 
+ * FINAL
  */
 
 import React from 'react'
@@ -23,17 +25,6 @@ export default function PatientInfo (props) {
     width: '40 %',
     marginBottom: '5%'
   }
-
-  /* const infoBoxCss = {
-    borderStyle: 'ridge',
-    borderRadius: '5%',
-    width: '100%',
-    height: '31vh',
-    overflow: 'hidden',
-    // textOverflow: 'ellipsis'
-    overflowY: 'scroll',
-    padding: '3px'
-  */
 
   return (
     <div id="divi">

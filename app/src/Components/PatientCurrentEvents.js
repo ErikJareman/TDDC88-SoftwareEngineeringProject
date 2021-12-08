@@ -1,11 +1,10 @@
 /**
- *  Component for the "Aktuella händelser" on patient page.
+ * Component for the "Aktuella händelser" on patient page.
  *
- *  WIP
- *
- *
- *  Adding tabs into the Aktuelle as part of user story
- *  Done by Nikil
+ * Adding tabs into the Aktuella as part of user story
+ * Done by Nikil & Philip N
+ * 
+ * FINAL
  */
 import React from 'react'
 import { Tab } from 'semantic-ui-react'

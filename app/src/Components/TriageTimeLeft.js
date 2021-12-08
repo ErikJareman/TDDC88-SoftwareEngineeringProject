@@ -9,6 +9,7 @@
  *
  * 2021-11-12: Takes triageLevel from back-end. But timeLastChecked is still (pseudo-)randomly generated in component.
  *
+ * FINAL
  */
 
 import React, { useEffect, useState } from 'react'

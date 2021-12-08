@@ -1,7 +1,7 @@
 /**
  * PatientNavList.js
  *
- * function PatientNavList() - Philip Nylén, Erik Jareman - DRAFT
+ * function PatientNavList() - Philip Nylén, Erik Jareman - FINAL
  */
 import './PatientNavList.css'
 import { Link } from 'react-router-dom'
@@ -12,17 +12,14 @@ import checkboxselected from '../assets/checkboxselected.png'
 import { Icon } from 'semantic-ui-react'
 
 /**
- * The function PatientNavList renders the list of patients, currently
- * only psuedo-data
+ * The function PatientNavList renders the list of patients
  * Philip Nylén, Erik Jareman
- * FIXING
+ * FINAL
  * Notification functionality added - Nikil
  */
 function PatientNavList (props) {
   /**
-  * Below code snippet currently only works for location = Motala since the others contain 'åäö'
-  * The below snippet is done, the name handling for Linköping & Norrköping needs to be altered in Startform.js
-  * or in the backend
+  * The below snippet is done
   * Philip Nylén
   * FINAL
   */
@@ -57,8 +54,10 @@ function PatientNavList (props) {
   return (
     <ul>
       {patients.map((patient) => {
+        // If the patient belongs to a team number higher than current index, a dropdown button is added for that team
         if (patient.team > index) {
           index += 1
+          // Checks if the user has chosen to display the team
           if (JSON.parse(localStorage.getItem('displayTeam' + patient.team)) === true) {
             return (
               <>

@@ -1,7 +1,9 @@
 /**
  * Component to render EKG-chart
  *
- * WIP
+ * David Råsberg & Philip N
+ * 
+ * FINAL
  */
 
 import React from 'react'

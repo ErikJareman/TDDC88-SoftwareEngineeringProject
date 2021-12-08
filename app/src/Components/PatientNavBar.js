@@ -2,7 +2,7 @@
 * PatientNavBar.js
 * Component for sub-navbar in patient-view
 *
-* Author David Råsberg, Rough draft
+* Author: David Råsberg - FINAL
 */
 
 import './PatientNavBar.css'

@@ -1,13 +1,15 @@
+/**
+ * The function PatientInUt renders the list of patients intravenous injections
+ * 
+ * Viktor Storsved & Marcus Vidgren
+ * 
+ * FINAL
+ */
 import './PatientInUt.css'
 import React from 'react'
-// import axios from 'axios'
 import FilterEvents from './FilterEvents'
 import NoValueInfo from './NoValueInfo'
 
-/**
- * The function PatientInUt renders the list of patients intravenous injections
- * Viktor Storsved, Marcus Vidgren
- */
 export default function PatientInUt (props) {
   /**
    * Constant to store injections in a way so .map function works
