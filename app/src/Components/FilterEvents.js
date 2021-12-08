@@ -1,12 +1,12 @@
 /**
- *  Component to filter and/or sort the current events on patient page.
+ * Component to filter and/or sort the current events on patient page.
  *
  *
- *  Done by David
+ * Done by David Råsberg
  *
  * Currently only works for time: 'HH:MM:SS...'. Not Date type
  *
- *  WIP
+ * Status - FINAL
  */
 
 // takes a dictionary as parameter. With {sortBy='', filterBy=''}

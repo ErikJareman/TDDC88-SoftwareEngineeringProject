@@ -13,7 +13,6 @@ import {
   AmbIcon,
   HemIcon,
   VardIcon,
-  SkickatIcon,
   Svar1Icon,
   Svar2Icon,
   PipettIcon,
@@ -40,7 +39,7 @@ const useIconSelector = () => {
         img.src = VardIcon
         return img
       case 'Skickat':
-        img.src = SkickatIcon
+        img.src = Svar1Icon
         return img
       case 'Svar1':
         img.src = Svar1Icon

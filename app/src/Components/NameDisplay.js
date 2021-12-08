@@ -1,9 +1,7 @@
 /**
  * NameDisplay.js
  *
- * A component to always display Name and personal number of the patients - Nikil johny - DRAFT
- *
- * Documentation not complete.
+ * A component to always display Name and personal number of the patients - Nikil johny - FINAL
  *
  * We have defined two variables to store the name and personal number
  * and displayed it accordingly.

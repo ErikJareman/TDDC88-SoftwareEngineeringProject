@@ -2,6 +2,8 @@
  * Component for the refresh of page in 30 seconds
  *
  * Nikil
+ * 
+ * FINAL
  */
 import React from 'react'
 

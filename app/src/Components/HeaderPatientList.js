@@ -1,8 +1,8 @@
 
-/*
-A component to display the patient details tab in the home page
-- Nikil
-
+/**
+* A component to display the patient details tab in the home page, explaining the data within a column
+* Nikil
+* FINAL
 */
 import React from 'react'
 import './HeaderPatientList.css'

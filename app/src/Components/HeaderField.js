@@ -3,7 +3,7 @@
  *
  * Top header which is constant across all pages
  *
- * function HeaderField() - Philip Nylén - FINAL
+ * function HeaderField() - Philip Nylén & Martin Jonsson - FINAL
  */
 
 import headerLogo from '../assets/headerLogo.png'
@@ -39,7 +39,6 @@ function HeaderField (props) {
     })
   }
   const clearLocal = () => {
-    // localStorage.clear()
     localStorage.removeItem('localRole')
     localStorage.removeItem('localLocation')
     localStorage.removeItem('locationText')

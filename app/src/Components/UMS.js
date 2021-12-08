@@ -1,7 +1,7 @@
 /** Component for rendering the UMS logo which is supposed to show some of the patients
  * previous medical history. Now fully linked with the backend database.
  *
- * FINISHED
+ * FINAL
  * Author: Philip Löfgren
  *
  * Bugfix by Philip Nylén 17/11 - bypassing race condition by utilizing the local storage

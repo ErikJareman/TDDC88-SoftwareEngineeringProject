@@ -3,7 +3,9 @@
  *
  * Created 2021-11-28
  *
- * David Råsberg
+ * David Råsberg & Philip N
+ * 
+ * FINAL
  *
  */
 
@@ -14,23 +16,10 @@ export default function generateSegment () {
   for (let i = 0; i < 20; ++i) {
     points.push(currentData)
   }
-  // P
-  // for (let i = 0; i < 10; ++i) {
-  //   points.push(++currentData)
-  // }
-  // for (let i = 0; i < 10; ++i) {
-  //   points.push(--currentData)
-  // }
   for (let i = 0; i < 39; ++i) {
     const value = Math.round(-7.105427e-15 + 0.5934732 * (i / 2.0) + 0.1104895 * Math.pow((i / 2.0), 2) - 0.007459207 * Math.pow((i / 2.0), 3))
     points.push(currentData + value)
   }
-
-  /* Tried to make in into a curve. Did not work...
-   for (let i = 0; i <= 20; ++i) {
-    points.push(1.8 * i - ((0.3 * i) ^ 2))
-    console.log(i, 1.8 * i - ((0.3 * i) ^ 2))
-  } */
 
   for (let i = 0; i < 10; ++i) {
     points.push(currentData)

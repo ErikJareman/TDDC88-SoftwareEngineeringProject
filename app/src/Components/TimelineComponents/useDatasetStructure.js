@@ -14,7 +14,8 @@ export default function useDatasetStructure () {
   const datasetStructure = {
     datasets: [
       {
-        label: ['Patient Inkommen', 'Ankomst', 'Gubbe'], // {type, Short Desc., Category}
+        // label: {type, Short Desc., Category}
+        label: ['Patient Inkommen', 'Ankomst', 'Gubbe'],
         pointStyle: getImg('Inlagd'),
         data: []
       },
@@ -39,7 +40,7 @@ export default function useDatasetStructure () {
         data: []
       },
       {
-        label: ['Skickat Blodprov', 'Skickat', 'Pippett'], // finns ej i backend (?)
+        label: ['Skickat Blodprov', 'Skickat', 'Pippett'],
         pointStyle: getImg('Skickat'),
         data: []
       },
@@ -63,7 +64,8 @@ export default function useDatasetStructure () {
         pointStyle: getImg('Vård'),
         data: []
       },
-      { // dataset for all non-event datapoints
+      { 
+        // dataset for all non-event datapoints
         pointStyle: ['triangle'],
         pointRadius: 6,
         pointHoverRadius: 7,

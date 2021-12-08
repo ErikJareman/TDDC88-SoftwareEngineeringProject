@@ -4,13 +4,13 @@
  * Responsible for graphs - Erik Jareman
  * Responsible for arrows - Nikil Johny Kunnappallil
  * issue #31
+ * FINAL
  */
 import React, { useState } from 'react'
 import { Grid, Segment, Header, Table, Icon } from 'semantic-ui-react'
 import { Chart, Line } from 'react-chartjs-2'
 import 'chartjs-adapter-date-fns'
 import './PatientVitalValues.css'
-import './VitalHistory.js'
 import FilterEvents from './FilterEvents'
 import NoValueInfo from './NoValueInfo'
 Chart.register()
