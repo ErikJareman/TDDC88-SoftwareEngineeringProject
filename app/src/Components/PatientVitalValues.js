@@ -151,10 +151,13 @@ export default function VitalValuesComponent (props) {
     const dataset = []
     const backgroundColor = []
     for (let i = 0; i < datapoints.length; i++) {
+      let timeSplit = datapoints[i].time.split(':')
+      let datey = new Date()
+      datey.setHours(timeSplit[0], timeSplit[1], timeSplit[2])
       if (values === null) {
-        dataset.push({ x: new Date('1970-01-01 ' + datapoints[i].time), y: datapoints[i].value })
+        dataset.push({ x: datey, y: datapoints[i].value })
       } else {
-        dataset.push({ x: new Date('1970-01-01 ' + datapoints[i].time), y: values[i] })
+        dataset.push({ x: datey, y: values[i] })
       }
       if (datapoints[i].reference === 0) {
         backgroundColor.push('green')
